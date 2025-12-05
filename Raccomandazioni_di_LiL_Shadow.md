@@ -34,7 +34,7 @@
 
 
 
-###### -Inserire le keywords nel tag title (e nel tag kewords?) e inserire il tag description.
+###### -Inserire le keywords nel tag title e inserire il tag description.
 
 
 
@@ -44,9 +44,13 @@
 
 ###### 
 
+###### -Usare JPG e WEBP (peso minore ma tempo di rendering maggiore rispetto a JPG) per immagini. Se sono immagini molto piccole va bene anche PNG (logo).
+
+###### 
+
 ###### -Se ho molte immagini, specificare width e height permette di velocizzare il rendering.
 
-
+###### 
 
 ###### -Bilanciare il peso e la qualità delle immagini.
 
