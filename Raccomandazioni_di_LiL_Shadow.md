@@ -74,6 +74,8 @@
 
 ###### 
 
+###### -Font accessibili: lexend, atkinson hyperlegible, inclusive sans.
+
 ###### -Attributo alt delle immagini vuoto, significa solo alt="", senza nessun carattere tra i doppi apici, neanche lo spazio.
 
 ###### 
