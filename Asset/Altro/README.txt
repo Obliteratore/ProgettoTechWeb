@@ -1,0 +1,1 @@
+Se l'asset non è categorizzabile.
