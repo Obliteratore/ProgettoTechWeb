@@ -6,11 +6,11 @@
 
 
 
-###### -Fare breadcrumb.
+###### -Ogni pagina deve contenere il breadcrumb.
 
 ###### 
 
-###### -Specificare le parole in lingua diversa da quella presente nel tag html.
+###### -Specificare le parole in lingua diversa da quella italiana tramite il seguente comando: `<span lang = [lingua]> [testo in lingua straniera] </span>`
 
 ###### 
 
@@ -18,23 +18,23 @@
 
 ###### 
 
-###### -Usare tag time per le date, con attributo datetime.
+###### -Usare tag `<time>` per le date, con attributo `datetime`.
 
 ###### 
 
-###### -Usare il tag strong con attenzione.
+###### -Usare i tag `<em>` e `<strong>` piuttosto che utilizzare i tag `<i>` (italico) e `<b>` (bold), siccome i primi hanno un significato semantico (il browser gli da più peso).
 
 ###### 
 
-###### -Se il significato di un'abbreviazione è già scritto dopo l'abbreviazione stessa, mettere il tag abbr ma senza l'attributo title, per non farlo ripetere due volte.
+###### -Se il significato di un'abbreviazione è già scritto dopo l'abbreviazione stessa, mettere il tag `<abbr>` ma senza l'attributo `title`, per non farlo ripetere due volte.
 
 
 
-###### -Per creare bottoni usare il tag button.
+###### -Per creare bottoni usare il tag `<button>`.
 
 
 
-###### -Inserire le keywords nel tag title e inserire il tag description.
+###### -Inserire all'interno del tag `<html>` l'attributo `title` con le keywords e la descirione del sito nell'attributo `description`. Controllare poi che tutte le parole chiave appaiano all'intero degli headers.
 
 
 
@@ -48,7 +48,7 @@
 
 ###### 
 
-###### -Se ho molte immagini, specificare width e height permette di velocizzare il rendering.
+###### -Se ho molte immagini, specificare width e height nell'html per permette di velocizzare il rendering.
 
 ###### 
 
@@ -74,9 +74,9 @@
 
 ###### 
 
-###### -Font accessibili: lexend, atkinson hyperlegible, inclusive sans.
+###### -Usare Font accessibili.
 
-###### -Attributo alt delle immagini vuoto, significa solo alt="", senza nessun carattere tra i doppi apici, neanche lo spazio.
+###### -Per avere l'attributo `alt` delle immagini vuoto, scrivere solamente `alt=""`
 
 ###### 
 
@@ -144,7 +144,7 @@
 
 ###### 
 
-###### -Gestire gli errori in modo simpatico, rassicurare l'utente, fornirgli un'indicazione su come continuare (es.: "Torna alla home").
+###### -Gestire gli errori in modo appropriato, rassicurare l'utente, spiegare il problema, fornirgli un'indicazione su come continuare (es.: "Contatta il supporto"), eventualmente la gestione può essere simpatica. 
 
 
 
