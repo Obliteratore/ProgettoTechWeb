@@ -74,9 +74,10 @@
 
 
 ### **Ciclidi**
+
 | Pesce | Immagine |
 |:--|--:|
-| **Ciclide di Heckel** (Acarichthys heckelii ) | <img src="https://www.fishipedia.it/wp-content/uploads/2014/04/Acarichthys-heckelii-725x483.jpg" alt="Acarichthys heckelii" width="200" style="object-fit:cover;"/> |
-| **Pesce limone** (Amphilophus citrinellus) | <img src="https://www.fishipedia.it/wp-content/uploads/2013/06/Amphilophus_citrinellus_1-725x483.jpg" alt="Amphilophus citrinellus" width="200" style="object-fit:cover;"/> | |
+| **Ciclide di Heckel** (Acarichthys heckelii) | <img src="https://www.fishipedia.it/wp-content/uploads/2014/04/Acarichthys-heckelii-725x483.jpg" alt="Acarichthys heckelii" width="200" style="object-fit:cover;"/> |
+| **Pesce limone** (Amphilophus citrinellus) | <img src="https://www.fishipedia.it/wp-content/uploads/2013/06/Amphilophus_citrinellus_1-725x483.jpg" alt="Amphilophus citrinellus" width="200" style="object-fit:cover;"/> |
+| **Ciclide di Agassiz** (Apistogramma agassizii) | <img src="https://www.fishipedia.es/wp-content/uploads/2017/11/Apistogramma-agassizii-725x483.jpg" alt="Apistogramma agassizii" width="200" style="object-fit:cover;"/> |
 
-| **Ciclide di Agassiz** (Apistogramma agassizii) | <img src="https://www.fishipedia.es/wp-content/uploads/2017/11/Apistogramma-agassizii-725x483.jpg" alt="Apistogramma agassizii" width="200" style="object-fit:cover;"/> | |
