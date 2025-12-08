@@ -30,22 +30,22 @@ https://www.accessibilitychecking.com/blog/fonts-accessibility/
 ### **axe DevTools**
 Estensione per i browser che permette all'utente di fare test sull'accessibilità, include test automatici.
 
-### Accesiblity Insights
+### **Accesiblity Insights**
 Estensione per chrome ed edge per fare test sull'accessibilità (Microsoft)
 
 https://accessibilityinsights.io/
 
-### Hue Sure
+### **Hue Sure**
 Sito usato per controllare contrasti 
 
 https://huesure.com
 
-### Colorsafe
+### **Colorsafe**
 Trova pallette di colori accessibili.
 
 http://colorsafe.co/
 
-### Tanaguru Contrast Finder
+### **Tanaguru Contrast Finder**
 "Find me the good constrasts, for web accessibility, between these two colors"
 
 https://contrast-finder.tanaguru.com/
