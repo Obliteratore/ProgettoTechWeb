@@ -49,3 +49,7 @@ http://colorsafe.co/
 "Find me the good constrasts, for web accessibility, between these two colors"
 
 https://contrast-finder.tanaguru.com/
+
+#SITO UTILISSIMO PER I PESCI
+
+https://www.fishipedia.it/pesci
