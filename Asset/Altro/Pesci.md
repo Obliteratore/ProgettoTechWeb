@@ -37,8 +37,8 @@
 ### **Pesci dottyback**
 | Pesce | Immagine |
 |:--|--:|
-| **Pseudochromis flavivertex** (Pseudochromis flavivertex) | <img src="https://www.fishipedia.it/wp-content/uploads/2022/06/PSEUDOCHROMIS-FLAVIVERTEX-2-725x483.jpg" alt="Pseudochromis flavivertex" width="200" style="object-fit:cover;"/> |
-| **Pictichromis porphyrea** (Pictichromis porphyrea) | <img src="https://www.fishipedia.it/wp-content/uploads/2022/12/Pictichromis-porphyrea-Pseudochromidae-20170526-Panglao_PH-FL-725x483.jpg" alt="Pictichromis porphyrea" width="200" style="object-fit:cover;"/> | |
+| **Sunrise Dottyback** (Pseudochromis flavivertex) | <img src="https://www.fishipedia.it/wp-content/uploads/2022/06/PSEUDOCHROMIS-FLAVIVERTEX-2-725x483.jpg" alt="Pseudochromis flavivertex" width="200" style="object-fit:cover;"/> |
+| **Pesce Magenta/Magenta Dottyback** (Pictichromis porphyrea) | <img src="https://www.fishipedia.it/wp-content/uploads/2022/12/Pictichromis-porphyrea-Pseudochromidae-20170526-Panglao_PH-FL-725x483.jpg" alt="Pictichromis porphyrea" width="200" style="object-fit:cover;"/> | |
 
 ## Pesci esotici di acqua dolce
 
@@ -80,4 +80,5 @@
 | **Ciclide di Heckel** (Acarichthys heckelii) | <img src="https://www.fishipedia.it/wp-content/uploads/2014/04/Acarichthys-heckelii-725x483.jpg" alt="Acarichthys heckelii" width="200" style="object-fit:cover;"/> |
 | **Pesce limone** (Amphilophus citrinellus) | <img src="https://www.fishipedia.it/wp-content/uploads/2013/06/Amphilophus_citrinellus_1-725x483.jpg" alt="Amphilophus citrinellus" width="200" style="object-fit:cover;"/> |
 | **Ciclide di Agassiz** (Apistogramma agassizii) | <img src="https://www.fishipedia.es/wp-content/uploads/2017/11/Apistogramma-agassizii-725x483.jpg" alt="Apistogramma agassizii" width="200" style="object-fit:cover;"/> |
+
 
