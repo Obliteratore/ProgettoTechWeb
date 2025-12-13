@@ -1,0 +1,59 @@
+*{
+    padding: 0em;
+    margin: 0em;
+}
+
+/* Contenitore delle card */
+.pesci {
+    display: grid;
+    grid-template-columns: 1fr; /* Mobile: 1 colonna */
+    gap: 20px; /* Spazio tra le card */
+    padding: 0;
+    margin: 1em;
+    list-style: none;
+}
+
+/* Card singola */
+.card-pesce {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card-pesce:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.18);
+}
+
+/* Immagine della card */
+.card-pesce img {
+    width: 100%;
+    object-fit: cover;
+}
+
+/* Dati del pesce */
+.dati-pesce {
+    list-style: none;
+    margin: 0;
+    padding: 15px;
+    font-size: 1.5em;
+}
+
+.dati-pesce .nome {
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.dati-pesce .prezzo {
+    color: #0077cc;
+}
+
+.header-style {
+    display: flex;
+}
+.hamburger {
+    display: flex;
+    justify-content: flex-end;
+}
