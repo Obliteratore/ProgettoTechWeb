@@ -1,83 +1,8 @@
-*{
-    padding: 0em;
-    margin: 0em;
-}
-
-html, body {
-    line-height: 1.5;
-}
-
-a { /*Stile per i link DA FARE*/
-	color: var(--text);
-	text-underline-offset: 0em;
-	text-decoration: underline;
-}
-
-a:visited { /*Stile per i link visitati DA FARE*/
-	color: var(--link-visited);
-	text-decoration: none;
-}
-
-/*
-=======================================
-SEZIONE HEADER
-=======================================
-*/
-
-.header-style {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%; /* occupa tutta la larghezza */
-    background-color: beige; /* o il colore che vuoi */
-}
-
-.header-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1em;
-}
-
-/*
-=======================================
-SEZIONE MENU
-=======================================
-*/
-
-
-
-/*
-=======================================
-SEZIONE BREADCRUMB
-=======================================
-*/
-
-#breadcrumb {
-    margin-top: 5.5em;
-	justify-self: center;
-	text-align: center;
-    border-radius: 1em;
-    background-color: lightgray;
-}
-
-#breadcrumb > ol {
-	list-style: none;
-	display: flex;
-	text-align: center;
-	padding: 0.5em;
-	margin-inline: 1em;
-}
-
 /*
 =======================================
 SEZIONE MAIN
 =======================================
 */
-
-#main-content {
-    
-}
 
 /* Contenitore delle card */
 .pesci {
@@ -125,9 +50,3 @@ SEZIONE MAIN
 .dati-pesce .prezzo {
     color: #0077cc;
 }
-
-/*
-=======================================
-SEZIONE FOOTER
-=======================================
-*/
