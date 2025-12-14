@@ -48,6 +48,7 @@ CREATE TABLE pesce (
     disponibilita INT NOT NULL,
     descrizione TEXT NOT NULL,
     immagine VARCHAR(255) NOT NULL,
+	data_inserimento DATE NOT NULL DEFAULT CURRENT_DATE,
 	FOREIGN KEY (famiglia) REFERENCES famiglia(famiglia_latino)
 );
 
@@ -72,7 +73,7 @@ CREATE TABLE ordine (
     id_ordine INT AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(255) NOT NULL,
     id_indirizzo INT NOT NULL,
-    data_ora DATETIME NOT NULL,
+    data_ora DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	FOREIGN KEY (email) REFERENCES utente(email),
 	FOREIGN KEY (id_indirizzo) REFERENCES indirizzo(id_indirizzo)
 );
