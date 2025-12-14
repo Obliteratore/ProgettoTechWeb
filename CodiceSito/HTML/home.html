@@ -17,26 +17,42 @@
         <!-- <link rel="stylesheet" href="tablet.css" media="(min-width: 768px) and (max-width: 1023px)">
         -->
         <!-- Desktop -->
-        <link rel="stylesheet" href="ProgettoTechWeb/CodiceSito/CSS/desktop.css" media="(min-width: 1024px)">
+        <link rel="stylesheet" href="../CSS/desktop.css" media="(min-width: 1024px)">
 
         <!-- Stampa -->
-        <link rel="stylesheet" href="stampa.css" media="(min-width: 1024px)">
+        <link rel="stylesheet" href="../CSS/stampa.css" media="(min-width: 1024px)">
     </head>
 
     <body>
-        <header>
-            <div class="header-style">
-            <img src="../../Asset/Immagini/Icone/fish.png" width="40">
-            <button class="hamburger">
-                <img src="../../Asset/Immagini/Icone/menu.png" width="35">
-            </button>
+        <header class="header-style">
+            <div class="header-content">
+                <img src="../../Asset/Immagini/Icone/fish.png" width="40">
+                <button>
+                    <img src="../../Asset/Immagini/Icone/menu.png" width="35">
+                </button>
+
+                <!--
+                <nav id="menu">
+                    <ul>
+                        <li id="currentPage" lang="en">Home</li>
+                        <li><a href="catalogo.html">Catalogo</a></li>
+                        <li><a href="chiSiamo.html">Chi Siamo</a></li>
+                        <li><a href="accesso.html">Accedi</a></li>
+                    </ul>
+                </nav>
+                -->
             </div>
         </header>
-        <main>
-            <h1>FISHMARKET</h1>
+
+        <nav id="breadcrumb" aria-label="breadcrumb">
+            <ol><li><span lang="en">Home</span></li></ol>
+        </nav>
+
+        <main id="main-content">
+            <h1 lang="en">FISHMARKET</h1>
             <p>Porta l'esotico a casa tua!</p>
             <section>
-                <h2>PESCI PIù VENDUTI</h2>
+                <h2>PESCI PIÙ VENDUTI</h2>
             <ul class="pesci">
                 <li class="card-pesce">
                     <img src="../../Asset/Immagini/Pesci/Pesci Dolci/Barbo-striato-africano.jpg" alt="Pesce farfalla"/>
