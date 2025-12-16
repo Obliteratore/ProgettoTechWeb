@@ -71,25 +71,23 @@ SEZIONE MENU
 =======================================
 */
 
+.screen-reader{
+  display: none;
+}
+
 #menu {
-  position: absolute; /* si posiziona rispetto a header-content */
-  top: 100%; /* subito sotto */
-  left: 50%; /* centrato orizzontalmente */
-  transform: translateX(-50%);
-  display: none; /* nascosto inizialmente */
-  background: white;
-  border: 1px solid #ccc;
-  border-radius: 0.5em;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-  padding: 1em;
+  display: none;
+  padding: 0.5em;
 }
 
 /* Lista menu */
 #menu ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+	justify-content: center;
+	align-items: center;
+  list-style-type: none;
+  padding: 0em;
 }
 
 #menu li {
@@ -107,16 +105,16 @@ SEZIONE MENU
 }
 
 /* Solo l'icona del menu visibile inizialmente */
-.close-icon {
+#close-hamburger-menu {
   display: none;
 }
 
 /* Quando il bottone è attivo, invertiamo */
-#menu-btn.active .menu-icon {
+#menu-btn.active #open-hamburger-menu {
   display: none;
 }
 
-#menu-btn.active .close-icon {
+#menu-btn.active #close-hamburger-menu {
   display: inline;
 }
 
