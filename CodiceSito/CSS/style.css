@@ -23,15 +23,13 @@ html {
 body {
     /*background-color: #0077cc;*/
     /*background: linear-gradient(135deg, rgb(0, 35, 89) 0%, rgb(0, 104, 158) 100%);*/
-    background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple);
+    background: var(--wp--preset--gradient--pale-ocean);
     /*
     background-image: url("../../Asset/Immagini/Sfondi_Sito/img\ 10.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     */
-
-    
 }
 
 a { /*Stile per i link DA FARE*/
@@ -153,10 +151,9 @@ SEZIONE MAIN
 
 .pesci {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr; /* Mobile: 1 colonna */
-    gap: 20px; /* Spazio tra le card */
-    padding: 0;
-    margin: 1em;
+    grid-template-columns: 1fr 1fr; /* Mobile: 2 colonne */
+    gap: 5px; /* Spazio tra le card */
+    margin: 0.5em;
     list-style: none;
 }
 
@@ -165,36 +162,56 @@ SEZIONE MAIN
     background: #fff;
     border-radius: 0.5em;
     overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.12);
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.card-pesce:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 6px 14px rgba(0,0,0,0.18);
+    position: relative;
 }
 
 /* Immagine della card */
 .card-pesce img {
-    width: 100%;
-    object-fit: cover;
+    display: block;
+    max-width: 100%;
 }
 
 /* Dati del pesce */
 .dati-pesce {
-    list-style: none;
-    margin: 0;
-    padding: 15px;
-    font-size: 1.5em;
+    position: absolute;
+    bottom: 0;                 /* oppure top: 0 se lo vuoi sopra */
+    left: 0;
+    width: 100%;               /* da sinistra a destra */
+    height: 25%;               /* 1/4 della card */
+    background: rgba(0, 0, 0, 0.6); /* nero trasparente */
+    color: white;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    box-sizing: border-box;
 }
 
 .dati-pesce .nome {
     font-weight: bold;
-    margin-bottom: 8px;
 }
 
-.dati-pesce .prezzo {
-    color: #0077cc;
+.card-pesce .prezzo {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    
+    width: 70px;
+    height: 50px;
+    
+    background-image: url("../../Asset/Immagini/Icone/fish.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
 }
 
 /*
