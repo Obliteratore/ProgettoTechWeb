@@ -130,24 +130,11 @@ SEZIONE BREADCRUMB
 */
 
 #breadcrumb {
-<<<<<<< HEAD
-    /*Breadcrumb rettangolare lungo tutta la schermata*/
-    
-    margin-top: 4.6em;
-    border: 1px;
-    background-color: lightgray;
-    
-
-    /*Breadcrumb come bookoverflow*/
-    /*margin-top: 5.5em;
-=======
     /*margin-top: 5.5em;*/
->>>>>>> 844efdc0fbedd05f426478830e117d90dc3537bb
 	justify-self: center;
     align-items: center;
     border-radius: 0.5em;
     background-color: lightgray;
-    */
 }
 
 #breadcrumb > ol {
