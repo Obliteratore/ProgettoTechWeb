@@ -40,7 +40,7 @@ CREATE TABLE pesce (
     nome_latino VARCHAR(150) PRIMARY KEY,
     nome_comune VARCHAR(150) NOT NULL UNIQUE,
     famiglia VARCHAR(100) NOT NULL,
-    dimensione DECIMAL(5,2),
+    dimensione VARCHAR(15),
     volume_minimo INT NOT NULL,
     colori VARCHAR(100) NOT NULL,
     prezzo DECIMAL(8,2) NOT NULL,
