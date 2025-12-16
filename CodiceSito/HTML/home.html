@@ -19,21 +19,22 @@
         <!-- <link rel="stylesheet" href="tablet.css" media="(min-width: 768px) and (max-width: 1023px)">
         -->
         <!-- Desktop -->
+         <!--
         <link rel="stylesheet" href="../CSS/desktop.css" media="(min-width: 1024px)">
-
+        -->
         <!-- Stampa -->
         <link rel="stylesheet" href="../CSS/stampa.css" media="(min-width: 1024px)">
     </head>
 
     <body>
-        <header class="header-style">
+        <header>
             <div class="header-content">
                 <img src="../../Asset/Immagini/Icone/fish.png" width="40">
-                <button>
-                    <img src="../../Asset/Immagini/Icone/menu.png" width="35">
+                <button id="menu-btn">
+                    <img src="../../Asset/Immagini/Icone/menu.png" width="35" alt="menù">
+                    <img src="../../Asset/Immagini/Icone/close.png" class="close-icon" alt="close">
                 </button>
 
-                <!--
                 <nav id="menu">
                     <ul>
                         <li id="currentPage" lang="en">Home</li>
@@ -42,9 +43,19 @@
                         <li><a href="accesso.html">Accedi</a></li>
                     </ul>
                 </nav>
-                -->
             </div>
         </header>
+        
+        <!-- DA SISTEMARE -->
+        <script>
+            const menuBtn = document.getElementById("menu-btn");
+            const menu = document.getElementById("menu");
+
+            menuBtn.addEventListener("click", () => {
+            menu.classList.toggle("active");      // mostra/nasconde il menu
+            menuBtn.classList.toggle("active");   // mostra l'icona corretta
+            });
+        </script>
 
         <nav id="breadcrumb" aria-label="breadcrumb">
             <ol><li><span lang="en">Home</span></li></ol>

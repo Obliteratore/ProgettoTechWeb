@@ -4,7 +4,6 @@ SEZIONE MAIN
 =======================================
 */
 
-/* Contenitore delle card */
 .pesci {
     display: grid;
     grid-template-columns: 1fr; /* Mobile: 1 colonna */
@@ -17,7 +16,7 @@ SEZIONE MAIN
 /* Card singola */
 .card-pesce {
     background: #fff;
-    border-radius: 12px;
+    border-radius: 0.5em;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0,0,0,0.12);
     transition: transform 0.2s, box-shadow 0.2s;
