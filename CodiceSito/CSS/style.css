@@ -17,17 +17,31 @@ html {
     line-height: 1.5;
     font-size: 100%;
     color: #fff; /*Colore va spostato in altre sezioni*/
-    font-family: Arial, Helvetica, sans-serif;
+    /*font-family: Arial, Helvetica, sans-serif;*/
+
+    font-family: 'Inter', sans-serif;
+    /*AERO PIù INTENSO
+      color: #fff; Colore va spostato in altre sezioni
+      text-shadow:
+      0 0 4px rgba(255,255,255,0.4),
+      0 0 8px rgba(255,255,255,0.2); */
+    /*AERO PIù PIACEVOLE*/
+    color: #f8fdff; 
+    text-shadow:
+      0 1px 2px rgba(0,0,0,0.25),
+      0 0 6px rgba(180,220,255,0.6),
+      0 0 14px rgba(120,190,255,0.35);
 }
 
 body {
     /*background-color: #0077cc;*/
     /*background: linear-gradient(135deg, rgb(0, 35, 89) 0%, rgb(0, 104, 158) 100%);*/
     
-    background-image: url("../../Asset/Immagini/Sfondi_Sito/img\ 10.jpg");
+    background-image: url("../../Asset/Immagini/Sfondi_Sito/img\ 7.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    background-attachment: fixed;
     
 }
 
@@ -49,20 +63,20 @@ SEZIONE HEADER
 */
 
 header{
-    position: sticky;
-    top: 0;
+  position: sticky;
+  top: 0;
 	z-index: 999;
 	padding: 0.5em;
-    border: 2px solid black;
+  border: 2px solid black;
 }
 
 .header-content {
-    border: 2px solid black;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1em;
-    position: relative; /*Prova*/
+  border: 2px solid black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em;
+  position: relative; /*Prova*/
 }
 
 /*
@@ -127,11 +141,11 @@ SEZIONE BREADCRUMB
 */
 
 #breadcrumb {
-    /*margin-top: 5.5em;*/
+  /*margin-top: 5.5em;*/
 	justify-self: center;
-    align-items: center;
-    border-radius: 0.5em;
-    background-color: lightgray;
+  align-items: center;
+  border-radius: 0.5em;
+  background-color: lightgray;
 }
 
 #breadcrumb > ol {
@@ -147,6 +161,25 @@ SEZIONE BREADCRUMB
 SEZIONE MAIN
 =======================================
 */
+
+.contenitore-home, .header-content, #menu {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.15),
+    inset 0 1px 1px rgba(255, 255, 255, 0.6);
+}
+
+.contenitore-home{
+  margin-bottom: 1em;
+  margin-top: 1em;
+  padding: 0.25em;
+}
 
 .pesci {
     display: grid;
