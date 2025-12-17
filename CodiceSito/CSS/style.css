@@ -67,16 +67,14 @@ header{
   top: 0;
 	z-index: 999;
 	padding: 0.5em;
-  border: 2px solid black;
 }
 
 .header-content {
-  border: 2px solid black;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
   padding: 1em;
-  position: relative; /*Prova*/
 }
 
 /*
@@ -91,7 +89,8 @@ SEZIONE MENU
 
 #menu {
   display: none;
-  padding: 0.5em;
+  width: 100%;     
+  text-align: center;
 }
 
 /* Lista menu */
@@ -100,12 +99,13 @@ SEZIONE MENU
   flex-direction: column;
 	justify-content: center;
 	align-items: center;
-  list-style-type: none;
+  list-style: none;
   padding: 0em;
+  margin: 0;
 }
 
 #menu li {
-  margin: 0.5em 0;
+  margin: 0.2em 0;
 }
 
 /* Menu visibile quando ha classe active */
@@ -139,11 +139,9 @@ SEZIONE BREADCRUMB
 */
 
 #breadcrumb {
-  /*margin-top: 5.5em;*/
 	justify-self: center;
   align-items: center;
   border-radius: 0.5em;
-  background-color: lightgray;
 }
 
 #breadcrumb > ol {
@@ -160,7 +158,7 @@ SEZIONE MAIN
 =======================================
 */
 
-.contenitore-home, .header-content, #menu {
+.contenitore-home, .header-content, #breadcrumb{
   background: rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
@@ -174,8 +172,10 @@ SEZIONE MAIN
 }
 
 .contenitore-home{
-  margin-bottom: 1em;
   margin-top: 1em;
+  margin-bottom: 1em;
+  margin-right: 0.5em;
+  margin-left: 0.5em;
   padding: 0.25em;
 }
 
