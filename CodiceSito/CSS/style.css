@@ -67,7 +67,6 @@ header{
   top: 0;
 	z-index: 999;
 	padding: 0.5em;
-  border: 2px solid black;
 }
 
 .header-content {
@@ -179,6 +178,10 @@ SEZIONE MAIN
   padding: 0.25em;
 }
 
+.contenitore-home h2 {
+  padding: 0.25em;
+}
+
 .pesci {
     display: grid;
     grid-template-columns: 1fr 1fr; /* Mobile: 2 colonne */
@@ -214,7 +217,6 @@ SEZIONE MAIN
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 1rem;
     box-sizing: border-box;
 }
 
