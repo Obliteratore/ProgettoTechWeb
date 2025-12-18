@@ -25,13 +25,19 @@
     </head>
 
     <body>
+        <nav aria-label="Aiuti alla navigazione">
+            <a id="skip-to-content" href="#main-content">Salta al contenuto</a>
+        </nav>
         <header>
             <div class="header-content">
-                <img src="../../Asset/Immagini/Icone/fish.png" width="40"/>
-                <button id="menu-btn">
-                    <span><img src="../../Asset/Immagini/Icone/menu.png" id="open-hamburger-menu" width="35" alt=""/><span class="screen-reader">Apri l'<span lang="en">hamburger</span> menù</span></span>
-                    <span><img src="../../Asset/Immagini/Icone/close.png" id="close-hamburger-menu" alt=""/><span class="screen-reader">Chiudi l'<span lang="en">hamburger</span> menù</span></span>
-                </button>
+                <img src="../../Asset/Immagini/Icone/fish.png" alt=""/>
+                <div>
+                    <a id="cart-link" href="carrello.html" aria-label="Vai al carrello"><img src="../../Asset/Immagini/Icone/shopping_cart.svg" alt="" width="20px"/></a>
+                    <button id="menu-btn">
+                        <span><img id="open-hamburger-menu" src="../../Asset/Immagini/Icone/menu.svg" alt=""/><span class="screen-reader">Apri l'<span lang="en">hamburger</span> menù</span></span>
+                        <span><img id="close-hamburger-menu" src="../../Asset/Immagini/Icone/close.svg" alt=""/><span class="screen-reader">Chiudi l'<span lang="en">hamburger</span> menù</span></span>
+                    </button>
+                </div>
 
                 <nav id="menu">
                     <ul>
@@ -59,7 +65,7 @@
             <ol><li><span lang="en">Home</span></li></ol>
         </nav>
 
-        <main>
+        <main id="main-content">
             <h1 lang="en">FISHMARKET</h1>
             <p>Porta l'esotico a casa tua!</p>
             <section class="contenitore-home">

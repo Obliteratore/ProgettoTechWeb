@@ -56,6 +56,16 @@ a:visited { /*Stile per i link visitati DA FARE*/
 	text-decoration: none;
 }
 
+#skip-to-content {
+  position: absolute;
+  text-indent: -9999em;
+}
+
+#skip-to-content:focus {
+  position: static;
+  text-indent: 0em;
+}
+
 /*
 =======================================
 SEZIONE HEADER
@@ -75,6 +85,18 @@ header{
   align-items: center;
   flex-wrap: wrap;
   padding: 1em;
+}
+
+.header-content img {
+  width: 3em;
+}
+
+#cart-link {
+  margin-right: 0.5em;
+}
+
+#cart-link > img {
+  width: 2.5em;
 }
 
 /*
@@ -113,9 +135,11 @@ SEZIONE MENU
   display: block;
 }
 
-#menu-btn img {
-  width: 35px;
-  cursor: pointer;
+#menu-btn {
+  background: transparent;
+  border: none;
+  width: 3em;
+  height: 3em;
 }
 
 /* Solo l'icona del menu visibile inizialmente */
