@@ -19,7 +19,7 @@
         <!-- <link rel="stylesheet" href="tablet.css" media="(min-width: 768px) and (max-width: 1023px)">
         -->
         <!-- Desktop -->
-        <link rel="stylesheet" href="../CSS/desktop.css" media="(min-width: 1024px)">
+        <link rel="stylesheet" href="../CSS/desktop.css" media="(min-width: 768px)">
         <!-- Stampa -->
         <link rel="stylesheet" href="../CSS/stampa.css" media="(min-width: 1024px)">
     </head>
@@ -31,7 +31,7 @@
         <header>
             <div class="header-content">
                 <img src="../../Asset/Immagini/Icone/fish.png" alt=""/>
-                <nav id="menu">
+                <nav id="menu" aria-label="Menù di navigazione">
                     <ul>
                         <li id="currentPage" lang="en">Home</li>
                         <li><a href="catalogo.html">Catalogo</a></li>
@@ -41,14 +41,14 @@
                 </nav>
                 <div>
                     <a id="cart-link" href="carrello.html" aria-label="Vai al carrello"><img src="../../Asset/Immagini/Icone/shopping_cart.svg" alt="" width="20px"/></a>
-                    <button id="hamburger-menu-btn">
+                    <button id="hamburger-menu-btn" aria-controls="hamburger-menu" aria-expanded="false">
                         <span><img id="open-hamburger-menu" src="../../Asset/Immagini/Icone/menu.svg" alt=""/><span class="screen-reader">Apri l'<span lang="en">hamburger</span> menù</span></span>
                         <span><img id="close-hamburger-menu" src="../../Asset/Immagini/Icone/close.svg" alt=""/><span class="screen-reader">Chiudi l'<span lang="en">hamburger</span> menù</span></span>
                     </button>
                 </div>
-                <nav id="hamburger-menu">
+                <nav id="hamburger-menu" aria-label="Menù di navigazione per cellulare">
                     <ul>
-                        <li id="currentPage" lang="en">Home</li>
+                        <li lang="en">Home</li>
                         <li><a href="catalogo.html">Catalogo</a></li>
                         <li><a href="chiSiamo.html">Chi Siamo</a></li>
                         <li><a href="accesso.html">Accedi</a></li>
@@ -56,25 +56,15 @@
                 </nav>
             </div>
         </header>
-        
-        <!-- DA SISTEMARE -->
-        <script>
-            const hamburgerMenuBtn = document.getElementById("hamburger-menu-btn");
-            const hamburgerMenu = document.getElementById("hamburger-menu");
+        <script src="../JS/hamburger_menu.js" defer></script>
 
-            hamburgerMenuBtn.addEventListener("click", () => {
-            hamburgerMenu.classList.toggle("active");      // mostra/nasconde il menu
-            hamburgerMenuBtn.classList.toggle("active");   // mostra l'icona corretta
-            });
-        </script>
-
-        <nav id="breadcrumb" aria-label="breadcrumb">
-            <ol><li><span lang="en">Home</span></li></ol>
+        <nav id="breadcrumb" aria-label="Percorso di navigazione">
+            <ol><li><span lang="en" aria-current="page">Home</span></li></ol>
         </nav>
 
         <main id="main-content">
             <h1 lang="en">FISHMARKET</h1>
-            <p>Porta l'esotico a casa tua!</p>
+            <p class="call-to-action">Porta l'esotico a casa tua!</p>
             <section class="contenitore-home">
                 <div class="section-title">
                     <h2>NUOVI ARRIVI</h2>
@@ -104,7 +94,7 @@
                     </li>
                 </ul>
             </section>
-            <p><a href="registrazione.html">Registrati</a> per restare sempre aggiornato sui nuovi arrivi!</p>
+            <p class="call-to-action"><a href="registrazione.html">Registrati</a> per restare sempre aggiornato sui nuovi arrivi!</p>
             <section class="contenitore-home">
                 <div class="section-title">
                     <h2>PESCI PIÙ VENDUTI</h2>
@@ -116,7 +106,7 @@
                         <div class="dati-pesce">
                             <p class="nome">Nome del pesce</p>
                         </div>
-                        <p class="prezzo">Prezzo</p>
+                        <p class="prezzo">88888€</p>
                     </li>
                     <li class="card-pesce">
                         <img src="../../Asset/Immagini/Pesci/Pesci Dolci/Barbo-striato-africano.jpg" alt="Pesce farfalla"/>

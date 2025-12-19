@@ -14,6 +14,10 @@ SEZIONE MENU
 =======================================
 */
 
+#hamburger-menu-btn {
+    display: none;
+}
+
 #menu {
     display: block;
 }
@@ -27,10 +31,6 @@ SEZIONE MENU
 
 #menu li {
     margin-right: 2em;
-}
-
-#hamburger-menu-btn {
-    display: none;
 }
 
 /*

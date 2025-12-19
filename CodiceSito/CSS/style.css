@@ -148,6 +148,7 @@ SEZIONE MENU
     border: none;
     width: 3em;
     height: 3em;
+    cursor: pointer;
 }
 
 /* Solo l'icona del menu visibile inizialmente */
@@ -173,7 +174,6 @@ SEZIONE BREADCRUMB
 #breadcrumb {
     justify-self: center;
     align-items: center;
-    border-radius: 0.5em;
 }
 
 #breadcrumb > ol {
@@ -198,6 +198,10 @@ h1, p {
     margin-top: 1em;
     margin-right: 0.5em;
     margin-left: 0.5em;
+}
+
+.call-to-action {
+    font-size: large;
 }
 
 .contenitore-home, .header-content, #breadcrumb{
@@ -230,27 +234,26 @@ h1, p {
 
 .pesci {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Mobile: 2 colonne */
-    gap: 5px; /* Spazio tra le card */
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
     margin: 0.5em;
     list-style: none;
 }
 
-/* Card singola */
 .card-pesce {
     background: #fff;
-    border-radius: 0.5em;
+    border-radius: 10px;
     overflow: hidden;
     position: relative;
+    /*Soluzione per browser nuovi, circa dal 2023, per avere grandezza testo in base a qella del contenitore usando i cqw(container query width)*/
+    container-type: inline-size;
 }
 
-/* Immagine della card */
 .card-pesce img {
     display: block;
     max-width: 100%;
 }
 
-/* Dati del pesce */
 .dati-pesce {
     position: absolute;
     bottom: 0;                 /* oppure top: 0 se lo vuoi sopra */
@@ -268,6 +271,9 @@ h1, p {
 
 .dati-pesce .nome {
     font-weight: bold;
+    font-size: clamp(14px, 2vw, 3em);
+    font-size: clamp(14px, 8cqw, 3em); /*Se il browser non supporta container-inline, la funzione clamp diventa invalida e la dichiarazione viene ignorata. Quindi viene applicato il clamp precedente*/
+    line-height: 1;
 }
 
 .card-pesce .prezzo {
@@ -275,20 +281,27 @@ h1, p {
     top: 0px;
     right: 0px;
     
-    width: 70px;
+    /*width: 70px;
     height: 50px;
     
     background-image: url("../../Asset/Immagini/Icone/fish.png");
     background-size: contain;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: center;*/
     
+    width: 35%;               /* da sinistra a destra */
+    height: 15%;               /* 1/4 della card */
+    background: rgba(0, 0, 0, 0.6); /* nero trasparente */
+    border-bottom-left-radius: 10px;
+
     display: flex;
     align-items: center;
     justify-content: center;
     
     color: white;
-    font-size: 12px;
+    /*font-size: 12px;*/
+    font-size: clamp(14px, 2vw, 3em);
+    font-size: clamp(14px, 8cqw, 3em);
     font-weight: bold;
 }
 
