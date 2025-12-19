@@ -1,5 +1,40 @@
 /*
 =======================================
+SEZIONE HEADER
+=======================================
+*/
+
+#cart-link {
+    margin-right: 0em;
+}
+
+/*
+=======================================
+SEZIONE MENU
+=======================================
+*/
+
+#menu {
+    display: block;
+}
+
+#menu ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style-type: none;
+}
+
+#menu li {
+    margin-right: 2em;
+}
+
+#hamburger-menu-btn {
+    display: none;
+}
+
+/*
+=======================================
 SEZIONE MAIN
 =======================================
 */

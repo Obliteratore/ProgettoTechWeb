@@ -31,15 +31,25 @@
         <header>
             <div class="header-content">
                 <img src="../../Asset/Immagini/Icone/fish.png" alt=""/>
+                
+                <nav id="menu">
+                    <ul>
+                        <li id="currentPage" lang="en">Home</li>
+                        <li><a href="catalogo.html">Catalogo</a></li>
+                        <li><a href="chiSiamo.html">Chi Siamo</a></li>
+                        <li><a href="accesso.html">Accedi</a></li>
+                    </ul>
+                </nav>
+
                 <div>
                     <a id="cart-link" href="carrello.html" aria-label="Vai al carrello"><img src="../../Asset/Immagini/Icone/shopping_cart.svg" alt="" width="20px"/></a>
-                    <button id="menu-btn">
+                    <button id="hamburger-menu-btn">
                         <span><img id="open-hamburger-menu" src="../../Asset/Immagini/Icone/menu.svg" alt=""/><span class="screen-reader">Apri l'<span lang="en">hamburger</span> menù</span></span>
                         <span><img id="close-hamburger-menu" src="../../Asset/Immagini/Icone/close.svg" alt=""/><span class="screen-reader">Chiudi l'<span lang="en">hamburger</span> menù</span></span>
                     </button>
                 </div>
 
-                <nav id="menu">
+                <nav id="hamburger-menu">
                     <ul>
                         <li id="currentPage" lang="en">Home</li>
                         <li><a href="catalogo.html">Catalogo</a></li>
@@ -52,12 +62,12 @@
         
         <!-- DA SISTEMARE -->
         <script>
-            const menuBtn = document.getElementById("menu-btn");
-            const menu = document.getElementById("menu");
+            const hamburgerMenuBtn = document.getElementById("hamburger-menu-btn");
+            const hamburgerMenu = document.getElementById("hamburger-menu");
 
-            menuBtn.addEventListener("click", () => {
-            menu.classList.toggle("active");      // mostra/nasconde il menu
-            menuBtn.classList.toggle("active");   // mostra l'icona corretta
+            hamburgerMenuBtn.addEventListener("click", () => {
+            hamburgerMenu.classList.toggle("active");      // mostra/nasconde il menu
+            hamburgerMenuBtn.classList.toggle("active");   // mostra l'icona corretta
             });
         </script>
 
@@ -69,34 +79,40 @@
             <h1 lang="en">FISHMARKET</h1>
             <p>Porta l'esotico a casa tua!</p>
             <section class="contenitore-home">
-                <h2>PESCI PIÙ VENDUTI</h2>
-            <ul class="pesci">
-                <li class="card-pesce">
-                    <img src="../../Asset/Immagini/Pesci/Pesci Dolci/Barbo-striato-africano.jpg"ù
-                    alt="Pesce farfalla"/>
-                    <div class="dati-pesce">
-                        <p class="nome">Barbo striato africano</p>
-                    </div>
-                    <p class="prezzo"> 300€</p>
-                </li>
-                <li class="card-pesce">
-                    <img src="../../Asset/Immagini/Pesci/Pesci Dolci/Pesce-gatto-nero.jpg" alt="Pesce farfalla"/>
-                    <div class="dati-pesce">
-                        <p class="nome">Pesce Gatto Nero</p>
-                    </div>
-                    <p class="prezzo"> 50€</p>
-                </li>
-                <li class="card-pesce">
-                    <img src="../../Asset/Immagini/Pesci/Pesci Dolci/Tetra-dalla-pinna-rossa.jpg" alt="Pesce farfalla"/>
-                    <div class="dati-pesce">
-                        <p class="nome">Tetra dalla pinna rossa</p>
-                    </div>
-                    <p class="prezzo">1€</li>
-                </li>
-            </ul>
+                <div class="section-title">
+                    <h2>NUOVI ARRIVI</h2>
+                    <a href="catalogo.html?filtro=nuovi_arrivi">Mostra tutti</a>
+                </div>
+                <ul class="pesci">
+                    <li class="card-pesce">
+                        <img src="../../Asset/Immagini/Pesci/Pesci Dolci/Barbo-striato-africano.jpg"ù
+                        alt="Pesce farfalla"/>
+                        <div class="dati-pesce">
+                            <p class="nome">Barbo striato africano</p>
+                        </div>
+                        <p class="prezzo"> 300€</p>
+                    </li>
+                    <li class="card-pesce">
+                        <img src="../../Asset/Immagini/Pesci/Pesci Dolci/Pesce-gatto-nero.jpg" alt="Pesce farfalla"/>
+                        <div class="dati-pesce">
+                            <p class="nome">Pesce Gatto Nero</p>
+                        </div>
+                        <p class="prezzo"> 50€</p>
+                    </li>
+                    <li class="card-pesce">
+                        <img src="../../Asset/Immagini/Pesci/Pesci Dolci/Tetra-dalla-pinna-rossa.jpg" alt="Pesce farfalla"/>
+                        <div class="dati-pesce">
+                            <p class="nome">Tetra dalla pinna rossa</p>
+                        </div>
+                        <p class="prezzo">1€</li>
+                    </li>
+                </ul>
             </section> 
             <section class="contenitore-home">
-                <h2>NUOVI ARRIVI</h2>
+                <div class="section-title">
+                    <h2>PESCI PIÙ VENDUTI</h2>
+                    <a href="catalogo.html?filtro=piu_venduti">Mostra tutti</a>
+                </div>
                 <ul class="pesci">
                     <li class="card-pesce">
                         <img src="../../Asset/Immagini/Pesci/Pesci Dolci/Barbo-striato-africano.jpg" alt="Pesce farfalla"/>
