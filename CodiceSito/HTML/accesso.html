@@ -12,17 +12,21 @@
         <header></header>
 
         <main id="main-content">
-            <h1>Accesso</h1>
+            <div id="form-container">
+            <h1>Accedi</h1>
             <p class="call-to-action">Se ancora non hai creato un account, <a href="registrazione.html">registrati</a>!</p>
             <form id="login-form" action="" method="post" autocomplete="on">
-                <label for="username">Username o Email</label>
-                <input id="username" type="text" name="username" placeholder="Es: alessandra.bianchi o alessandrabianchi@gmail.com" required>
+                <label for="username"><span lang="en">Username</span> o <span lang="en">Email</span></label>
+                <input id="username" type="text" name="username" placeholder="Es: maria.bianchi o mariabianchi@gmail.com" required>
+                <small class="hint">Es: maria.bianchi o mariabianchi@gmail.com</small>
 
-                <label for="password">Password</label>
-                <input id="password" type="text" name="password" placeholder="Es: passwordsicura.2" autocomplete="off" required>
+                <label for="password"><span lang="en">Password</span></label>
+                <input id="password" type="password" name="password" placeholder="Es: PasswordSicura.2" autocomplete="off" required>
+                <small class="hint">Es: PasswordSicura.2</small>
 
                 <input type="submit" value="Accedi">
             </form>
+            </div>
         </main>
         
         <footer></footer>

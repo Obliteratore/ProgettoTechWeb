@@ -34,7 +34,6 @@ html {
 }
 
 body {
-    /*background-color: #0077cc;*/
     /*background: linear-gradient(135deg, rgb(0, 35, 89) 0%, rgb(0, 104, 158) 100%);*/
     
     background-image: url("../../Asset/Immagini/Sfondi_Sito/img\ 7.jpg");
@@ -200,11 +199,11 @@ h1, p {
     margin-left: 0.5em;
 }
 
-.call-to-action {
+.call-to-action, #login-form {
     font-size: large;
 }
 
-.main-section, .header-content, #breadcrumb, #login-form {
+.main-section, .header-content, #breadcrumb, #form-container {
     background: rgba(255, 255, 255, 0.25);
     border-radius: 20px;
     border: 1px solid #ffffff66;
@@ -307,13 +306,64 @@ h1, p {
 
 /*LOGIN*/
 
-#login-form {
+#form-container {
     display: flex;
     flex-direction: column;
-    justify-self: center;
-    min-width: 280px;
-    padding: 1em;
+    min-width: 17em;
+    max-width: 28em;
+    box-sizing: border-box;
+    padding: 1.5em;
+    margin: 0 auto;
 }
+
+#login-form {
+    margin-top: 1.5em;
+}
+
+#login-form > label {
+    font-weight: bold;
+}
+
+#login-form input[type="text"],
+#login-form input[type="password"],
+#login-form input[type="submit"] {
+    height: 3em;
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid black;
+    box-sizing: border-box;
+    margin-top: 0.3em;
+    padding: 0.5em;
+}
+
+#login-form input:focus {
+    outline: none;
+    border-width: 3px;
+}
+
+.hint {
+    display: block;
+    margin-top: 0.25em;
+    font-size: 0.80em;
+    margin-bottom: 1em;
+}
+
+#login-form input[type="submit"] {
+    border: none;
+    font-size: 0.85em;
+    font-weight: bold;
+    background-color: #4a90e2;
+    cursor: pointer;
+}
+
+#login-form input[type="submit"]:focus {
+    border: 3px solid black;
+}
+
+#login-form input[type="submit"]:hover {
+    background-color: #357abd;
+}
+
 
 /*
 =======================================
