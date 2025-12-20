@@ -316,6 +316,25 @@ h1, p {
     margin: 0 auto;
 }
 
+.error-message {
+   visibility: hidden;
+   height: 0;
+    overflow: hidden;
+
+    margin: 0 auto;
+    color: #a12622;
+    font-size: large;
+    font-weight: bold;
+    text-align: center;
+}
+/*DA SISTEMARE USANDO JAVASCRIPT PER MOSTRARE ERRORE O MENO*/
+.error-message.visible {
+    visibility: visible;
+    height: auto;
+    margin-top: 1em;
+    margin-bottom: -0.5em;
+}
+
 #login-form {
     margin-top: 1.5em;
 }
@@ -341,11 +360,24 @@ h1, p {
     border-width: 3px;
 }
 
+.required {
+    margin-left: 0.25em;
+    font-size: 0.80em;
+    font-weight: normal;
+    color: black;
+}
+
 .hint {
     display: block;
     margin-top: 0.25em;
     font-size: 0.80em;
     margin-bottom: 1em;
+}
+
+abbr {
+    text-decoration: none;
+    font-weight: bold;
+    cursor: help;
 }
 
 #login-form input[type="submit"] {
