@@ -317,10 +317,7 @@ h1, p {
 }
 
 .error-message {
-   visibility: hidden;
-   height: 0;
-    overflow: hidden;
-
+    display: none;
     margin: 0 auto;
     color: #a12622;
     font-size: large;
@@ -329,8 +326,7 @@ h1, p {
 }
 /*DA SISTEMARE USANDO JAVASCRIPT PER MOSTRARE ERRORE O MENO*/
 .error-message.visible {
-    visibility: visible;
-    height: auto;
+    display: block;
     margin-top: 1em;
     margin-bottom: -0.5em;
 }
