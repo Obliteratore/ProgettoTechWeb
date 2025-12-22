@@ -169,18 +169,42 @@ SEZIONE MENU
 SEZIONE BREADCRUMB
 =======================================
 */
-
+/*
 #breadcrumb {
-    justify-self: center;
-    align-items: center;
+    width: 95%;
+    margin: 0 auto;
 }
 
 #breadcrumb > ol {
-    list-style: none;
     display: flex;
+    list-style: none;
     text-align: center;
     padding: 0.5em;
     margin-inline: 1em;
+}
+
+#breadcrumb > ol > li + li::before {
+	content: '/' / '';
+	margin-inline: 0.3em;
+}
+*/
+#breadcrumb {
+    width: fit-content;
+    margin: 0 auto;
+}
+
+#breadcrumb > ol {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    text-align: center;
+    padding: 0.5em;
+    margin-inline: 0.5em;
+}
+
+#breadcrumb > ol > li + li::before {
+	content: '/' / '';
+	margin-inline: 0.3em;
 }
 
 /*
@@ -265,6 +289,7 @@ SEZIONE MAIN
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
     box-sizing: border-box;
 }
 
