@@ -189,7 +189,7 @@ SEZIONE MAIN
 =======================================
 */
 
-h1, p {
+.center {
     text-align: center;
 }
 
@@ -199,11 +199,11 @@ h1, p {
     margin-left: 0.5em;
 }
 
-.call-to-action, #login-form {
+.call-to-action, .data-form {
     font-size: large;
 }
 
-.main-section, .header-content, #breadcrumb, #form-container {
+.main-section, .header-content, #breadcrumb, .form-container {
     background: rgba(255, 255, 255, 0.25);
     border-radius: 20px;
     border: 1px solid #ffffff66;
@@ -306,7 +306,7 @@ h1, p {
 
 /*LOGIN*/
 
-#form-container {
+.form-container {
     display: flex;
     flex-direction: column;
     min-width: 17em;
@@ -331,17 +331,15 @@ h1, p {
     margin-bottom: -0.5em;
 }
 
-#login-form {
+.data-form {
     margin-top: 1.5em;
 }
 
-#login-form > label {
+.data-form > label {
     font-weight: bold;
 }
 
-#login-form input[type="text"],
-#login-form input[type="password"],
-#login-form input[type="submit"] {
+.data-form input {
     height: 3em;
     width: 100%;
     border-radius: 10px;
@@ -351,7 +349,7 @@ h1, p {
     padding: 0.5em;
 }
 
-#login-form input:focus {
+.data-form input:focus {
     outline: none;
     border-width: 3px;
 }
@@ -366,8 +364,8 @@ h1, p {
 .hint {
     display: block;
     margin-top: 0.25em;
-    font-size: 0.80em;
     margin-bottom: 1em;
+    font-size: 0.80em;
 }
 
 abbr {
@@ -376,22 +374,29 @@ abbr {
     cursor: help;
 }
 
-#login-form input[type="submit"] {
+.data-form input[type="submit"] {
     border: none;
-    font-size: 0.85em;
+    font-size: 0.875em;
     font-weight: bold;
     background-color: #4a90e2;
     cursor: pointer;
 }
 
-#login-form input[type="submit"]:focus {
+.data-form input[type="submit"]:focus {
     border: 3px solid black;
 }
 
-#login-form input[type="submit"]:hover {
+.data-form input[type="submit"]:hover {
     background-color: #357abd;
 }
 
+/*SIGNIN*/
+
+.help {
+    margin-top: 0.25em;
+    margin-bottom: 1em;
+    font-size: 0.875em; /*14px se font padre = 16px*/
+}
 
 /*
 =======================================
