@@ -8,7 +8,7 @@
     --color-background: ;
     --color-background-breadcrumb: ;
     --color-background-header: ;
-    --color-link: ;
+    --color-link: #fff;
     --color-link-visited: ;
     --color-error: ;
 }
@@ -99,6 +99,7 @@ header{
     align-items: center;
     flex-wrap: wrap;
     padding: 1em;
+    font-size: clamp(1rem, 1rem + 0.2vw, 1.2rem);
 }
 
 .header-content img {
@@ -180,17 +181,18 @@ SEZIONE BREADCRUMB
     list-style: none;
     text-align: center;
     padding: 0.5em;
-    margin-inline: 1em;
+    margin: 0 0.5em;
 }
 
 #breadcrumb > ol > li + li::before {
-	content: '/' / '';
-	margin-inline: 0.3em;
+	content: '>' / '';
+    margin: 0 0.3em;
 }
 */
 #breadcrumb {
     width: fit-content;
     margin: 0 auto;
+    font-size: clamp(1rem, 1rem + 0.2vw, 1.1rem);
 }
 
 #breadcrumb > ol {
@@ -199,12 +201,12 @@ SEZIONE BREADCRUMB
     list-style: none;
     text-align: center;
     padding: 0.5em;
-    margin-inline: 0.5em;
+    margin: 0 1em;
 }
 
 #breadcrumb > ol > li + li::before {
-	content: '/' / '';
-	margin-inline: 0.3em;
+	content: '>' / '';
+    margin: 0 0.3em;
 }
 
 /*
@@ -212,6 +214,18 @@ SEZIONE BREADCRUMB
 SEZIONE MAIN
 =======================================
 */
+
+h1 {
+    font-size: clamp(2rem, 1.6rem + 1.8vw, 2.5rem);
+}
+
+h2 {
+    font-size: clamp(1.5rem, 1rem + 1.8vw, 2rem);
+}
+
+.call-to-action {
+    font-size: clamp(1.1rem, 0.6rem + 1.8vw, 1.5rem);
+}
 
 .center {
     text-align: center;
@@ -223,7 +237,7 @@ SEZIONE MAIN
     margin-left: 0.5em;
 }
 
-.call-to-action, .data-form {
+.data-form {
     font-size: large;
 }
 
@@ -295,8 +309,8 @@ SEZIONE MAIN
 
 .dati-pesce .nome {
     font-weight: bold;
-    font-size: clamp(14px, 2vw, 3em);
-    font-size: clamp(14px, 8cqw, 3em); /*Se il browser non supporta container-inline, la funzione clamp diventa invalida e la dichiarazione viene ignorata. Quindi viene applicato il clamp precedente*/
+    font-size: clamp(0.875em, 0.3em + 2.2vw, 2em); /*0.75em di 16 = 12px*/
+    font-size: clamp(0.875em, 8cqw, 2em); /*Se il browser non supporta container-inline, la funzione clamp diventa invalida e la dichiarazione viene ignorata. Quindi viene applicato il clamp precedente*/
     line-height: 1;
 }
 
@@ -323,9 +337,8 @@ SEZIONE MAIN
     justify-content: center;
     
     color: white;
-    /*font-size: 12px;*/
-    font-size: clamp(14px, 2vw, 3em);
-    font-size: clamp(14px, 8cqw, 3em);
+    font-size: clamp(0.875em, 2vw, 3em);
+    font-size: clamp(0.875em, 8cqw, 3em);
     font-weight: bold;
 }
 
