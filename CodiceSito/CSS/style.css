@@ -237,10 +237,6 @@ h2 {
     margin-left: 0.5em;
 }
 
-.data-form {
-    font-size: large;
-}
-
 .main-section, .header-content, #breadcrumb, .form-container {
     background: rgba(255, 255, 255, 0.25);
     border-radius: 20px;
@@ -358,7 +354,6 @@ h2 {
     display: none;
     margin: 0 auto;
     color: #a12622;
-    font-size: large;
     font-weight: bold;
     text-align: center;
 }
@@ -371,9 +366,10 @@ h2 {
 
 .data-form {
     margin-top: 1.5em;
+    font-size: clamp(1.1rem, 1rem + 0.4vw, 1.5rem);
 }
 
-.data-form > label {
+.data-form label {
     font-weight: bold;
 }
 
@@ -434,6 +430,17 @@ abbr {
     margin-top: 0.25em;
     margin-bottom: 1em;
     font-size: 0.875em; /*14px se font padre = 16px*/
+}
+
+fieldset {
+    border-radius: 20px;
+    padding: 0.5em;
+    margin-bottom: 1em;
+}
+
+legend {
+    font-size: clamp(1.3rem, 1.1rem + 0.7vw, 1.8rem);
+    font-weight: bold;
 }
 
 /*
