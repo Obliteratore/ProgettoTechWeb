@@ -10,11 +10,10 @@
 
     <body>
         <header></header>
-
         <main id="main-content">
             <div class="form-container">
                 <h1 class="center">Accedi</h1>
-                <p class="call-to-action center">Se ancora non hai creato un <span lang="en">account</span>, <a href="registrazione.html">registrati</a>!</p>
+                <p class="call-to-action center">Se non hai un <span lang="en">account</span>, <a href="registrazione.html">registrati</a>!</p>
                 <!--GESTIRE ERRORI DI INSERIMENTO (attualmente: display:none) CON JS, ANCHE ARIA-INVALID NEGLI INPUT-->
 <!--
 const usernameInput = document.getElementById('username');
@@ -30,7 +29,7 @@ loginError.style.display = 'block';
                 <p id="login-error" class="error-message" role="alert">
                     Errore: credenziali non valide.
                 </p>
-                <form class="data-form" action="" method="post" autocomplete="on">
+                <form id="login-form" class="data-form" action="" method="post" autocomplete="on">
                     <label for="username"><span lang="en">Username</span> o <span lang="en">Email</span>
                     <small class="required">(Obbligatorio)</small>
                     </label>
@@ -47,7 +46,6 @@ loginError.style.display = 'block';
                 </form>
             </div>
         </main>
-        
         <footer></footer>
     </body>
 

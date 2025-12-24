@@ -24,7 +24,7 @@
         <link rel="stylesheet" href="../CSS/stampa.css" media="(min-width: 1024px)">
     </head>
 
-    <body>
+    <body id="top">
         <nav aria-label="Aiuti alla navigazione">
             <a id="skip-to-content" href="#main-content">Salta al contenuto</a>
         </nav>
@@ -40,10 +40,12 @@
                     </ul>
                 </nav>
                 <div>
-                    <a id="cart-link" href="carrello.html" aria-label="Vai al carrello"><img src="../../Asset/Immagini/Icone/shopping_cart.svg" alt="" width="20px"/></a>
+                    <a id="cart-link" href="carrello.html" aria-label="Vai al carrello"><img src="../../Asset/Immagini/Icone/shopping_cart.svg" alt="" aria-hidden="true"/></a>
                     <button id="hamburger-menu-btn" aria-controls="hamburger-menu" aria-expanded="false">
-                        <span><img id="open-hamburger-menu" src="../../Asset/Immagini/Icone/menu.svg" alt=""/><span class="screen-reader">Apri l'<span lang="en">hamburger</span> menù</span></span>
-                        <span><img id="close-hamburger-menu" src="../../Asset/Immagini/Icone/close.svg" alt=""/><span class="screen-reader">Chiudi l'<span lang="en">hamburger</span> menù</span></span>
+                        <img id="open-hamburger-menu" src="../../Asset/Immagini/Icone/menu.svg" alt="" aria-hidden="true"/>
+                        <span class="screen-reader">Apri l'<span lang="en">hamburger</span> menù</span>
+                        <img id="close-hamburger-menu" src="../../Asset/Immagini/Icone/close.svg" alt="" aria-hidden="true"/>
+                        <span class="screen-reader">Chiudi l'<span lang="en">hamburger</span> menù</span>
                     </button>
                 </div>
                 <nav id="hamburger-menu" aria-label="Menù di navigazione per cellulare">
@@ -142,5 +144,6 @@
             </section>
         </main>
         <footer></footer>
+        <a href="#top" class="back-to-top" aria-label="Torna all'inizio">↑</a>
     </body>
 </html>

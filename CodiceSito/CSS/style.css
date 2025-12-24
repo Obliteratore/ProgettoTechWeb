@@ -31,6 +31,8 @@ html {
       0 1px 2px rgba(0,0,0,0.25),
       0 0 6px rgba(180,220,255,0.6),
       0 0 14px rgba(120,190,255,0.35);
+
+      scroll-behavior: smooth;
 }
 
 body {
@@ -338,6 +340,24 @@ h2 {
     font-weight: bold;
 }
 
+.back-to-top {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 1000;
+
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: black;
+    text-decoration: none;
+}
+
 /*LOGIN*/
 
 .form-container {
@@ -346,7 +366,7 @@ h2 {
     min-width: 17em;
     max-width: 28em;
     box-sizing: border-box;
-    padding: 1.5em;
+    padding: 1em;
     margin: 0 auto;
 }
 
@@ -365,12 +385,16 @@ h2 {
 }
 
 .data-form {
-    margin-top: 1.5em;
+    margin-top: 1em;
     font-size: clamp(1.1rem, 1rem + 0.4vw, 1.5rem);
 }
 
 .data-form label {
     font-weight: bold;
+}
+
+.data-form > label:first-child {
+    margin-top: 0em;
 }
 
 .data-form input {
@@ -379,7 +403,7 @@ h2 {
     border-radius: 10px;
     border: 1px solid black;
     box-sizing: border-box;
-    margin-top: 0.3em;
+    margin-top: 0.25em;
     padding: 0.5em;
 }
 
@@ -398,7 +422,6 @@ h2 {
 .hint {
     display: block;
     margin-top: 0.25em;
-    margin-bottom: 1em;
     font-size: 0.80em;
 }
 
@@ -424,13 +447,11 @@ abbr {
     background-color: #357abd;
 }
 
-/*SIGNIN*/
-
-.help {
-    margin-top: 0.25em;
-    margin-bottom: 1em;
-    font-size: 0.875em; /*14px se font padre = 16px*/
+#login-form input[type="submit"] {
+    margin-top: 1em;
 }
+
+/*SIGNIN*/
 
 fieldset {
     border-radius: 20px;
@@ -441,6 +462,24 @@ fieldset {
 legend {
     font-size: clamp(1.3rem, 1.1rem + 0.7vw, 1.8rem);
     font-weight: bold;
+}
+
+.data-form label {
+    display: inline-block;
+    margin-top: 0.8em;
+}
+
+fieldset > label:first-of-type {
+    margin-top: 0em;
+}
+
+.help {
+    margin-top: 0.25em;
+    font-size: 0.875em; /*14px se font padre = 16px*/
+}
+
+.help ul {
+    padding-left: 1.5em;
 }
 
 /*
