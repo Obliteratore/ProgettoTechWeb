@@ -398,13 +398,14 @@ h2 {
 }
 
 .data-form input {
-    height: 3em;
+    height: 2.5rem;
     width: 100%;
     border-radius: 10px;
     border: 1px solid black;
     box-sizing: border-box;
     margin-top: 0.25em;
-    padding: 0.5em;
+    padding-left: 0.5em;
+    font-size: 1rem;
 }
 
 .data-form input:focus {
