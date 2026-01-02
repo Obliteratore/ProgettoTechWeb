@@ -354,9 +354,20 @@ h2 {
     align-items: center;
     justify-content: center;
 
-    background: black;
+    background: rgba(0, 0, 0, 0.411);
     text-decoration: none;
 }
+
+/*ICONE*/
+.back-to-top img {
+    width: 3rem;
+}
+
+/*PER AVERE ICONE BIANCHE*/
+.icona {
+    filter: invert(100%);
+}
+
 
 /*LOGIN*/
 
