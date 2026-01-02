@@ -15,67 +15,78 @@
             <div class="form-container">
                 <h1 class="center">Registrati</h1>
                 <p class="call-to-action center">Se hai già un <span lang="en">account</span>, <a href="accesso.html">accedi</a>!</p>
-                <!--GESTIRE ERRORI DI INSERIMENTO (attualmente: display:none) CON JS, ANCHE ARIA-INVALID NEGLI INPUT-->
                 <form id="signin-form" class="data-form" action="" method="post" autocomplete="on">
                     <fieldset>
                         <legend>Informazioni personali</legend>
                         <label for="nome">Nome
-                        <small class="required">(Obbligatorio)</small>
+                            <small class="required">(Obbligatorio)</small>
                         </label>
-                        <input id="nome" type="text" name="nome" autocomplete="given-name" aria-describedby="given-name-help" aria-invalid="false" required/>
+                        <input id="nome" type="text" name="nome" autocomplete="given-name" aria-describedby="given-name-help given-name-error" aria-invalid="false" required/>
                         <p id="given-name-help" class="help">Deve avere almeno 2 caratteri e non sono ammessi numeri o caratteri speciali.</p>
+                        <p id="given-name-error" class="error-message" aria-live="polite"></p>
 
                         <label for="cognome">Cognome
-                        <small class="required">(Obbligatorio)</small>
+                            <small class="required">(Obbligatorio)</small>
                         </label>
-                        <input id="cognome" type="text" name="cognome" autocomplete="family-name" aria-describedby="family-name-help" aria-invalid="false" required/>
+                        <input id="cognome" type="text" name="cognome" autocomplete="family-name" aria-describedby="family-name-help family-name-error" aria-invalid="false" required/>
                         <p id="family-name-help" class="help">Deve avere almeno 2 caratteri e non sono ammessi numeri o caratteri speciali.</p>
+                        <p id="family-name-error" class="error-message" aria-live="polite"></p>
                     </fieldset>
 
                     <fieldset>
                         <legend>Indirizzo</legend>
                         <label for="provincia">Provincia
+                            <small class="required">(Obbligatorio)</small>
                         </label>
-                        <input id="provincia" type="text" name="provincia" autocomplete="address-level2" aria-describedby="provincia-help" aria-invalid="false"/>
+                        <input id="provincia" type="text" name="provincia" autocomplete="address-level2" aria-describedby="provincia-help provincia-error" aria-invalid="false" required/>
                         <p id="provincia-help" class="help">La tua provincia di residenza.</p>
+                        <p id="provincia-error" class="error-message" aria-live="polite"></p>
 
                         <label for="citta">Città
+                            <small class="required">(Obbligatorio)</small>
                         </label>
-                        <input id="citta" type="text" name="citta" autocomplete="address-level3" aria-describedby="citta-help" aria-invalid="false"/>
+                        <input id="citta" type="text" name="citta" autocomplete="address-level3" aria-describedby="citta-help citta-error" aria-invalid="false" required/>
                         <p id="citta-help" class="help">La tua città di residenza.</p>
+                        <p id="citta-error" class="error-message" aria-live="polite"></p>
 
-                        <label for="cap">Codice postale (CAP)
+                        <label for="cap">Codice postale
+                            <small class="required">(Obbligatorio)</small>
                         </label>
-                        <input id="cap" type="text" name="cap" autocomplete="postal-code" aria-describedby="cap-help" aria-invalid="false"/>
+                        <input id="cap" type="text" name="cap" autocomplete="postal-code" aria-describedby="cap-help cap-error" aria-invalid="false" required/>
                         <p id="cap-help" class="help">Il codice di avviamento postale (5 cifre, solo numeri).</p>
+                        <p id="cap-error" class="error-message" aria-live="polite"></p>
 
                         <label for="via">Via
+                            <small class="required">(Obbligatorio)</small>
                         </label>
-                        <input id="via" type="text" name="via" autocomplete="street-address" aria-describedby="via-help" aria-invalid="false"/>
-                        <p id="via-help" class="help">L'indirizzo completo di via, piazza, contrada e numero civico.</p>
+                        <input id="via" type="text" name="via" autocomplete="street-address" aria-describedby="via-help via-error" aria-invalid="false" required/>
+                        <p id="via-help" class="help">L'indirizzo completo con via, piazza o contrada e numero civico.</p>
+                        <p id="via-error" class="error-message" aria-live="polite"></p>
                     </fieldset>
 
                     <fieldset>
                         <legend>Credenziali</legend>
                         <label for="email"><span lang="en">Email</span>
-                        <small class="required">(Obbligatorio)</small>
+                            <small class="required">(Obbligatorio)</small>
                         </label>
-                        <input id="email" type="email" name="email" autocomplete="email" aria-describedby="email-help" aria-invalid="false" required>
+                        <input id="email" type="email" name="email" autocomplete="email" aria-describedby="email-help email-error" aria-invalid="false" required/>
                         <p id="email-help" class="help">Un indirizzo <span lang="en">email</span> valido. Verrà usato per la verifica dell'<span lang="en">account</span> e per le comunicazioni.</p>
+                        <p id="email-error" class="error-message" aria-live="polite"></p>
 
                         <label for="username"><span lang="en">Username</span>
-                        <small class="required">(Obbligatorio)</small>
+                            <small class="required">(Obbligatorio)</small>
                         </label>
-                        <input id="username" type="text" name="username" autocomplete="username" aria-describedby="username-help" aria-invalid="false" required>
-                        <p id="username-help" class="help">Scegli un nome utente lungo fino a 30 caratteri, senza spazi.</p>
+                        <input id="username" type="text" name="username" autocomplete="username" aria-describedby="username-help username-error" aria-invalid="false" required/>
+                        <p id="username-help" class="help">Scegli un nome utente lungo al massimo 30 caratteri.</p>
+                        <p id="username-error" class="error-message" aria-live="polite"></p>
                     </fieldset>
 
                     <fieldset>
                         <legend lang="en">Password</legend>
-                        <label for="password"><span lang="en">Password</span>
+                            <label for="password"><span lang="en">Password</span>
                         <small class="required">(Obbligatorio)</small>
                         </label>
-                        <input id="password" type="password" name="password" autocomplete="new-password" aria-describedby="password-help" aria-invalid="false" required>
+                        <input id="password" type="password" name="password" autocomplete="new-password" aria-describedby="password-help password-error" aria-invalid="false" required/>
                         <div id="password-help" class="help">
                             <p>Scegli una <span lang="en">password</span>. Deve contenere:</p>
                             <ul>
@@ -85,14 +96,16 @@
                                 <li>Almeno un carattere speciale</li>
                             </ul>
                         </div>
+                        <p id="password-error" class="error-message" aria-live="polite"></p>
 
-                        <label for="conferma_password">Conferma <span lang="en">Password</span>
-                        <small class="required">(Obbligatorio)</small>
+                        <label for="conferma-password">Conferma <span lang="en">Password</span>
+                            <small class="required">(Obbligatorio)</small>
                         </label>
-                        <input id="conferma_password" type="password" name="conferma_password" autocomplete="new-password" aria-describedby="conferma_password-help" aria-invalid="false" required>
-                        <p id="conferma_password-help" class="help">Inserisci nuovamente la <span lang="en">password</span> che hai scelto.</p>
+                        <input id="conferma-password" type="password" name="conferma-password" autocomplete="new-password" aria-describedby="conferma-password-help conferma-password-error" aria-invalid="false" required/>
+                        <p id="conferma-password-help" class="help">Inserisci nuovamente la <span lang="en">password</span> che hai scelto.</p>
+                        <p id="conferma-password-error" class="error-message" aria-live="polite"></p>
                     </fieldset>
-                    <input type="submit" value="Registrati">
+                    <input type="submit" value="Registrati"/>
                 </form>
             </div>
         </main>
