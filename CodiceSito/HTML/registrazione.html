@@ -23,14 +23,14 @@
                         </label>
                         <input id="nome" type="text" name="nome" autocomplete="given-name" aria-describedby="given-name-help given-name-error" aria-invalid="false" required/>
                         <p id="given-name-help" class="help">Deve avere almeno 2 caratteri e non sono ammessi numeri o caratteri speciali.</p>
-                        <p id="given-name-error" class="error-message" aria-live="polite"></p>
+                        <ul id="given-name-error" class="error-message" aria-live="polite"></ul>
 
                         <label for="cognome">Cognome
                             <small class="required">(Obbligatorio)</small>
                         </label>
                         <input id="cognome" type="text" name="cognome" autocomplete="family-name" aria-describedby="family-name-help family-name-error" aria-invalid="false" required/>
                         <p id="family-name-help" class="help">Deve avere almeno 2 caratteri e non sono ammessi numeri o caratteri speciali.</p>
-                        <p id="family-name-error" class="error-message" aria-live="polite"></p>
+                        <ul id="family-name-error" class="error-message" aria-live="polite"></ul>
                     </fieldset>
 
                     <fieldset>
@@ -38,23 +38,21 @@
                         <label for="provincia">Provincia
                             <small class="required">(Obbligatorio)</small>
                         </label>
-                        <input id="provincia" type="text" name="provincia" autocomplete="address-level2" aria-describedby="provincia-help provincia-error" aria-invalid="false" required/>
+                        <select id="provincia" name="provincia" aria-describedby="provincia-help provincia-error" aria-invalid="false" required>
+                            <option value="" selected>Seleziona una provincia</option>
+                            <option value="VI">Vicenza</option>
+                        </select>
                         <p id="provincia-help" class="help">La tua provincia di residenza.</p>
                         <p id="provincia-error" class="error-message" aria-live="polite"></p>
 
-                        <label for="citta">Città
+                        <label for="comune">Comune
                             <small class="required">(Obbligatorio)</small>
                         </label>
-                        <input id="citta" type="text" name="citta" autocomplete="address-level3" aria-describedby="citta-help citta-error" aria-invalid="false" required/>
-                        <p id="citta-help" class="help">La tua città di residenza.</p>
-                        <p id="citta-error" class="error-message" aria-live="polite"></p>
-
-                        <label for="cap">Codice postale
-                            <small class="required">(Obbligatorio)</small>
-                        </label>
-                        <input id="cap" type="text" name="cap" autocomplete="postal-code" aria-describedby="cap-help cap-error" aria-invalid="false" required/>
-                        <p id="cap-help" class="help">Il codice di avviamento postale (5 cifre, solo numeri).</p>
-                        <p id="cap-error" class="error-message" aria-live="polite"></p>
+                        <select id="comune" name="comune" aria-describedby="comune-help comune-error" aria-invalid="false" required>
+                            <option value="" selected>Seleziona un comune</option>
+                        </select>
+                        <p id="comune-help" class="help">Il tuo comune di residenza.</p>
+                        <p id="comune-error" class="error-message" aria-live="polite"></p>
 
                         <label for="via">Via
                             <small class="required">(Obbligatorio)</small>
@@ -65,7 +63,7 @@
                     </fieldset>
 
                     <fieldset>
-                        <legend>Credenziali</legend>
+                        <legend>Credenziali d'accesso</legend>
                         <label for="email"><span lang="en">Email</span>
                             <small class="required">(Obbligatorio)</small>
                         </label>
@@ -79,11 +77,8 @@
                         <input id="username" type="text" name="username" autocomplete="username" aria-describedby="username-help username-error" aria-invalid="false" required/>
                         <p id="username-help" class="help">Scegli un nome utente lungo al massimo 30 caratteri.</p>
                         <p id="username-error" class="error-message" aria-live="polite"></p>
-                    </fieldset>
 
-                    <fieldset>
-                        <legend lang="en">Password</legend>
-                            <label for="password"><span lang="en">Password</span>
+                        <label for="password"><span lang="en">Password</span>
                         <small class="required">(Obbligatorio)</small>
                         </label>
                         <input id="password" type="password" name="password" autocomplete="new-password" aria-describedby="password-help password-error" aria-invalid="false" required/>
@@ -96,7 +91,7 @@
                                 <li>Almeno un carattere speciale</li>
                             </ul>
                         </div>
-                        <p id="password-error" class="error-message" aria-live="polite"></p>
+                        <ul id="password-error" class="error-message" aria-live="polite"></ul>
 
                         <label for="conferma-password">Conferma <span lang="en">Password</span>
                             <small class="required">(Obbligatorio)</small>
@@ -109,6 +104,7 @@
                 </form>
             </div>
         </main>
+        <script src="../JS/insert_comuni.js" defer></script>
         <footer></footer>
     </body>
 </html>
