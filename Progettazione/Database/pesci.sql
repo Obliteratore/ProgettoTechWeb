@@ -22,14 +22,14 @@ CREATE TABLE utenti_registrati(
     password VARCHAR(255) NOT NULL,
     nome VARCHAR(50) NOT NULL,
     cognome VARCHAR(50) NOT NULL,
-	FOREIGN KEY (email) REFERENCES utente(email)
+	FOREIGN KEY (email) REFERENCES utenti(email)
 );
 
 CREATE TABLE amministratori (
     email VARCHAR(255) PRIMARY KEY,
     username VARCHAR(30) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-	FOREIGN KEY (email) REFERENCES utente(email)
+	FOREIGN KEY (email) REFERENCES utenti(email)
 );
 
 CREATE TABLE famiglie (
@@ -50,7 +50,7 @@ CREATE TABLE pesci (
     disponibilita INT NOT NULL,
     descrizione TEXT NOT NULL,
     immagine VARCHAR(255) NOT NULL,
-	FOREIGN KEY (famiglia) REFERENCES famiglia(famiglia_latino)
+	FOREIGN KEY (famiglia) REFERENCES famiglie(famiglia_latino)
 );
 
 CREATE TABLE provincie (
@@ -62,7 +62,7 @@ CREATE TABLE comuni (
 	id_comune INT AUTO_INCREMENT PRIMARY KEY,
 	nome VARCHAR(50) NOT NULL,
 	sigla_provincia CHAR(2) NOT NULL,
-	FOREIGN KEY (sigla_provincia) REFERENCES provincia(sigla_provincia)
+	FOREIGN KEY (sigla_provincia) REFERENCES provincie(sigla_provincia)
 );
 
 CREATE TABLE indirizzi (
@@ -70,8 +70,8 @@ CREATE TABLE indirizzi (
     sigla_provincia CHAR(2) NOT NULL,
     id_comune INT NOT NULL,
     via VARCHAR(150) NOT NULL,
-	FOREIGN KEY (sigla_provincia) REFERENCES provincia(sigla_provincia),
-	FOREIGN KEY (id_comune) REFERENCES comune(id_comune)
+	FOREIGN KEY (sigla_provincia) REFERENCES provincie(sigla_provincia),
+	FOREIGN KEY (id_comune) REFERENCES comuni(id_comune)
 );
 
 CREATE TABLE utenti_indirizzi (
@@ -80,7 +80,7 @@ CREATE TABLE utenti_indirizzi (
     predefinito BOOLEAN DEFAULT FALSE,
     PRIMARY KEY (email, id_indirizzo),
 	FOREIGN KEY (email) REFERENCES utente(email),
-	FOREIGN KEY (id_indirizzo) REFERENCES indirizzo(id_indirizzo)
+	FOREIGN KEY (id_indirizzo) REFERENCES indirizzi(id_indirizzo)
 );
 
 CREATE TABLE ordini (
@@ -89,7 +89,7 @@ CREATE TABLE ordini (
     id_indirizzo INT NOT NULL,
     data_ora DATETIME NOT NULL,
 	FOREIGN KEY (email) REFERENCES utente(email),
-	FOREIGN KEY (id_indirizzo) REFERENCES indirizzo(id_indirizzo)
+	FOREIGN KEY (id_indirizzo) REFERENCES indirizzi(id_indirizzo)
 );
 
 CREATE TABLE dettaglio_ordini (
@@ -98,8 +98,8 @@ CREATE TABLE dettaglio_ordini (
     quantita INT NOT NULL,
     prezzo_unitario DECIMAL(8,2) NOT NULL,
     PRIMARY KEY (id_ordine, nome_latino),
-	FOREIGN KEY (id_ordine) REFERENCES ordine(id_ordine),
-	FOREIGN KEY (nome_latino) REFERENCES pesce(nome_latino)
+	FOREIGN KEY (id_ordine) REFERENCES ordini(id_ordine),
+	FOREIGN KEY (nome_latino) REFERENCES pesci(nome_latino)
 );
 
 INSERT INTO utenti VALUE ("admin");
@@ -8237,7 +8237,7 @@ INSERT INTO comuni (nome, sigla_provincia) VALUES
 ("Zambana", "TN"),
 ("Zambrone", "VV"),
 ("Zandobbio", "BG"),
-("Zan ", "VI"),
+("Zanè", "VI"),
 ("Zanica", "BG"),
 ("Zapponeta", "FG"),
 ("Zavattarello", "PV"),

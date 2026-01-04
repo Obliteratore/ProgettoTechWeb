@@ -9,8 +9,8 @@ $connection = new FMAccess();
 $connectionOk = $connection->openConnection();
 
 if($connectionOk) {
-    $provincia = $_GET['provincia'] ?? '';
-
+    $provincia = $_POST['provincia'] ?? '';
+ 
     $comuni = $connection->getComuni($provincia);
 
     $connection->closeConnection();
