@@ -26,5 +26,20 @@ class FMAccess {
 	public function closeConnection() {
 		mysqli_close($this->connection);
 	}
+
+	public function getComuni($provincia) {
+		$query = "SELECT id_comune, nome FROM comuni WHERE sigla_provincia = ? ORDER BY nome";
+		$stmt = ($this->connection)->prepare($query);
+		$stmt->bind_param("s", $provincia);
+		$stmt->execute();
+
+		$result = $stmt->get_result();
+
+		$comuni = [];
+		while ($row = $result->fetch_assoc()) {
+			$comuni[] = $row;
+		}
+		return $comuni;
+	}
 }
 ?>

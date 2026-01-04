@@ -1,21 +1,20 @@
 <?php
+
+require_once "db_connection.php";
+use FM\FMAccess;
+
 header('Content-Type: application/json');
 
-$provincia = $_GET['provincia'] ?? '';
+$connection = new FMAccess();
+$connectionOk = $connection->openConnection();
 
-/*$sql = "SELECT id, nome FROM comuni WHERE provincia = ? ORDER BY nome";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $provincia);
-$stmt->execute();
+if($connectionOk) {
+    $provincia = $_GET['provincia'] ?? '';
 
-$result = $stmt->get_result();
+    $comuni = $connection->getComuni($provincia);
 
-$comuni = [];
-while ($row = $result->fetch_assoc()) {
-    $comuni[] = $row;
-}*/
-$comuni = [
-    ["id" => 1, "nome" => "Valdagno"]
-];
-echo json_encode($comuni);
+    $connection->closeConnection();
+
+    echo json_encode($comuni);
+}
 ?>
