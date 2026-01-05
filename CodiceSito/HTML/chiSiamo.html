@@ -1,0 +1,101 @@
+<html lang=“it”>
+    <head>
+        <meta charset="utf-8" >
+        <title>chiSiamo - FishMarket</title>
+        <meta name="description" content="Questa pagina è dedicata ..." >
+        <meta name="keywords" content="pesci, mare …" >
+        <meta name="author" content="Aaron Gingillino, Francesco Balestro, Bilal Sabic, Valerio Solito" >
+
+        <!-- CSS -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="../CSS/style.css">
+
+        <!-- Mobile -->
+        <!-- <link rel="stylesheet" href="../CSS/mobile.css" media="(max-width: 767px)"> -->
+      
+        <!-- Tablet -->
+        <!-- <link rel="stylesheet" href="tablet.css" media="(min-width: 768px) and (max-width: 1023px)">
+        -->
+        <!-- Desktop -->
+        <link rel="stylesheet" href="../CSS/desktop.css" media="(min-width: 768px)">
+        <!-- Stampa -->
+        <link rel="stylesheet" href="../CSS/stampa.css" media="(min-width: 1024px)">
+    </head>
+
+     <body id="top">
+        <header>
+            <div class="header-content">
+                <img src="../../Asset/Immagini/Icone/fish.png" alt=""/>
+                <nav id="menu" aria-label="Menù di navigazione">
+                    <ul>
+                        <li lang="en"><a href="home.html">Home</li>
+                        <li><a href="catalogo.html">Catalogo</a></li>
+                        <li>Chi Siamo</li>
+                        <li><a href="accesso.html">Accedi</a></li>
+                    </ul>
+                </nav>
+                <div>
+                    <a id="cart-link" href="carrello.html" aria-label="Vai al carrello"><img src="../../Asset/Immagini/Icone/shopping_cart.svg" alt="" aria-hidden="true"/></a>
+                    <button id="hamburger-menu-btn" aria-controls="hamburger-menu" aria-expanded="false">
+                        <img id="open-hamburger-menu" src="../../Asset/Immagini/Icone/menu.svg" alt="" aria-hidden="true"/>
+                        <span class="screen-reader">Apri l'<span lang="en">hamburger</span> menù</span>
+                        <img id="close-hamburger-menu" src="../../Asset/Immagini/Icone/close.svg" alt="" aria-hidden="true"/>
+                        <span class="screen-reader">Chiudi l'<span lang="en">hamburger</span> menù</span>
+                    </button>
+                </div>
+                <nav id="hamburger-menu" aria-label="Menù di navigazione per cellulare">
+                    <ul>
+                        <li lang="en"><a href="home.html">Home</li>
+                        <li><a href="catalogo.html">Catalogo</a></li>
+                        <li>Chi Siamo</li>
+                        <li><a href="accesso.html">Accedi</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <script src="../JS/hamburger_menu.js" defer></script>
+
+        <nav id="breadcrumb" aria-label="Percorso di navigazione">
+            <ol>
+                <li><span aria-current="page">Chi Siamo</span></li>
+            </ol>
+        </nav>
+
+        <main id="main-content">
+            <h1 class = "center">Chi Siamo?</h1>
+            <p class = "call-to-action center">Siamo un gruppo di 4 studenti di informatica dell'Università di Padova con una missione: mostrarvi i pesci più pesci dei pesci pescioloni.</p>
+            <section class="main-section">
+                <div class="section-title">
+                    <h2>I membri del Team</h2>
+                </div>
+                <ul class="membro">
+                    <li class="card-membro">
+                    <img src="../../Asset/Immagini/Membri/aaron.jpg">
+                    <div class="dati-membro">
+                        <p class="nome-membro">Aaron Gingillino</p>
+                    </div>
+                    </li>
+                    <li class="card-membro">
+                    <img src="../../Asset/Immagini/Membri/valerio.jpg">
+                    <div class="dati-membro">
+                        <p class="nome-membro">Valerio Solito</p>
+                    </div>
+                    </li>
+                    <li class="card-membro">
+                    <img src="../../Asset/Immagini/Membri/bilal.jpg">
+                    <div class="dati-membro">
+                        <p class="nome-membro">Bilal Sabic</p>
+                    </div>
+                    </li>
+                    <li class="card-membro">
+                    <img src="../../Asset/Immagini/Membri/fra.jpg">
+                    <div class="dati-membro">
+                        <p class="nome-membro">Francesco Balestro</p>
+                    </div>
+                    </li>
+                </ul>
+        </main>
+        <footer></footer>
+        <a href="#top" class="back-to-top" aria-label="Torna all'inizio">↑</a>
+     </body>

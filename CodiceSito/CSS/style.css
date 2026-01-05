@@ -18,8 +18,13 @@ html {
     font-size: 100%;
     color: #fff; /*Colore va spostato in altre sezioni*/
     /*font-family: Arial, Helvetica, sans-serif;*/
-
-    font-family: 'Inter', sans-serif;
+    
+    /*font-family: "Atkinson Hyperlegible", sans-serif;*/
+    /*font-family: "Inclusive Sans", sans-serif;*/
+    font-family: "Inclusive Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
     /*AERO PIù INTENSO
       color: #fff; Colore va spostato in altre sezioni
       text-shadow:
@@ -259,7 +264,7 @@ h2 {
     padding: 0.25em;
 }
 
-.section-title {
+.section-title, footer p {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -342,7 +347,7 @@ h2 {
 
 .back-to-top {
     position: fixed;
-    bottom: 1rem;
+    bottom: 2rem;
     right: 1rem;
     z-index: 1000;
 
@@ -354,7 +359,7 @@ h2 {
     align-items: center;
     justify-content: center;
 
-    background: black;
+    background: rgba(0, 0, 0, 0.411);
     text-decoration: none;
 }
 /* BARRA DI RICERCA */
@@ -478,6 +483,64 @@ h2 {
     align-items:center;
     gap:0.25em;
 }
+/*ICONE*/
+.back-to-top img {
+    width: 3rem;
+}
+
+/*PER AVERE ICONE BIANCHE*/
+.icona {
+    filter: invert(100%);
+}
+
+.membro {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+    gap: 20px;            
+    margin: 1.5em auto;    
+    max-width: 1000px;    
+    list-style: none;
+    justify-content: center;
+}
+
+.card-membro{
+    background: none;
+    border-radius: 5px;
+    width: 200px;
+    text-align: center;
+    margin: 0 auto;
+    container-type: inline-size; 
+}
+
+.card-membro img{
+    display: block;
+    border-radius: 50%;
+    width: 200px; 
+    height: 200px;
+    object-fit: cover;  
+}
+
+.dati-membro{
+    left: 0;
+    width: 100%;              
+    margin-top: 5px;
+    background: rgba(0, 0, 0, 0.6); 
+    color: white;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.dati-membro .nome-membro{
+    font-weight: bold;
+    font-size: clamp(1.2rem, 0.7em + 3.5vw, 1.8em); /*0.75em di 16 = 12px*/
+    font-size: clamp(1.2rem, 13cqw, 1.8em); /*Se il browser non supporta container-inline, la funzione clamp diventa invalida e la dichiarazione viene ignorata. Quindi viene applicato il clamp precedente*/
+    line-height: 1.2;
+}
+
 /*LOGIN*/
 
 .form-container {
@@ -491,17 +554,12 @@ h2 {
 }
 
 .error-message {
-    display: none;
-    margin: 0 auto;
-    color: #a12622;
+    color: darkred;
     font-weight: bold;
-    text-align: center;
 }
-/*DA SISTEMARE USANDO JAVASCRIPT PER MOSTRARE ERRORE O MENO*/
-.error-message.visible {
-    display: block;
-    margin-top: 1em;
-    margin-bottom: -0.5em;
+
+ul.error-message {
+    list-style: none;
 }
 
 .data-form {
@@ -517,7 +575,7 @@ h2 {
     margin-top: 0em;
 }
 
-.data-form input {
+.data-form input, .data-form select {
     height: 2.5rem;
     width: 100%;
     border-radius: 10px;
@@ -528,7 +586,7 @@ h2 {
     font-size: 1rem;
 }
 
-.data-form input:focus {
+.data-form input:focus, .data-form select:focus {
     outline: none;
     border-width: 3px;
 }
@@ -608,3 +666,10 @@ fieldset > label:first-of-type {
 SEZIONE FOOTER
 =======================================
 */
+
+footer {
+    margin-top: 1em;
+    margin-right: 3em;
+    margin-left: 0.5em;
+    margin-bottom: 1em;
+}
