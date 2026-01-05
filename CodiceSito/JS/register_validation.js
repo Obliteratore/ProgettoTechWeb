@@ -1,6 +1,8 @@
 const campiForm = [
     { id: "nome", validator: validateNome },
     { id: "cognome", validator: validateCognome },
+    { id: "provincia", validator: validateProvincia },
+    { id: "comune", validator: validateComune },
     { id: "via", validator: validateVia },
     { id: "email", validator: validateEmail },
     { id: "username", validator: validateUsername },
@@ -68,16 +70,16 @@ function validateNome(nome) {
     let isValid = true;
 
     if(value.length == 0) {
-        error += "Il nome è un campo obbligatorio.";
+        error += "<li>Il nome è un campo obbligatorio.</li>";
         isValid = false;
     } else {
         if(value.length < 2) {
-            error += "Il nome è troppo corto. ";
+            error += "<li>Il nome è troppo corto.</li>";
             isValid = false;
         }
 
         if(!regex.test(value)) {
-            error += "Il nome contiene caratteri non validi.";
+            error += "<li>Il nome contiene caratteri non validi.</li>";
             isValid = false;
         }
     }
@@ -93,16 +95,16 @@ function validateCognome(cognome) {
     let isValid = true;
 
     if(value.length == 0) {
-        error += "Il cognome è un campo obbligatorio.";
+        error += "<li>Il cognome è un campo obbligatorio.</li>";
         isValid = false;
     } else {
         if(value.length < 2) {
-            error += "Il cognome è troppo corto. ";
+            error += "<li>Il cognome è troppo corto.</li>";
             isValid = false;
         }
 
         if(!regex.test(value)) {
-            error += "Il cognome contiene caratteri non validi.";
+            error += "<li>Il cognome contiene caratteri non validi.</li>";
             isValid = false;
         }
     }
@@ -112,15 +114,31 @@ function validateCognome(cognome) {
 }
 
 function validateProvincia(provincia) {
-    
+    const value = provincia.value.trim();
+    let error = "";
+    let isValid = true;
+
+    if(value == "") {
+        error += "La provincia è un campo obbligatorio.";
+        isValid = false;
+    }
+    setHtml(provincia, isValid, "provincia-error", error);
+
+    return isValid;
 }
 
-function validateCitta(citta) {
-    
-}
+function validateComune(comune) {
+    const value = comune.value.trim();
+    let error = "";
+    let isValid = true;
 
-function validateCap(cap) {
-    
+    if(value == "") {
+        error += "Il comune è un campo obbligatorio.";
+        isValid = false;
+    }
+    setHtml(comune, isValid, "comune-error", error);
+
+    return isValid;
 }
 
 function validateVia(via) {
@@ -188,23 +206,23 @@ function validatePassword(password) {
     let isValid = true;
 
     if(value.length == 0) {
-        error += `La <span lang="en">password</span> è un campo obbligatorio.`;
+        error += `<li>La <span lang="en">password</span> è un campo obbligatorio.</li>`;
         isValid = false;
     } else {
         if(value.length < 8) {
-            error += `La <span lang="en">password</span> è troppo corta. `;
+            error += `<li>La <span lang="en">password</span> è troppo corta.</li>`;
             isValid = false;
         }
         if(!/[A-Z]/.test(value)) {
-            error += "Manca una lettera maiuscola. ";
+            error += "<li>Manca una lettera maiuscola.</li>";
             isValid = false;
         }
         if(!/\d/.test(value)) {
-            error += "Manca un numero. ";
+            error += "<li>Manca un numero.</li>";
             isValid = false;
         }
         if(!/[!?@#$%^&*_-]/.test(value)) {
-            error += "Manca un carattere speciale.";
+            error += "<li>Manca un carattere speciale.</li>";
             isValid = false;
         }
     }

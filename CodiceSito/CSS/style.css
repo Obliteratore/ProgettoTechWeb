@@ -391,6 +391,10 @@ h2 {
     font-weight: bold;
 }
 
+ul.error-message {
+    list-style: none;
+}
+
 .data-form {
     margin-top: 1em;
     font-size: clamp(1.1rem, 1rem + 0.4vw, 1.5rem);
@@ -404,7 +408,7 @@ h2 {
     margin-top: 0em;
 }
 
-.data-form input {
+.data-form input, .data-form select {
     height: 2.5rem;
     width: 100%;
     border-radius: 10px;
@@ -415,7 +419,7 @@ h2 {
     font-size: 1rem;
 }
 
-.data-form input:focus {
+.data-form input:focus, .data-form select:focus {
     outline: none;
     border-width: 3px;
 }
