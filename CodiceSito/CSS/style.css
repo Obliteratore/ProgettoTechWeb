@@ -21,7 +21,7 @@ html {
     
     /*font-family: "Atkinson Hyperlegible", sans-serif;*/
     /*font-family: "Inclusive Sans", sans-serif;*/
-    font-family: "Lexend", sans-serif;
+    font-family: "Inclusive Sans", sans-serif;
     font-optical-sizing: auto;
     font-weight: 500;
     font-style: normal;
@@ -347,7 +347,7 @@ h2 {
 
 .back-to-top {
     position: fixed;
-    bottom: 5rem;
+    bottom: 2rem;
     right: 1rem;
     z-index: 1000;
 
