@@ -375,12 +375,10 @@ h2 {
 
 .membro {
     display: grid;
-    /* Cambiamo da 1fr 1fr a una griglia responsiva */
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
     gap: 20px;            
     margin: 1.5em auto;    
     max-width: 1000px;    
-          /* Padding interno per non toccare i bordi su mobile */
     list-style: none;
     justify-content: center;
 }
@@ -391,8 +389,6 @@ h2 {
     width: 200px;
     text-align: center;
     margin: 0 auto;
-    /*position: relative;
-    /*Soluzione per browser nuovi, circa dal 2023, per avere grandezza testo in base a qella del contenitore usando i cqw(container query width)*/
     container-type: inline-size; 
 }
 
@@ -406,9 +402,9 @@ h2 {
 
 .dati-membro{
     left: 0;
-    width: 100%;               /* da sinistra a destra */              /* 1/4 della card */
+    width: 100%;              
     margin-top: 5px;
-    background: rgba(0, 0, 0, 0.6); /* nero trasparente */
+    background: rgba(0, 0, 0, 0.6); 
     color: white;
   
     display: flex;
