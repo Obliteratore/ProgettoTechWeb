@@ -18,8 +18,13 @@ html {
     font-size: 100%;
     color: #fff; /*Colore va spostato in altre sezioni*/
     /*font-family: Arial, Helvetica, sans-serif;*/
-
-    font-family: 'Inter', sans-serif;
+    
+    /*font-family: "Atkinson Hyperlegible", sans-serif;*/
+    /*font-family: "Inclusive Sans", sans-serif;*/
+    font-family: "Lexend", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
     /*AERO PIù INTENSO
       color: #fff; Colore va spostato in altre sezioni
       text-shadow:
@@ -259,7 +264,7 @@ h2 {
     padding: 0.25em;
 }
 
-.section-title {
+.section-title, footer p {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -342,7 +347,7 @@ h2 {
 
 .back-to-top {
     position: fixed;
-    bottom: 1rem;
+    bottom: 5rem;
     right: 1rem;
     z-index: 1000;
 
@@ -490,3 +495,10 @@ fieldset > label:first-of-type {
 SEZIONE FOOTER
 =======================================
 */
+
+footer {
+    margin-top: 1em;
+    margin-right: 3em;
+    margin-left: 0.5em;
+    margin-bottom: 1em;
+}
