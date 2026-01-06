@@ -51,7 +51,6 @@ function validateSignInForm() {
     return campoInvalido;
 }
 
-
 function setHtml(input, isValid, errorId, errorText) {
     const erroreInput = document.getElementById(errorId);
 
@@ -201,7 +200,7 @@ function validateUsername(username) {
 }
 
 function validatePassword(password) {
-    const value = password.value.trim();
+    const value = password.value;
     let error = "";
     let isValid = true;
 
@@ -233,7 +232,7 @@ function validatePassword(password) {
 
 function validateConfermaPassword(confermaPassword) {
     const password = document.getElementById("password");
-    const value = confermaPassword.value.trim();
+    const value = confermaPassword.value;
     let error = "";
     let isValid = true;
 
