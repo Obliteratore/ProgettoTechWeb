@@ -118,7 +118,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $values['password'] = isset($_POST['password']) ? $_POST['password'] : null;
     $values['confermaPassword'] = isset($_POST['confermaPassword']) ? $_POST['confermaPassword'] : null;
 
-    //chiamo tutti i validate
+    validateNome($errors, $values['nome']);
+    validateCognome($errors, $values['cognome']);
+    validateProvincia($errors, $values['provincia']);
+    validateComune($errors, $values['comune']);
+    validateVia($errors, $values['via']);
+    validateEmail($errors, $values['email']);
+    validateUsername($errors, $values['username']);
+    validatePassword($errors, $values['password']);
+    validateConfermaPassword($errors, $values['password'], $values['confermaPassword']);
 
     if (!empty($errors)) {
         $_SESSION['errors'] = $errors;

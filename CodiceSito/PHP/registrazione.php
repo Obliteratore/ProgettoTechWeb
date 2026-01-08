@@ -36,9 +36,9 @@ unset($_SESSION['errors'], $_SESSION['values']);
                         <label for="cognome">Cognome
                             <small class="required">(Obbligatorio)</small>
                         </label>
-                        <input id="cognome" type="text" name="cognome" value="<?= htmlspecialchars($values['cognome'] ?? '') ?>" autocomplete="family-name" aria-describedby="family-name-help family-name-error" aria-invalid="false" required/>
+                        <input id="cognome" type="text" name="cognome" value="<?= htmlspecialchars($values['cognome'] ?? '') ?>" autocomplete="family-name" aria-describedby="family-name-help family-name-error" aria-invalid="<?= isset($errors['cognome']) ? 'true' : 'false' ?>" required/>
                         <p id="family-name-help" class="help">Deve avere almeno 2 caratteri e non sono ammessi numeri o caratteri speciali.</p>
-                        <ul id="family-name-error" class="error-message" aria-live="polite"></ul>
+                        <ul id="family-name-error" class="error-message" aria-live="polite"><?= $errors['cognome'] ?? '' ?></ul>
                     </fieldset>
 
                     <fieldset>
@@ -46,7 +46,7 @@ unset($_SESSION['errors'], $_SESSION['values']);
                         <label for="provincia">Provincia
                             <small class="required">(Obbligatorio)</small>
                         </label>
-                        <select id="provincia" name="provincia" aria-describedby="provincia-help provincia-error" aria-invalid="false" required>
+                        <select id="provincia" name="provincia" value="<?= htmlspecialchars($values['provincia'] ?? '') ?>" aria-describedby="provincia-help provincia-error" aria-invalid="<?= isset($errors['provincia']) ? 'true' : 'false' ?>" required>
                             <option value="" selected>Seleziona una provincia</option>
                             <option value="AG">Agrigento</option>
                             <option value="AL">Alessandria</option>
@@ -159,24 +159,24 @@ unset($_SESSION['errors'], $_SESSION['values']);
                             <option value="VT">Viterbo</option>
                         </select>
                         <p id="provincia-help" class="help">La tua provincia di residenza.</p>
-                        <p id="provincia-error" class="error-message" aria-live="polite"></p>
+                        <p id="provincia-error" class="error-message" aria-live="polite"><?= $errors['provincia'] ?? '' ?></p>
 
                         <label for="comune">Comune
                             <small class="required">(Obbligatorio)</small>
                         </label>
-                        <select id="comune" name="comune" aria-describedby="comune-help comune-error" aria-invalid="false" required>
+                        <select id="comune" name="comune" value="<?= htmlspecialchars($values['comune'] ?? '') ?>" aria-describedby="comune-help comune-error" aria-invalid="<?= isset($errors['comune']) ? 'true' : 'false' ?>" required>
                             <option value="" selected>Seleziona un comune</option>
                             <option value="1">Padova</option>
                         </select>
                         <p id="comune-help" class="help">Il tuo comune di residenza.</p>
-                        <p id="comune-error" class="error-message" aria-live="polite"></p>
+                        <p id="comune-error" class="error-message" aria-live="polite"><?= $errors['comune'] ?? '' ?></p>
 
                         <label for="via">Via
                             <small class="required">(Obbligatorio)</small>
                         </label>
-                        <input id="via" type="text" name="via" autocomplete="street-address" aria-describedby="via-help via-error" aria-invalid="false" required/>
+                        <input id="via" type="text" name="via" value="<?= htmlspecialchars($values['via'] ?? '') ?>" autocomplete="street-address" aria-describedby="via-help via-error" aria-invalid="<?= isset($errors['via']) ? 'true' : 'false' ?>" required/>
                         <p id="via-help" class="help">L'indirizzo completo con via, piazza o contrada e numero civico.</p>
-                        <p id="via-error" class="error-message" aria-live="polite"></p>
+                        <p id="via-error" class="error-message" aria-live="polite"><?= $errors['via'] ?? '' ?></p>
                     </fieldset>
 
                     <fieldset>
@@ -184,21 +184,21 @@ unset($_SESSION['errors'], $_SESSION['values']);
                         <label for="email"><span lang="en">Email</span>
                             <small class="required">(Obbligatorio)</small>
                         </label>
-                        <input id="email" type="email" name="email" autocomplete="email" aria-describedby="email-help email-error" aria-invalid="false" required/>
+                        <input id="email" type="email" name="email" value="<?= htmlspecialchars($values['email'] ?? '') ?>" autocomplete="email" aria-describedby="email-help email-error" aria-invalid="<?= isset($errors['email']) ? 'true' : 'false' ?>" required/>
                         <p id="email-help" class="help">Un indirizzo <span lang="en">email</span> valido. Verrà usato per la verifica dell'<span lang="en">account</span> e per le comunicazioni.</p>
-                        <p id="email-error" class="error-message" aria-live="polite"></p>
+                        <p id="email-error" class="error-message" aria-live="polite"><?= $errors['email'] ?? '' ?></p>
 
                         <label for="username"><span lang="en">Username</span>
                             <small class="required">(Obbligatorio)</small>
                         </label>
-                        <input id="username" type="text" name="username" autocomplete="username" aria-describedby="username-help username-error" aria-invalid="false" required/>
+                        <input id="username" type="text" name="username" value="<?= htmlspecialchars($values['username'] ?? '') ?>" autocomplete="username" aria-describedby="username-help username-error" aria-invalid="<?= isset($errors['username']) ? 'true' : 'false' ?>" required/>
                         <p id="username-help" class="help">Scegli un nome utente di lunghezza tra 3 e 30 caratteri. Non sono ammessi spazi o caratteri speciali.</p>
-                        <ul id="username-error" class="error-message" aria-live="polite"></ul>
+                        <ul id="username-error" class="error-message" aria-live="polite"><?= $errors['username'] ?? '' ?></ul>
 
                         <label for="password"><span lang="en">Password</span>
                         <small class="required">(Obbligatorio)</small>
                         </label>
-                        <input id="password" type="password" name="password" autocomplete="new-password" aria-describedby="password-help password-error" aria-invalid="false" required/>
+                        <input id="password" type="password" name="password" autocomplete="new-password" aria-describedby="password-help password-error" aria-invalid="<?= isset($errors['password']) ? 'true' : 'false' ?>" required/>
                         <div id="password-help" class="help">
                             <p>Scegli una <span lang="en">password</span>. Deve contenere:</p>
                             <ul>
@@ -208,14 +208,14 @@ unset($_SESSION['errors'], $_SESSION['values']);
                                 <li>Almeno un carattere speciale</li>
                             </ul>
                         </div>
-                        <ul id="password-error" class="error-message" aria-live="polite"></ul>
+                        <ul id="password-error" class="error-message" aria-live="polite"><?= $errors['password'] ?? '' ?></ul>
 
                         <label for="conferma-password">Conferma <span lang="en">Password</span>
                             <small class="required">(Obbligatorio)</small>
                         </label>
-                        <input id="conferma-password" type="password" name="conferma-password" autocomplete="new-password" aria-describedby="conferma-password-help conferma-password-error" aria-invalid="false" required/>
+                        <input id="conferma-password" type="password" name="conferma-password" autocomplete="new-password" aria-describedby="conferma-password-help conferma-password-error" aria-invalid="<?= isset($errors['confermaPassword']) ? 'true' : 'false' ?>" required/>
                         <p id="conferma-password-help" class="help">Inserisci nuovamente la <span lang="en">password</span> che hai scelto.</p>
-                        <p id="conferma-password-error" class="error-message" aria-live="polite"></p>
+                        <p id="conferma-password-error" class="error-message" aria-live="polite"><?= $errors['confermaPassword'] ?? '' ?></p>
                     </fieldset>
                     <input type="submit" value="Registrati"/>
                 </form>
