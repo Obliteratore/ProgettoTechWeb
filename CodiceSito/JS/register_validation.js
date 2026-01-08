@@ -182,15 +182,24 @@ function validateEmail(email) {
 
 function validateUsername(username) {
     const value = username.value.trim();
+    const regex = /^[a-zA-Z0-9_.-]+$/;
     let error = "";
     let isValid = true;
 
     if(value.length == 0) {
-        error += "Il nome utente è un campo obbligatorio.";
+        error += "<li>Il nome utente è un campo obbligatorio.</li>";
         isValid = false;
     } else {
-        if(value.length > 30) {
-            error += "Il nome utente è troppo lungo.";
+        if(value.length < 3) {
+            error += "<li>Il nome utente è troppo corto.</li>";
+            isValid = false;
+        }
+        else if(value.length > 30) {
+            error += "<li>Il nome utente è troppo lungo.</li>";
+            isValid = false;
+        }
+        if(!regex.test(value)) {
+            error += "<li>Il nome utente contiene caratteri non validi.</li>";
             isValid = false;
         }
     }
@@ -220,7 +229,7 @@ function validatePassword(password) {
             error += "<li>Manca un numero.</li>";
             isValid = false;
         }
-        if(!/[!?@#$%^&*_-]/.test(value)) {
+        if(!/[!?@#$%^&*]/.test(value)) {
             error += "<li>Manca un carattere speciale.</li>";
             isValid = false;
         }

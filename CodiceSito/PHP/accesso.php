@@ -14,7 +14,7 @@
         <main id="main-content">
             <div class="form-container">
                 <h1 class="center">Accedi</h1>
-                <p class="call-to-action center">Se non hai un <span lang="en">account</span>, <a href="registrazione.html">registrati</a>!</p>
+                <p class="call-to-action center">Se non hai un <span lang="en">account</span>, <a href="registrazione.php">registrati</a>!</p>
                 <p id="login-error" class="error-message" role="alert"></p>
                 <form id="login-form" class="data-form" action="" method="post" autocomplete="on">
                     <label for="username"><span lang="en">Username</span> o <span lang="en">Email</span>
