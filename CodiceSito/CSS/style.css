@@ -204,7 +204,7 @@ SEZIONE MAIN
 }
 
 .main-section, .header-content, #breadcrumb, .form-container {
-    background: rgba(255, 255, 255, 0.25);
+    background: rgba(53, 105, 140, 0.25);
     border-radius: 20px;
     border: 1px solid #ffffff66;
     backdrop-filter: blur(5px) saturate(120%);
@@ -215,12 +215,14 @@ SEZIONE MAIN
 
 .header-content {
     backdrop-filter: blur(20px);
+    background: rgba(38, 125, 183, 0.77);
 }
 
 .main-section {
     margin-top: 1em;
     margin-bottom: 1em;
-    padding: 0.25em;
+    padding-top: 0.25em;
+    padding-bottom: 0.25em;
 }
 
 .section-title {
@@ -273,6 +275,7 @@ SEZIONE MAIN
     font-size: clamp(14px, 2vw, 3em);
     font-size: clamp(14px, 8cqw, 3em); /*Se il browser non supporta container-inline, la funzione clamp diventa invalida e la dichiarazione viene ignorata. Quindi viene applicato il clamp precedente*/
     line-height: 1;
+
 }
 
 .card-pesce .prezzo {
