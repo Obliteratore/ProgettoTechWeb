@@ -8,7 +8,7 @@
     --color-background: ;
     --color-background-breadcrumb: ;
     --color-background-header: ;
-    --color-link: ;
+    --color-link: #fff;
     --color-link-visited: ;
     --color-error: ;
 }
@@ -18,8 +18,13 @@ html {
     font-size: 100%;
     color: #fff; /*Colore va spostato in altre sezioni*/
     /*font-family: Arial, Helvetica, sans-serif;*/
-
-    font-family: 'Inter', sans-serif;
+    
+    /*font-family: "Atkinson Hyperlegible", sans-serif;*/
+    /*font-family: "Inclusive Sans", sans-serif;*/
+    font-family: "Inclusive Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
     /*AERO PIù INTENSO
       color: #fff; Colore va spostato in altre sezioni
       text-shadow:
@@ -31,6 +36,8 @@ html {
       0 1px 2px rgba(0,0,0,0.25),
       0 0 6px rgba(180,220,255,0.6),
       0 0 14px rgba(120,190,255,0.35);
+
+      scroll-behavior: smooth;
 }
 
 body {
@@ -99,6 +106,7 @@ header{
     align-items: center;
     flex-wrap: wrap;
     padding: 1em;
+    font-size: clamp(1rem, 1rem + 0.2vw, 1.2rem);
 }
 
 .header-content img {
@@ -169,18 +177,43 @@ SEZIONE MENU
 SEZIONE BREADCRUMB
 =======================================
 */
-
+/*
 #breadcrumb {
-    justify-self: center;
-    align-items: center;
+    width: 95%;
+    margin: 0 auto;
 }
 
 #breadcrumb > ol {
-    list-style: none;
     display: flex;
+    list-style: none;
     text-align: center;
     padding: 0.5em;
-    margin-inline: 1em;
+    margin: 0 0.5em;
+}
+
+#breadcrumb > ol > li + li::before {
+	content: '>' / '';
+    margin: 0 0.3em;
+}
+*/
+#breadcrumb {
+    width: fit-content;
+    margin: 0 auto;
+    font-size: clamp(1rem, 1rem + 0.2vw, 1.1rem);
+}
+
+#breadcrumb > ol {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    text-align: center;
+    padding: 0.5em;
+    margin: 0 1em;
+}
+
+#breadcrumb > ol > li + li::before {
+	content: '>' / '';
+    margin: 0 0.3em;
 }
 
 /*
@@ -188,6 +221,18 @@ SEZIONE BREADCRUMB
 SEZIONE MAIN
 =======================================
 */
+
+h1 {
+    font-size: clamp(2rem, 1.6rem + 1.8vw, 2.5rem);
+}
+
+h2 {
+    font-size: clamp(1.5rem, 1rem + 1.8vw, 2rem);
+}
+
+.call-to-action {
+    font-size: clamp(1.1rem, 0.6rem + 1.8vw, 1.5rem);
+}
 
 .center {
     text-align: center;
@@ -197,10 +242,6 @@ SEZIONE MAIN
     margin-top: 1em;
     margin-right: 0.5em;
     margin-left: 0.5em;
-}
-
-.call-to-action, .data-form {
-    font-size: large;
 }
 
 .main-section, .header-content, #breadcrumb, .form-container {
@@ -225,7 +266,7 @@ SEZIONE MAIN
     padding-bottom: 0.25em;
 }
 
-.section-title {
+.section-title, footer p {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -267,13 +308,14 @@ SEZIONE MAIN
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
     box-sizing: border-box;
 }
 
 .dati-pesce .nome {
     font-weight: bold;
-    font-size: clamp(14px, 2vw, 3em);
-    font-size: clamp(14px, 8cqw, 3em); /*Se il browser non supporta container-inline, la funzione clamp diventa invalida e la dichiarazione viene ignorata. Quindi viene applicato il clamp precedente*/
+    font-size: clamp(0.875em, 0.3em + 2.2vw, 2em); /*0.75em di 16 = 12px*/
+    font-size: clamp(0.875em, 8cqw, 2em); /*Se il browser non supporta container-inline, la funzione clamp diventa invalida e la dichiarazione viene ignorata. Quindi viene applicato il clamp precedente*/
     line-height: 1;
 
 }
@@ -301,10 +343,205 @@ SEZIONE MAIN
     justify-content: center;
     
     color: white;
-    /*font-size: 12px;*/
-    font-size: clamp(14px, 2vw, 3em);
-    font-size: clamp(14px, 8cqw, 3em);
+    font-size: clamp(0.875em, 2vw, 3em);
+    font-size: clamp(0.875em, 8cqw, 3em);
     font-weight: bold;
+}
+
+.back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 1rem;
+    z-index: 1000;
+
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.411);
+    text-decoration: none;
+}
+/* BARRA DI RICERCA */
+.search-bar {
+    display: flex;
+    flex-direction: column;
+}
+
+.search-bar label {
+    font-weight: bold;
+    margin-bottom: 0.3em;
+}
+
+.search-bar input[type="search"] {
+    height: 2.8rem;
+    padding: 0 0.75em;
+    border-radius: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    font-size: 1rem;
+
+}
+.search-bar input[type="search"]:focus {
+    outline: none;
+    border: 3px solid #4a90e2;
+}
+#form-container {
+    display:flex;
+    flex-direction: column;
+    gap: 1em;
+    margin: 1em auto;
+    padding: 1em;
+    max-width: 130em;
+
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 20px;
+    border: 1px solid #ffffff66;
+    backdrop-filter: blur(5px) saturate(120%);
+
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.15),
+        inset 0 1px 1px rgba(255, 255, 255, 0.6);
+}
+
+/* FILTRI */
+.filter-container {
+    display:flex;
+    flex-direction:column;
+    gap:0.6em;
+    padding :0.75em;
+    border-radius:15px;
+}
+.filter-container legend {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+}
+.filter-container label {
+    display: flex;
+    align-items: center;
+    gap:0.6em;
+}
+.habitat-filter, .special-filter {      
+    display:flex;
+    flex-direction: column;
+    gap: 0.5em;
+    margin-top:0.5em;
+}
+
+.habitat-filter label, .special-filter label {
+    display:flex;
+    align-items: center;
+    gap:0.5em
+}
+
+.price-filter {
+    display:block;
+    gap: 0.5em;
+}
+.price-filter label {
+    font-weight: bold;
+}
+.price-filter input[type="number"] {
+    border-radius: 10px;
+    border: 1px solid #000;
+    padding-left:0.5em;
+    height:1.5rem;
+}
+.price-filter input[type="number"]:focus {
+    outline:none;
+    border-width :2px;
+    border-color: #4a90e2;
+}
+#toggle-filter {
+    margin-top: 1em;
+    padding: 0.5em 1em;
+    border-radius: 10px;
+    border: none;
+    background-color: #4a90e2;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+#toggle-filter:hover {
+    background-color: #357abd;
+}
+.hidden{
+    display:none;
+}
+.color-filter {
+    display:flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1em;
+}
+.color-filter p {
+    font-weight: bold;
+    margin-right:0.5em;
+}
+.color-filter label{
+    display:flex;
+    align-items:center;
+    gap:0.25em;
+}
+/*ICONE*/
+.back-to-top img {
+    width: 3rem;
+}
+
+/*PER AVERE ICONE BIANCHE*/
+.icona {
+    filter: invert(100%);
+}
+
+.membro {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+    gap: 20px;            
+    margin: 1.5em auto;    
+    max-width: 1000px;    
+    list-style: none;
+    justify-content: center;
+}
+
+.card-membro{
+    background: none;
+    border-radius: 5px;
+    width: 200px;
+    text-align: center;
+    margin: 0 auto;
+    container-type: inline-size; 
+}
+
+.card-membro img{
+    display: block;
+    border-radius: 50%;
+    width: 200px; 
+    height: 200px;
+    object-fit: cover;  
+}
+
+.dati-membro{
+    left: 0;
+    width: 100%;              
+    margin-top: 5px;
+    background: rgba(0, 0, 0, 0.6); 
+    color: white;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.dati-membro .nome-membro{
+    font-weight: bold;
+    font-size: clamp(1.2rem, 0.7em + 3.5vw, 1.8em); /*0.75em di 16 = 12px*/
+    font-size: clamp(1.2rem, 13cqw, 1.8em); /*Se il browser non supporta container-inline, la funzione clamp diventa invalida e la dichiarazione viene ignorata. Quindi viene applicato il clamp precedente*/
+    line-height: 1.2;
 }
 
 /*LOGIN*/
@@ -315,44 +552,50 @@ SEZIONE MAIN
     min-width: 17em;
     max-width: 28em;
     box-sizing: border-box;
-    padding: 1.5em;
+    padding: 1em;
     margin: 0 auto;
 }
 
 .error-message {
-    display: none;
-    margin: 0 auto;
-    color: #a12622;
-    font-size: large;
+    color: darkred;
     font-weight: bold;
-    text-align: center;
 }
-/*DA SISTEMARE USANDO JAVASCRIPT PER MOSTRARE ERRORE O MENO*/
-.error-message.visible {
-    display: block;
-    margin-top: 1em;
+#login-error {
+    margin-top: 0.5em;
     margin-bottom: -0.5em;
+    text-align: center;
+    font-size: clamp(1.1rem, 0.6rem + 1.4vw, 1.4rem);
+}
+
+ul.error-message {
+    list-style: none;
 }
 
 .data-form {
-    margin-top: 1.5em;
+    margin-top: 1em;
+    font-size: clamp(1.2rem, 1rem + 0.6vw, 1.7rem);
 }
 
-.data-form > label {
+.data-form label {
     font-weight: bold;
 }
 
-.data-form input {
-    height: 3em;
+.data-form > label:first-child {
+    margin-top: 0em;
+}
+
+.data-form input, .data-form select {
+    height: 2.5rem;
     width: 100%;
     border-radius: 10px;
     border: 1px solid black;
     box-sizing: border-box;
-    margin-top: 0.3em;
-    padding: 0.5em;
+    margin-top: 0.25em;
+    padding-left: 0.5em;
+    font-size: clamp(1rem, 0.8rem + 0.4vw, 1.2rem);
 }
 
-.data-form input:focus {
+.data-form input:focus, .data-form select:focus {
     outline: none;
     border-width: 3px;
 }
@@ -367,7 +610,6 @@ SEZIONE MAIN
 .hint {
     display: block;
     margin-top: 0.25em;
-    margin-bottom: 1em;
     font-size: 0.80em;
 }
 
@@ -393,12 +635,39 @@ abbr {
     background-color: #357abd;
 }
 
+#login-form input[type="submit"] {
+    margin-top: 1em;
+}
+
 /*SIGNIN*/
+
+fieldset {
+    border-radius: 20px;
+    padding: 0.5em;
+    margin-bottom: 1em;
+}
+
+legend {
+    font-size: clamp(1.3rem, 1.1rem + 0.7vw, 1.8rem);
+    font-weight: bold;
+}
+
+.data-form label {
+    display: inline-block;
+    margin-top: 0.8em;
+}
+
+fieldset > label:first-of-type {
+    margin-top: 0em;
+}
 
 .help {
     margin-top: 0.25em;
-    margin-bottom: 1em;
     font-size: 0.875em; /*14px se font padre = 16px*/
+}
+
+.help ul {
+    padding-left: 1.5em;
 }
 
 /*
@@ -406,3 +675,10 @@ abbr {
 SEZIONE FOOTER
 =======================================
 */
+
+footer {
+    margin-top: 1em;
+    margin-right: 3em;
+    margin-left: 0.5em;
+    margin-bottom: 1em;
+}
