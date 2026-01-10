@@ -46,7 +46,7 @@ SEZIONE MAIN
 */
 
 .pesci {
-    grid-template-columns: 1fr 1fr 1fr 1fr; /* Mobile: 2 colonne */
+    grid-template-columns: 1fr 1fr 1fr 1fr; /* Mobile: 2 colonne  */
 }
 
 .dati-pesce .nome {

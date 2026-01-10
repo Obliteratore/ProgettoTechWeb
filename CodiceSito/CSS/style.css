@@ -41,7 +41,7 @@ html {
 }
 
 body {
-    /*background: linear-gradient(135deg, rgb(0, 35, 89) 0%, rgb(0, 104, 158) 100%);*/
+    background: linear-gradient(135deg, rgb(0, 35, 89) 0%, rgb(0, 104, 158) 100%);
     
     background-image: url("../IMMAGINI/Sfondi_Sito/img\ 7.jpg");
     background-repeat: no-repeat;
@@ -223,7 +223,7 @@ SEZIONE MAIN
 */
 
 h1 {
-    font-size: clamp(2rem, 1.6rem + 1.8vw, 2.5rem);
+    font-size: clamp(2rem, 2.5rem + 1.8vw, 100rem);
 }
 
 h2 {
@@ -272,6 +272,13 @@ h2 {
     align-items: center;
     margin-right: 0.5em;
     margin-left: 0.5em; 
+}
+
+.section-title img {
+    height: auto;
+    width: 100%;
+    max-width: 3.5em;
+    padding-top: 0.5em;
 }
 
 .pesci {
