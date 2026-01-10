@@ -43,7 +43,7 @@ html {
 body {
     /*background: linear-gradient(135deg, rgb(0, 35, 89) 0%, rgb(0, 104, 158) 100%);*/
     
-    background-image: url("../../Asset/Immagini/Sfondi_Sito/img\ 7.jpg");
+    background-image: url("../IMMAGINI/Sfondi_Sito/img\ 7.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -110,7 +110,7 @@ header{
 }
 
 .header-content img {
-    width: 3em;
+    width: 2.9em;
 }
 
 #cart-link {
