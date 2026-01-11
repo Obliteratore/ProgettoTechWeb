@@ -39,6 +39,7 @@ class FMAccess {
 		while ($row = $result->fetch_assoc()) {
 			$comuni[] = $row;
 		}
+		$result->free();
 		return $comuni;
 	}
 }

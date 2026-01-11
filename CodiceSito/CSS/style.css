@@ -37,7 +37,7 @@ html {
       0 0 6px rgba(180,220,255,0.6),
       0 0 14px rgba(120,190,255,0.35);
 
-      scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
 body {
@@ -48,7 +48,6 @@ body {
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
-    
 }
 
 a { /*Stile per i link DA FARE*/
@@ -177,25 +176,6 @@ SEZIONE MENU
 SEZIONE BREADCRUMB
 =======================================
 */
-/*
-#breadcrumb {
-    width: 95%;
-    margin: 0 auto;
-}
-
-#breadcrumb > ol {
-    display: flex;
-    list-style: none;
-    text-align: center;
-    padding: 0.5em;
-    margin: 0 0.5em;
-}
-
-#breadcrumb > ol > li + li::before {
-	content: '>' / '';
-    margin: 0 0.3em;
-}
-*/
 #breadcrumb {
     width: fit-content;
     margin: 0 auto;
@@ -232,6 +212,9 @@ h2 {
 
 .call-to-action {
     font-size: clamp(1.1rem, 0.6rem + 1.8vw, 1.5rem);
+}
+.paragrafo {
+    font-size: clamp(1rem, 0.6rem + 1.8vw, 1.3rem);
 }
 
 .center {

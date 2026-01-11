@@ -23,6 +23,7 @@ unset($_SESSION['errors'], $_SESSION['values']);
             <div class="form-container">
                 <h1 class="center">Registrati</h1>
                 <p class="call-to-action center">Se hai già un <span lang="en">account</span>, <a href="accesso.php">accedi</a>!</p>
+                <ul id="signin-error" class="error-message" role="alert" tabindex="-1"><?= $errors['summary'] ?? '' ?></ul>
                 <form id="signin-form" class="data-form" action="register_handler.php" method="post" autocomplete="on">
                     <fieldset>
                         <legend>Informazioni personali</legend>
@@ -46,7 +47,7 @@ unset($_SESSION['errors'], $_SESSION['values']);
                         <label for="provincia">Provincia
                             <small class="required">(Obbligatorio)</small>
                         </label>
-                        <select id="provincia" name="provincia" value="<?= htmlspecialchars($values['provincia'] ?? '') ?>" aria-describedby="provincia-help provincia-error" aria-invalid="<?= isset($errors['provincia']) ? 'true' : 'false' ?>" required>
+                        <select id="provincia" name="provincia" aria-describedby="provincia-help provincia-error" aria-invalid="<?= isset($errors['provincia']) ? 'true' : 'false' ?>" required>
                             <option value="" selected>Seleziona una provincia</option>
                             <option value="AG">Agrigento</option>
                             <option value="AL">Alessandria</option>
@@ -164,7 +165,7 @@ unset($_SESSION['errors'], $_SESSION['values']);
                         <label for="comune">Comune
                             <small class="required">(Obbligatorio)</small>
                         </label>
-                        <select id="comune" name="comune" value="<?= htmlspecialchars($values['comune'] ?? '') ?>" aria-describedby="comune-help comune-error" aria-invalid="<?= isset($errors['comune']) ? 'true' : 'false' ?>" required>
+                        <select id="comune" name="comune" aria-describedby="comune-help comune-error" aria-invalid="<?= isset($errors['comune']) ? 'true' : 'false' ?>" required>
                             <option value="" selected>Seleziona un comune</option>
                             <option value="1">Padova</option>
                         </select>

@@ -167,11 +167,11 @@ function validateEmail(email) {
     let isValid = true;
 
     if(value.length == 0) {
-        error += `L'<span lang="en">email</span> è un campo obbligatorio.`;
+        error += "L'<span lang=\"en\">email</span> è un campo obbligatorio.";
         isValid = false;
     } else {
         if(!regex.test(value)) {
-            error += `L'<span lang="en">email</span> non è valida.`;
+            error += "L'<span lang=\"en\">email</span> non è valida.";
             isValid = false;
         }
     }
@@ -214,11 +214,11 @@ function validatePassword(password) {
     let isValid = true;
 
     if(value.length == 0) {
-        error += `<li>La <span lang="en">password</span> è un campo obbligatorio.</li>`;
+        error += "<li>La <span lang=\"en\">password</span> è un campo obbligatorio.</li>";
         isValid = false;
     } else {
         if(value.length < 8) {
-            error += `<li>La <span lang="en">password</span> è troppo corta.</li>`;
+            error += "<li>La <span lang=\"en\">password</span> è troppo corta.</li>";
             isValid = false;
         }
         if(!/[A-Z]/.test(value)) {
@@ -246,7 +246,7 @@ function validateConfermaPassword(confermaPassword) {
     let isValid = true;
 
     if(value != password.value) {
-        error += `Le <span lang="en">password</span> non coincidono.`;
+        error += "Le <span lang=\"en\">password</span> non coincidono.";
         isValid = false;
     }
     setHtml(confermaPassword, isValid, "conferma-password-error", error);
