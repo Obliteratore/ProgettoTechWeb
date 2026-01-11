@@ -9,18 +9,13 @@
     --color-background-breadcrumb: ;
     --color-background-header: ;
     --color-link: #fff;
-    --color-link-visited: ;
+    --link-visited: #fff;
     --color-error: ;
 }
 
 html {
     line-height: 1.5;
     font-size: 100%;
-    color: #fff; /*Colore va spostato in altre sezioni*/
-    /*font-family: Arial, Helvetica, sans-serif;*/
-    
-    /*font-family: "Atkinson Hyperlegible", sans-serif;*/
-    /*font-family: "Inclusive Sans", sans-serif;*/
     font-family: "Inclusive Sans", sans-serif;
     font-optical-sizing: auto;
     font-weight: 500;
@@ -31,11 +26,11 @@ html {
       0 0 4px rgba(255,255,255,0.4),
       0 0 8px rgba(255,255,255,0.2); */
     /*AERO PIù PIACEVOLE*/
-    color: #f8fdff; 
-    text-shadow:
+    color: #f8fdff; /*Colore va spostato in altre sezioni*/
+    /*text-shadow:
       0 1px 2px rgba(0,0,0,0.25),
       0 0 6px rgba(180,220,255,0.6),
-      0 0 14px rgba(120,190,255,0.35);
+      0 0 14px rgba(120,190,255,0.35);*/
 
     scroll-behavior: smooth;
 }
@@ -43,7 +38,7 @@ html {
 body {
     background: linear-gradient(135deg, rgb(0, 35, 89) 0%, rgb(0, 104, 158) 100%);
     
-    background-image: url("../IMMAGINI/Sfondi_Sito/img\ 7.jpg");
+    background-image: url("../IMMAGINI/Sfondi_Sito/sfondoScurito.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
