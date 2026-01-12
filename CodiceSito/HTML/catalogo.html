@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang=“it”>
+<html lang="it">
     <head>
         <meta charset="utf-8" >
         <title>Catalogo - FishMarket</title>
@@ -8,13 +8,114 @@
         <link rel="stylesheet" href="../CSS/desktop.css" media="(min-width: 768px)">
     </head>
 
-    <body>
-        <header></header>
-        <main id="main-content">
-            <form>
+        <body id="top">
+
+        <nav aria-label="Aiuti alla navigazione">
+            <a id="skip-to-content" href="#main-content">Salta al contenuto</a>
+        </nav>
+
+        <header>
+            <div class="header-content">
+                <img src="../../Asset/Immagini/Icone/fish.png" alt=""/>
+                <nav id="menu" aria-label="Menù di navigazione">
+                    <ul>
+                        <li lang="en"><a href="home.html">Home</a></li>
+                        <li>Catalogo</li>
+                        <li><a href="chiSiamo.html">Chi Siamo</a></li>
+                        <li><a href="accesso.html">Accedi</a></li>
+                    </ul>
+                </nav>
+
+                <div>
+                    <a id="cart-link" href="carrello.html" aria-label="Vai al carrello"><img src="../../Asset/Immagini/Icone/shopping_cart.svg" alt="" aria-hidden="true"/></a>
+                    <button id="hamburger-menu-btn" aria-controls="hamburger-menu" aria-expanded="false">
+                        <img id="open-hamburger-menu" src="../../Asset/Immagini/Icone/menu.svg" alt="" aria-hidden="true"/>
+                        <span class="screen-reader">Apri l'<span lang="en">hamburger</span> menù</span>
+                        <img id="close-hamburger-menu" src="../../Asset/Immagini/Icone/close.svg" alt="" aria-hidden="true"/>
+                        <span class="screen-reader">Chiudi l'<span lang="en">hamburger</span> menù</span>
+                    </button>
+                </div>
+
+                <nav id="hamburger-menu" aria-label="Menù di navigazione per cellulare">
+                    <ul>
+                        <li lang="en"><a href="home.html">Home</a></li>
+                        <li>Catalogo</li>
+                        <li><a href="chiSiamo.html">Chi Siamo</a></li>
+                        <li><a href="accesso.html">Accedi</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <script src="../JS/hamburger_menu.js" defer></script>
+
+        <nav id="breadcrumb" aria-label="Percorso di navigazione">
+            <ol>
+                <li><span lang="en" aria-current="page">Catalogo</span></li>
+            </ol>
+        </nav>
+
+    <main id="main-content">
+        <form id="form-container" action="catalogo.html" method="get">
+            
+            <div class="search-bar">
+                <label for="search">Cerca pesce:</label>    
+                <input type="search" id="search" name="search" placeholder="Nome del pesce">
+            </div>
+
+            <button type="button" id="toggle-filter">Mostra filtri</button>
+            <script src="../JS/toggle_filter.js" defer></script>
+            <fieldset id="filters" class="filter-container hidden">
+                <legend>Filtri</legend>
+
+                <label>
+                    <input type="checkbox" name="habitat" value="mare">
+                    Acqua salata
+                </label>
+
+                <label>
+                    <input type="checkbox" name="habitat" value="dolce">
+                    Acqua dolce
+                </label>
+
+                <div class="price-filter">
+                <label for="prezzo-min">Prezzo minimo:</label>
+                <input type="number" id="prezzo-min" name="prezzo-min" min="0" max="500" value="0">€
+                <label for="prezzo-max">Prezzo massimo:</label>
+                <input type="number" id="prezzo-max" name="prezzo-max" min="0" max="500" value="500">€
+                </div>
+
+                 <div class="special-filter">
+                    <label>
+                    <input type="radio" name="filtro" value="nuovi_arrivi">
+                        Nuovi arrivi
+                    </label>
+                    <label>
+                    <input type="radio" name="filtro" value="piu_venduti">
+                        Più venduti
+                    </label>
+                </div>
+
+                <div class="color-filter">
+                <p>Colore:</p>
+                <label><input type="checkbox" name="colore" value="rosso"> Rosso</label>
+                <label><input type="checkbox" name="colore" value="blu"> Blu</label>
+                <label><input type="checkbox" name="colore" value="giallo"> Giallo</label>
+                <label><input type="checkbox" name="colore" value="verde"> Verde</label>
+                <label><input type="checkbox" name="colore" value="arancione"> Arancione</label>
+                <label><input type="checkbox" name="colore" value="viola"> Viola</label>
+</div>
                 
-            </form>
-        </main>
-        <footer></footer>
+            </fieldset>
+             <div class="data-form">
+                    <input type="submit" value="Cerca">
+                </div>
+        </form>
+    </main>
+
+    <footer>
+        <a href="#top" class="back-to-top" aria-label="Torna all'inizio">↑</a>
+    </footer>
+
     </body>
 </html>

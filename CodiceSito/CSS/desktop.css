@@ -1,3 +1,9 @@
+body {
+    max-width: 60em;
+    margin: auto;
+}
+
+
 /*
 =======================================
 SEZIONE HEADER
@@ -40,10 +46,11 @@ SEZIONE MAIN
 */
 
 .pesci {
-    grid-template-columns: 1fr 1fr 1fr 1fr; /* Mobile: 2 colonne */
+    grid-template-columns: 1fr 1fr 1fr 1fr; /* Mobile: 2 colonne  */
 }
 
 .dati-pesce .nome {
         font-size: clamp(0.875em, 0.2em + 1.6vw, 2em);
         font-size: clamp(0.875em, 8cqw, 2em);
 }
+

@@ -51,7 +51,6 @@ function validateSignInForm() {
     return campoInvalido;
 }
 
-
 function setHtml(input, isValid, errorId, errorText) {
     const erroreInput = document.getElementById(errorId);
 
@@ -168,11 +167,11 @@ function validateEmail(email) {
     let isValid = true;
 
     if(value.length == 0) {
-        error += `L'<span lang="en">email</span> è un campo obbligatorio.`;
+        error += "L'<span lang=\"en\">email</span> è un campo obbligatorio.";
         isValid = false;
     } else {
         if(!regex.test(value)) {
-            error += `L'<span lang="en">email</span> non è valida.`;
+            error += "L'<span lang=\"en\">email</span> non è valida.";
             isValid = false;
         }
     }
@@ -183,15 +182,24 @@ function validateEmail(email) {
 
 function validateUsername(username) {
     const value = username.value.trim();
+    const regex = /^[a-zA-Z0-9_.-]+$/;
     let error = "";
     let isValid = true;
 
     if(value.length == 0) {
-        error += "Il nome utente è un campo obbligatorio.";
+        error += "<li>Il nome utente è un campo obbligatorio.</li>";
         isValid = false;
     } else {
-        if(value.length > 30) {
-            error += "Il nome utente è troppo lungo.";
+        if(value.length < 3) {
+            error += "<li>Il nome utente è troppo corto.</li>";
+            isValid = false;
+        }
+        else if(value.length > 30) {
+            error += "<li>Il nome utente è troppo lungo.</li>";
+            isValid = false;
+        }
+        if(!regex.test(value)) {
+            error += "<li>Il nome utente contiene caratteri non validi.</li>";
             isValid = false;
         }
     }
@@ -201,16 +209,16 @@ function validateUsername(username) {
 }
 
 function validatePassword(password) {
-    const value = password.value.trim();
+    const value = password.value;
     let error = "";
     let isValid = true;
 
     if(value.length == 0) {
-        error += `<li>La <span lang="en">password</span> è un campo obbligatorio.</li>`;
+        error += "<li>La <span lang=\"en\">password</span> è un campo obbligatorio.</li>";
         isValid = false;
     } else {
         if(value.length < 8) {
-            error += `<li>La <span lang="en">password</span> è troppo corta.</li>`;
+            error += "<li>La <span lang=\"en\">password</span> è troppo corta.</li>";
             isValid = false;
         }
         if(!/[A-Z]/.test(value)) {
@@ -221,7 +229,7 @@ function validatePassword(password) {
             error += "<li>Manca un numero.</li>";
             isValid = false;
         }
-        if(!/[!?@#$%^&*_-]/.test(value)) {
+        if(!/[!?@#$%^&*]/.test(value)) {
             error += "<li>Manca un carattere speciale.</li>";
             isValid = false;
         }
@@ -233,12 +241,12 @@ function validatePassword(password) {
 
 function validateConfermaPassword(confermaPassword) {
     const password = document.getElementById("password");
-    const value = confermaPassword.value.trim();
+    const value = confermaPassword.value;
     let error = "";
     let isValid = true;
 
     if(value != password.value) {
-        error += `Le <span lang="en">password</span> non coincidono.`;
+        error += "Le <span lang=\"en\">password</span> non coincidono.";
         isValid = false;
     }
     setHtml(confermaPassword, isValid, "conferma-password-error", error);
