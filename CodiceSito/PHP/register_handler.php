@@ -49,14 +49,24 @@ function validateCognome(&$errors, $cognome) {
     }
 }
 
-function validateProvincia(&$errors, $provincia) {
+function validateProvincia(&$errors, $provincia, $connection) {
     if(empty($provincia))
         $errors['provincia'] = 'La provincia è un campo obbligatorio.';
+    else {
+        $exist = $connection->existProvincia($provincia);
+        if(!$exist)
+            $errors['provincia'] = 'La provincia selezionata non esiste.';
+    }
 }
 
-function validateComune(&$errors, $comune) {
+function validateComune(&$errors, $comune, $provincia, $connection) {
     if(empty($comune))
         $errors['comune'] = 'Il comune è un campo obbligatorio.';
+    else {
+        $exist = $connection->existComune($comune, $provincia);
+        if(!$exist)
+            $errors['comune'] = 'Il comune selezionato non esiste.';
+    }
 }
 
 function validateVia(&$errors, $via) {
@@ -70,16 +80,21 @@ function validateVia(&$errors, $via) {
     }
 }
 
-function validateEmail(&$errors, $email) {
+function validateEmail(&$errors, $email, $connection) {
     if(empty($email))
         $errors['email'] = 'L\'<span lang="en">email</span> è un campo obbligatorio.';
     else {
         if(!filter_var($email, FILTER_VALIDATE_EMAIL))
             $errors['email'] = 'L\'<span lang="en">email</span> non è valida.';
     }
+    if (!isset($errors['email'])) {
+        $exist = $connection->existEmail($email);
+        if($exist)
+            $errors['email'] = 'Questa <span lang="en">email</span> è già registrata. Usane un\'altra o <a href="accesso.php">accedi</a>.';
+    }
 }
 
-function validateUsername(&$errors, $username) {
+function validateUsername(&$errors, $username, $connection) {
     $regex = '/^[a-zA-Z0-9_.-]+$/';
     if(empty($username))
         $errors['username'] = '<li>Il nome utente è un campo obbligatorio.</li>';
@@ -90,6 +105,11 @@ function validateUsername(&$errors, $username) {
             $errors['username'] = '<li>Il nome utente è troppo lungo.</li>';
         if(!preg_match($regex, $username))
             $errors['username'] = ($errors['username'] ?? '') . '<li>Il nome utente contiene caratteri non validi.</li>';
+    }
+    if (!isset($errors['username'])) {
+        $exist = $connection->existUsername($username);
+        if($exist)
+            $errors['username'] = '<li>Questo nome utente è già in uso. Scegline un altro o <a href="accesso.php">accedi</a>.</li>';
     }
 }
 
@@ -109,18 +129,18 @@ function validatePassword(&$errors, $password) {
 }
 
 function validateConfermaPassword(&$errors, $password, $confermaPassword) {
-    if($confermaPassword != $password)
+    if($confermaPassword !== $password)
         $errors['confermaPassword'] .= 'Le <span lang="en">password</span> non coincidono.';
 }
 
-function callValidators() {
+function callValidators(&$errors, $values, $connection) {
     validateNome($errors, $values['nome']);
     validateCognome($errors, $values['cognome']);
-    validateProvincia($errors, $values['provincia']);
-    validateComune($errors, $values['comune']);
+    validateProvincia($errors, $values['provincia'], $connection);
+    validateComune($errors, $values['comune'], $values['provincia'], $connection);
     validateVia($errors, $values['via']);
-    validateEmail($errors, $values['email']);
-    validateUsername($errors, $values['username']);
+    validateEmail($errors, $values['email'], $connection);
+    validateUsername($errors, $values['username'], $connection);
     validatePassword($errors, $values['password']);
     validateConfermaPassword($errors, $values['password'], $values['confermaPassword']);
 }
@@ -154,23 +174,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $errors = [];
 
     getValues($values);
-    callValidators();
-    setSummary($errors);
 
-    if(!empty($errors)) {
-        $_SESSION['errors'] = $errors;
-        $_SESSION['values'] = $values;
-        header('Location: registrazione.php');
-        exit;
+    $connection = new FMAccess();
+    $connectionOk = $connection->openConnection();
+    if($connectionOk) {
+        callValidators($errors, $values, $connection);
+        setSummary($errors);
+
+        if(!empty($errors)) {
+            $connection->closeConnection();
+
+            $_SESSION['errors'] = $errors;
+            $_SESSION['values'] = $values;
+            header('Location: registrazione.php');
+            exit;
+        } else {
+            //Se è tutto a posto, creo il nuovo utente nel database usando la stessa connessione di prima
+            $connection->closeConnection();
+        }
     } else {
-        //Query al database per controllare se esiste già email o username e se non ci sono ed è tutto a posto, creo il nuovo utente nel database
-        /*
-        $connection = new FMAccess();
-        $connectionOk = $connection->openConnection();
-
-        if($connectionOk) {
-    
-        }*/
+        /*header('Location: error_500.php');
+        exit;*/
     }
 }
 ?>

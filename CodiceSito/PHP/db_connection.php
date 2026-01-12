@@ -36,11 +36,81 @@ class FMAccess {
 		$result = $stmt->get_result();
 
 		$comuni = [];
-		while ($row = $result->fetch_assoc()) {
-			$comuni[] = $row;
+		if($result->num_rows !== 0) {
+			while($row = $result->fetch_assoc()) {
+				$comuni[] = $row;
+			}
 		}
 		$result->free();
 		return $comuni;
+	}
+
+	public function existProvincia($provincia) {
+		$query = "SELECT sigla_provincia FROM provincie WHERE sigla_provincia = ?";
+		$stmt = ($this->connection)->prepare($query);
+		$stmt->bind_param("s", $provincia);
+		$stmt->execute();
+
+		$result = $stmt->get_result();
+
+		$exist = true;
+		if($result->num_rows === 0)
+			$exist = false;
+
+		$result->free();
+		return $exist;
+	}
+
+	public function existComune($comune, $provincia) {
+		$query = "SELECT id_comune FROM comuni WHERE id_comune = ? AND sigla_provincia = ?";
+		$stmt = ($this->connection)->prepare($query);
+		$stmt->bind_param("is", $comune, $provincia);
+		$stmt->execute();
+
+		$result = $stmt->get_result();
+
+		$exist = true;
+		if($result->num_rows === 0)
+			$exist = false;
+
+		$result->free();
+		return $exist;
+	}
+
+	public function existEmail($email) {
+		$query = "SELECT email FROM utenti_registrati WHERE email = ? 
+		UNION 
+		SELECT email FROM amministratori WHERE email = ?";
+		$stmt = ($this->connection)->prepare($query);
+		$stmt->bind_param("ss", $email, $email);
+		$stmt->execute();
+
+		$result = $stmt->get_result();
+
+		$exist = false;
+		if($result->num_rows !== 0)
+			$exist = true;
+
+		$result->free();
+		return $exist;
+	}
+
+	public function existUsername($username) {
+		$query = "SELECT username FROM utenti_registrati WHERE username = ? 
+		UNION 
+		SELECT username FROM amministratori WHERE username = ?";
+		$stmt = ($this->connection)->prepare($query);
+		$stmt->bind_param("ss", $username, $username);
+		$stmt->execute();
+
+		$result = $stmt->get_result();
+
+		$exist = false;
+		if($result->num_rows !== 0)
+			$exist = true;
+
+		$result->free();
+		return $exist;
 	}
 }
 ?>

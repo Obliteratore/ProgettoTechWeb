@@ -27,14 +27,12 @@ function getComuni(provincia) {
         .then(data => {
             data.forEach(comune => {
                 const option = document.createElement('option');
-                option.value = comune.id;
+                option.value = comune.id_comune;
                 option.textContent = comune.nome;
                 comuneSelect.appendChild(option);
+                console.log(comune.id_comune);
             });
         });
-        /*.catch(err => {
-            comuneSelect.innerHTML = '<option value="" selected>Errore nel caricamento dei comuni</option>';
-        });*/
 }
 
 function getRootPath() {
