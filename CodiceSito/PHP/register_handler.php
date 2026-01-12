@@ -129,8 +129,8 @@ function validatePassword(&$errors, $password) {
 }
 
 function validateConfermaPassword(&$errors, $password, $confermaPassword) {
-    if($confermaPassword !== $password)
-        $errors['confermaPassword'] .= 'Le <span lang="en">password</span> non coincidono.';
+    if($confermaPassword != $password)
+        $errors['confermaPassword'] = 'Le <span lang="en">password</span> non coincidono.';
 }
 
 function callValidators(&$errors, $values, $connection) {
@@ -190,7 +190,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         } else {
             //Se è tutto a posto, creo il nuovo utente nel database usando la stessa connessione di prima
+            /*$connection->beginTransaction();
+
+            try {
+                $connection->insertUtente($email);
+
+                $connection->insertUtenteRegistrato($email, $username, $password, $nome, $cognome);
+
+                $idIndirizzo = $connection->insertIndirizzo($provincia, $comune, $via);
+
+                $connection->linkUtenteIndirizzo($email, $indirizzo);
+
+                $connection->commit();
+            } catch (Exception $e) {
+                $connection->rollback();
+                throw $e;
+            }*/
             $connection->closeConnection();
+            header('Location: accesso.php');
+            exit;
         }
     } else {
         /*header('Location: error_500.php');

@@ -34,6 +34,7 @@ class FMAccess {
 		$stmt->execute();
 
 		$result = $stmt->get_result();
+		$stmt->close();
 
 		$comuni = [];
 		if($result->num_rows !== 0) {
@@ -52,6 +53,7 @@ class FMAccess {
 		$stmt->execute();
 
 		$result = $stmt->get_result();
+		$stmt->close();
 
 		$exist = true;
 		if($result->num_rows === 0)
@@ -68,6 +70,7 @@ class FMAccess {
 		$stmt->execute();
 
 		$result = $stmt->get_result();
+		$stmt->close();
 
 		$exist = true;
 		if($result->num_rows === 0)
@@ -86,6 +89,7 @@ class FMAccess {
 		$stmt->execute();
 
 		$result = $stmt->get_result();
+		$stmt->close();
 
 		$exist = false;
 		if($result->num_rows !== 0)
@@ -104,6 +108,7 @@ class FMAccess {
 		$stmt->execute();
 
 		$result = $stmt->get_result();
+		$stmt->close();
 
 		$exist = false;
 		if($result->num_rows !== 0)
@@ -111,6 +116,22 @@ class FMAccess {
 
 		$result->free();
 		return $exist;
+	}
+
+	public function insertUtente($email) {
+
+	}
+
+	public function insertUtenteRegistrato($email, $username, $password, $nome, $cognome) {
+		
+	}
+
+	public function insertIndirizzo($provincia, $comune, $via) {
+		
+	}
+
+	public function insertUtenteRegistratoIndirizzo($email, $indirizzo) {
+		
 	}
 }
 ?>

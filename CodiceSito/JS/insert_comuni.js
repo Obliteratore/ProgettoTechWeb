@@ -30,7 +30,6 @@ function getComuni(provincia) {
                 option.value = comune.id_comune;
                 option.textContent = comune.nome;
                 comuneSelect.appendChild(option);
-                console.log(comune.id_comune);
             });
         });
 }

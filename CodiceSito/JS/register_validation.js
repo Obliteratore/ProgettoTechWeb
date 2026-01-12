@@ -7,7 +7,7 @@ const campiForm = [
     { id: "email", validator: validateEmail },
     { id: "username", validator: validateUsername },
     { id: "password", validator: validatePassword },
-    { id: "conferma-password", validator: validateConfermaPassword }
+    { id: "confermaPassword", validator: validateConfermaPassword }
 ];
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -249,7 +249,7 @@ function validateConfermaPassword(confermaPassword) {
         error += "Le <span lang=\"en\">password</span> non coincidono.";
         isValid = false;
     }
-    setHtml(confermaPassword, isValid, "conferma-password-error", error);
+    setHtml(confermaPassword, isValid, "confermaPassword-error", error);
 
     return isValid;
 }
