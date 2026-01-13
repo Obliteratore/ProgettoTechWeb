@@ -163,11 +163,12 @@ function setSummary(&$errors) {
     if (isset($errors['password']))
         $errors['summary'] = ($errors['summary'] ?? '') . '<li><a href="#password">La <span lang="en">password</span> non è valida.</a></li>';
     if (isset($errors['confermaPassword']))
-        $errors['summary'] = ($errors['summary'] ?? '') . '<li><a href="#conferma-password">La conferma <span lang="en">password</span> non è valida.</a></li>';
+        $errors['summary'] = ($errors['summary'] ?? '') . '<li><a href="#confermaPassword">La conferma <span lang="en">password</span> non è valida.</a></li>';
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (!isset($_SESSION))
+    /*if(session_status() !== PHP_SESSION_ACTIVE)*/
+    if(!isset($_SESSION))
         session_start();
 
     $values = [];
@@ -175,9 +176,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     getValues($values);
 
-    $connection = new FMAccess();
-    $connectionOk = $connection->openConnection();
-    if($connectionOk) {
+    try {
+        $connection = new FMAccess();
+        $connection->openConnection();
         callValidators($errors, $values, $connection);
         setSummary($errors);
 
@@ -189,30 +190,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header('Location: registrazione.php');
             exit;
         } else {
-            //Se è tutto a posto, creo il nuovo utente nel database usando la stessa connessione di prima
             /*$connection->beginTransaction();
-
             try {
-                $connection->insertUtente($email);
+                $connection->insertUtente($values['email']);
+                $connection->insertUtenteRegistrato($values['email'], $values['username'], $values['password'], $values['nome'], $values['cognome']);
 
-                $connection->insertUtenteRegistrato($email, $username, $password, $nome, $cognome);
-
-                $idIndirizzo = $connection->insertIndirizzo($provincia, $comune, $via);
-
-                $connection->linkUtenteIndirizzo($email, $indirizzo);
+                $idIndirizzo = $connection->insertIndirizzo($values['provincia'], $values['comune'], $values['via']);
+                $connection->insertUtenteRegistratoIndirizzo($values['email'], $idIndirizzo);
 
                 $connection->commit();
-            } catch (Exception $e) {
+            } catch(mysqli_sql_exception $e) {
                 $connection->rollback();
                 throw $e;
             }*/
-            $connection->closeConnection();
-            header('Location: accesso.php');
+            session_regenerate_id(true); 
+            $_SESSION['email'] = $values['email'];
+            header('Location: accesso.php'); //area personale
             exit;
         }
-    } else {
-        /*header('Location: error_500.php');
-        exit;*/
+    } catch(mysqli_sql_exception $e) {
+        header('Location: ../HTML/error_500.html');
+        exit;
+    } finally {
+        $connection->closeConnection();
     }
 }
 ?>

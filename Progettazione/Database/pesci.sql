@@ -102,11 +102,17 @@ CREATE TABLE dettaglio_ordini (
 	FOREIGN KEY (nome_latino) REFERENCES pesci(nome_latino)
 );
 
-INSERT INTO utenti VALUE ("user");
+INSERT INTO utenti (email) VALUES 
+("user"),
+("admin");
 
-INSERT INTO utenti_registrati VALUES ("user", "user", SHA2('user', 256), "user", "user");
+INSERT INTO utenti_registrati (email, username, password, nome, cognome) VALUES 
+("user", "user", "$2y$12$IFJz2zWCnfITzHdQsM9xfenmiVxfnM1bwZQfvkWqba2xYsx2JH.qm", "user", "user");
 
-INSERT INTO provincie VALUES 
+INSERT INTO amministratori (email, username, password) VALUES 
+("admin", "admin", "$2y$12$OOplFRIw3hH4SWua.xyYReLgPeD8EA1LWFb5iECdidfMLhd3SjH9S");
+
+INSERT INTO provincie(sigla_provincia, nome) VALUES 
 ("AG", "Agrigento"),
 ("AL", "Alessandria"),
 ("AN", "Ancona"),

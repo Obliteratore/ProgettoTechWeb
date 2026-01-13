@@ -5,16 +5,19 @@ use FM\FMAccess;
 
 header('Content-Type: application/json');
 
-$connection = new FMAccess();
-$connectionOk = $connection->openConnection();
+try{
+    $connection = new FMAccess();
+    $connection->openConnection();
 
-if($connectionOk) {
     $provincia = $_POST['provincia'] ?? '';
  
     $comuni = $connection->getComuni($provincia);
 
-    $connection->closeConnection();
-
     echo json_encode($comuni);
+} catch(mysqli_sql_exception $e) {
+    header('Location: ../HTML/error_500.html');
+    exit;
+} finally {
+    $connection->closeConnection();
 }
 ?>
