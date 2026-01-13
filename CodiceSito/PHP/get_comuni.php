@@ -12,11 +12,10 @@ try{
     $provincia = $_POST['provincia'] ?? '';
  
     $comuni = $connection->getComuni($provincia);
-
-    echo json_encode($comuni);
+    echo json_encode(['success' => true, 'data' => $comuni]);
 } catch(mysqli_sql_exception $e) {
-    header('Location: ../HTML/error_500.html');
-    exit;
+    http_response_code(500);
+    echo json_encode(['success' => false]);
 } finally {
     $connection->closeConnection();
 }

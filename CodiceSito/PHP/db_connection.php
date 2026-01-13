@@ -24,8 +24,26 @@ class FMAccess {
 	}
 
 	public function closeConnection() {
-		mysqli_close($this->connection);
+		try {
+        mysqli_close($this->connection);
+		} catch (Throwable $e) {
+			
+		} finally {
+			$this->connection = null;
+		}
 	}
+
+	public function beginTransaction() {
+        mysqli_begin_transaction($this->connection);
+    }
+
+    public function commit() {
+        mysqli_commit($this->connection);
+    }
+
+    public function rollback() {
+        mysqli_rollback($this->connection);
+    }
 
 	public function getComuni($provincia) {
 		$query = "SELECT id_comune, nome FROM comuni WHERE sigla_provincia = ? ORDER BY nome";
@@ -34,7 +52,6 @@ class FMAccess {
 		$stmt->execute();
 
 		$result = $stmt->get_result();
-		$stmt->close();
 
 		$comuni = [];
 		if($result->num_rows !== 0) {
@@ -43,6 +60,7 @@ class FMAccess {
 			}
 		}
 		$result->free();
+		$stmt->close();
 		return $comuni;
 	}
 
@@ -53,13 +71,13 @@ class FMAccess {
 		$stmt->execute();
 
 		$result = $stmt->get_result();
-		$stmt->close();
 
 		$exist = true;
 		if($result->num_rows === 0)
 			$exist = false;
 
 		$result->free();
+		$stmt->close();
 		return $exist;
 	}
 
@@ -70,13 +88,13 @@ class FMAccess {
 		$stmt->execute();
 
 		$result = $stmt->get_result();
-		$stmt->close();
 
 		$exist = true;
 		if($result->num_rows === 0)
 			$exist = false;
 
 		$result->free();
+		$stmt->close();
 		return $exist;
 	}
 
@@ -87,13 +105,13 @@ class FMAccess {
 		$stmt->execute();
 
 		$result = $stmt->get_result();
-		$stmt->close();
 
 		$exist = false;
 		if($result->num_rows !== 0)
 			$exist = true;
 
 		$result->free();
+		$stmt->close();
 		return $exist;
 	}
 
@@ -106,13 +124,13 @@ class FMAccess {
 		$stmt->execute();
 
 		$result = $stmt->get_result();
-		$stmt->close();
 
 		$exist = false;
 		if($result->num_rows !== 0)
 			$exist = true;
 
 		$result->free();
+		$stmt->close();
 		return $exist;
 	}
 
@@ -152,6 +170,36 @@ class FMAccess {
 		$stmt->bind_param("si", $email, $idIndirizzo);
 		$stmt->execute();
 		$stmt->close();
+	}
+
+	public function getPasswordWithEmail($email) {
+		$query = "SELECT password FROM utenti_registrati WHERE email = ?";
+		$stmt = ($this->connection)->prepare($query);
+		$stmt->bind_param("s", $email);
+		$stmt->execute();
+
+		$result = $stmt->get_result();
+		$row = $result->fetch_assoc();
+    
+		$result->free();
+		$stmt->close();
+
+		return $row ? $row['password'] : null;
+	}
+
+	public function getPasswordWithUsername($username) {
+		$query = "SELECT password FROM utenti_registrati WHERE username = ?";
+		$stmt = ($this->connection)->prepare($query);
+		$stmt->bind_param("s", $username);
+		$stmt->execute();
+
+		$result = $stmt->get_result();
+		$row = $result->fetch_assoc();
+    
+		$result->free();
+		$stmt->close();
+
+		return $row ? $row['password'] : null;
 	}
 }
 ?>

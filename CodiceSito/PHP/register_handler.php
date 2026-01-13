@@ -167,8 +167,7 @@ function setSummary(&$errors) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    /*if(session_status() !== PHP_SESSION_ACTIVE)*/
-    if(!isset($_SESSION))
+    if(session_status() !== PHP_SESSION_ACTIVE)
         session_start();
 
     $values = [];
@@ -190,7 +189,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header('Location: registrazione.php');
             exit;
         } else {
-            /*$connection->beginTransaction();
+            $connection->beginTransaction();
             try {
                 $connection->insertUtente($values['email']);
                 $connection->insertUtenteRegistrato($values['email'], $values['username'], $values['password'], $values['nome'], $values['cognome']);
@@ -202,13 +201,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } catch(mysqli_sql_exception $e) {
                 $connection->rollback();
                 throw $e;
-            }*/
+            }
             session_regenerate_id(true); 
             $_SESSION['email'] = $values['email'];
             header('Location: accesso.php'); //area personale
             exit;
         }
     } catch(mysqli_sql_exception $e) {
+        http_response_code(500);
         header('Location: ../HTML/error_500.html');
         exit;
     } finally {
