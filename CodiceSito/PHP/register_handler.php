@@ -204,7 +204,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
             session_regenerate_id(true); 
             $_SESSION['email'] = $values['email'];
-            header('Location: accesso.php'); //area personale
+            header('Location: ../HTML/profilo.html');
             exit;
         }
     } catch(mysqli_sql_exception $e) {

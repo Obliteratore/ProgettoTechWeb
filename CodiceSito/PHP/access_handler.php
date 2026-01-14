@@ -9,8 +9,8 @@ function pulisciInput($value) {
     return $value;
 }
 
-function validateEmail($email) {
-    return $connection->existEmail($email, $connection);
+function validateEmail($email, $connection) {
+    return $connection->existEmail($email);
 }
 
 function validateUsername($username, $connection) {
@@ -22,18 +22,14 @@ function validateUsername($username, $connection) {
 }
 
 function validateLogin($login, $isEmail, $connection) {
-    if(!empty($login)) {
-        if ($isEmail)
-            return validateEmail($login, $connection);
-        else
-            return validateUsername($login, $connection);
-    } else {
-        return false;
-    }
+    if ($isEmail)
+        return validateEmail($login, $connection);
+    else
+        return validateUsername($login, $connection);
 }
 
 function validatePassword($password) {
-    if(empty($password) || strlen($password) < 8 || !preg_match('/[A-Z]/', $password) || !preg_match('/\d/', $password) || !preg_match('/[!?@#$%^&*]/', $password))
+    if(strlen($password) < 8 || !preg_match('/[A-Z]/', $password) || !preg_match('/\d/', $password) || !preg_match('/[!?@#$%^&*]/', $password))
         return false;
     else
         return true;
@@ -46,47 +42,52 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $login = isset($_POST['username']) ? pulisciInput($_POST['username']) : null;
     $password = $_POST['password'] ?? null;
 
-    try{
-        $connection = new FMAccess();
-        $connection->openConnection();
+    if(!empty($login) && !empty($password)) {
+        try{
+            $connection = new FMAccess();
+            $connection->openConnection();
 
-        $isEmail = true;
-        if(!empty($login))
+            $isEmail = true;
             if(!filter_var($login, FILTER_VALIDATE_EMAIL))
                 $isEmail = false;
 
-        if(!validateLogin($login, $isEmail, $connection) || !validatePassword($password)) {
-            $connection->closeConnection();
-
-            $_SESSION['error'] = 'Le credenziali inserite non sono valide.';
-            header('Location: accesso.php');
-            exit;
-        } else {
-            $passwordHash= null;
-            if($isEmail)
-                $passwordHash = $connection->getPasswordWithEmail($login);
-            else
-                $passwordHash = $connection->getPasswordWithUsername($login);
-
-            if(!$passwordHash || !password_verify($password, $passwordHash)) {
+            if($login != 'user' && $login != 'admin' && (!validateLogin($login, $isEmail, $connection) || !validatePassword($password))) {
                 $connection->closeConnection();
 
                 $_SESSION['error'] = 'Le credenziali inserite non sono valide.';
                 header('Location: accesso.php');
                 exit;
             } else {
-                session_regenerate_id(true); 
-                $_SESSION['email'] = $values['email'];
-                header('Location: registrazione.php'); //area personale
-                exit;
+                $passwordHash= null;
+                if($isEmail)
+                    $passwordHash = $connection->getPasswordWithEmail($login);
+                else
+                    $passwordHash = $connection->getPasswordWithUsername($login);
+
+                if(!$passwordHash || !password_verify($password, $passwordHash)) {
+                    $connection->closeConnection();
+
+                    $_SESSION['error'] = 'Le credenziali inserite non sono valide.';
+                    header('Location: accesso.php');
+                    exit;
+                } else {
+                    session_regenerate_id(true); 
+                    $_SESSION['email'] = $values['email'];
+                    header('Location: ../HTML/profilo.html');
+                    exit;
+                }
             }
+        } catch(mysqli_sql_exception $e) {
+            http_response_code(500);
+            header('Location: ../HTML/error_500.html');
+            exit;
+        } finally {
+            $connection->closeConnection();
         }
-    } catch(mysqli_sql_exception $e) {
-        http_response_code(500);
-        header('Location: ../HTML/error_500.html');
+    } else {
+        $_SESSION['error'] = 'Le credenziali inserite non sono valide.';
+        header('Location: accesso.php');
         exit;
-    } finally {
-        $connection->closeConnection();
     }
 }
 ?>

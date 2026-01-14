@@ -173,9 +173,11 @@ class FMAccess {
 	}
 
 	public function getPasswordWithEmail($email) {
-		$query = "SELECT password FROM utenti_registrati WHERE email = ?";
+		$query = "SELECT password FROM utenti_registrati WHERE email = ? 
+		UNION 
+		SELECT password FROM amministratori WHERE email = ?";
 		$stmt = ($this->connection)->prepare($query);
-		$stmt->bind_param("s", $email);
+		$stmt->bind_param("ss", $email, $email);
 		$stmt->execute();
 
 		$result = $stmt->get_result();
@@ -188,9 +190,11 @@ class FMAccess {
 	}
 
 	public function getPasswordWithUsername($username) {
-		$query = "SELECT password FROM utenti_registrati WHERE username = ?";
+		$query = "SELECT password FROM utenti_registrati WHERE username = ? 
+		UNION 
+		SELECT password FROM amministratori WHERE username = ?";
 		$stmt = ($this->connection)->prepare($query);
-		$stmt->bind_param("s", $username);
+		$stmt->bind_param("ss", $username, $username);
 		$stmt->execute();
 
 		$result = $stmt->get_result();
