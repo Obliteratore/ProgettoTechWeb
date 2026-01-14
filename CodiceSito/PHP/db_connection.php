@@ -205,5 +205,20 @@ class FMAccess {
 
 		return $row ? $row['password'] : null;
 	}
+
+	public function getDatiUtenteRegistrato($email) {
+		$query = "SELECT username, nome, cognome FROM utenti_registrati WHERE email = ?";
+		$stmt = ($this->connection)->prepare($query);
+		$stmt->bind_param("s", $email);
+		$stmt->execute();
+
+		$result = $stmt->get_result();
+		$row = $result->fetch_assoc();
+    
+		$result->free();
+		$stmt->close();
+
+		return $row;
+	}
 }
 ?>
