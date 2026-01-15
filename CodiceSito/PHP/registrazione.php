@@ -21,8 +21,8 @@ unset($_SESSION['errors'], $_SESSION['values']);
         <script src="../JS/register_validation.js" defer></script>
         <main id="main-content">
             <div class="form-container">
-                <h1 class="center">Registrati</h1>
-                <p class="call-to-action center">Se hai già un <span lang="en">account</span>, <a href="accesso.php">accedi</a>!</p>
+                <h1 class="position">Registrati</h1>
+                <p class="call-to-action position">Se hai già un <span lang="en">account</span>, <a href="accesso.php">accedi</a>!</p>
                 <ul id="signin-error" class="error-message" role="alert" tabindex="-1"><?= $errors['summary'] ?? '' ?></ul>
                 <form id="signin-form" class="data-form" action="register_handler.php" method="post" autocomplete="on">
                     <fieldset>
