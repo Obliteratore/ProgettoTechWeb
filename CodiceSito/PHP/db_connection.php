@@ -281,23 +281,24 @@ class FMAccess {
 		return $pesci;
 	}
 }
+
 public function getPiuVenduti(PDO $pdo, int $limit = 4): array {
-		$sql = "SELECT nome, prezzo, immagine FROM pesci ORDER BY vendite DESC LIMIT :limit";
+	$sql = "SELECT nome, prezzo, immagine FROM pesci ORDER BY vendite DESC LIMIT :limit";
 
-		$stmt = $pdo->prepare($sql);
-		$stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
-		$stmt->execute();
+	$stmt = $pdo->prepare($sql);
+	$stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+	$stmt->execute();
 
-		return $stmt->fetchAll(PDO::FETCH_ASSOC);
-	}
+	return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 
-	public function getNuovi(PDO $pdo, int $limit = 4): array {
-		$sql = "SELECT nome, prezzo, immagine FROM pesci ORDER BY data_aggiunta DESC LIMIT :limit";
+public function getNuovi(PDO $pdo, int $limit = 4): array {
+	$sql = "SELECT nome, prezzo, immagine FROM pesci ORDER BY data_aggiunta DESC LIMIT :limit";
 
-		$stmt = $pdo->prepare($sql);
-		$stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
-		$stmt->execute();
+	$stmt = $pdo->prepare($sql);
+	$stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+	$stmt->execute();
 
-		return $stmt->fetchAll(PDO::FETCH_ASSOC);
-	}
+	return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 ?>
