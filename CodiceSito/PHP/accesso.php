@@ -34,7 +34,7 @@ unset($_SESSION['error']);
                     <small class="required">(Obbligatorio)</small>
                     </label>
                     <input id="password" type="password" name="password" autocomplete="current-password" aria-describedby="password-hint login-error" aria-invalid="<?= !empty($error) ? 'true' : 'false' ?>" required/>
-                    <small id="password-hint" class="hint"><abbr title="Esempio">Es</abbr>:<span lang="en">Password</span>Sicura2!</small>
+                    <small id="password-hint" class="hint"><abbr title="Esempio">Es</abbr>: <span lang="en">Password</span>Sicura2!</small>
 
                     <input type="submit" value="Accedi"/>
                 </form>

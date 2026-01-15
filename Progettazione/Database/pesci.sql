@@ -2,18 +2,40 @@ USE fbalestr;
 
 DROP TABLE IF EXISTS dettaglio_ordini;
 DROP TABLE IF EXISTS ordini;
-DROP TABLE IF EXISTS utenti_indirizzi;
-DROP TABLE IF EXISTS indirizzi;
-DROP TABLE IF EXISTS comuni;
-DROP TABLE IF EXISTS provincie;
 DROP TABLE IF EXISTS pesci;
 DROP TABLE IF EXISTS famiglie;
 DROP TABLE IF EXISTS amministratori;
 DROP TABLE IF EXISTS utenti_registrati;
 DROP TABLE IF EXISTS utenti;
+DROP TABLE IF EXISTS indirizzi;
+DROP TABLE IF EXISTS comuni;
+DROP TABLE IF EXISTS provincie;
+
+CREATE TABLE provincie (
+	sigla_provincia CHAR(2) PRIMARY KEY,
+	nome VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE comuni (
+	id_comune INT AUTO_INCREMENT PRIMARY KEY,
+	nome VARCHAR(50) NOT NULL,
+	sigla_provincia CHAR(2) NOT NULL,
+	FOREIGN KEY (sigla_provincia) REFERENCES provincie(sigla_provincia)
+);
+
+CREATE TABLE indirizzi (
+    id_indirizzo INT AUTO_INCREMENT PRIMARY KEY,
+    sigla_provincia CHAR(2) NOT NULL,
+    id_comune INT NOT NULL,
+    via VARCHAR(150) NOT NULL,
+	FOREIGN KEY (sigla_provincia) REFERENCES provincie(sigla_provincia),
+	FOREIGN KEY (id_comune) REFERENCES comuni(id_comune)
+);
 
 CREATE TABLE utenti(
-	email VARCHAR(255) PRIMARY KEY
+	email VARCHAR(255) PRIMARY KEY,
+	id_indirizzo INT NULL,
+	FOREIGN KEY (id_indirizzo) REFERENCES indirizzi(id_indirizzo) ON DELETE SET NULL
 );
 
 CREATE TABLE utenti_registrati(
@@ -52,35 +74,6 @@ CREATE TABLE pesci (
     immagine VARCHAR(255) NOT NULL,
 	data_inserimento DATE NOT NULL DEFAULT CURRENT_DATE,
 	FOREIGN KEY (famiglia) REFERENCES famiglie(famiglia_latino) ON DELETE CASCADE
-);
-
-CREATE TABLE provincie (
-	sigla_provincia CHAR(2) PRIMARY KEY,
-	nome VARCHAR(50) NOT NULL
-);
-
-CREATE TABLE comuni (
-	id_comune INT AUTO_INCREMENT PRIMARY KEY,
-	nome VARCHAR(50) NOT NULL,
-	sigla_provincia CHAR(2) NOT NULL,
-	FOREIGN KEY (sigla_provincia) REFERENCES provincie(sigla_provincia)
-);
-
-CREATE TABLE indirizzi (
-    id_indirizzo INT AUTO_INCREMENT PRIMARY KEY,
-    sigla_provincia CHAR(2) NOT NULL,
-    id_comune INT NOT NULL,
-    via VARCHAR(150) NOT NULL,
-	FOREIGN KEY (sigla_provincia) REFERENCES provincie(sigla_provincia),
-	FOREIGN KEY (id_comune) REFERENCES comuni(id_comune)
-);
-
-CREATE TABLE utenti_indirizzi (
-    email VARCHAR(255),
-    id_indirizzo INT,
-    PRIMARY KEY (email, id_indirizzo),
-	FOREIGN KEY (email) REFERENCES utenti(email) ON DELETE CASCADE,
-	FOREIGN KEY (id_indirizzo) REFERENCES indirizzi(id_indirizzo) ON DELETE CASCADE
 );
 
 CREATE TABLE ordini (
@@ -8318,3 +8311,22 @@ INSERT INTO comuni (nome, sigla_provincia) VALUES
 ("Zumpano", "CS"),
 ("Zungoli", "AV"),
 ("Zungri", "VV");
+
+START TRANSACTION;
+
+INSERT INTO indirizzi (sigla_provincia, id_comune, via) 
+SELECT 'PD', id_comune, 'Via Trieste 63' FROM comuni WHERE sigla_provincia = 'PD' AND nome = 'Padova';
+
+SET @id_indirizzo = LAST_INSERT_ID();
+
+INSERT INTO utenti (email, id_indirizzo) VALUES 
+("user", @id_indirizzo),
+("admin", NULL);
+
+COMMIT;
+
+INSERT INTO utenti_registrati (email, username, password, nome, cognome) VALUES 
+("user", "user", "$2y$12$IFJz2zWCnfITzHdQsM9xfenmiVxfnM1bwZQfvkWqba2xYsx2JH.qm", "user", "user");
+
+INSERT INTO amministratori (email, username, password) VALUES 
+("admin", "admin", "$2y$12$OOplFRIw3hH4SWua.xyYReLgPeD8EA1LWFb5iECdidfMLhd3SjH9S");

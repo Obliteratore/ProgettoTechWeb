@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="utf-8" >
+        <title>FishMarket</title>
+        <meta name="description" content="Questa pagina è dedicata ..." >
+        <meta name="keywords" content="pesci, mare …" >
+        <meta name="author" content="Aaron Gingillino, Francesco Balestro, Bilal Sabic, Valerio Solito" >
+
+        <!-- FONT -->
+        <style>@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Inclusive+Sans:ital,wght@0,300..700;1,300..700&family=Lexend:wght@100..900&display=swap');</style>
+
+        <!-- CSS -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="../CSS/style.css">
+
+        <!-- Mobile -->
+        <!-- <link rel="stylesheet" href="../CSS/mobile.css" media="(max-width: 767px)"> -->
+      
+        <!-- Tablet -->
+        <!-- <link rel="stylesheet" href="tablet.css" media="(min-width: 768px) and (max-width: 1023px)">
+        -->
+        <!-- Desktop -->
+        <link rel="stylesheet" href="../CSS/desktop.css" media="(min-width: 768px)">
+        <!-- Stampa -->
+        <link rel="stylesheet" href="../CSS/stampa.css" media="(min-width: 1024px)">
+    </head>
+    <body id="top">
+        <nav aria-label="Aiuti alla navigazione">
+            <a id="skip-to-content" href="#main-content">Salta al contenuto</a>
+        </nav>
+        <header>
+            <div class="header-content">
+                <img class="icona" src="../IMMAGINI/Icone/fish.png" alt=""/>
+                <nav id="menu" aria-label="Menù di navigazione">
+                    <ul>
+                        <li lang="en"><a href="home.html">Home</a></li>
+                        <li><a href="catalogo.html">Catalogo</a></li>
+                        <li><a href="chiSiamo.html">Chi Siamo</a></li>
+                        <li><a href="../PHP/accesso.php">Accedi</a></li>
+                    </ul>
+                </nav>
+                <div>
+                    <a class="icona" id="cart-link" href="carrello.html" aria-label="Vai al carrello"><img src="../IMMAGINI/Icone/famiglia icone/shopping-cart.svg" alt="" aria-hidden="true"/></a>
+                    <button  id="hamburger-menu-btn" aria-controls="hamburger-menu" aria-expanded="false">
+                        <img class="icona" id="open-hamburger-menu" src="../IMMAGINI/Icone/famiglia icone/menu-burger.svg" alt="" aria-hidden="true"/>
+                        <span class="screen-reader">Apri l'<span lang="en">hamburger</span> menù</span>
+                        <img class="icona" id="close-hamburger-menu" src="../IMMAGINI/Icone/famiglia icone/cross.svg" alt="" aria-hidden="true"/>
+                        <span class="screen-reader">Chiudi l'<span lang="en">hamburger</span> menù</span>
+                    </button>
+                </div>
+                <nav id="hamburger-menu" aria-label="Menù di navigazione per cellulare">
+                    <ul>
+                        <li lang="en"><a href="home.html">Home</a></li>
+                        <li><a href="catalogo.html">Catalogo</a></li>
+                        <li><a href="chiSiamo.html">Chi Siamo</a></li>
+                        <li><a href="../PHP/accesso.php">Accedi</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <script src="../JS/hamburger_menu.js" defer></script>
+        <script src="../JS/quantita.js" defer></script>
+
+        <main id="main-content">
+            <nav id="breadcrumb" aria-label="Percorso di navigazione">
+                <ol>
+                    <li lang="en"><a href="home.html">Home</a></li>
+                    <li><a href="catalogo.html">Catalogo</a></li>
+                    <li aria-current="pagina">[nomepesce]</li>
+                </ol>
+            </nav>
+
+            <section class="main-section-pesce">
+                <div class="parte-superiore-pesce">
+                    <div class="card-pesce">
+                        <img src="[percorso]" alt="Pesce non so come descriverti"> <!-- modifica con [percorso] -->
+                    </div>
+                    <div class="sezione-acquisto">
+                        <div class="section-title">
+                            <h1>[nomepesce]</h1>
+                        </div>
+                        <p class="prezzo">[prezzopesce]€</p>
+                        <p class="disponibilita">Ancora [disponibilita-pesce] disponibili!</p>
+
+                        <form action="#" method="post" class="form-sezione-acquisto">
+                            <div class="quantita-gestione">
+                                <button type="button" class="btn-quantita" onclick="changeQty(-1)" aria-label="Diminuisci quantità">-</button>
+                                <input type="number" id="quantita" name="quantita" value="1" min="1" max="[disponibilita-pesce]" readonly aria-label="Quantità da acquistare"> <!-- modifica 99 con [disponibilita-pesce] -->
+                                <button type="button" class="btn-quantita" onclick="changeQty(1)" aria-label="Aumenta quantità">+</button>
+                            </div>
+
+                            <input type="submit" value="Aggiungi al carrello" class="carrello-button">
+                            <input type="hidden" name="nome_latino" value="[nomelatino]">
+                        </form>
+                    </div>
+                </div>
+                <div class="parte-inferiore-pesce">
+                    <h2 class="section-subtitle">Informazioni:</h2>
+
+                    <ul class="dati-tecnici" aria-label="Dati Tecnici">
+                        <li>Nome scientifico: [nomelatino]</li>
+                        <li>Famiglia: [famiglia]</li>
+                        <li>Habitat: [habitat]</li>
+                        <li>Dimensione: [dimensione]</li>
+                        <li>Volume Minimo: [volume-min] litri</li>
+                    </ul>
+                    <div class="testo-aggiuntivo-pesce">
+                        <p class="descrizione">[descrizione-pesce]</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </body>
+</html>

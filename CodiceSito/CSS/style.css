@@ -350,6 +350,167 @@ h2 {
     background: rgba(0, 0, 0, 0.411);
     text-decoration: none;
 }
+
+.main-section-pesce {
+    background: rgba(53, 105, 140, 0.25);
+    border-radius: 20px;
+    border: 1px solid #ffffff66;
+    padding: 1.5em;
+    margin: 1em 0.5em;
+    color: #f8fdfff9;
+}
+
+.parte-superiore-pesce {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+}
+
+.parte-superiore-pesce .card-pesce {
+    border-radius: 15px;
+    overflow: hidden;
+    width: 100%;
+    max-height: 300px; 
+    display: flex;
+}
+
+.parte-superiore-pesce .card-pesce img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.sezione-acquisto {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    width: 100%;
+}
+
+.sezione-acquisto h1 {
+    font-size: clamp(1.8rem, 4.7vw, 2.8rem); 
+    line-height: 1.1;
+}
+
+.sezione-acquisto .prezzo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+.sezione-acquisto .disponibilita {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.quantita-gestione {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin-top: 1em;
+}
+
+#quantita {
+    width: 3.5rem;
+    height: 2.5rem;
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+    border-radius: 8px;
+    border: 1px solid #000;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/*serve per togliere le freccette*/
+#quantita::-webkit-outer-spin-button, 
+#quantita::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+}
+
+.btn-quantita {
+    width: 2.7rem;
+    height: 2.7rem;
+    border-radius: 100%;
+    border: 1px solid #fff;
+    background-color: rgba(255, 255, 255, 0.06);
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carrello-button {
+    margin-top: 1em;
+    width: 100%;
+    max-width: 300px;
+    padding: 0.8em;
+    background-color: #2c6cb3;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.parte-inferiore-pesce {
+    margin-top: 2em;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    padding-top: 1.5em;
+}
+
+.dati-tecnici {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1.3em;
+}
+
+.dati-tecnici li {
+    padding: 0.5em 0;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    display: flex;
+    justify-content: flex-start;
+}
+
+.descrizione {
+    font-size: 1.2rem;
+    line-height: 1.5;
+}
+
+@media (min-width: 768px){
+    .parte-superiore-pesce { 
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 3em;
+    }
+
+    .parte-superiore-pesce .card-pesce{
+        flex: 1;
+        max-width: 50%;
+        aspect-ratio: 3/2;
+    }
+
+    .sezione-acquisto{
+        flex: 1;
+        text-align: left;
+    }
+
+    .quantita-gestione{
+        justify-content: flex-start;
+    }
+
+    .dati-tecnici{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1em;
+    }
+
+}
+
 /* BARRA DI RICERCA */
 .search-bar {
     display: flex;
@@ -483,8 +644,8 @@ h2 {
 
 .membro {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
-    gap: 20px;            
+   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 15px;            
     margin: 1.5em auto;    
     max-width: 1000px;    
     list-style: none;
@@ -494,7 +655,7 @@ h2 {
 .card-membro{
     background: none;
     border-radius: 5px;
-    width: 200px;
+    width: 160px;
     text-align: center;
     margin: 0 auto;
     container-type: inline-size; 
@@ -502,9 +663,9 @@ h2 {
 
 .card-membro img{
     display: block;
-    border-radius: 50%;
-    width: 200px; 
-    height: 200px;
+    border-radius: 25%;
+    width: 160px; 
+    height: 160px;
     object-fit: cover;  
 }
 
@@ -512,7 +673,7 @@ h2 {
     left: 0;
     width: 100%;              
     margin-top: 5px;
-    background: rgba(0, 0, 0, 0.6); 
+    background: rgba(0, 0, 0, 0.5); 
     color: white;
   
     display: flex;
@@ -598,7 +759,8 @@ ul.error-message {
 }
 
 abbr {
-    text-decoration: none;
+    /*text-decoration: none;*/
+    text-underline-offset: 0.1em;
     font-weight: bold;
     cursor: help;
 }
