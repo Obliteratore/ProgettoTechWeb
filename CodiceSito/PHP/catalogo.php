@@ -10,8 +10,8 @@ use FM\FMAccess;
 $nomeLatino = filter_input(INPUT_GET, 'nome_latino', FILTER_SANITIZE_SPECIAL_CHARS);
 $nomeComune = filter_input(INPUT_GET, 'nome_comune', FILTER_SANITIZE_SPECIAL_CHARS);
 $dimensione = filter_input(INPUT_GET, 'dimensione', FILTER_VALIDATE_INT);
-//$volumeMinimo = filter_input(INPUT_GET, 'volume_minimo', FILTER_VALIDATE_INT);
-//$colori = $_GET['color'] ?? [];
+$volumeMinimo = filter_input(INPUT_GET, 'volume_min', FILTER_VALIDATE_INT);
+$colori = $_GET['colore'] ?? [];
 $prezzoMinimo = filter_input(INPUT_GET, 'prezzo_min', FILTER_VALIDATE_INT);
 $prezzoMassimo = filter_input(INPUT_GET, 'prezzo_max', FILTER_VALIDATE_INT);
 
@@ -19,13 +19,13 @@ $condizioni = [];
 $parametri = [];
 
 if (!empty($nomeLatino)) {
-	$condizioni[] = "nome_latino LIKE :nome_latino";
-	$parametri[':nome_latino'] = '%' . $nomeLatino. '%';
+	$condizioni[] = "nome_latino LIKE ?";
+	$parametri[] = '%' . $nomeLatino . '%';
 }
 
 if (!empty($nomeComune)) {
-	$condizioni[] = "nome_comune LIKE :nome_comune";
-	$parametri[':nome_comune'] = '%'. $nomeComune . '%';
+	$condizioni[] = "nome_comune LIKE ?";
+	$parametri[] = '%' . $nomeComune . '%';
 }
 
 if (!empty($dimensione)) {
@@ -33,16 +33,26 @@ if (!empty($dimensione)) {
 	$parametri[] = $dimensione;
 }	
 
-/*if (!empty($volumeMinimo)) {
-	$condizioni[] = "volume_minimo >= :volume_minimo";
-	$parametri[':volume_minimo'] = $volumeMinimo;
-}*/
-/*if (!empty($colori)) {
-	foreach ($colori as $i => $colore) {
-		$condizioni[] = "FIND_IN_SET(:c$i, colori)";
-		$parametri[":c$i"] = $colore;
-	}
-}	*/
+if (!empty($volumeMinimo)) {
+	$condizioni[] = "volume_minimo >= ?";
+	$parametri[] = $volumeMinimo;
+}
+
+if (!is_array($colori)) {
+    $colori = [$colori];
+}
+
+if (!empty($colori)) {
+    if (!empty($colori)) {
+        $condColori = [];
+        foreach ($colori as $colore) {
+            $condColori[] = "FIND_IN_SET(?, colori)";
+            $parametri[] = $colore;
+        }
+        $condizioni[] = '(' . implode(' AND ', $condColori) . ')';
+    }
+}
+
 if (!empty($prezzoMinimo)) {
 	$condizioni[] = "prezzo >= ?";
 	$parametri[] = $prezzoMinimo;

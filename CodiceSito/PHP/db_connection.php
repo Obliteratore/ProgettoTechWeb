@@ -284,9 +284,10 @@ class FMAccess {
 		if (!empty($condizioni)) {
 			$sql .= " WHERE " . implode(" AND ", $condizioni);
 		}
+
 		//con questo possiamo usare LIMIT e DESC
 		if ($operazione !== '') {
-		$sql .= " " . $operazione;
+			$sql .= " " . $operazione;
 		}
 		$stmt = $this->connection->prepare($sql);
 
@@ -301,10 +302,8 @@ class FMAccess {
 		$result = $stmt->get_result();
 
 		$pesci = [];
-		if($result->num_rows !== 0) {
-			while($row = $result->fetch_assoc()) {
-				$pesci[] = $row;
-			}
+		while ($row = $result->fetch_assoc()) {
+			$pesci[] = $row;
 		}
 
 		$result->free();
