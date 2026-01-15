@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 } else {
                     session_regenerate_id(true); 
                     $_SESSION['email'] = $values['email'];
-                    header('Location: ../HTML/profilo.html');
+                    header('Location: profilo.php');
                     exit;
                 }
             }

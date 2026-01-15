@@ -759,7 +759,8 @@ ul.error-message {
 }
 
 abbr {
-    text-decoration: none;
+    /*text-decoration: none;*/
+    text-underline-offset: 0.1em;
     font-weight: bold;
     cursor: help;
 }

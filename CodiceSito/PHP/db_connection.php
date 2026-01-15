@@ -4,9 +4,9 @@ namespace FM;
 class FMAccess {
 
 	private const HOST_DB = "localhost";
-	private const DATABASE_NAME = "fbalestr";
-	private const USERNAME = "fbalestr";
-	private const PASSWORD = "Iemao4Chawiechoo";
+	private const DATABASE_NAME = "agingill";
+	private const USERNAME = "agingill";
+	private const PASSWORD = "Pech3pheeXie4xen";
 
 	private $connection;
 
@@ -148,24 +148,6 @@ class FMAccess {
 		return $exist;
 	}
 
-	public function insertUtente($email) {
-		$query = "INSERT INTO utenti (email) VALUES (?)";
-		$stmt = ($this->connection)->prepare($query);
-		$stmt->bind_param("s", $email);
-		$stmt->execute();
-		$stmt->close();
-	}
-
-	public function insertUtenteRegistrato($email, $username, $password, $nome, $cognome) {
-		$hash = password_hash($password, PASSWORD_DEFAULT);
-
-		$query = "INSERT INTO utenti_registrati (email, username, password, nome, cognome) VALUES (?, ?, ?, ?, ?)";
-		$stmt = ($this->connection)->prepare($query);
-		$stmt->bind_param("sssss", $email, $username, $hash, $nome, $cognome);
-		$stmt->execute();
-		$stmt->close();
-	}
-
 	public function insertIndirizzo($provincia, $comune, $via) {
 		$query = "INSERT INTO indirizzi (sigla_provincia, id_comune, via) VALUES (?, ?, ?)";
 		$stmt = ($this->connection)->prepare($query);
@@ -178,10 +160,20 @@ class FMAccess {
 		return $idIndirizzo;
 	}
 
-	public function insertUtenteRegistratoIndirizzo($email, $idIndirizzo) {
-		$query = "INSERT INTO utenti_indirizzi (email, id_indirizzo) VALUES (?, ?)";
+	public function insertUtente($email, $idIndirizzo) {
+		$query = "INSERT INTO utenti (email, id_indirizzo) VALUES (?, ?)";
 		$stmt = ($this->connection)->prepare($query);
 		$stmt->bind_param("si", $email, $idIndirizzo);
+		$stmt->execute();
+		$stmt->close();
+	}
+
+	public function insertUtenteRegistrato($email, $username, $password, $nome, $cognome) {
+		$hash = password_hash($password, PASSWORD_DEFAULT);
+
+		$query = "INSERT INTO utenti_registrati (email, username, password, nome, cognome) VALUES (?, ?, ?, ?, ?)";
+		$stmt = ($this->connection)->prepare($query);
+		$stmt->bind_param("sssss", $email, $username, $hash, $nome, $cognome);
 		$stmt->execute();
 		$stmt->close();
 	}
@@ -219,9 +211,14 @@ class FMAccess {
 
 		return $row ? $row['password'] : null;
 	}
-
-	public function getDatiUtenteRegistrato($email) {
-		$query = "SELECT username, nome, cognome FROM utenti_registrati WHERE email = ?";
+	
+	public function getProfiloUtente($email) {
+		$query = "SELECT utenti_registrati.username, utenti_registrati.nome, utenti_registrati.cognome, provincie.sigla_provincia, provincie.nome AS provincia, comuni.nome AS comune, indirizzi.via FROM 
+		utenti_registrati JOIN utenti ON utenti_registrati.email=utenti.email
+		JOIN indirizzi ON utenti.id_indirizzo=indirizzi.id_indirizzo 
+		JOIN provincie ON indirizzi.sigla_provincia=provincie.sigla_provincia 
+		JOIN comuni ON indirizzi.id_comune=comuni.id_comune 
+		WHERE utenti_registrati.email = ?";
 		$stmt = ($this->connection)->prepare($query);
 		$stmt->bind_param("s", $email);
 		$stmt->execute();
@@ -233,6 +230,55 @@ class FMAccess {
 		$stmt->close();
 
 		return $row;
+	}
+
+	public function getOrdiniUtente($email) {
+		$query = "SELECT ordini.id_ordine, ordini.id_indirizzo, ordini.data_ora, pesci.nome_comune, dettaglio_ordini.prezzo_unitario, dettaglio_ordini.quantita FROM 
+		ordini JOIN dettaglio_ordini ON ordini.id_ordine=dettaglio_ordini.id_ordine 
+		JOIN pesci ON dettaglio_ordini.nome_latino=pesci.nome_latino 
+		WHERE ordini.email= ? 
+		ORDER BY ordini.id_ordine";
+		$stmt = ($this->connection)->prepare($query);
+		$stmt->bind_param("s", $email);
+		$stmt->execute();
+
+		$result = $stmt->get_result();
+
+		$ordini = [];
+		if($result->num_rows !== 0) {
+			while($row = $result->fetch_assoc()) {
+				$ordini[] = $row;
+			}
+		}
+    
+		$result->free();
+		$stmt->close();
+
+		return $ordini;
+	}
+
+	public function getPesci($condizioni, $parametri) {
+
+		$sql = "SELECT * FROM pesci";
+
+		if ($condizioni) {
+			$sql .= " WHERE " . implode(" AND ", $condizioni);
+		}
+
+		$stmt = $this->$connection->prepare($sql);
+		$stmt->execute($parametri);
+
+		$result = $stmt->get_result();
+
+		$pesci = [];
+		if($result->num_rows !== 0) {
+			while($row = $result->fetch_assoc()) {
+				$pesci[] = $row;
+			}
+		}
+		$result->free();
+		$stmt->close();
+		return $pesci;
 	}
 }
 public function getPiuVenduti(PDO $pdo, int $limit = 4): array {
