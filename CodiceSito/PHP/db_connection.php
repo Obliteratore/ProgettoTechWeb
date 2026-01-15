@@ -2,11 +2,31 @@
 namespace FM;
 
 class FMAccess {
+	/*
+	private const HOST_DB = "localhost";
+	private const DATABASE_NAME = "agingill";
+	private const USERNAME = "agingill";
+	private const PASSWORD = "Pech3pheeXie4xen";
+	*/
 
+	private const HOST_DB = "localhost";
+	private const DATABASE_NAME = "fbalestr";
+	private const USERNAME = "fbalestr";
+	private const PASSWORD = "Iemao4Chawiechoo";
+
+	/*
+	private const HOST_DB = "localhost";
+	private const DATABASE_NAME = "bsabic";
+	private const USERNAME = "bsabic";
+	private const PASSWORD = "";
+	*/
+
+	/*
 	private const HOST_DB = "localhost";
 	private const DATABASE_NAME = "vsolito";
 	private const USERNAME = "vsolito";
-	private const PASSWORD = "aeyoh5naiw7nah4S";
+	private const PASSWORD = "";
+	*/
 
 	private $connection;
 
@@ -72,10 +92,10 @@ class FMAccess {
 
 		$result = $stmt->get_result();
 		$pesce = $result->fetch_assoc();
-		if($result) $result->free();
+		
+		$result->free();
 		$stmt->close();
 		return $pesce;
-
 	}
 	
 	public function existProvincia($provincia) {
@@ -211,7 +231,7 @@ class FMAccess {
 
 		return $row ? $row['password'] : null;
 	}
-	
+
 	public function getProfiloUtente($email) {
 		$query = "SELECT utenti_registrati.username, utenti_registrati.nome, utenti_registrati.cognome, provincie.sigla_provincia, provincie.nome AS provincia, comuni.nome AS comune, indirizzi.via FROM 
 		utenti_registrati JOIN utenti ON utenti_registrati.email=utenti.email
@@ -261,26 +281,37 @@ class FMAccess {
 
 		$sql = "SELECT * FROM pesci";
 
-		if ($condizioni) {
+		if (!empty($condizioni)) {
 			$sql .= " WHERE " . implode(" AND ", $condizioni);
 		}
-
-		$stmt = $this->$connection->prepare($sql);
-		$stmt->execute($parametri);
-
+	
+		$stmt = $this->connection->prepare($sql);
+	
+		// se ci sono parametri, li bindiamo tutti come stringhe semplicemente
+		if (!empty($parametri)) {
+			// crea una stringa di 's' lunga quanto il numero di parametri
+			$types = str_repeat('s', count($parametri));
+			$stmt->bind_param($types, ...$parametri);
+		}
+	
+		$stmt->execute();
 		$result = $stmt->get_result();
-
+	
 		$pesci = [];
 		if($result->num_rows !== 0) {
 			while($row = $result->fetch_assoc()) {
 				$pesci[] = $row;
 			}
 		}
+	
 		$result->free();
 		$stmt->close();
+	
 		return $pesci;
 	}
 
+	public function getPiuVenduti(PDO $pdo, int $limit = 4): array {
+	$sql = "SELECT nome, prezzo, immagine FROM pesci ORDER BY vendite DESC LIMIT :limit";
 
 	public function getPiuVenduti(PDO $pdo, int $limit = 4): array {
 		$sql = "SELECT nome, prezzo, immagine FROM pesci ORDER BY vendite DESC LIMIT :limit";
@@ -290,6 +321,16 @@ class FMAccess {
 		$stmt->execute();
 
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
+
+	public function getNuovi(PDO $pdo, int $limit = 4): array {
+		$sql = "SELECT nome, prezzo, immagine FROM pesci ORDER BY data_aggiunta DESC LIMIT :limit";
+
+		$stmt = $pdo->prepare($sql);
+		$stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+		$stmt->execute();
+
+	return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
 
 	public function getNuovi(PDO $pdo, int $limit = 4): array {
