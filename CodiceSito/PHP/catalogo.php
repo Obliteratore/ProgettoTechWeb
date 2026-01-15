@@ -1,5 +1,6 @@
 <?php
 require_once "db_connection.php";
+require_once "crea_card_pesce";
 use FM\FMAccess;
 
 //purificazione dell'input
@@ -66,28 +67,11 @@ try{
 
 
 
-$stringaPesci = "";
 $paginaHTML = "";
 
 $paginaHTML = file_get_contents('catalogo.html');
 
-$connessione->closeConnection();
-
-
-if($pesci != null) {
-	$stringaPesci .= '<ul class="pesci">';
-	foreach($pesci as $pesce) {
-		$stringaPesci .= '<li class="card-pesce">';
-		$stringaPesci .= '<img src="' . $pesce['immagine'] . '"/>';
-		$stringaPesci .= '<div class="dati-pesce">';
-		$stringaPesci .= '<p class="nome"' . $pesce['nome'] . '</p>';
-		$stringaPesci .= '</div>';
-		$stringaPesci .= '<p class="prezzo">' . $pesce['prezzo'] . '</p>';
-		$stringaPesci .= '</li>';
-	}
-
-	$stringaPesci .= '</ul>';
-}
+$stringaPesci = crea_card_pesce($pesci);
 
 $paginaHTML = str_replace("[listaPesci]", $stringaPesci, $paginaHTML);
 echo $paginaHTML;

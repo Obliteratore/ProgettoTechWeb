@@ -210,7 +210,8 @@ class FMAccess {
 		$stmt->close();
 
 		return $row ? $row['password'] : null;
-
+	}
+	
 	public function getProfiloUtente($email) {
 		$query = "SELECT utenti_registrati.username, utenti_registrati.nome, utenti_registrati.cognome, provincie.sigla_provincia, provincie.nome AS provincia, comuni.nome AS comune, indirizzi.via FROM 
 		utenti_registrati JOIN utenti ON utenti_registrati.email=utenti.email
