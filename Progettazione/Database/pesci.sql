@@ -22,14 +22,14 @@ CREATE TABLE utenti_registrati(
     password VARCHAR(255) NOT NULL,
     nome VARCHAR(50) NOT NULL,
     cognome VARCHAR(50) NOT NULL,
-	FOREIGN KEY (email) REFERENCES utenti(email)
+	FOREIGN KEY (email) REFERENCES utenti(email) ON DELETE CASCADE
 );
 
 CREATE TABLE amministratori (
     email VARCHAR(255) PRIMARY KEY,
     username VARCHAR(30) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-	FOREIGN KEY (email) REFERENCES utenti(email)
+	FOREIGN KEY (email) REFERENCES utenti(email) ON DELETE CASCADE
 );
 
 CREATE TABLE famiglie (
@@ -51,7 +51,7 @@ CREATE TABLE pesci (
     descrizione TEXT NOT NULL,
     immagine VARCHAR(255) NOT NULL,
 	data_inserimento DATE NOT NULL DEFAULT CURRENT_DATE,
-	FOREIGN KEY (famiglia) REFERENCES famiglia(famiglia_latino)
+	FOREIGN KEY (famiglia) REFERENCES famiglie(famiglia_latino) ON DELETE CASCADE
 );
 
 CREATE TABLE provincie (
@@ -78,10 +78,9 @@ CREATE TABLE indirizzi (
 CREATE TABLE utenti_indirizzi (
     email VARCHAR(255),
     id_indirizzo INT,
-    predefinito BOOLEAN DEFAULT FALSE,
     PRIMARY KEY (email, id_indirizzo),
-	FOREIGN KEY (email) REFERENCES utente(email),
-	FOREIGN KEY (id_indirizzo) REFERENCES indirizzi(id_indirizzo)
+	FOREIGN KEY (email) REFERENCES utenti(email) ON DELETE CASCADE,
+	FOREIGN KEY (id_indirizzo) REFERENCES indirizzi(id_indirizzo) ON DELETE CASCADE
 );
 
 CREATE TABLE ordini (
@@ -89,7 +88,7 @@ CREATE TABLE ordini (
     email VARCHAR(255) NOT NULL,
     id_indirizzo INT NOT NULL,
     data_ora DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	FOREIGN KEY (email) REFERENCES utente(email),
+	FOREIGN KEY (email) REFERENCES utenti(email),
 	FOREIGN KEY (id_indirizzo) REFERENCES indirizzi(id_indirizzo)
 );
 
@@ -99,15 +98,21 @@ CREATE TABLE dettaglio_ordini (
     quantita INT NOT NULL,
     prezzo_unitario DECIMAL(8,2) NOT NULL,
     PRIMARY KEY (id_ordine, nome_latino),
-	FOREIGN KEY (id_ordine) REFERENCES ordini(id_ordine),
+	FOREIGN KEY (id_ordine) REFERENCES ordini(id_ordine) ON DELETE CASCADE,
 	FOREIGN KEY (nome_latino) REFERENCES pesci(nome_latino)
 );
 
-INSERT INTO utenti VALUE ("admin");
+INSERT INTO utenti (email) VALUES 
+("user"),
+("admin");
 
-INSERT INTO utenti_registrati VALUES ("admin", "admin", SHA2('admin', 256), "admin", "admin");
+INSERT INTO utenti_registrati (email, username, password, nome, cognome) VALUES 
+("user", "user", "$2y$12$IFJz2zWCnfITzHdQsM9xfenmiVxfnM1bwZQfvkWqba2xYsx2JH.qm", "user", "user");
 
-INSERT INTO provincie VALUES 
+INSERT INTO amministratori (email, username, password) VALUES 
+("admin", "admin", "$2y$12$OOplFRIw3hH4SWua.xyYReLgPeD8EA1LWFb5iECdidfMLhd3SjH9S");
+
+INSERT INTO provincie(sigla_provincia, nome) VALUES 
 ("AG", "Agrigento"),
 ("AL", "Alessandria"),
 ("AN", "Ancona"),

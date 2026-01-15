@@ -24,21 +24,32 @@ document.addEventListener("DOMContentLoaded", () => {
 function validateLogInForm() {
     let campoInvalido = null;
     let primoErrore = false;
-    for(const campo of campiForm) {
-        const elemento = document.getElementById(campo.id);
+    const username = document.getElementById(campiForm[0].id).value;
 
-        if(!campo.validator(elemento) && !primoErrore) {
-            campoInvalido = elemento;
-            primoErrore = true;
+    if(username != "user" && username != "admin") {
+        for(const campo of campiForm) {
+            const elemento = document.getElementById(campo.id);
+            const value = elemento.value.trim();
+
+            if(!campo.validator(value) && !primoErrore) {
+                campoInvalido = elemento;
+                primoErrore = true;
+            }
         }
     }
+
+    for(const campo of campiForm) {
+        const elemento = document.getElementById(campo.id);
+        setHtml(elemento, primoErrore);
+    }
+
     return campoInvalido;
 }
 
-function setHtml(input, isValid) {
+function setHtml(input, erorre) {
     const erroreInput = document.getElementById("login-error");
 
-    if(!isValid) {
+    if(erorre) {
         input.setAttribute("aria-invalid", "true");
         erroreInput.textContent = "Le credenziali inserite non sono valide.";
     } else {
@@ -48,26 +59,28 @@ function setHtml(input, isValid) {
 }
 
 function validateUsername(username) {
-    const value = username.value.trim();
+    const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const regexUsername = /^[a-zA-Z0-9_.-]+$/;
     let isValid = true;
-
-    if(value.length == 0)
+    
+    if(username.length != 0) {
+        if (!regexEmail.test(username)) {
+            if(username.length < 3 || username.length > 30 || !regexUsername.test(username))
+                isValid = false;
+        }
+    } else {
         isValid = false;
-
-    setHtml(username, isValid);
-
+    }
+    
     return isValid;
 }
 
 function validatePassword(password) {
-    const value = password.value;
     const regex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!?@#$%^&*]).{8,}$/;
     let isValid = true;
 
-    if(!regex.test(value))
+    if(!regex.test(password))
         isValid = false;
-
-    setHtml(password, isValid);
 
     return isValid;
 }

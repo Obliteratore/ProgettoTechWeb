@@ -24,17 +24,21 @@ function getComuni(provincia) {
     // invia la richiesta POST
     fetch(url, { method: 'POST', body: fd })
         .then(response => response.json())
-        .then(data => {
-            data.forEach(comune => {
+        .then(result => {
+            if(!result.success) {
+                window.location.href = '../HTML/error_500.html';
+                return;
+            }
+            result.data.forEach(comune => {
                 const option = document.createElement('option');
-                option.value = comune.id;
+                option.value = comune.id_comune;
                 option.textContent = comune.nome;
                 comuneSelect.appendChild(option);
             });
+        })
+        .catch(() => {
+            window.location.href = '../HTML/error_500.html';
         });
-        /*.catch(err => {
-            comuneSelect.innerHTML = '<option value="" selected>Errore nel caricamento dei comuni</option>';
-        });*/
 }
 
 function getRootPath() {

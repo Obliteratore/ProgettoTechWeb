@@ -1,5 +1,5 @@
 <?php
-if (!isset($_SESSION))
+if(session_status() !== PHP_SESSION_ACTIVE)
     session_start();
 
 $errors = $_SESSION['errors'] ?? [];
@@ -211,12 +211,12 @@ unset($_SESSION['errors'], $_SESSION['values']);
                         </div>
                         <ul id="password-error" class="error-message" aria-live="polite"><?= $errors['password'] ?? '' ?></ul>
 
-                        <label for="conferma-password">Conferma <span lang="en">Password</span>
+                        <label for="confermaPassword">Conferma <span lang="en">Password</span>
                             <small class="required">(Obbligatorio)</small>
                         </label>
-                        <input id="conferma-password" type="password" name="conferma-password" autocomplete="new-password" aria-describedby="conferma-password-help conferma-password-error" aria-invalid="<?= isset($errors['confermaPassword']) ? 'true' : 'false' ?>" required/>
-                        <p id="conferma-password-help" class="help">Inserisci nuovamente la <span lang="en">password</span> che hai scelto.</p>
-                        <p id="conferma-password-error" class="error-message" aria-live="polite"><?= $errors['confermaPassword'] ?? '' ?></p>
+                        <input id="confermaPassword" type="password" name="confermaPassword" autocomplete="new-password" aria-describedby="confermaPassword-help confermaPassword-error" aria-invalid="<?= isset($errors['confermaPassword']) ? 'true' : 'false' ?>" required/>
+                        <p id="confermaPassword-help" class="help">Inserisci nuovamente la <span lang="en">password</span> che hai scelto.</p>
+                        <p id="confermaPassword-error" class="error-message" aria-live="polite"><?= $errors['confermaPassword'] ?? '' ?></p>
                     </fieldset>
                     <input type="submit" value="Registrati"/>
                 </form>
