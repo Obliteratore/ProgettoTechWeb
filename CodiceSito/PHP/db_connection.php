@@ -2,11 +2,31 @@
 namespace FM;
 
 class FMAccess {
-
+	/*
 	private const HOST_DB = "localhost";
 	private const DATABASE_NAME = "agingill";
 	private const USERNAME = "agingill";
 	private const PASSWORD = "Pech3pheeXie4xen";
+	*/
+	/*
+	private const HOST_DB = "localhost";
+	private const DATABASE_NAME = "fbalestr";
+	private const USERNAME = "fbalestr";
+	private const PASSWORD = "Iemao4Chawiechoo"; */
+
+	/*
+	private const HOST_DB = "localhost";
+	private const DATABASE_NAME = "bsabic";
+	private const USERNAME = "bsabic";
+	private const PASSWORD = "";
+	*/
+
+	
+	private const HOST_DB = "localhost";
+	private const DATABASE_NAME = "vsolito";
+	private const USERNAME = "vsolito";
+	private const PASSWORD = "aeyoh5naiw7nah4S";
+	
 
 	private $connection;
 
@@ -65,17 +85,17 @@ class FMAccess {
 	}
 
 	public function getPesce($nome_latino) {
-		$query = "SELECT p.* , f.tipo_acqua FROM pesci p JOIN famiglie f ON p.famiglia = f.famiglia_latino WHERE nome_latino = ?";
+		$query = "SELECT p.* , f.tipo_acqua FROM pesci p JOIN famiglie f ON p.famiglia = f.famiglia_latino WHERE p.nome_latino = ?";
 		$stmt = ($this->connection)->prepare($query);
 		$stmt->bind_param("s", $nome_latino);
 		$stmt->execute();
 
 		$result = $stmt->get_result();
 		$pesce = $result->fetch_assoc();
-		if($result) $result->free();
+		
+		$result->free();
 		$stmt->close();
 		return $pesce;
-
 	}
 	
 	public function existProvincia($provincia) {
@@ -257,57 +277,60 @@ class FMAccess {
 		return $ordini;
 	}
 
-	public function getPesci($condizioni, $parametri) {
+	public function getPesci($condizioni, $parametri, $operazione) {
 
 		$sql = "SELECT * FROM pesci";
 
 		if (!empty($condizioni)) {
 			$sql .= " WHERE " . implode(" AND ", $condizioni);
 		}
-	
+		//con questo possiamo usare LIMIT e DESC
+		if ($operazione !== '') {
+		$sql .= " " . $operazione;
+		}
 		$stmt = $this->connection->prepare($sql);
-	
+
 		// se ci sono parametri, li bindiamo tutti come stringhe semplicemente
 		if (!empty($parametri)) {
 			// crea una stringa di 's' lunga quanto il numero di parametri
 			$types = str_repeat('s', count($parametri));
 			$stmt->bind_param($types, ...$parametri);
 		}
-	
+
 		$stmt->execute();
 		$result = $stmt->get_result();
-	
+
 		$pesci = [];
 		if($result->num_rows !== 0) {
 			while($row = $result->fetch_assoc()) {
 				$pesci[] = $row;
 			}
 		}
-	
+
 		$result->free();
 		$stmt->close();
-	
+
 		return $pesci;
 	}
-}
 
-public function getPiuVenduti(PDO $pdo, int $limit = 4): array {
-	$sql = "SELECT nome, prezzo, immagine FROM pesci ORDER BY vendite DESC LIMIT :limit";
+	public function getPiuVenduti(PDO $pdo, int $limit = 4): array {
+		$sql = "SELECT nome, prezzo, immagine FROM pesci ORDER BY vendite DESC LIMIT :limit";
 
-	$stmt = $pdo->prepare($sql);
-	$stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
-	$stmt->execute();
+		$stmt = $pdo->prepare($sql);
+		$stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+		$stmt->execute();
+
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
+
+	public function getNuovi(PDO $pdo, int $limit = 4): array {
+		$sql = "SELECT nome, prezzo, immagine FROM pesci ORDER BY data_aggiunta DESC LIMIT :limit";
+
+		$stmt = $pdo->prepare($sql);
+		$stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+		$stmt->execute();
 
 	return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
-
-public function getNuovi(PDO $pdo, int $limit = 4): array {
-	$sql = "SELECT nome, prezzo, immagine FROM pesci ORDER BY data_aggiunta DESC LIMIT :limit";
-
-	$stmt = $pdo->prepare($sql);
-	$stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
-	$stmt->execute();
-
-	return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
 }
 ?>
