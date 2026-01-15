@@ -1,4 +1,7 @@
-<?php 
+<?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 require_once "db_connection.php";
 use FM\FMAccess;
 
@@ -19,6 +22,7 @@ $paginaHTML = file_get_contents('../HTML/pesce.html');
 try{
     $connection = new FMAccess();
     $connection->openConnection();
+    if($connection->openConnection());
     $nome_latinos = $_GET['nome_latino'] ?? '';
     $pesce = null;
     if(!empty($nome_latinos)){
@@ -31,8 +35,8 @@ try{
             $famiglia = htmlspecialchars($pesce['famiglia']);
             $descrizione = htmlspecialchars($pesce['descrizione']);
             $dimensione = htmlspecialchars($pesce['dimensione']);
-            $percorso = "../IMMAGINI/Pesci/Pesci Dolci/Agujeta.jpg";//da modificare in $pesce['immagine'];
-            $volumemin = (int)$pesce['volume_minimo'];
+            $percorso = "../IMMAGINI/Pesci/Pesci Dolci/Agujeta.jpg"; //da modificare in $pesce['immagine'];
+            $volumemin = $pesce['volume_minimo'];
             $habitat = ($pesce['tipo_acqua'] === 'dolce') ? "Acqua Dolce" : "Acqua Marina";
             $colori = htmlspecialchars($pesce['colori']);
 
@@ -56,12 +60,12 @@ try{
         header('Location:../HTML/errore_404.html');
         exit;
     }
-} catch (mysqli_sql_exception $e){
+} catch (mysqli_sql_exception $e) {
     http_response_code(500);
     header('Location:../HTML/error_500.html');
     exit;
 } finally {
-    if(isset($connection)) $connection->closeConnection();
+    $connection->closeConnection();
 }
 
 echo $paginaHTML;
