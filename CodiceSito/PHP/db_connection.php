@@ -8,11 +8,11 @@ class FMAccess {
 	private const USERNAME = "agingill";
 	private const PASSWORD = "Pech3pheeXie4xen";
 	*/
-
+	/*
 	private const HOST_DB = "localhost";
 	private const DATABASE_NAME = "fbalestr";
 	private const USERNAME = "fbalestr";
-	private const PASSWORD = "Iemao4Chawiechoo";
+	private const PASSWORD = "Iemao4Chawiechoo"; */
 
 	/*
 	private const HOST_DB = "localhost";
@@ -21,12 +21,12 @@ class FMAccess {
 	private const PASSWORD = "";
 	*/
 
-	/*
+	
 	private const HOST_DB = "localhost";
 	private const DATABASE_NAME = "vsolito";
 	private const USERNAME = "vsolito";
-	private const PASSWORD = "";
-	*/
+	private const PASSWORD = "aeyoh5naiw7nah4S";
+	
 
 	private $connection;
 
@@ -329,15 +329,5 @@ class FMAccess {
 
 	return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
-
-	public function getNuovi(PDO $pdo, int $limit = 4): array {
-		$sql = "SELECT nome, prezzo, immagine FROM pesci ORDER BY data_aggiunta DESC LIMIT :limit";
-
-		$stmt = $pdo->prepare($sql);
-		$stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
-		$stmt->execute();
-
-		return $stmt->fetchAll(PDO::FETCH_ASSOC);
-	}	
 }
 ?>
