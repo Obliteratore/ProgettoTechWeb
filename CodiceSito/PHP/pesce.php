@@ -12,13 +12,14 @@ $dimensione = "";
 $percorso = "";
 $volumemin = 0;
 $habitat = "";
+$colori = "";
 
 $paginaHTML = file_get_contents('../HTML/pesce.html');
 
 try{
     $connection = new FMAccess();
     $connection->openConnection();
-    $nome_latinos = $_GET['nome_latino'] ?? ''
+    $nome_latinos = $_GET['nome_latino'] ?? '';
     $pesce = null;
     if(!empty($nome_latinos)){
         $pesce = $connection->getPesce($nome_latinos);
@@ -30,9 +31,10 @@ try{
             $famiglia = htmlspecialchars($pesce['famiglia']);
             $descrizione = htmlspecialchars($pesce['descrizione']);
             $dimensione = htmlspecialchars($pesce['dimensione']);
-            $percorso = "../IMMAGINI/Pesci/Pesci Dolci/Agujeta.jpg";//$pesce['immagine'];
+            $percorso = "../IMMAGINI/Pesci/Pesci Dolci/Agujeta.jpg";//da modificare in $pesce['immagine'];
             $volumemin = (int)$pesce['volume_minimo'];
             $habitat = ($pesce['tipo_acqua'] === 'dolce') ? "Acqua Dolce" : "Acqua Marina";
+            $colori = htmlspecialchars($pesce['colori']);
 
             $paginaHTML = str_replace("[nomepesce]", $nome_comune, $paginaHTML);
             $paginaHTML = str_replace("[nomelatino]", $nome_latino_db, $paginaHTML);
@@ -44,6 +46,8 @@ try{
             $paginaHTML = str_replace("[dimensione]", $dimensione, $paginaHTML);
             $paginaHTML = str_replace("[descrizione-pesce]", $descrizione, $paginaHTML);
             $paginaHTML = str_replace("[percorso]", $percorso, $paginaHTML);
+            $paginaHTML = str_replace("[colori]", $colori, $paginaHTML);
+
         } else {
             header('Location:../HTML/errore_404.html');
             exit;

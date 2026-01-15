@@ -360,6 +360,15 @@ h2 {
     color: #f8fdfff9;
 }
 
+
+.nome-scientifico{
+    display: block;
+    font-style: italic;
+    color: #dddddd;     
+    font-size: 1.25rem; 
+    font-weight: 300;
+}
+
 .parte-superiore-pesce {
     display: flex;
     flex-direction: column;
@@ -385,6 +394,8 @@ h2 {
     flex-direction: column;
     gap: 0.5em;
     width: 100%;
+    align-items: center;
+    text-align: center;
 }
 
 .sezione-acquisto h1 {
@@ -399,8 +410,8 @@ h2 {
 }
 
 .sezione-acquisto .disponibilita {
-    font-size: 0.9rem;
-    opacity: 0.9;
+    font-size: 1.3rem;
+    opacity: 1;
 }
 
 .quantita-gestione {
@@ -408,6 +419,7 @@ h2 {
     align-items: center;
     gap: 13px;
     margin-top: 1em;
+    justify-content: center;
 }
 
 #quantita {
@@ -495,6 +507,7 @@ h2 {
     }
 
     .sezione-acquisto{
+        align-items: flex-start;
         flex: 1;
         text-align: left;
     }
