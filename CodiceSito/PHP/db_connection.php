@@ -6,7 +6,7 @@ class FMAccess {
 	private const HOST_DB = "localhost";
 	private const DATABASE_NAME = "agingill";
 	private const USERNAME = "agingill";
-	private const PASSWORD = "GQgP253c1sa!L172";
+	private const PASSWORD = "Pech3pheeXie4xen";
 
 	private $connection;
 
@@ -329,6 +329,30 @@ class FMAccess {
 		$stmt->close();
 
 		return $ordini;
+	}
+
+	public function getPesci($condizioni, $parametri) {
+
+		$sql = "SELECT * FROM pesci";
+
+		if ($condizioni) {
+			$sql .= " WHERE " . implode(" AND ", $condizioni);
+		}
+
+		$stmt = $this->$connection->prepare($sql);
+		$stmt->execute($parametri);
+
+		$result = $stmt->get_result();
+
+		$pesci = [];
+		if($result->num_rows !== 0) {
+			while($row = $result->fetch_assoc()) {
+				$pesci[] = $row;
+			}
+		}
+		$result->free();
+		$stmt->close();
+		return $pesci;
 	}
 }
 ?>

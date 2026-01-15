@@ -1,4 +1,4 @@
-USE fbalestr;
+USE agingill;
 
 DROP TABLE IF EXISTS dettaglio_ordini;
 DROP TABLE IF EXISTS ordini;
@@ -56,7 +56,6 @@ CREATE TABLE amministratori (
 
 CREATE TABLE famiglie (
     famiglia_latino VARCHAR(100) PRIMARY KEY,
-    famiglia_comune VARCHAR(100) NOT NULL,
     tipo_acqua ENUM('dolce', 'marina') NOT NULL
 );
 
@@ -102,33 +101,49 @@ INSERT INTO utenti (email) VALUES
 INSERT INTO utenti_registrati (email, username, password, nome, cognome) VALUES 
 ("user", "user", "$2y$12$IFJz2zWCnfITzHdQsM9xfenmiVxfnM1bwZQfvkWqba2xYsx2JH.qm", "user", "user");
 
+INSERT INTO famiglie (famiglia_latino, tipo_acqua)
+VALUES
+('Apogoninae', 'marina'),
+('Blenniidae', 'marina' ),
+('Pomacentridae', 'marina'),
+('Labridae', 'marina'),
+('Pomacanthidae','marina'),
+('Dactylopteridae', 'marina'),
+
+('Pimelodidae','dolce'),
+('Cichlidae', 'dolce' ),
+('Characidae', 'dolce'),
+('Ctenoluciidae', 'dolce'),
+('Lebiasinidae', 'dolce' ),
+('Doradidae', 'dolce'),
+('Callichthyidae', 'dolce');
+
 INSERT INTO pesci 
-(nome_latino, nome_comune, famiglia, dimensione, volume_minimo, colori, prezzo, sconto_percentuale, disponibilita, descrizione, immagine, data_inserimento) 
+(nome_latino, nome_comune, famiglia, dimensione, volume_minimo, colori, prezzo, disponibilita, descrizione, immagine) 
 VALUES 
-(Ostorhinchus chrysopomus, 'Cardinale Branchia Maculata', 'Apogoninae', '8', '9', 'beige,arancione,azzurro', 548, , 13, , , ),
-(Cheilodipterus quinquelineatus, 'Cardinale Pentastriato', 'Apogoninae', '11', '13', 'nero,giallo', 863, , 9, , , ),
-( Scartella cristata, 'Bavosa Crestata', 'Blenniidae', '10', '12', 'marrone,beige', 1448, , 8, , , ),
-(Parablennius gattorugine, 'Bavosa Ruggine', 'Blenniidae', '21', '28', 'marrone,beige', 1235, , 11, , , ),
-(Ophioblennius atlanticus, 'Bavosa Atlantica', 'Blenniidae', '7', '8', 'marrone,verde', 76, , 3, , , ),
-(Parablennius parvicornis, 'Bavosa Delle Pozze', 'Blenniidae', '10', '12', 'marrone,giallo', 1022, , 11, , , ),
-(Aidablennius sphynx, 'Bavosa Sfinge', 'Blenniidae', '6', '7', 'biege,giallo,azzurro', 1241, , 16, , , ),
-(Pomacentrus moluccensis, 'Damigella limone', 'Pomacentridae', '6', '7', 'giallo, verde', 704, , 3, , , ),
-(Halichoeres scapularis, 'Labro a Zigzag', 'Labridae', '16', '21', 'rosa,azzurro,giallo', 1160, , 20, , , ),
-(Pomacanthus imperator, 'Angelo Imperatore', 'Pomacanthidae', '35', '49', 'blu,giallo,nero', 66, , 6, , , ),
-(Dactylopterus volitans, 'Civetta', 'Dactylopteridae', '40', '57', 'marrone,nero,blu', 78, , 10, , , ),
+('Ostorhinchus chrysopomus', 'Cardinale Branchia Maculata', 'Apogoninae', '8', '9', 'beige,arancione,azzurro', 548, 13, '' ,'' ),
+('Cheilodipterus quinquelineatus', 'Cardinale Pentastriato', 'Apogoninae', '11', '13', 'nero,giallo', 863,  9,'' ,'' ),
+('Scartella cristata', 'Bavosa Crestata', 'Blenniidae', '10', '12', 'marrone,beige', 1448, 8, '' ,'' ),
+('Parablennius gattorugine', 'Bavosa Ruggine', 'Blenniidae', '21', '28', 'marrone,beige', 1235, 11, '' ,'' ),
+('Ophioblennius atlanticus', 'Bavosa Atlantica', 'Blenniidae', '7', '8', 'marrone,verde', 76, 3, '' ,'' ),
+('Parablennius parvicornis', 'Bavosa Delle Pozze', 'Blenniidae', '10', '12', 'marrone,giallo', 1022, 11, '' ,''),
+('Aidablennius sphynx', 'Bavosa Sfinge', 'Blenniidae', '6', '7', 'biege,giallo,azzurro', 1241, 16, '' ,''),
+('Pomacentrus moluccensis', 'Damigella limone', 'Pomacentridae', '6', '7', 'giallo, verde', 704, 3, '' ,''),
+('Halichoeres scapularis', 'Labro a Zigzag', 'Labridae', '16', '21', 'rosa,azzurro,giallo', 1160, 20, '' ,'' ),
+('Pomacanthus imperator', 'Angelo Imperatore', 'Pomacanthidae', '35', '49', 'blu,giallo,nero', 66, 6, '' ,'' ),
+('Dactylopterus volitans', 'Civetta', 'Dactylopteridae', '40', '57', 'marrone,nero,blu', 78, 10, '' ,'' ),
 
-(Cheirocerus eques, '', 'Pimelodidae', '18', '24', 'trasparente', 1256, , 2, , , ),
-(Pterophyllum scalare, 'Angelo', 'Cichlidae', '15', '19', 'nero,trasparente', 601, , 4, , , ),
-(Roeboides affinis, '', 'Characidae', '6', '7', 'grigio,trasparente', 1437, , 11, , , ),
-(Boulengerella maculata, 'Agujeta', 'Ctenoluciidae', '32', '45', 'grigio,nero,trasparente', 1042, , 5, , , ),
-(Lebiasina elongata, '', 'Lebiasinidae', '9', '11', 'nero,beige,grigio', 783, , 18, , , ),
-(Amblydoras nauticus, '', 'Doradidae', '8', '9', 'nero,beige', 937, , 7, , , ),
-(Hemigrammus bellottii, '', 'Characidae', '2', '2', 'trasparente,grigio', 1007, , 2, , , ),
-(Copella nattereri, 'Tetra Maculata', 'Lebiasinidae', '4', '4', 'nero,grigio,rosso', 578, , 3, , , ),
-(Megalamphodus erythrostigma, 'Tetra Macchia Rossa', 'Characidae', '6', '7', 'giallo,rosso,trasparente', 1400, , 8, , , ),
-(Pimelodus blochii, 'Pesce Gatto Di Bloch', 'Pimelodidae', '20', '26', 'beige', 1108, , 2, , , ),
-(Hoplisoma loretoense, 'Loreto Cory', 'Callichthyidae', '4', '4', 'trasparente', 312, , 2, , , );
-
+('Cheirocerus eques', 'Pippo', 'Pimelodidae', '18', '24', 'trasparente', 1256, 2, '' ,'' ),
+('Pterophyllum scalare', 'Angelo', 'Cichlidae', '15', '19', 'nero,trasparente', 601, 4, '' ,'' ),
+('Roeboides affinis', 'Topolino', 'Characidae', '6', '7', 'grigio,trasparente', 1437, 11, '' ,'' ),
+('Boulengerella maculata', 'Agujeta', 'Ctenoluciidae', '32', '45', 'grigio,nero,trasparente', 1042, 5, '' ,'' ),
+('Lebiasina elongata', 'Paperino', 'Lebiasinidae', '9', '11', 'nero,beige,grigio', 783, 18, '' ,'' ),
+('Amblydoras nauticus', 'Gastone', 'Doradidae', '8', '9', 'nero,beige', 937, 7, '' ,'' ),
+('Hemigrammus bellottii', 'Paperone', 'Characidae', '2', '2', 'trasparente,grigio', 1007, 2, '' ,''),
+('Copella nattereri', 'Tetra Maculata', 'Lebiasinidae', '4', '4', 'nero,grigio,rosso', 578, 3, '' ,''),
+('Megalamphodus erythrostigma', 'Tetra Macchia Rossa', 'Characidae', '6', '7', 'giallo,rosso,trasparente', 1400, 8, '' ,''),
+('Pimelodus blochii', 'Pesce Gatto Di Bloch', 'Pimelodidae', '20', '26', 'beige', 1108, 2, '' ,'' ),
+('Hoplisoma loretoense', 'Loreto Cory', 'Callichthyidae', '4', '4', 'trasparente', 312, 2, '' ,'' );
 
 INSERT INTO amministratori (email, username, password) VALUES 
 ("admin", "admin", "$2y$12$OOplFRIw3hH4SWua.xyYReLgPeD8EA1LWFb5iECdidfMLhd3SjH9S");
