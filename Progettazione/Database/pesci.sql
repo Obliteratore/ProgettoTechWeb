@@ -1,4 +1,4 @@
-USE vsolito;
+USE fbalestr;
 
 DROP TABLE IF EXISTS dettaglio_ordini;
 DROP TABLE IF EXISTS ordini;

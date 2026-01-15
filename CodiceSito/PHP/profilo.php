@@ -47,7 +47,7 @@ try{
                 if($idOrdinePrec !== null) {
                     $ordini .= '</article></li>';
                 }
-                
+
                 $data = (new DateTime($ordine['data_ora']))->format('d/m/Y');
                 $ordini .= '<li><article>';
                 $ordini .= '<dl>';
@@ -72,6 +72,6 @@ try{
     $connection->closeConnection();
 }
 
-$paginaHTML = str_replace(['[nomeCognome]', '[username]', '[indirizzo]'], [$nomeCognome, $username, $indirizzo], $paginaHTML);
+$paginaHTML = str_replace(['[nomeCognome]', '[username]', '[indirizzo]', '[ordini]'], [$nomeCognome, $username, $indirizzo, $ordini], $paginaHTML);
 echo $paginaHTML;
 ?>
