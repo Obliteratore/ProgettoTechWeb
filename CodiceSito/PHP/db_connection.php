@@ -211,7 +211,7 @@ class FMAccess {
 
 		return $row ? $row['password'] : null;
 	}
-	
+
 	public function getProfiloUtente($email) {
 		$query = "SELECT utenti_registrati.username, utenti_registrati.nome, utenti_registrati.cognome, provincie.sigla_provincia, provincie.nome AS provincia, comuni.nome AS comune, indirizzi.via FROM 
 		utenti_registrati JOIN utenti ON utenti_registrati.email=utenti.email
@@ -261,23 +261,32 @@ class FMAccess {
 
 		$sql = "SELECT * FROM pesci";
 
-		if ($condizioni) {
+		if (!empty($condizioni)) {
 			$sql .= " WHERE " . implode(" AND ", $condizioni);
 		}
-
-		$stmt = $this->$connection->prepare($sql);
-		$stmt->execute($parametri);
-
+	
+		$stmt = $this->connection->prepare($sql);
+	
+		// se ci sono parametri, li bindiamo tutti come stringhe semplicemente
+		if (!empty($parametri)) {
+			// crea una stringa di 's' lunga quanto il numero di parametri
+			$types = str_repeat('s', count($parametri));
+			$stmt->bind_param($types, ...$parametri);
+		}
+	
+		$stmt->execute();
 		$result = $stmt->get_result();
-
+	
 		$pesci = [];
 		if($result->num_rows !== 0) {
 			while($row = $result->fetch_assoc()) {
 				$pesci[] = $row;
 			}
 		}
+	
 		$result->free();
 		$stmt->close();
+	
 		return $pesci;
 	}
 }

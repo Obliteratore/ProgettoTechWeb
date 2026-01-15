@@ -274,6 +274,7 @@ h2 {
     position: relative;
     /*Soluzione per browser nuovi, circa dal 2023, per avere grandezza testo in base a qella del contenitore usando i cqw(container query width)*/
     container-type: inline-size;
+    min-height: 100px;
 }
 
 .card-pesce img {

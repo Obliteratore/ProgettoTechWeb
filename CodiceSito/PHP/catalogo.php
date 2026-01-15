@@ -1,75 +1,79 @@
 <?php
-require_once "db_connection.php";
-require_once "crea_card_pesce";
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+require_once __DIR__ . "/db_connection.php";
+require_once __DIR__ . "/crea_card_pesce.php";
 use FM\FMAccess;
 
 //purificazione dell'input
 $nomeLatino = filter_input(INPUT_GET, 'nome_latino', FILTER_SANITIZE_SPECIAL_CHARS);
 $nomeComune = filter_input(INPUT_GET, 'nome_comune', FILTER_SANITIZE_SPECIAL_CHARS);
 $dimensione = filter_input(INPUT_GET, 'dimensione', FILTER_VALIDATE_INT);
-$volumeMinimo = filter_input(INPUT_GET, 'volumeMinimo', FILTER_VALIDATE_INT);
+//$volumeMinimo = filter_input(INPUT_GET, 'volume_minimo', FILTER_VALIDATE_INT);
 //$colori = $_GET['color'] ?? [];
-$nomeComune = filter_input(INPUT_GET, 'nome_comune', FILTER_SANITIZE_SPECIAL_CHARS);
-$prezzoMinimo = filter_input(INPUT_GET, 'prezzoMinimo', FILTER_VALIDATE_INT);
-$prezzoMassimo = filter_input(INPUT_GET, 'prezzoMassimo', FILTER_VALIDATE_INT);
+$prezzoMinimo = filter_input(INPUT_GET, 'prezzo_min', FILTER_VALIDATE_INT);
+$prezzoMassimo = filter_input(INPUT_GET, 'prezzo_max', FILTER_VALIDATE_INT);
 
 $condizioni = [];
 $parametri = [];
 
-if (!empty($_GET['nome_latino'])) {
+if (!empty($nomeLatino)) {
 	$condizioni[] = "nome_latino LIKE :nome_latino";
-	$parametri[':nome_latino'] = '%' . $_GET['nome_latino'] . '%';
+	$parametri[':nome_latino'] = '%' . $nomeLatino. '%';
 }
 
-if (!empty($_GET['nome_comune'])) {
+if (!empty($nomeComune)) {
 	$condizioni[] = "nome_comune LIKE :nome_comune";
-	$parametri[':nome_comune'] = '%'. $_GET['nome_comune'] . '%';
+	$parametri[':nome_comune'] = '%'. $nomeComune . '%';
 }
 
-if (!empty($_GET['dimensione'])) {
-	$condizioni[] = "dimensione = dimensione";
-	$parametri[':dimensione'] = $_GET['dimensione'];
+if (!empty($dimensione)) {
+	$condizioni[] = "dimensione = ?";
+	$parametri[] = $dimensione;
 }	
 
-if (!empty($_GET['volume_minimo'])) {
+/*if (!empty($volumeMinimo)) {
 	$condizioni[] = "volume_minimo >= :volume_minimo";
-	$parametri[':volume_minimo'] = $_GET['volume_minimo'];
-}
+	$parametri[':volume_minimo'] = $volumeMinimo;
+}*/
 /*if (!empty($colori)) {
 	foreach ($colori as $i => $colore) {
 		$condizioni[] = "FIND_IN_SET(:c$i, colori)";
 		$parametri[":c$i"] = $colore;
 	}
 }	*/
-if (!empty($_GET['prezzo_min'])) {
-	$condizioni[] = "prezzo >= :prezzo_min";
-	$parametri[':prezzo_min'] = $_GET['prezzo_min'];
+if (!empty($prezzoMinimo)) {
+	$condizioni[] = "prezzo >= ?";
+	$parametri[] = $prezzoMinimo;
 }
 
-if (!empty($_GET['prezzo_max'])) {
-	$condizioni[] = "prezzo >= :prezzo_max";
-	$parametri[':prezzo_max'] = $_GET['prezzo_max'];
+if (!empty($prezzoMassimo)) {
+	$condizioni[] = "prezzo <= ?";
+	$parametri[] = $prezzoMassimo;
 }
+
+
 
 $pesci = [];
 
-try{
+//try{
 	$connection = new FMAccess();
 	$connection->openConnection();
 	$pesci = $connection->getPesci($condizioni,$parametri);
-} catch(mysqli_sql_exception $e) {
+/*} catch(mysqli_sql_exception $e) {
 	http_response_code(500);
 	header('Location: ../HTML/error_500.html');
 	exit;
-} finally {
+} finally {*/
 	$connection->closeConnection();
-}
+//}
 
 
 
 $paginaHTML = "";
 
-$paginaHTML = file_get_contents('catalogo.html');
+$paginaHTML = file_get_contents('../HTML/catalogo.html');
 
 $stringaPesci = crea_card_pesce($pesci);
 
