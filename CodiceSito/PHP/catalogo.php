@@ -60,7 +60,7 @@ $pesci = [];
 //try{
 	$connection = new FMAccess();
 	$connection->openConnection();
-	$pesci = $connection->getPesci($condizioni,$parametri);
+	$pesci = $connection->getPesci($condizioni,$parametri,"");
 /*} catch(mysqli_sql_exception $e) {
 	http_response_code(500);
 	header('Location: ../HTML/error_500.html');
