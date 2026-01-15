@@ -1,4 +1,4 @@
-USE bsabic;
+USE agingill;
 
 DROP TABLE IF EXISTS dettaglio_ordini;
 DROP TABLE IF EXISTS ordini;
@@ -114,15 +114,15 @@ VALUES
 INSERT INTO pesci 
 (nome_latino, nome_comune, famiglia, dimensione, volume_minimo, colori, prezzo, disponibilita, descrizione, immagine) 
 VALUES 
-('Ostorhinchus chrysopomus', 'Cardinale Branchia Maculata', 'Apogoninae', '8', '9', 'beige,arancione,azzurro', 548, 13, '' ,'' ),
-('Cheilodipterus quinquelineatus', 'Cardinale Pentastriato', 'Apogoninae', '11', '13', 'nero,giallo', 863,  9,'' ,'' ),
-('Scartella cristata', 'Bavosa Crestata', 'Blenniidae', '10', '12', 'marrone,beige', 1448, 8, '' ,'' ),
-('Parablennius gattorugine', 'Bavosa Ruggine', 'Blenniidae', '21', '28', 'marrone,beige', 1235, 11, '' ,'' ),
-('Ophioblennius atlanticus', 'Bavosa Atlantica', 'Blenniidae', '7', '8', 'marrone,verde', 76, 3, '' ,'' ),
-('Parablennius parvicornis', 'Bavosa Delle Pozze', 'Blenniidae', '10', '12', 'marrone,giallo', 1022, 11, '' ,''),
-('Aidablennius sphynx', 'Bavosa Sfinge', 'Blenniidae', '6', '7', 'biege,giallo,azzurro', 1241, 16, '' ,''),
-('Pomacentrus moluccensis', 'Damigella limone', 'Pomacentridae', '6', '7', 'giallo, verde', 704, 3, '' ,''),
-('Halichoeres scapularis', 'Labro a Zigzag', 'Labridae', '16', '21', 'rosa,azzurro,giallo', 1160, 20, '' ,'' ),
+('Ostorhinchus chrysopomus', 'Cardinale Branchia Maculata', 'Apogoninae', '8', '9', 'beige,arancione,azzurro', 548, 13, '' ,'cardinaleBranchiaMaculata.jpeg' ),
+('Cheilodipterus quinquelineatus', 'Cardinale Pentastriato', 'Apogoninae', '11', '13', 'nero,giallo', 863,  9,'' ,'cardinalePenastriato.jpeg' ),
+('Scartella cristata', 'Bavosa Crestata', 'Blenniidae', '10', '12', 'marrone,beige', 1448, 8, '' ,'bavosaCrestata.jpeg' ),
+('Parablennius gattorugine', 'Bavosa Ruggine', 'Blenniidae', '21', '28', 'marrone,beige', 1235, 11, '' ,'bavosaRuggine.jpeg' ),
+('Ophioblennius atlanticus', 'Bavosa Atlantica', 'Blenniidae', '7', '8', 'marrone,verde', 76, 3, '' ,'bavosaAtlantica.jpeg' ),
+('Parablennius parvicornis', 'Bavosa Delle Pozze', 'Blenniidae', '10', '12', 'marrone,giallo', 1022, 11, '' ,'bavosaDellePozze.jpeg'),
+('Aidablennius sphynx', 'Bavosa Sfinge', 'Blenniidae', '6', '7', 'biege,giallo,azzurro', 1241, 16, '' ,'bavosaSfinge.jpeg'),
+('Pomacentrus moluccensis', 'Damigella limone', 'Pomacentridae', '6', '7', 'giallo, verde', 704, 3, '' ,'damigellaLimone.jpeg'),
+('Halichoeres scapularis', 'Labro a Zigzag', 'Labridae', '16', '21', 'rosa,azzurro,giallo', 1160, 20, '' ,'labroAZigzag.jpeg' ),
 ('Pomacanthus imperator', 'Angelo Imperatore', 'Pomacanthidae', '35', '49', 'blu,giallo,nero', 66, 6, '' ,'' ),
 ('Dactylopterus volitans', 'Civetta', 'Dactylopteridae', '40', '57', 'marrone,nero,blu', 78, 10, '' ,'' ),
 
