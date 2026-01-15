@@ -2,12 +2,12 @@
 namespace FM;
 
 class FMAccess {
-	/*
+	
 	private const HOST_DB = "localhost";
 	private const DATABASE_NAME = "agingill";
 	private const USERNAME = "agingill";
 	private const PASSWORD = "Pech3pheeXie4xen";
-	*/
+	
 	/*
 	private const HOST_DB = "localhost";
 	private const DATABASE_NAME = "fbalestr";
@@ -21,12 +21,12 @@ class FMAccess {
 	private const PASSWORD = "";
 	*/
 
-	
+	/*
 	private const HOST_DB = "localhost";
 	private const DATABASE_NAME = "vsolito";
 	private const USERNAME = "vsolito";
 	private const PASSWORD = "aeyoh5naiw7nah4S";
-	
+	*/
 
 	private $connection;
 
