@@ -212,7 +212,7 @@ h2 {
     font-size: clamp(1rem, 0.6rem + 1.8vw, 1.3rem);
 }
 
-.center {
+.position {
     text-align: center;
 }
 

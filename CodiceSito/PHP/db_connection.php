@@ -72,10 +72,10 @@ class FMAccess {
 
 		$result = $stmt->get_result();
 		$pesce = $result->fetch_assoc();
-		if($result) $result->free();
+		
+		$result->free();
 		$stmt->close();
 		return $pesce;
-
 	}
 	
 	public function existProvincia($provincia) {
