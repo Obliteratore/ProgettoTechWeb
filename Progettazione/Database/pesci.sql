@@ -94,13 +94,6 @@ CREATE TABLE dettaglio_ordini (
 	FOREIGN KEY (nome_latino) REFERENCES pesci(nome_latino)
 );
 
-INSERT INTO utenti (email) VALUES 
-("user"),
-("admin");
-
-INSERT INTO utenti_registrati (email, username, password, nome, cognome) VALUES 
-("user", "user", "$2y$12$IFJz2zWCnfITzHdQsM9xfenmiVxfnM1bwZQfvkWqba2xYsx2JH.qm", "user", "user");
-
 INSERT INTO famiglie (famiglia_latino, tipo_acqua)
 VALUES
 ('Apogoninae', 'marina'),
@@ -144,9 +137,6 @@ VALUES
 ('Megalamphodus erythrostigma', 'Tetra Macchia Rossa', 'Characidae', '6', '7', 'giallo,rosso,trasparente', 1400, 8, '' ,''),
 ('Pimelodus blochii', 'Pesce Gatto Di Bloch', 'Pimelodidae', '20', '26', 'beige', 1108, 2, '' ,'' ),
 ('Hoplisoma loretoense', 'Loreto Cory', 'Callichthyidae', '4', '4', 'trasparente', 312, 2, '' ,'' );
-
-INSERT INTO amministratori (email, username, password) VALUES 
-("admin", "admin", "$2y$12$OOplFRIw3hH4SWua.xyYReLgPeD8EA1LWFb5iECdidfMLhd3SjH9S");
 
 INSERT INTO provincie(sigla_provincia, nome) VALUES 
 ("AG", "Agrigento"),
