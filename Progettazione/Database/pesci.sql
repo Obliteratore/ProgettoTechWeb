@@ -2,57 +2,14 @@ USE vsolito;
 
 DROP TABLE IF EXISTS dettaglio_ordini;
 DROP TABLE IF EXISTS ordini;
-DROP TABLE IF EXISTS utenti_indirizzi;
-DROP TABLE IF EXISTS indirizzi;
-DROP TABLE IF EXISTS comuni;
-DROP TABLE IF EXISTS provincie;
 DROP TABLE IF EXISTS pesci;
 DROP TABLE IF EXISTS famiglie;
 DROP TABLE IF EXISTS amministratori;
 DROP TABLE IF EXISTS utenti_registrati;
 DROP TABLE IF EXISTS utenti;
-
-CREATE TABLE utenti(
-	email VARCHAR(255) PRIMARY KEY
-);
-
-CREATE TABLE utenti_registrati(
-	email VARCHAR(255) PRIMARY KEY,
-	username VARCHAR(30) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
-    nome VARCHAR(50) NOT NULL,
-    cognome VARCHAR(50) NOT NULL,
-	FOREIGN KEY (email) REFERENCES utenti(email) ON DELETE CASCADE
-);
-
-CREATE TABLE amministratori (
-    email VARCHAR(255) PRIMARY KEY,
-    username VARCHAR(30) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
-	FOREIGN KEY (email) REFERENCES utenti(email) ON DELETE CASCADE
-);
-
-CREATE TABLE famiglie (
-    famiglia_latino VARCHAR(100) PRIMARY KEY,
-    famiglia_comune VARCHAR(100) NOT NULL,
-    tipo_acqua ENUM('dolce', 'marina') NOT NULL
-);
-
-CREATE TABLE pesci (
-    nome_latino VARCHAR(150) PRIMARY KEY,
-    nome_comune VARCHAR(150) NOT NULL UNIQUE,
-    famiglia VARCHAR(100) NOT NULL,
-    dimensione VARCHAR(15),
-    volume_minimo INT NOT NULL,
-    colori VARCHAR(100) NOT NULL,
-    prezzo DECIMAL(8,2) NOT NULL,
-    sconto_percentuale TINYINT UNSIGNED DEFAULT 0,
-    disponibilita INT NOT NULL,
-    descrizione TEXT NOT NULL,
-    immagine VARCHAR(255) NOT NULL,
-	data_inserimento DATE NOT NULL DEFAULT CURRENT_DATE,
-	FOREIGN KEY (famiglia) REFERENCES famiglie(famiglia_latino) ON DELETE CASCADE
-);
+DROP TABLE IF EXISTS indirizzi;
+DROP TABLE IF EXISTS comuni;
+DROP TABLE IF EXISTS provincie;
 
 CREATE TABLE provincie (
 	sigla_provincia CHAR(2) PRIMARY KEY,
@@ -75,12 +32,47 @@ CREATE TABLE indirizzi (
 	FOREIGN KEY (id_comune) REFERENCES comuni(id_comune)
 );
 
-CREATE TABLE utenti_indirizzi (
-    email VARCHAR(255),
-    id_indirizzo INT,
-    PRIMARY KEY (email, id_indirizzo),
-	FOREIGN KEY (email) REFERENCES utenti(email) ON DELETE CASCADE,
-	FOREIGN KEY (id_indirizzo) REFERENCES indirizzi(id_indirizzo) ON DELETE CASCADE
+CREATE TABLE utenti(
+	email VARCHAR(255) PRIMARY KEY,
+	id_indirizzo INT NULL,
+	FOREIGN KEY (id_indirizzo) REFERENCES indirizzi(id_indirizzo) ON DELETE SET NULL
+);
+
+CREATE TABLE utenti_registrati(
+	email VARCHAR(255) PRIMARY KEY,
+	username VARCHAR(30) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    nome VARCHAR(50) NOT NULL,
+    cognome VARCHAR(50) NOT NULL,
+	FOREIGN KEY (email) REFERENCES utenti(email) ON DELETE CASCADE
+);
+
+CREATE TABLE amministratori (
+    email VARCHAR(255) PRIMARY KEY,
+    username VARCHAR(30) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+	FOREIGN KEY (email) REFERENCES utenti(email) ON DELETE CASCADE
+);
+
+CREATE TABLE famiglie (
+    famiglia_latino VARCHAR(100) PRIMARY KEY,
+    tipo_acqua ENUM('dolce', 'marina') NOT NULL
+);
+
+CREATE TABLE pesci (
+    nome_latino VARCHAR(150) PRIMARY KEY,
+    nome_comune VARCHAR(150) NOT NULL UNIQUE,
+    famiglia VARCHAR(100) NOT NULL,
+    dimensione VARCHAR(15),
+    volume_minimo INT NOT NULL,
+    colori VARCHAR(100) NOT NULL,
+    prezzo DECIMAL(8,2) NOT NULL,
+    sconto_percentuale TINYINT UNSIGNED DEFAULT 0,
+    disponibilita INT NOT NULL,
+    descrizione TEXT NOT NULL,
+    immagine VARCHAR(255) NOT NULL,
+	data_inserimento DATE NOT NULL DEFAULT CURRENT_DATE,
+	FOREIGN KEY (famiglia) REFERENCES famiglie(famiglia_latino) ON DELETE CASCADE
 );
 
 CREATE TABLE ordini (
@@ -102,15 +94,49 @@ CREATE TABLE dettaglio_ordini (
 	FOREIGN KEY (nome_latino) REFERENCES pesci(nome_latino)
 );
 
-INSERT INTO utenti (email) VALUES 
-("user"),
-("admin");
+INSERT INTO famiglie (famiglia_latino, tipo_acqua)
+VALUES
+('Apogoninae', 'marina'),
+('Blenniidae', 'marina' ),
+('Pomacentridae', 'marina'),
+('Labridae', 'marina'),
+('Pomacanthidae','marina'),
+('Dactylopteridae', 'marina'),
 
-INSERT INTO utenti_registrati (email, username, password, nome, cognome) VALUES 
-("user", "user", "$2y$12$IFJz2zWCnfITzHdQsM9xfenmiVxfnM1bwZQfvkWqba2xYsx2JH.qm", "user", "user");
+('Pimelodidae','dolce'),
+('Cichlidae', 'dolce' ),
+('Characidae', 'dolce'),
+('Ctenoluciidae', 'dolce'),
+('Lebiasinidae', 'dolce' ),
+('Doradidae', 'dolce'),
+('Callichthyidae', 'dolce');
 
-INSERT INTO amministratori (email, username, password) VALUES 
-("admin", "admin", "$2y$12$OOplFRIw3hH4SWua.xyYReLgPeD8EA1LWFb5iECdidfMLhd3SjH9S");
+INSERT INTO pesci 
+(nome_latino, nome_comune, famiglia, dimensione, volume_minimo, colori, prezzo, disponibilita, descrizione, immagine) 
+VALUES 
+('Ostorhinchus chrysopomus', 'Cardinale Branchia Maculata', 'Apogoninae', '8', '9', 'beige,arancione,azzurro', 548, 13, '' ,'' ),
+('Cheilodipterus quinquelineatus', 'Cardinale Pentastriato', 'Apogoninae', '11', '13', 'nero,giallo', 863,  9,'' ,'' ),
+('Scartella cristata', 'Bavosa Crestata', 'Blenniidae', '10', '12', 'marrone,beige', 1448, 8, '' ,'' ),
+('Parablennius gattorugine', 'Bavosa Ruggine', 'Blenniidae', '21', '28', 'marrone,beige', 1235, 11, '' ,'' ),
+('Ophioblennius atlanticus', 'Bavosa Atlantica', 'Blenniidae', '7', '8', 'marrone,verde', 76, 3, '' ,'' ),
+('Parablennius parvicornis', 'Bavosa Delle Pozze', 'Blenniidae', '10', '12', 'marrone,giallo', 1022, 11, '' ,''),
+('Aidablennius sphynx', 'Bavosa Sfinge', 'Blenniidae', '6', '7', 'biege,giallo,azzurro', 1241, 16, '' ,''),
+('Pomacentrus moluccensis', 'Damigella limone', 'Pomacentridae', '6', '7', 'giallo, verde', 704, 3, '' ,''),
+('Halichoeres scapularis', 'Labro a Zigzag', 'Labridae', '16', '21', 'rosa,azzurro,giallo', 1160, 20, '' ,'' ),
+('Pomacanthus imperator', 'Angelo Imperatore', 'Pomacanthidae', '35', '49', 'blu,giallo,nero', 66, 6, '' ,'' ),
+('Dactylopterus volitans', 'Civetta', 'Dactylopteridae', '40', '57', 'marrone,nero,blu', 78, 10, '' ,'' ),
+
+('Cheirocerus eques', 'Pippo', 'Pimelodidae', '18', '24', 'trasparente', 1256, 2, '' ,'' ),
+('Pterophyllum scalare', 'Angelo', 'Cichlidae', '15', '19', 'nero,trasparente', 601, 4, '' ,'' ),
+('Roeboides affinis', 'Topolino', 'Characidae', '6', '7', 'grigio,trasparente', 1437, 11, '' ,'' ),
+('Boulengerella maculata', 'Agujeta', 'Ctenoluciidae', '32', '45', 'grigio,nero,trasparente', 1042, 5, '' ,'' ),
+('Lebiasina elongata', 'Paperino', 'Lebiasinidae', '9', '11', 'nero,beige,grigio', 783, 18, '' ,'' ),
+('Amblydoras nauticus', 'Gastone', 'Doradidae', '8', '9', 'nero,beige', 937, 7, '' ,'' ),
+('Hemigrammus bellottii', 'Paperone', 'Characidae', '2', '2', 'trasparente,grigio', 1007, 2, '' ,''),
+('Copella nattereri', 'Tetra Maculata', 'Lebiasinidae', '4', '4', 'nero,grigio,rosso', 578, 3, '' ,''),
+('Megalamphodus erythrostigma', 'Tetra Macchia Rossa', 'Characidae', '6', '7', 'giallo,rosso,trasparente', 1400, 8, '' ,''),
+('Pimelodus blochii', 'Pesce Gatto Di Bloch', 'Pimelodidae', '20', '26', 'beige', 1108, 2, '' ,'' ),
+('Hoplisoma loretoense', 'Loreto Cory', 'Callichthyidae', '4', '4', 'trasparente', 312, 2, '' ,'' );
 
 INSERT INTO provincie(sigla_provincia, nome) VALUES 
 ("AG", "Agrigento"),
@@ -8290,3 +8316,22 @@ INSERT INTO comuni (nome, sigla_provincia) VALUES
 ("Zumpano", "CS"),
 ("Zungoli", "AV"),
 ("Zungri", "VV");
+
+START TRANSACTION;
+
+INSERT INTO indirizzi (sigla_provincia, id_comune, via) 
+SELECT 'PD', id_comune, 'Via Trieste 63' FROM comuni WHERE sigla_provincia = 'PD' AND nome = 'Padova';
+
+SET @id_indirizzo = LAST_INSERT_ID();
+
+INSERT INTO utenti (email, id_indirizzo) VALUES 
+("user", @id_indirizzo),
+("admin", NULL);
+
+COMMIT;
+
+INSERT INTO utenti_registrati (email, username, password, nome, cognome) VALUES 
+("user", "user", "$2y$12$IFJz2zWCnfITzHdQsM9xfenmiVxfnM1bwZQfvkWqba2xYsx2JH.qm", "user", "user");
+
+INSERT INTO amministratori (email, username, password) VALUES 
+("admin", "admin", "$2y$12$OOplFRIw3hH4SWua.xyYReLgPeD8EA1LWFb5iECdidfMLhd3SjH9S");

@@ -21,8 +21,10 @@ try{
     $connection = new FMAccess();
     $connection->openConnection();
 
-    $datiUtente = $connection->getDatiUtenteRegistrato('user'); //$_SESSION['email']) al posto di 'user'
+    $datiUtente = $connection->getProfiloUtente('user'); //$_SESSION['email']) al posto di 'user'
     $nomeCognome = $datiUtente['nome'] . ' ' . $datiUtente['cognome'];
+    $username = $datiUtente['username'];
+    $indirizzo = $datiUtente['via'] . ', ' . $datiUtente['comune'] . ', <abbr title="' . $datiUtente['provincia'] . '">' . $datiUtente['sigla_provincia'] . '</abbr>';
 } catch(mysqli_sql_exception $e) {
     http_response_code(500);
     header('Location: ../HTML/error_500.html');
@@ -31,6 +33,6 @@ try{
     $connection->closeConnection();
 }
 
-$paginaHTML = str_replace('[nomeCognome]', $nomeCognome, $paginaHTML);
+$paginaHTML = str_replace(['[nomeCognome]', '[username]', '[indirizzo]'], [$nomeCognome, $username, $indirizzo], $paginaHTML);
 echo $paginaHTML;
 ?>

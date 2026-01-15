@@ -165,7 +165,7 @@ function setSummary(&$errors) {
     if (isset($errors['confermaPassword']))
         $errors['summary'] = ($errors['summary'] ?? '') . '<li><a href="#confermaPassword">La conferma <span lang="en">password</span> non è valida.</a></li>';
 }
-
+    
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if(session_status() !== PHP_SESSION_ACTIVE)
         session_start();
@@ -191,11 +191,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             $connection->beginTransaction();
             try {
-                $connection->insertUtente($values['email']);
-                $connection->insertUtenteRegistrato($values['email'], $values['username'], $values['password'], $values['nome'], $values['cognome']);
-
                 $idIndirizzo = $connection->insertIndirizzo($values['provincia'], $values['comune'], $values['via']);
-                $connection->insertUtenteRegistratoIndirizzo($values['email'], $idIndirizzo);
+
+                $connection->insertUtente($values['email'], $idIndirizzo);
+                $connection->insertUtenteRegistrato($values['email'], $values['username'], $values['password'], $values['nome'], $values['cognome']);
 
                 $connection->commit();
             } catch(mysqli_sql_exception $e) {
@@ -204,7 +203,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
             session_regenerate_id(true); 
             $_SESSION['email'] = $values['email'];
-            header('Location: ../HTML/profilo.html');
+            header('Location: profilo.php');
             exit;
         }
     } catch(mysqli_sql_exception $e) {
