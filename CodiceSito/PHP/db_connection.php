@@ -42,5 +42,18 @@ class FMAccess {
 		$result->free();
 		return $comuni;
 	}
+
+	public function getPesce($nome_latino) {
+		$query = "SELECT p.* , f.tipo_acqua FROM pesci p JOIN famiglie f ON p.famiglia = f.famiglia_latino WHERE nome_latino = ?";
+		$stmt = ($this->connection)->prepare($query);
+		$stmt->bind_param("s", $nome_latino);
+		$stmt->execute();
+
+		$result = $stmt->get_result();
+		$pesce = $result->fetch_assoc();
+		if($result) $result->free();
+		$stmt->close();
+		return $pesce;
+	}
 }
 ?>
