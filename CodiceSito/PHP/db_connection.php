@@ -4,9 +4,9 @@ namespace FM;
 class FMAccess {
 
 	private const HOST_DB = "localhost";
-	private const DATABASE_NAME = "fbalestr";
-	private const USERNAME = "fbalestr";
-	private const PASSWORD = "Iemao4Chawiechoo";
+	private const DATABASE_NAME = "agingill";
+	private const USERNAME = "agingill";
+	private const PASSWORD = "Pech3pheeXie4xen";
 
 	private $connection;
 
@@ -256,5 +256,58 @@ class FMAccess {
 
 		return $ordini;
 	}
+
+	public function getPesci($condizioni, $parametri) {
+
+		$sql = "SELECT * FROM pesci";
+
+		if (!empty($condizioni)) {
+			$sql .= " WHERE " . implode(" AND ", $condizioni);
+		}
+	
+		$stmt = $this->connection->prepare($sql);
+	
+		// se ci sono parametri, li bindiamo tutti come stringhe semplicemente
+		if (!empty($parametri)) {
+			// crea una stringa di 's' lunga quanto il numero di parametri
+			$types = str_repeat('s', count($parametri));
+			$stmt->bind_param($types, ...$parametri);
+		}
+	
+		$stmt->execute();
+		$result = $stmt->get_result();
+	
+		$pesci = [];
+		if($result->num_rows !== 0) {
+			while($row = $result->fetch_assoc()) {
+				$pesci[] = $row;
+			}
+		}
+	
+		$result->free();
+		$stmt->close();
+	
+		return $pesci;
+	}
+}
+
+public function getPiuVenduti(PDO $pdo, int $limit = 4): array {
+	$sql = "SELECT nome, prezzo, immagine FROM pesci ORDER BY vendite DESC LIMIT :limit";
+
+	$stmt = $pdo->prepare($sql);
+	$stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+	$stmt->execute();
+
+	return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+public function getNuovi(PDO $pdo, int $limit = 4): array {
+	$sql = "SELECT nome, prezzo, immagine FROM pesci ORDER BY data_aggiunta DESC LIMIT :limit";
+
+	$stmt = $pdo->prepare($sql);
+	$stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+	$stmt->execute();
+
+	return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 ?>

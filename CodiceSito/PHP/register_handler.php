@@ -165,7 +165,7 @@ function setSummary(&$errors) {
     if (isset($errors['confermaPassword']))
         $errors['summary'] = ($errors['summary'] ?? '') . '<li><a href="#confermaPassword">La conferma <span lang="en">password</span> non è valida.</a></li>';
 }
-
+    
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if(session_status() !== PHP_SESSION_ACTIVE)
         session_start();

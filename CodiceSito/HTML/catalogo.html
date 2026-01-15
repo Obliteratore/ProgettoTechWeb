@@ -27,11 +27,11 @@
                 </nav>
 
                 <div>
-                    <a id="cart-link" href="carrello.html" aria-label="Vai al carrello"><img src="../../Asset/Immagini/Icone/shopping_cart.svg" alt="" aria-hidden="true"/></a>
+                    <a id="cart-link" href="carrello.html" aria-label="Vai al carrello"><img src="../IMMAGINI/Icone/famiglia icone/shopping-cart.svg" alt="" aria-hidden="true"/></a>
                     <button id="hamburger-menu-btn" aria-controls="hamburger-menu" aria-expanded="false">
-                        <img id="open-hamburger-menu" src="../../Asset/Immagini/Icone/menu.svg" alt="" aria-hidden="true"/>
+                        <img id="open-hamburger-menu" src="../IMMAGINI/Icone/famiglia icone/menu-burger.svg" alt="" aria-hidden="true"/>
                         <span class="screen-reader">Apri l'<span lang="en">hamburger</span> menù</span>
-                        <img id="close-hamburger-menu" src="../../Asset/Immagini/Icone/close.svg" alt="" aria-hidden="true"/>
+                        <img id="close-hamburger-menu" src="../IMMAGINI/Icone/famiglia icone/cross.svg" alt="" aria-hidden="true"/>
                         <span class="screen-reader">Chiudi l'<span lang="en">hamburger</span> menù</span>
                     </button>
                 </div>
@@ -56,7 +56,7 @@
         </nav>
 
     <main id="main-content">
-        <form id="form-container" action="catalogo.html" method="get">
+        <form id="form-container" action="../PHP/catalogo.php" method="get">
             
             <div class="search-bar">
                 <label for="search">Cerca pesce:</label>    
@@ -69,20 +69,20 @@
                 <legend>Filtri</legend>
 
                 <label>
-                    <input type="checkbox" name="habitat" value="mare">
+                    <input type="checkbox" name=" tipo_acqua" value="marina">
                     Acqua salata
                 </label>
 
                 <label>
-                    <input type="checkbox" name="habitat" value="dolce">
+                    <input type="checkbox" name=" tipo_acqua" value="dolce">
                     Acqua dolce
                 </label>
 
                 <div class="price-filter">
-                <label for="prezzo-min">Prezzo minimo:</label>
-                <input type="number" id="prezzo-min" name="prezzo-min" min="0" max="500" value="0">€
-                <label for="prezzo-max">Prezzo massimo:</label>
-                <input type="number" id="prezzo-max" name="prezzo-max" min="0" max="500" value="500">€
+                <label for="prezzo_min">Prezzo minimo:</label>
+                <input type="number" id="prezzo_min" name="prezzo_min" min="0" max="500" value="0">€
+                <label for="prezzo_max">Prezzo massimo:</label>
+                <input type="number" id="prezzo_max" name="prezzo_max" min="0" max="500" value="500">€
                 </div>
 
                  <div class="special-filter">
@@ -112,7 +112,7 @@
                 </div>
         </form>
     </main>
-
+        [listaPesci]
     <footer>
         <a href="#top" class="back-to-top" aria-label="Torna all'inizio">↑</a>
     </footer>
