@@ -311,9 +311,6 @@ class FMAccess {
 	}
 
 	public function getPiuVenduti(PDO $pdo, int $limit = 4): array {
-	$sql = "SELECT nome, prezzo, immagine FROM pesci ORDER BY vendite DESC LIMIT :limit";
-
-	public function getPiuVenduti(PDO $pdo, int $limit = 4): array {
 		$sql = "SELECT nome, prezzo, immagine FROM pesci ORDER BY vendite DESC LIMIT :limit";
 
 		$stmt = $pdo->prepare($sql);
@@ -341,6 +338,6 @@ class FMAccess {
 		$stmt->execute();
 
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
-	}
+	}	
 }
 ?>
