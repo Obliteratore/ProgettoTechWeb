@@ -121,7 +121,7 @@ VALUES
 ('Ophioblennius atlanticus', 'Bavosa Atlantica', 'Blenniidae', '7', '8', 'marrone,verde', 76, 3, '' ,'bavosaAtlantica.jpeg' ),
 ('Parablennius parvicornis', 'Bavosa Delle Pozze', 'Blenniidae', '10', '12', 'marrone,giallo', 1022, 11, '' ,'bavosaDellePozze.jpeg'),
 ('Aidablennius sphynx', 'Bavosa Sfinge', 'Blenniidae', '6', '7', 'biege,giallo,azzurro', 1241, 16, '' ,'bavosaSfinge.jpeg'),
-('Pomacentrus moluccensis', 'Damigella limone', 'Pomacentridae', '6', '7', 'giallo, verde', 704, 3, '' ,'damigellaLimone.jpeg'),
+('Pomacentrus moluccensis', 'Damigella limone', 'Pomacentridae', '6', '7', 'giallo,verde', 704, 3, '' ,'damigellaLimone.jpeg'),
 ('Halichoeres scapularis', 'Labro a Zigzag', 'Labridae', '16', '21', 'rosa,azzurro,giallo', 1160, 20, '' ,'labroAZigzag.jpeg' ),
 ('Pomacanthus imperator', 'Angelo Imperatore', 'Pomacanthidae', '35', '49', 'blu,giallo,nero', 66, 6, '' ,'angeloImperatore.jpeg' ),
 ('Dactylopterus volitans', 'Civetta', 'Dactylopteridae', '40', '57', 'marrone,nero,blu', 78, 10, '' ,'civetta.jpeg' ),
