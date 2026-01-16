@@ -5,14 +5,28 @@
 
 :root {
     --color-text: #fff;
-    --color-background-bottoni: #2c6cb3;
+    --color-background-bottoni: #2470c6;
+    --color-background-card: rgba(53, 105, 140, 0.25);
     --color-background-breadcrumb: ;
-    --color-background-header: ;
+    --color-background-header: rgba(38, 125, 183, 0.77);
     --color-overlay-card: rgba(0, 0, 0, 0.6);
-    --color-back-to-top: rgba(0, 0, 0, 0.411); 
+    --color-background-back-to-top: rgba(0, 0, 0, 0.411); 
     --color-link: #fff;
     --link-visited: #fff;
     --color-error: ;
+}
+
+/*OGNI SEZIONE DEVE AVERE ALMENO QUESTI ATTRIBUTI*/
+.main-section, .header-content, #breadcrumb, 
+.form-container, #form-container-catalogo,
+.main-section-pesce {
+    background: var(--color-background-card);
+    border-radius: 20px;
+    border: 1px solid #ffffff66;
+    backdrop-filter: blur(5px) saturate(120%);
+    box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.15),
+    inset 0 1px 1px rgba(255, 255, 255, 0.6);
 }
 
 html {
@@ -27,8 +41,7 @@ html {
 }
 
 body {
-    background: linear-gradient(135deg, rgb(0, 35, 89) 0%, rgb(0, 104, 158) 100%);
-    
+    background: linear-gradient(135deg, rgb(0, 35, 89) 0%, rgb(0, 104, 158) 100%);  
     background-image: url("../IMMAGINI/Sfondi_Sito/sfondoScurito.jpg");
     background-repeat: no-repeat;
     background-position: center;
@@ -92,6 +105,8 @@ header{
     flex-wrap: wrap;
     padding: 1em;
     font-size: clamp(1rem, 1rem + 0.2vw, 1.2rem);
+    backdrop-filter: blur(20px);
+    background: var(--color-background-header);
 }
 
 .header-content img {
@@ -214,21 +229,6 @@ h2 {
     margin-left: 0.5em;
 }
 
-.main-section, .header-content, #breadcrumb, .form-container {
-    background: rgba(53, 105, 140, 0.25);
-    border-radius: 20px;
-    border: 1px solid #ffffff66;
-    backdrop-filter: blur(5px) saturate(120%);
-    box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.15),
-    inset 0 1px 1px rgba(255, 255, 255, 0.6);
-}
-
-.header-content {
-    backdrop-filter: blur(20px);
-    background: rgba(38, 125, 183, 0.77);
-}
-
 .main-section {
     margin-top: 1em;
     margin-bottom: 1em;
@@ -331,7 +331,7 @@ h2 {
     align-items: center;
     justify-content: center;
 
-    background: var(--color-back-to-top);
+    background: var(--color-background-back-to-top);
     text-decoration: none;
 }
 
@@ -342,9 +342,6 @@ SEZIONE PESCE.HTML
 */
 
 .main-section-pesce {
-    background: rgba(53, 105, 140, 0.25);
-    border-radius: 20px;
-    border: 1px solid #ffffff66;
     padding: 1.5em;
     margin: 1em 0.5em;
 }
@@ -541,22 +538,13 @@ SEZIONE CATALOGO.HTML
     outline: none;
     border: 3px solid #4a90e2;
 }
-#form-container {
+#form-container-catalogo {
     display:flex;
     flex-direction: column;
     gap: 1em;
     margin: 1em auto;
     padding: 1em;
     max-width: 130em;
-
-    background: rgba(255, 255, 255, 0.25);
-    border-radius: 20px;
-    border: 1px solid #ffffff66;
-    backdrop-filter: blur(5px) saturate(120%);
-
-    box-shadow:
-        0 8px 32px rgba(0, 0, 0, 0.15),
-        inset 0 1px 1px rgba(255, 255, 255, 0.6);
 }
 
 /* FILTRI */
@@ -613,7 +601,7 @@ SEZIONE CATALOGO.HTML
     padding: 0.5em 1em;
     border-radius: 10px;
     border: none;
-    background-color: #4a90e2;
+    background-color: var(--color-background-bottoni);
     color: white;
     cursor: pointer;
     font-weight: bold;
