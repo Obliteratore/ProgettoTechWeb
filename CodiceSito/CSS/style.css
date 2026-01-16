@@ -4,10 +4,12 @@
 }
 
 :root {
-    --color-text: ;
-    --color-background: ;
+    --color-text: #fff;
+    --color-background-bottoni: #2c6cb3;
     --color-background-breadcrumb: ;
     --color-background-header: ;
+    --color-overlay-card: rgba(0, 0, 0, 0.6);
+    --color-back-to-top: rgba(0, 0, 0, 0.411); 
     --color-link: #fff;
     --link-visited: #fff;
     --color-error: ;
@@ -20,18 +22,7 @@ html {
     font-optical-sizing: auto;
     font-weight: 500;
     font-style: normal;
-    /*AERO PIù INTENSO
-      color: #fff; Colore va spostato in altre sezioni
-      text-shadow:
-      0 0 4px rgba(255,255,255,0.4),
-      0 0 8px rgba(255,255,255,0.2); */
-    /*AERO PIù PIACEVOLE*/
-    color: #f8fdff; /*Colore va spostato in altre sezioni*/
-    /*text-shadow:
-      0 1px 2px rgba(0,0,0,0.25),
-      0 0 6px rgba(180,220,255,0.6),
-      0 0 14px rgba(120,190,255,0.35);*/
-
+    color: var(--color-text); /*Colore va spostato in altre sezioni*/
     scroll-behavior: smooth;
 }
 
@@ -45,8 +36,8 @@ body {
     background-attachment: fixed;
 }
 
-a { /*Stile per i link DA FARE*/
-    color: var(--text);
+a {
+    color: var(--color-link);
     text-underline-offset: 0.1em;
     text-decoration: underline;
 }
@@ -171,6 +162,7 @@ SEZIONE MENU
 SEZIONE BREADCRUMB
 =======================================
 */
+
 #breadcrumb {
     width: fit-content;
     margin: 0 auto;
@@ -288,8 +280,7 @@ h2 {
     left: 0;
     width: 100%;               /* da sinistra a destra */
     height: 25%;               /* 1/4 della card */
-    background: rgba(0, 0, 0, 0.6); /* nero trasparente */
-    color: white;
+    background: var(--color-overlay-card);
   
     display: flex;
     align-items: center;
@@ -311,24 +302,16 @@ h2 {
     top: 0px;
     right: 0px;
     
-    /*width: 70px;
-    height: 50px;
-    
-    background-image: url("../../Asset/Immagini/Icone/fish.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;*/
     
     width: 35%;               /* da sinistra a destra */
     height: 15%;               /* 1/4 della card */
-    background: rgba(0, 0, 0, 0.6); /* nero trasparente */
+    background: var(--color-overlay-card); 
     border-bottom-left-radius: 10px;
 
     display: flex;
     align-items: center;
     justify-content: center;
     
-    color: white;
     font-size: clamp(0.875em, 2vw, 3em);
     font-size: clamp(0.875em, 8cqw, 3em);
     font-weight: bold;
@@ -348,9 +331,15 @@ h2 {
     align-items: center;
     justify-content: center;
 
-    background: rgba(0, 0, 0, 0.411);
+    background: var(--color-back-to-top);
     text-decoration: none;
 }
+
+/*
+=======================================
+SEZIONE PESCE.HTML
+=======================================
+*/
 
 .main-section-pesce {
     background: rgba(53, 105, 140, 0.25);
@@ -358,7 +347,6 @@ h2 {
     border: 1px solid #ffffff66;
     padding: 1.5em;
     margin: 1em 0.5em;
-    color: #f8fdfff9;
 }
 
 
@@ -407,7 +395,6 @@ h2 {
 .sezione-acquisto .prezzo {
     font-size: 1.8rem;
     font-weight: bold;
-    color: #fff;
 }
 
 .sezione-acquisto .disponibilita {
@@ -447,7 +434,7 @@ h2 {
     border-radius: 100%;
     border: 1px solid #fff;
     background-color: rgba(255, 255, 255, 0.06);
-    color: #fff;
+    color: var(--color-text);
     font-size: 1.5rem;
     cursor: pointer;
     display: flex;
@@ -460,8 +447,8 @@ h2 {
     width: 100%;
     max-width: 300px;
     padding: 0.8em;
-    background-color: #2c6cb3;
-    color: white;
+    background-color: var(--color-background-bottoni);
+    color: var(--color-text);
     border: none;
     border-radius: 10px;
     font-size: 1rem;
@@ -525,7 +512,13 @@ h2 {
 
 }
 
-/* BARRA DI RICERCA */
+/*
+=======================================
+SEZIONE CATALOGO.HTML
+=======================================
+*/
+
+/*BARRA RICERCA*/
 .search-bar {
     display: flex;
     flex-direction: column;
@@ -656,9 +649,15 @@ h2 {
     filter: invert(100%);
 }
 
+
+/*
+=======================================
+SEZIONE CHISIAMO.HMTL
+=======================================
+*/
 .membro {
     display: grid;
-   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     gap: 15px;            
     margin: 1.5em auto;    
     max-width: 1000px;    
