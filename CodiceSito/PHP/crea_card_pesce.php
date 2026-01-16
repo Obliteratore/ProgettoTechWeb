@@ -7,10 +7,8 @@ function crea_card_pesce(array $pesci) : string {
             $immagine = htmlspecialchars($pesce['immagine'] ?? 'default.jpg');
             $nome_comune = htmlspecialchars($pesce['nome_comune'] ?? '');
 
-            $src = '/agingill/CodiceSito/IMMAGINI/Pesci/' . $immagine;
-
             $stringaPesci .= '<li class="card-pesce">';
-            $stringaPesci .= '<img src="' . $src . '" alt="' . $nome_comune . '">';
+            $stringaPesci .= '<img src="' . $immagine . '" alt="' . $nome_comune . '">';
             $stringaPesci .= '<div class="dati-pesce">';
             $stringaPesci .= '<p class="nome">' . $nome_comune . '</p>';
             $stringaPesci .= '</div>';

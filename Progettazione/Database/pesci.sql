@@ -1,4 +1,4 @@
-USE fbalestr;
+USE agingill;
 
 DROP TABLE IF EXISTS dettaglio_ordini;
 DROP TABLE IF EXISTS ordini;
@@ -114,29 +114,29 @@ VALUES
 INSERT INTO pesci 
 (nome_latino, nome_comune, famiglia, dimensione, volume_minimo, colori, prezzo, disponibilita, descrizione, immagine) 
 VALUES 
-('Ostorhinchus chrysopomus', 'Cardinale Branchia Maculata', 'Apogoninae', '8', '9', 'beige,arancione,azzurro', 548, 13, '' ,'cardinaleBranchiaMaculata.jpeg' ),
-('Cheilodipterus quinquelineatus', 'Cardinale Pentastriato', 'Apogoninae', '11', '13', 'nero,giallo', 863,  9,'' ,'cardinalePentastriato.jpeg' ),
-('Scartella cristata', 'Bavosa Crestata', 'Blenniidae', '10', '12', 'marrone,beige', 1448, 8, '' ,'bavosaCrestata.jpeg' ),
-('Parablennius gattorugine', 'Bavosa Ruggine', 'Blenniidae', '21', '28', 'marrone,beige', 1235, 11, '' ,'bavosaRuggine.jpeg' ),
-('Ophioblennius atlanticus', 'Bavosa Atlantica', 'Blenniidae', '7', '8', 'marrone,verde', 76, 3, '' ,'bavosaAtlantica.jpeg' ),
-('Parablennius parvicornis', 'Bavosa Delle Pozze', 'Blenniidae', '10', '12', 'marrone,giallo', 1022, 11, '' ,'bavosaDellePozze.jpeg'),
-('Aidablennius sphynx', 'Bavosa Sfinge', 'Blenniidae', '6', '7', 'biege,giallo,azzurro', 1241, 16, '' ,'bavosaSfinge.jpeg'),
-('Pomacentrus moluccensis', 'Damigella limone', 'Pomacentridae', '6', '7', 'giallo,verde', 704, 3, '' ,'damigellaLimone.jpeg'),
-('Halichoeres scapularis', 'Labro a Zigzag', 'Labridae', '16', '21', 'rosa,azzurro,giallo', 1160, 20, '' ,'labroAZigzag.jpeg' ),
-('Pomacanthus imperator', 'Angelo Imperatore', 'Pomacanthidae', '35', '49', 'blu,giallo,nero', 66, 6, '' ,'angeloImperatore.jpeg' ),
-('Dactylopterus volitans', 'Civetta', 'Dactylopteridae', '40', '57', 'marrone,nero,blu', 78, 10, '' ,'civetta.jpeg' ),
+('Ostorhinchus chrysopomus', 'Cardinale Branchia Maculata', 'Apogoninae', '8', '9', 'beige,arancione,azzurro', 548, 13, '' ,'../IMMAGINI/Pesci/cardinaleBranchiaMaculata.jpeg' ),
+('Cheilodipterus quinquelineatus', 'Cardinale Pentastriato', 'Apogoninae', '11', '13', 'nero,giallo', 863,  9,'' ,'../IMMAGINI/Pesci/cardinalePentastriato.jpeg' ),
+('Scartella cristata', 'Bavosa Crestata', 'Blenniidae', '10', '12', 'marrone,beige', 1448, 8, '' ,'../IMMAGINI/Pesci/bavosaCrestata.jpeg' ),
+('Parablennius gattorugine', 'Bavosa Ruggine', 'Blenniidae', '21', '28', 'marrone,beige', 1235, 11, '' ,'../IMMAGINI/Pesci/bavosaRuggine.jpeg' ),
+('Ophioblennius atlanticus', 'Bavosa Atlantica', 'Blenniidae', '7', '8', 'marrone,verde', 76, 3, '' ,'../IMMAGINI/Pesci/bavosaAtlantica.jpeg' ),
+('Parablennius parvicornis', 'Bavosa Delle Pozze', 'Blenniidae', '10', '12', 'marrone,giallo', 1022, 11, '' ,'../IMMAGINI/Pesci/bavosaDellePozze.jpeg'),
+('Aidablennius sphynx', 'Bavosa Sfinge', 'Blenniidae', '6', '7', 'biege,giallo,azzurro', 1241, 16, '' ,'../IMMAGINI/Pesci/bavosaSfinge.jpeg'),
+('Pomacentrus moluccensis', 'Damigella limone', 'Pomacentridae', '6', '7', 'giallo,verde', 704, 3, '' ,'../IMMAGINI/Pesci/damigellaLimone.jpeg'),
+('Halichoeres scapularis', 'Labro a Zigzag', 'Labridae', '16', '21', 'rosa,azzurro,giallo', 1160, 20, '' ,'../IMMAGINI/Pesci/labroAZigzag.jpeg' ),
+('Pomacanthus imperator', 'Angelo Imperatore', 'Pomacanthidae', '35', '49', 'blu,giallo,nero', 66, 6, '' ,'../IMMAGINI/Pesci/angeloImperatore.jpeg' ),
+('Dactylopterus volitans', 'Civetta', 'Dactylopteridae', '40', '57', 'marrone,nero,blu', 78, 10, '' ,'../IMMAGINI/Pesci/civetta.jpeg' ),
 
-('Cheirocerus eques', 'Pippo', 'Pimelodidae', '18', '24', 'trasparente', 1256, 2, '' ,'cheirocerusEques.jpg' ),
-('Pterophyllum scalare', 'Angelo', 'Cichlidae', '15', '19', 'nero,trasparente', 601, 4, '' ,'angelo.jpg' ),
-('Roeboides affinis', 'Topolino', 'Characidae', '6', '7', 'grigio,trasparente', 1437, 11, '' ,'roeboidesAffinis.jpeg' ),
-('Boulengerella maculata', 'Agujeta', 'Ctenoluciidae', '32', '45', 'grigio,nero,trasparente', 1042, 5, '' ,'agujeta.jpg' ),
-('Lebiasina elongata', 'Paperino', 'Lebiasinidae', '9', '11', 'nero,beige,grigio', 783, 18, '' ,'lebiasinaElongata.jpeg' ),
-('Amblydoras nauticus', 'Gastone', 'Doradidae', '8', '9', 'nero,beige', 937, 7, '' ,'amblydorasNauticus.jpeg' ),
-('Hemigrammus bellottii', 'Paperone', 'Characidae', '2', '2', 'trasparente,grigio', 1007, 2, '' ,'hemigrammusBellottii.jpg'),
-('Copella nattereri', 'Tetra Maculata', 'Lebiasinidae', '4', '4', 'nero,grigio,rosso', 578, 3, '' ,'tetraMaculata.jpg'),
-('Megalamphodus erythrostigma', 'Tetra Macchia Rossa', 'Characidae', '6', '7', 'giallo,rosso,trasparente', 1400, 8, '' ,'tetraMacchiaRossa.jpg'),
-('Pimelodus blochii', 'Pesce Gatto Di Bloch', 'Pimelodidae', '20', '26', 'beige', 1108, 2, '' ,'pesceGattoDiBloch.jpg' ),
-('Hoplisoma loretoense', 'Loreto Cory', 'Callichthyidae', '4', '4', 'trasparente', 312, 2, '' ,'loretoCory.jpg');
+('Cheirocerus eques', 'Pippo', 'Pimelodidae', '18', '24', 'trasparente', 1256, 2, '' ,'../IMMAGINI/Pesci/cheirocerusEques.jpg' ),
+('Pterophyllum scalare', 'Angelo', 'Cichlidae', '15', '19', 'nero,trasparente', 601, 4, '' ,'../IMMAGINI/Pesci/angelo.jpg' ),
+('Roeboides affinis', 'Topolino', 'Characidae', '6', '7', 'grigio,trasparente', 1437, 11, '' ,'../IMMAGINI/Pesci/roeboidesAffinis.jpeg' ),
+('Boulengerella maculata', 'Agujeta', 'Ctenoluciidae', '32', '45', 'grigio,nero,trasparente', 1042, 5, '' ,'../IMMAGINI/Pesci/agujeta.jpg' ),
+('Lebiasina elongata', 'Paperino', 'Lebiasinidae', '9', '11', 'nero,beige,grigio', 783, 18, '' ,'../IMMAGINI/Pesci/lebiasinaElongata.jpeg' ),
+('Amblydoras nauticus', 'Gastone', 'Doradidae', '8', '9', 'nero,beige', 937, 7, '' ,'../IMMAGINI/Pesci/amblydorasNauticus.jpeg' ),
+('Hemigrammus bellottii', 'Paperone', 'Characidae', '2', '2', 'trasparente,grigio', 1007, 2, '' ,'../IMMAGINI/Pesci/hemigrammusBellottii.jpg'),
+('Copella nattereri', 'Tetra Maculata', 'Lebiasinidae', '4', '4', 'nero,grigio,rosso', 578, 3, '' ,'../IMMAGINI/Pesci/tetraMaculata.jpg'),
+('Megalamphodus erythrostigma', 'Tetra Macchia Rossa', 'Characidae', '6', '7', 'giallo,rosso,trasparente', 1400, 8, '' ,'../IMMAGINI/Pesci/tetraMacchiaRossa.jpg'),
+('Pimelodus blochii', 'Pesce Gatto Di Bloch', 'Pimelodidae', '20', '26', 'beige', 1108, 2, '' ,'../IMMAGINI/Pesci/pesceGattoDiBloch.jpg' ),
+('Hoplisoma loretoense', 'Loreto Cory', 'Callichthyidae', '4', '4', 'trasparente', 312, 2, '' ,'../IMMAGINI/Pesci/loretoCory.jpg');
 
 INSERT INTO provincie(sigla_provincia, nome) VALUES 
 ("AG", "Agrigento"),
