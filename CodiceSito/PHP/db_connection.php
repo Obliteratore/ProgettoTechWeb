@@ -45,7 +45,7 @@ class FMAccess {
 
 	public function closeConnection() {
 		try {
-        mysqli_close($this->connection);
+        	mysqli_close($this->connection);
 		} catch (Throwable $e) {
 			
 		} finally {
@@ -253,11 +253,14 @@ class FMAccess {
 	}
 
 	public function getOrdiniUtente($email) {
-		$query = "SELECT ordini.id_ordine, ordini.id_indirizzo, ordini.data_ora, pesci.nome_comune, dettaglio_ordini.prezzo_unitario, dettaglio_ordini.quantita FROM 
-		ordini JOIN dettaglio_ordini ON ordini.id_ordine=dettaglio_ordini.id_ordine 
+		$query = "SELECT ordini.id_ordine, ordini.data_ora, indirizzi.via, provincie.sigla_provincia, provincie.nome AS provincia, comuni.nome AS comune, pesci.nome_comune, dettaglio_ordini.prezzo_unitario, dettaglio_ordini.quantita FROM 
+		ordini JOIN indirizzi ON ordini.id_indirizzo=indirizzi.id_indirizzo 
+		JOIN provincie ON indirizzi.sigla_provincia=provincie.sigla_provincia 
+		JOIN comuni ON indirizzi.id_comune=comuni.id_comune 
+		JOIN dettaglio_ordini ON ordini.id_ordine=dettaglio_ordini.id_ordine 
 		JOIN pesci ON dettaglio_ordini.nome_latino=pesci.nome_latino 
 		WHERE ordini.email= ? 
-		ORDER BY ordini.id_ordine";
+		ORDER BY ordini.id_ordine DESC";
 		$stmt = ($this->connection)->prepare($query);
 		$stmt->bind_param("s", $email);
 		$stmt->execute();

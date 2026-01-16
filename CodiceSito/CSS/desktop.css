@@ -54,3 +54,20 @@ SEZIONE MAIN
         font-size: clamp(0.875em, 8cqw, 2em);
 }
 
+/*PROFILO*/
+
+.lista-ordini dl {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+}
+
+.lista-ordini dl dt {
+    grid-row: 1;
+    font-weight: bold;
+}
+
+.lista-ordini dl dd {
+    grid-row: 2;
+    margin: 0;
+}

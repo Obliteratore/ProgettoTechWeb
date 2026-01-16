@@ -11,8 +11,8 @@ require_once "db_connection.php";
 use FM\FMAccess;
 
 $nomeCognome = '';
-$username = 'Nome utente: ';
-$indirizzo = 'Indirizzo: ';
+$username = '';
+$indirizzo = '';
 $ordini = '';
 $paginaHTML = '';
 $paginaHTML = file_get_contents('../HTML/profilo.html');
@@ -24,24 +24,24 @@ try{
     $connection->openConnection();
 
     $datiUtente = $connection->getProfiloUtente('user'); //$_SESSION['email']) al posto di 'user'
-    $nomeCognome = $datiUtente['nome'] . ' ' . $datiUtente['cognome'];
-    $username .= $datiUtente['username'];
-    $indirizzo .= $datiUtente['via'] . ', ' . $datiUtente['comune'] . ', <abbr title="' . $datiUtente['provincia'] . '">' . $datiUtente['sigla_provincia'] . '</abbr>';
+    $nomeCognome = htmlspecialchars($datiUtente['nome']) . ' ' . htmlspecialchars($datiUtente['cognome']);
+    $username .= htmlspecialchars($datiUtente['username']);
+    $indirizzo .= htmlspecialchars($datiUtente['via']) . ', ' . htmlspecialchars($datiUtente['comune']) . ', <abbr title="' . htmlspecialchars($datiUtente['provincia']) . '">' . htmlspecialchars($datiUtente['sigla_provincia']) . '</abbr>';
 
     $listaOrdini = $connection->getOrdiniUtente('user');
     if(!empty($listaOrdini)) {
         $prezzoTotale = [];
         foreach($listaOrdini as $ordine) {
-            if (!isset($prezzoTotale[$ordine['id_ordine']])) {
-                $prezzoTotale[$ordine['id_ordine']] = '0.00';
+            if (!isset($prezzoTotale[(int)$ordine['id_ordine']])) {
+                $prezzoTotale[(int)$ordine['id_ordine']] = '0.00';
             }
             $parziale = bcmul($ordine['prezzo_unitario'], (string) $ordine['quantita'], 2);
 
-            $prezzoTotale[$ordine['id_ordine']] = bcadd($prezzoTotale[$ordine['id_ordine']], $parziale, 2);
+            $prezzoTotale[$ordine['id_ordine']] = bcadd($prezzoTotale[(int)$ordine['id_ordine']], $parziale, 2);
         }
 
         $idOrdinePrec = null;
-        $ordini = '<ul class="lista-ordini">';
+        $ordini .= '<ul class="lista-ordini">';
         foreach($listaOrdini as $ordine) {
             if((int)$ordine['id_ordine'] !== (int)$idOrdinePrec) {
                 if($idOrdinePrec !== null) {
@@ -56,8 +56,8 @@ try{
                 $ordini .= '<dl>';
                 $ordini .= '<dt>ORDINE:</dt><dd>#' . (int)$ordine['id_ordine'] . '</dd>';
                 $ordini .= '<dt>DATA:</dt><dd>' . $data . '</dd>';
-                $ordini .= '<dt>TOTALE:</dt><dd>' . $prezzoTotale[$ordine['id_ordine']] . ' €</dd>';
-                $ordini .= '<dt>INDIRIZZO:</dt><dd>' .  (int)$ordine['id_indirizzo'] . '</dd>';
+                $ordini .= '<dt>TOTALE:</dt><dd>' . $prezzoTotale[(int)$ordine['id_ordine']] . ' €</dd>';
+                $ordini .= '<dt>INDIRIZZO:</dt><dd>' . htmlspecialchars($datiUtente['via']) . ', ' . htmlspecialchars($datiUtente['comune']) . ', <abbr title="' . htmlspecialchars($datiUtente['provincia']) . '">' . htmlspecialchars($datiUtente['sigla_provincia']) . '</abbr>' . '</dd>';
                 $ordini .= '</dl>';
                 $ordini .= '</div>';
 

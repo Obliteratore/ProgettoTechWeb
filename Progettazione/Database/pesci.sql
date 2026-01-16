@@ -8337,6 +8337,14 @@ INSERT INTO dettaglio_ordini (id_ordine, nome_latino, quantita, prezzo_unitario)
 (@id_ordine, "Pomacanthus imperator", 3, 66.00),
 (@id_ordine, "Aidablennius sphynx", 1, 1241.00);
 
+INSERT INTO ordini (email, id_indirizzo) VALUES 
+("user", @id_indirizzo);
+
+SET @id_ordine = LAST_INSERT_ID();
+
+INSERT INTO dettaglio_ordini (id_ordine, nome_latino, quantita, prezzo_unitario) VALUES 
+(@id_ordine, "Cheilodipterus quinquelineatus", 2, 863.00);
+
 COMMIT;
 
 INSERT INTO utenti_registrati (email, username, password, nome, cognome) VALUES 
