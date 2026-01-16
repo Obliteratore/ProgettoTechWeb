@@ -41,26 +41,44 @@ try{
         }
 
         $idOrdinePrec = null;
-        $ordini = '<ul>';
+        $ordini = '<ul class="lista-ordini">';
         foreach($listaOrdini as $ordine) {
-            if($ordine['id_ordine'] !== $idOrdinePrec) {
+            if((int)$ordine['id_ordine'] !== (int)$idOrdinePrec) {
                 if($idOrdinePrec !== null) {
+                    $ordini .= '</tbody></table>';
+                    $ordini .= '<p id="descrizione#' . (int)$ordine['id_ordine'] . '" class="screen-reader">La tabella contiene l\'elenco dei pesci acquistati con l\'ordine #' . (int)$ordine['id_ordine'] . '. Ogni riga riguarda un pesce con prezzo unitario e quantità acquistata.</p>';
                     $ordini .= '</article></li>';
                 }
 
                 $data = (new DateTime($ordine['data_ora']))->format('d/m/Y');
                 $ordini .= '<li><article>';
+                $ordini .= '<div class="dati-ordine">';
                 $ordini .= '<dl>';
-                $ordini .= '<dt>ORDINE EFFETTUATO IL:</dt><dd>' . $data . '</dd>';
-                $ordini .= '<dt>TOTALE:</dt><dd>' . $prezzoTotale[$ordine['id_ordine']] . '</dd>';
-                $ordini .= '<dt>INDIRIZZO DI SPEDIZIONE:</dt><dd>' . $ordine['id_indirizzo'] . '</dd>';
+                $ordini .= '<dt>ORDINE:</dt><dd>#' . (int)$ordine['id_ordine'] . '</dd>';
+                $ordini .= '<dt>DATA:</dt><dd>' . $data . '</dd>';
+                $ordini .= '<dt>TOTALE:</dt><dd>' . $prezzoTotale[$ordine['id_ordine']] . ' €</dd>';
+                $ordini .= '<dt>INDIRIZZO:</dt><dd>' .  (int)$ordine['id_indirizzo'] . '</dd>';
                 $ordini .= '</dl>';
+                $ordini .= '</div>';
+
+                $ordini .= '<table aria-describedby="descrizione#' . (int)$ordine['id_ordine'] . '">';
+                $ordini .= '<caption class="screen-reader">Pesci acquistati con l\'ordine #' . (int)$ordine['id_ordine'] . '</caption>';
+                $ordini .= '<thead>';
+                $ordini .= '<tr>';
+                $ordini .= '<th scope="col">PESCE</th><th scope="col">PREZZO</th><th scope="col">QUANTITÀ</th>';
+                $ordini .= '</tr>';
+                $ordini .= '</thead>';
+                $ordini .= '<tbody>';
             }
-            $ordini .= '<p>' . $ordine['prezzo_unitario'] . ' x ' . $ordine['quantita'] . '</p>'; //Qua ci andrebbe la tabella o quello che sarà
+            $ordini .= '<tr>';
+            $ordini .= '<th scope="row">' . htmlspecialchars($ordine['nome_comune']) . '</th>';
+            $ordini .= '<td data-title="Prezzo">' . number_format($ordine['prezzo_unitario'], 2, ',', '.') . ' €</td>';
+            $ordini .= '<td data-title="Quantità">' . (int)$ordine['quantita'] . '</td>';
+            $ordini .= '</tr>';
             
-            $idOrdinePrec = $ordine['id_ordine'];
+            $idOrdinePrec = (int)$ordine['id_ordine'];
         }
-        $ordini .= '</article></li></ul>';
+        $ordini .= '</tbody></table></article></li></ul>';
     } else {
         $ordini = '<p class="call-to-action position">Non hai ancora effettuato nessun ordine. Vai al <a href="catalogo.php">catalogo</a> per trovare il pesce perfetto per te!<p>';
     }

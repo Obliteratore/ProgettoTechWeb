@@ -1,4 +1,4 @@
-USE agingill;
+USE fbalestr;
 
 DROP TABLE IF EXISTS dettaglio_ordini;
 DROP TABLE IF EXISTS ordini;
@@ -8327,6 +8327,15 @@ SET @id_indirizzo = LAST_INSERT_ID();
 INSERT INTO utenti (email, id_indirizzo) VALUES 
 ("user", @id_indirizzo),
 ("admin", NULL);
+
+INSERT INTO ordini (email, id_indirizzo) VALUES 
+("user", @id_indirizzo);
+
+SET @id_ordine = LAST_INSERT_ID();
+
+INSERT INTO dettaglio_ordini (id_ordine, nome_latino, quantita, prezzo_unitario) VALUES 
+(@id_ordine, "Pomacanthus imperator", 3, 66.00),
+(@id_ordine, "Aidablennius sphynx", 1, 1241.00);
 
 COMMIT;
 
