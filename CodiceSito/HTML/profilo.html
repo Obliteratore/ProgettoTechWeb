@@ -19,8 +19,10 @@
                         <li>[username]</li>
                         <li>[indirizzo]</li>
                     </ul>
-                    <a href="modifica_profilo.php" class="btn-edit">Modifica profilo</a>
-                    <a href="accesso.php" class="btn-exit">Esci</a>
+                    <a href="../PHP/get_user_data.php" class="btn-edit">Modifica profilo</a>
+                    <form action="../PHP/logout.php" method="post">
+                        <button type="submit" aria-label="Esci dal profilo">Esci</button>
+                    </form>
                 </div>
             </section>
             <section class="main-section">

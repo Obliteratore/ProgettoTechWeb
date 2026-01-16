@@ -2,10 +2,10 @@
 if(session_status() !== PHP_SESSION_ACTIVE)
     session_start();
 
-/*if(!isset($_SESSION['email'])) {
+if(!isset($_SESSION['email'])) {
     header('Location: accesso.php');
     exit;
-}*/
+}
 
 require_once "db_connection.php";
 use FM\FMAccess;
@@ -23,12 +23,12 @@ try{
     $connection = new FMAccess();
     $connection->openConnection();
 
-    $datiUtente = $connection->getProfiloUtente('user'); //$_SESSION['email']) al posto di 'user'
+    $datiUtente = $connection->getProfiloUtente($_SESSION['email']);
     $nomeCognome = htmlspecialchars($datiUtente['nome']) . ' ' . htmlspecialchars($datiUtente['cognome']);
     $username .= htmlspecialchars($datiUtente['username']);
     $indirizzo .= htmlspecialchars($datiUtente['via']) . ', ' . htmlspecialchars($datiUtente['comune']) . ', <abbr title="' . htmlspecialchars($datiUtente['provincia']) . '">' . htmlspecialchars($datiUtente['sigla_provincia']) . '</abbr>';
 
-    $listaOrdini = $connection->getOrdiniUtente('user');
+    $listaOrdini = $connection->getOrdiniUtente($_SESSION['email']);
     if(!empty($listaOrdini)) {
         $prezzoTotale = [];
         foreach($listaOrdini as $ordine) {

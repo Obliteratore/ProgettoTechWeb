@@ -1,23 +1,20 @@
 const campiForm = [
     { id: "nome", validator: validateNome },
     { id: "cognome", validator: validateCognome },
-    { id: "provincia", validator: validateProvincia },
-    { id: "comune", validator: validateComune },
     { id: "via", validator: validateVia },
-    { id: "email", validator: validateEmail },
     { id: "username", validator: validateUsername },
     { id: "password", validator: validatePassword },
     { id: "confermaPassword", validator: validateConfermaPassword }
 ];
 
 document.addEventListener("DOMContentLoaded", () => {
-    const summary = document.getElementById('signin-error');
+    const summary = document.getElementById('modify-error');
     if (summary && summary.children.length > 0) {
         summary.focus();
         summary.scrollIntoView({behavior: "smooth", block: "center"});
     }
 
-    const form = document.getElementById("signin-form");
+    const form = document.getElementById("modify-form");
     form.setAttribute("novalidate", "");
 
     campiForm.forEach(campo => {
@@ -31,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
     form.addEventListener("submit", (event) => {
         event.preventDefault();
         
-        const campoInvalido = validateSignInForm();
+        const campoInvalido = validateModifyForm();
 
         if(campoInvalido) {
             campoInvalido.focus();
@@ -43,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-function validateSignInForm() {
+function validateModifyForm() {
     let campoInvalido = null;
     let primoErrore = false;
     for(const campo of campiForm) {
@@ -118,34 +115,6 @@ function validateCognome(cognome) {
     return isValid;
 }
 
-function validateProvincia(provincia) {
-    const value = provincia.value.trim();
-    let error = "";
-    let isValid = true;
-
-    if(value == "") {
-        error += "La provincia è un campo obbligatorio.";
-        isValid = false;
-    }
-    setHtml(provincia, isValid, "provincia-error", error);
-
-    return isValid;
-}
-
-function validateComune(comune) {
-    const value = comune.value.trim();
-    let error = "";
-    let isValid = true;
-
-    if(value == "") {
-        error += "Il comune è un campo obbligatorio.";
-        isValid = false;
-    }
-    setHtml(comune, isValid, "comune-error", error);
-
-    return isValid;
-}
-
 function validateVia(via) {
     const value = via.value.trim();
     const regex = /^[A-Za-zÀ-ÖØ-öø-ÿ0-9\s\.\-\/']+$/;
@@ -162,26 +131,6 @@ function validateVia(via) {
         }
     }
     setHtml(via, isValid, "via-error", error);
-
-    return isValid;
-}
-
-function validateEmail(email) {
-    const value = email.value.trim();
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    let error = "";
-    let isValid = true;
-
-    if(value.length == 0) {
-        error += "L'<span lang=\"en\">email</span> è un campo obbligatorio.";
-        isValid = false;
-    } else {
-        if(!regex.test(value)) {
-            error += "L'<span lang=\"en\">email</span> non è valida.";
-            isValid = false;
-        }
-    }
-    setHtml(email, isValid, "email-error", error);
 
     return isValid;
 }
@@ -219,10 +168,7 @@ function validatePassword(password) {
     let error = "";
     let isValid = true;
 
-    if(value.length == 0) {
-        error += "<li>La <span lang=\"en\">password</span> è un campo obbligatorio.</li>";
-        isValid = false;
-    } else {
+    if(value.length != 0) {
         if(value.length < 8) {
             error += "<li>La <span lang=\"en\">password</span> è troppo corta.</li>";
             isValid = false;

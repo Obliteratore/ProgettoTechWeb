@@ -2,6 +2,11 @@
 if(session_status() !== PHP_SESSION_ACTIVE)
     session_start();
 
+if(isset($_SESSION['email'])) {
+    header('Location: profilo.php');
+    exit;
+}
+
 $error = $_SESSION['error'] ?? '';
 unset($_SESSION['error']);
 ?>

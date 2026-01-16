@@ -2,6 +2,11 @@
 if(session_status() !== PHP_SESSION_ACTIVE)
     session_start();
 
+if(isset($_SESSION['email'])) {
+    header('Location: profilo.php');
+    exit;
+}
+
 $errors = $_SESSION['errors'] ?? [];
 $values = $_SESSION['values'] ?? [];
 unset($_SESSION['errors'], $_SESSION['values']);
@@ -167,7 +172,6 @@ unset($_SESSION['errors'], $_SESSION['values']);
                         </label>
                         <select id="comune" name="comune" aria-describedby="comune-help comune-error" aria-invalid="<?= isset($errors['comune']) ? 'true' : 'false' ?>" required>
                             <option value="" selected>Seleziona un comune</option>
-                            <option value="1">Padova</option>
                         </select>
                         <p id="comune-help" class="help">Il tuo comune di residenza.</p>
                         <p id="comune-error" class="error-message" aria-live="polite"><?= $errors['comune'] ?? '' ?></p>
