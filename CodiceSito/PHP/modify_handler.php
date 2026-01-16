@@ -1,13 +1,18 @@
 <?php
+if(session_status() !== PHP_SESSION_ACTIVE)
+    session_start();
+
+if(!isset($_SESSION['email'])) {
+    header('Location: accesso.php');
+    exit;
+}
 
 require_once "validate_functions.php";
 require_once "db_connection.php";
 use FM\FMAccess;
 
 function validateProvincia(&$errors, $provincia, $connection) {
-    if(empty($provincia))
-        $errors['provincia'] = 'La provincia è un campo obbligatorio.';
-    else {
+    if(!empty($provincia)) {
         $exist = $connection->existProvincia($provincia);
         if(!$exist)
             $errors['provincia'] = 'La provincia selezionata non esiste.';
@@ -15,9 +20,7 @@ function validateProvincia(&$errors, $provincia, $connection) {
 }
 
 function validateComune(&$errors, $comune, $provincia, $connection) {
-    if(empty($comune))
-        $errors['comune'] = 'Il comune è un campo obbligatorio.';
-    else {
+    if(!empty($comune)) {
         $exist = $connection->existComune($comune, $provincia);
         if(!$exist)
             $errors['comune'] = 'Il comune selezionato non esiste.';
@@ -25,9 +28,7 @@ function validateComune(&$errors, $comune, $provincia, $connection) {
 }
 
 function validatePassword(&$errors, $password) {
-    if(empty($password))
-        $errors['password'] = '<li>La <span lang="en">password</span> è un campo obbligatorio.</li>';
-    else {
+    if(!empty($password)) {
         if(strlen($password) < 8)
             $errors['password'] = '<li>La <span lang="en">password</span> è troppo corta.</li>';
         if(!preg_match('/[A-Z]/', $password))
@@ -45,7 +46,6 @@ function getValues(&$values) {
     $values['provincia'] = isset($_POST['provincia']) ? pulisciInput($_POST['provincia']) : null;
     $values['comune'] = isset($_POST['comune']) ? pulisciInput($_POST['comune']) : null;
     $values['via'] = isset($_POST['via']) ? pulisciInput($_POST['via']) : null;
-    $values['email'] = isset($_POST['email']) ? pulisciInput($_POST['email']) : null;
     $values['username'] = isset($_POST['username']) ? pulisciInput($_POST['username']) : null;
     $values['password'] = isset($_POST['password']) ? $_POST['password'] : null;
     $values['confermaPassword'] = isset($_POST['confermaPassword']) ? $_POST['confermaPassword'] : null;
@@ -57,7 +57,6 @@ function callValidators(&$errors, $values, $connection) {
     validateProvincia($errors, $values['provincia'], $connection);
     validateComune($errors, $values['comune'], $values['provincia'], $connection);
     validateVia($errors, $values['via']);
-    validateEmail($errors, $values['email'], $connection);
     validateUsername($errors, $values['username'], $connection);
     validatePassword($errors, $values['password']);
     validateConfermaPassword($errors, $values['password'], $values['confermaPassword']);
@@ -74,8 +73,6 @@ function setSummary(&$errors) {
         $errors['summary'] = ($errors['summary'] ?? '') . '<li><a href="#comune">Il comune non è valido.</a></li>';
     if (isset($errors['via']))
         $errors['summary'] = ($errors['summary'] ?? '') . '<li><a href="#via">La via non è valida.</a></li>';
-    if (isset($errors['email']))
-        $errors['summary'] = ($errors['summary'] ?? '') . '<li><a href="#email">L\'<span lang="en">email</span> non è valida.</a></li>';
     if (isset($errors['username']))
         $errors['summary'] = ($errors['summary'] ?? '') . '<li><a href="#username">Il nome utente non è valido.</a></li>';
     if (isset($errors['password']))
@@ -104,25 +101,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $_SESSION['errors'] = $errors;
             $_SESSION['values'] = $values;
-            header('Location: registrazione.php');
+            header('Location: modifica_profilo.php');
             exit;
         } else {
-            $connection->beginTransaction();
-            try {
-                $idIndirizzo = $connection->insertIndirizzo($values['provincia'], $values['comune'], $values['via']);
-
-                $connection->insertUtente($values['email'], $idIndirizzo);
-                $connection->insertUtenteRegistrato($values['email'], $values['username'], $values['password'], $values['nome'], $values['cognome']);
-
-                $connection->commit();
-            } catch(mysqli_sql_exception $e) {
-                $connection->rollback();
-                throw $e;
-            }
-            session_regenerate_id(true); 
-            $_SESSION['email'] = $values['email'];
+            //continuo procedimento per modificare i dati dell'utente
             header('Location: profilo.php');
-            exit;
         }
     } catch(mysqli_sql_exception $e) {
         http_response_code(500);

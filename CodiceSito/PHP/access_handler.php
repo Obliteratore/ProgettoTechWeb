@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     exit;
                 } else {
                     session_regenerate_id(true); 
-                    $_SESSION['email'] = $values['email'];
+                    $_SESSION['email'] = 'user'; //qui deve esserci la email dell'utente che ha appena fatto l'accesso
                     header('Location: profilo.php');
                     exit;
                 }

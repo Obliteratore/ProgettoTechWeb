@@ -35,7 +35,7 @@ try{
             $famiglia = htmlspecialchars($pesce['famiglia']);
             $descrizione = htmlspecialchars($pesce['descrizione']);
             $dimensione = htmlspecialchars($pesce['dimensione']);
-            $percorso = "../IMMAGINI/Pesci/Pesci Dolci/Agujeta.jpg"; //da modificare in $pesce['immagine'];
+            $percorso = $pesce['immagine']; //da modificare in $pesce['immagine'];
             $volumemin = $pesce['volume_minimo'];
             $habitat = ($pesce['tipo_acqua'] === 'dolce') ? "Acqua Dolce" : "Acqua Marina";
             $colori = htmlspecialchars($pesce['colori']);
