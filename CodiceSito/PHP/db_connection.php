@@ -2,24 +2,24 @@
 namespace FM;
 
 class FMAccess {
-	
+	/*
 	private const HOST_DB = "localhost";
 	private const DATABASE_NAME = "agingill";
 	private const USERNAME = "agingill";
 	private const PASSWORD = "Pech3pheeXie4xen";
-	
+	/*
 	/*
 	private const HOST_DB = "localhost";
 	private const DATABASE_NAME = "fbalestr";
 	private const USERNAME = "fbalestr";
 	private const PASSWORD = "Iemao4Chawiechoo";
 	*/
-	/*
+	
 	private const HOST_DB = "localhost";
 	private const DATABASE_NAME = "bsabic";
 	private const USERNAME = "bsabic";
-	private const PASSWORD = "";
-	*/
+	private const PASSWORD = "ieGai9om6eiyahT0";
+	
 
 	/*
 	private const HOST_DB = "localhost";
@@ -313,6 +313,32 @@ class FMAccess {
 		$stmt->close();
 
 		return $pesci;
+	}
+
+	public function getPiuVenduti(int $limit = 4): array {
+    $limit = (int)$limit;
+
+    $sql = "
+        SELECT p.nome_latino, p.nome_comune, p.famiglia, p.dimensione, p.volume_minimo,
+               p.colori, p.prezzo, p.sconto_percentuale, p.disponibilita, p.descrizione,
+               p.immagine, p.data_inserimento,
+               totals.totale_venduto
+        FROM pesci p
+        JOIN (
+            SELECT nome_latino, SUM(quantita) AS totale_venduto
+            FROM dettaglio_ordini
+            GROUP BY nome_latino
+        ) totals ON TRIM(p.nome_latino) = TRIM(totals.nome_latino)
+        ORDER BY totals.totale_venduto DESC
+        LIMIT $limit
+    ";
+
+    $result = $this->connection->query($sql);
+    if (!$result) {
+        throw new Exception("SQL Error: " . $this->connection->error);
+    }
+
+    return $result->fetch_all(MYSQLI_ASSOC);
 	}
 }
 ?>
