@@ -71,8 +71,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     header('Location: accesso.php');
                     exit;
                 } else {
-                    session_regenerate_id(true); 
-                    $_SESSION['email'] = 'user'; //qui deve esserci la email dell'utente che ha appena fatto l'accesso
+                    session_regenerate_id(true);
+                    if($isEmail)
+                        $_SESSION['email'] = $login;
+                    else
+                        $_SESSION['email'] = $connection->getEmailWithUsername($login);
+
                     header('Location: profilo.php');
                     exit;
                 }

@@ -46,7 +46,7 @@ try{
             if((int)$ordine['id_ordine'] !== (int)$idOrdinePrec) {
                 if($idOrdinePrec !== null) {
                     $ordini .= '</tbody></table>';
-                    $ordini .= '<p id="descrizione#' . (int)$ordine['id_ordine'] . '" class="screen-reader">La tabella contiene l\'elenco dei pesci acquistati con l\'ordine #' . (int)$ordine['id_ordine'] . '. Ogni riga riguarda un pesce con prezzo unitario e quantità acquistata.</p>';
+                    $ordini .= '<p id="descrizione_' . (int)$ordine['id_ordine'] . '" class="screen-reader">La tabella contiene l\'elenco dei pesci acquistati con l\'ordine #' . (int)$ordine['id_ordine'] . '. Ogni riga riguarda un pesce con prezzo unitario e quantità acquistata.</p>';
                     $ordini .= '</article></li>';
                 }
 
@@ -61,7 +61,7 @@ try{
                 $ordini .= '</dl>';
                 $ordini .= '</div>';
 
-                $ordini .= '<table aria-describedby="descrizione#' . (int)$ordine['id_ordine'] . '">';
+                $ordini .= '<table aria-describedby="descrizione_' . (int)$ordine['id_ordine'] . '">';
                 $ordini .= '<caption class="screen-reader">Pesci acquistati con l\'ordine #' . (int)$ordine['id_ordine'] . '</caption>';
                 $ordini .= '<thead>';
                 $ordini .= '<tr>';
