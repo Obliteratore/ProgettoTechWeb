@@ -25,7 +25,7 @@ unset($_SESSION['errors'], $_SESSION['values']);
         <header></header>
         <script src="../JS/register_validation.js" defer></script>
         <main id="main-content">
-            <div class="form-container">
+            <div class="form-container sezione-standard">
                 <h1 class="position">Registrati</h1>
                 <p class="call-to-action position">Se hai già un <span lang="en">account</span>, <a href="accesso.php">accedi</a>!</p>
                 <ul id="signin-error" class="error-message" role="alert" tabindex="-1"><?= $errors['summary'] ?? '' ?></ul>

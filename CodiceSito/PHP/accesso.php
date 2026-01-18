@@ -24,7 +24,7 @@ unset($_SESSION['error']);
         <header></header>
         <script src="../JS/access_validation.js" defer></script>
         <main id="main-content">
-            <div class="form-container">
+            <div class="form-container sezione-standard">
                 <h1 class="position">Accedi</h1>
                 <p class="call-to-action position">Se non hai un <span lang="en">account</span>, <a href="registrazione.php">registrati</a>!</p>
                 <p id="login-error" class="error-message" role="alert"><?= $error ?></p>

@@ -17,9 +17,7 @@
 }
 
 /*OGNI SEZIONE DEVE AVERE ALMENO QUESTI ATTRIBUTI*/
-.main-section, .header-content, #breadcrumb, 
-.form-container, #form-container-catalogo,
-.main-section-pesce {
+.sezione-standard {
     background: var(--color-background-card);
     border-radius: 20px;
     border: 1px solid #ffffff66;

@@ -27,7 +27,7 @@ unset($_SESSION['errors'], $_SESSION['values']);
         <header></header>
         <script src="../JS/modify_validation.js" defer></script>
         <main id="main-content">
-            <div class="form-container">
+            <div class="form-container sezione-standard">
                 <h1 class="position">Modifica i tuoi dati</h1>
                 <ul id="modify-error" class="error-message" role="alert"><?= $errors['summary'] ?? '' ?></ul>
                 <form id="modify-form" class="data-form" action="modify_handler.php" method="post" autocomplete="on">
