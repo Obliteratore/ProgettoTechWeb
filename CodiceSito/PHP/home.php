@@ -13,7 +13,7 @@ try {
     $connection->openConnection();
 
     $nuoviPesci = $connection->getPesci([], [], "ORDER BY data_inserimento DESC LIMIT 4");
-    $piuVendutiPesci = $connection->getPesci([], [], []); // da implementare dopo aver aggiunto ordini
+    $piuVendutiPesci = $connection->getPiuVenduti(4);
 
     $newHTML = crea_card_pesce($nuoviPesci);
     $vendutiHTML = crea_card_pesce($piuVendutiPesci);

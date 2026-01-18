@@ -2,24 +2,26 @@
 namespace FM;
 
 class FMAccess {
-	
+	/*
 	private const HOST_DB = "localhost";
 	private const DATABASE_NAME = "agingill";
 	private const USERNAME = "agingill";
 	private const PASSWORD = "Pech3pheeXie4xen";
-	
 	/*
+	/*
+	*/
+	
 	private const HOST_DB = "localhost";
 	private const DATABASE_NAME = "fbalestr";
 	private const USERNAME = "fbalestr";
 	private const PASSWORD = "Iemao4Chawiechoo";
-	*/
+	
 	/*
 	private const HOST_DB = "localhost";
 	private const DATABASE_NAME = "bsabic";
 	private const USERNAME = "bsabic";
-	private const PASSWORD = "";
-	*/
+	private const PASSWORD = "ieGai9om6eiyahT0";
+	
 
 	/*
 	private const HOST_DB = "localhost";
@@ -64,39 +66,6 @@ class FMAccess {
     public function rollback() {
         mysqli_rollback($this->connection);
     }
-
-	public function getComuni($provincia) {
-		$query = "SELECT id_comune, nome FROM comuni WHERE sigla_provincia = ? ORDER BY nome";
-		$stmt = ($this->connection)->prepare($query);
-		$stmt->bind_param("s", $provincia);
-		$stmt->execute();
-
-		$result = $stmt->get_result();
-
-		$comuni = [];
-		if($result->num_rows !== 0) {
-			while($row = $result->fetch_assoc()) {
-				$comuni[] = $row;
-			}
-		}
-		$result->free();
-		$stmt->close();
-		return $comuni;
-	}
-
-	public function getPesce($nome_latino) {
-		$query = "SELECT p.* , f.tipo_acqua FROM pesci p JOIN famiglie f ON p.famiglia = f.famiglia_latino WHERE p.nome_latino = ?";
-		$stmt = ($this->connection)->prepare($query);
-		$stmt->bind_param("s", $nome_latino);
-		$stmt->execute();
-
-		$result = $stmt->get_result();
-		$pesce = $result->fetch_assoc();
-		
-		$result->free();
-		$stmt->close();
-		return $pesce;
-	}
 	
 	public function existProvincia($provincia) {
 		$query = "SELECT sigla_provincia FROM provincie WHERE sigla_provincia = ?";
@@ -133,9 +102,11 @@ class FMAccess {
 	}
 
 	public function existEmail($email) {
-		$query = "SELECT email FROM utenti WHERE email = ?";
+		$query = "SELECT email FROM utenti_registrati WHERE email = ? 
+		UNION 
+		SELECT email FROM amministratori WHERE email = ?";
 		$stmt = ($this->connection)->prepare($query);
-		$stmt->bind_param("s", $email);
+		$stmt->bind_param("ss", $email, $email);
 		$stmt->execute();
 
 		$result = $stmt->get_result();
@@ -198,6 +169,39 @@ class FMAccess {
 		$stmt->close();
 	}
 
+		public function getComuni($provincia) {
+		$query = "SELECT id_comune, nome FROM comuni WHERE sigla_provincia = ? ORDER BY nome";
+		$stmt = ($this->connection)->prepare($query);
+		$stmt->bind_param("s", $provincia);
+		$stmt->execute();
+
+		$result = $stmt->get_result();
+
+		$comuni = [];
+		if($result->num_rows !== 0) {
+			while($row = $result->fetch_assoc()) {
+				$comuni[] = $row;
+			}
+		}
+		$result->free();
+		$stmt->close();
+		return $comuni;
+	}
+
+	public function getPesce($nome_latino) {
+		$query = "SELECT p.* , f.tipo_acqua FROM pesci p JOIN famiglie f ON p.famiglia = f.famiglia_latino WHERE p.nome_latino = ?";
+		$stmt = ($this->connection)->prepare($query);
+		$stmt->bind_param("s", $nome_latino);
+		$stmt->execute();
+
+		$result = $stmt->get_result();
+		$pesce = $result->fetch_assoc();
+		
+		$result->free();
+		$stmt->close();
+		return $pesce;
+	}
+
 	public function getPasswordWithEmail($email) {
 		$query = "SELECT password FROM utenti_registrati WHERE email = ? 
 		UNION 
@@ -230,6 +234,23 @@ class FMAccess {
 		$stmt->close();
 
 		return $row ? $row['password'] : null;
+	}
+
+	public function getEmailWithUsername($username) {
+		$query = "SELECT email FROM utenti_registrati WHERE username = ? 
+		UNION 
+		SELECT email FROM amministratori WHERE username = ?";
+		$stmt = ($this->connection)->prepare($query);
+		$stmt->bind_param("ss", $username, $username);
+		$stmt->execute();
+
+		$result = $stmt->get_result();
+		$row = $result->fetch_assoc();
+    
+		$result->free();
+		$stmt->close();
+
+		return $row ? $row['email'] : null;
 	}
 
 	public function getProfiloUtente($email) {
@@ -313,6 +334,32 @@ class FMAccess {
 		$stmt->close();
 
 		return $pesci;
+	}
+
+	public function getPiuVenduti(int $limit = 4): array {
+    $limit = (int)$limit;
+
+    $sql = "
+        SELECT p.nome_latino, p.nome_comune, p.famiglia, p.dimensione, p.volume_minimo,
+               p.colori, p.prezzo, p.sconto_percentuale, p.disponibilita, p.descrizione,
+               p.immagine, p.data_inserimento,
+               totals.totale_venduto
+        FROM pesci p
+        JOIN (
+            SELECT nome_latino, SUM(quantita) AS totale_venduto
+            FROM dettaglio_ordini
+            GROUP BY nome_latino
+        ) totals ON TRIM(p.nome_latino) = TRIM(totals.nome_latino)
+        ORDER BY totals.totale_venduto DESC
+        LIMIT $limit
+    ";
+
+    $result = $this->connection->query($sql);
+    if (!$result) {
+        throw new Exception("SQL Error: " . $this->connection->error);
+    }
+
+    return $result->fetch_all(MYSQLI_ASSOC);
 	}
 }
 ?>
