@@ -5,51 +5,47 @@
         <meta name="description" content="Questa pagina è dedicata ..." >
         <meta name="keywords" content="pesci, mare …" >
         <meta name="author" content="Aaron Gingillino, Francesco Balestro, Bilal Sabic, Valerio Solito" >
+        <!-- FONT -->
+        <style>@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Inclusive+Sans:ital,wght@0,300..700;1,300..700&family=Lexend:wght@100..900&display=swap');</style>
 
         <!-- CSS -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+        <!-- Mobile First -->
         <link rel="stylesheet" href="../CSS/style.css">
-
-        <!-- Mobile -->
-        <!-- <link rel="stylesheet" href="../CSS/mobile.css" media="(max-width: 767px)"> -->
-      
-        <!-- Tablet -->
-        <!-- <link rel="stylesheet" href="tablet.css" media="(min-width: 768px) and (max-width: 1023px)">
-        -->
         <!-- Desktop -->
         <link rel="stylesheet" href="../CSS/desktop.css" media="(min-width: 768px)">
         <!-- Stampa -->
-        <link rel="stylesheet" href="../CSS/stampa.css" media="(min-width: 1024px)">
+        <link rel="stylesheet" href="../CSS/stampa.css" media="print">
     </head>
 
      <body id="top">
         <header>
             <div class="header-content sezione-standard">
-                <img src="../IMMAGINI/Icone/fish.png" alt=""/>
+                <img class="icona" src="../IMMAGINI/Icone/fish.png" alt=""/>
                 <nav id="menu" aria-label="Menù di navigazione">
                     <ul>
-                        <li lang="en"><a href="home.html">Home</li>
+                        <li lang="en"><a href="home.php">Home</a></li>
                         <li><a href="catalogo.html">Catalogo</a></li>
                         <li>Chi Siamo</li>
-                        <li><a href="accesso.html">Accedi</a></li>
+                        <li><a href="../PHP/profilo.php">Profilo</a></li>
                     </ul>
                 </nav>
                 <div>
-                    <a id="cart-link" href="carrello.html" aria-label="Vai al carrello"><img src="../IMMAGINI/Icone/shopping_cart.svg" alt="" aria-hidden="true"/></a>
-                    <button id="hamburger-menu-btn" aria-controls="hamburger-menu" aria-expanded="false">
-                        <img id="open-hamburger-menu" src="../IMMAGINI/Icone/menu.svg" alt="" aria-hidden="true"/>
+                    <a id="cart-link"  class="icona" href="carrello.html" aria-label="Vai al carrello"><img src="../IMMAGINI/Icone/famiglia icone/shopping-cart.svg" alt="" aria-hidden="true"/></a>
+                    <button  id="hamburger-menu-btn" aria-controls="hamburger-menu" aria-expanded="false">
+                        <img class="icona" id="open-hamburger-menu" src="../IMMAGINI/Icone/famiglia icone/menu-burger.svg" alt="" aria-hidden="true"/>
                         <span class="screen-reader">Apri l'<span lang="en">hamburger</span> menù</span>
-                        <img id="close-hamburger-menu" src="../IMMAGINI/Icone/close.svg" alt="" aria-hidden="true"/>
+                        <img class="icona" id="close-hamburger-menu" src="../IMMAGINI/Icone/famiglia icone/cross.svg" alt="" aria-hidden="true"/>
                         <span class="screen-reader">Chiudi l'<span lang="en">hamburger</span> menù</span>
                     </button>
                 </div>
                 <nav id="hamburger-menu" aria-label="Menù di navigazione per cellulare">
                     <ul>
-                        <li lang="en"><a href="home.html">Home</li>
-                        <li><a href="catalogo.html">Catalogo</a></li>
+                        <li lang="en"><a href="home.php">Home</a></li>
+                        <li><a href="catalogo.php">Catalogo</a></li>
                         <li>Chi Siamo</li>
-                        <li><a href="accesso.html">Accedi</a></li>
+                        <li><a href="../PHP/profilo.php">Profilo</a></li>
                     </ul>
                 </nav>
             </div>

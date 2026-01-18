@@ -1,0 +1,19 @@
+.sezione-standard {
+    background: none;
+    border-radius: 20px;
+    border: 2px solid #000;
+    backdrop-filter: none;
+    box-shadow: none;
+}
+
+.header, .header-content, .back-to-top {
+    display: none;
+}
+
+.card-pesce{
+    border-radius: 0px;
+}
+
+img {
+    filter: grayscale(100%);
+}

@@ -12,7 +12,7 @@
     --color-overlay-card: rgba(0, 0, 0, 0.6);
     --color-background-back-to-top: rgba(0, 0, 0, 0.411); 
     --color-link: #fff;
-    --link-visited: #fff;
+    --link-visited: #000000;
     --color-error: ;
 }
 
@@ -49,14 +49,21 @@ body {
 
 a {
     color: var(--color-link);
-    text-underline-offset: 0.1em;
-    text-decoration: underline;
+    padding-left: 0.2em;
+    padding-right: 0.2em;
 }
 
-a:visited { /*Stile per i link visitati DA FARE*/
-    color: var(--link-visited);
-    text-decoration: none;
+a:not(:has(img)) {
+    background-color: #060606af; /* valore esplicito */
+    text-decoration: underline;
+    border-radius: 6px;
 }
+
+a:visited:not(:has(img)) {
+    color: var(--link-visited);
+    background-color: #ffffff;      /* valore visitato */
+}
+
 
 #skip-to-content, .screen-reader {
     position: absolute;
@@ -270,6 +277,7 @@ h2 {
 .card-pesce img {
     display: block;
     max-width: 100%;
+    height: auto;
 }
 
 .dati-pesce {
@@ -301,7 +309,7 @@ h2 {
     right: 0px;
     
     
-    width: 35%;               /* da sinistra a destra */
+    width: 45%;               /* da sinistra a destra */
     height: 15%;               /* 1/4 della card */
     background: var(--color-overlay-card); 
     border-bottom-left-radius: 10px;
@@ -767,7 +775,8 @@ abbr {
     border: none;
     font-size: 0.875em;
     font-weight: bold;
-    background-color: #4a90e2;
+    background-color: var(--color-background-bottoni);
+    color: var(--color-text);
     cursor: pointer;
 }
 
