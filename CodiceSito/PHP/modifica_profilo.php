@@ -204,6 +204,7 @@ unset($_SESSION['errors'], $_SESSION['values']);
                     </fieldset>
                     <input type="submit" value="Conferma"/>
                 </form>
+                <a href="profilo.php">Annulla</a>
             </div>
         </main>
         <script src="../JS/insert_comuni.js" defer></script>

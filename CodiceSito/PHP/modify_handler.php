@@ -12,32 +12,26 @@ require_once "db_connection.php";
 use FM\FMAccess;
 
 function validateProvincia(&$errors, $provincia, $connection) {
-    if(!empty($provincia)) {
-        $exist = $connection->existProvincia($provincia);
-        if(!$exist)
-            $errors['provincia'] = 'La provincia selezionata non esiste.';
-    }
+    $exist = $connection->existProvincia($provincia);
+    if(!$exist)
+        $errors['provincia'] = 'La provincia selezionata non esiste.';
 }
 
 function validateComune(&$errors, $comune, $provincia, $connection) {
-    if(!empty($comune)) {
-        $exist = $connection->existComune($comune, $provincia);
-        if(!$exist)
-            $errors['comune'] = 'Il comune selezionato non esiste.';
-    }
+    $exist = $connection->existComune($comune, $provincia);
+    if(!$exist)
+        $errors['comune'] = 'Il comune selezionato non esiste.';
 }
 
 function validatePassword(&$errors, $password) {
-    if(!empty($password)) {
-        if(strlen($password) < 8)
-            $errors['password'] = '<li>La <span lang="en">password</span> è troppo corta.</li>';
-        if(!preg_match('/[A-Z]/', $password))
-            $errors['password'] = ($errors['password'] ?? '') . '<li>Manca una lettera maiuscola.</li>';
-        if(!preg_match('/\d/', $password))
-            $errors['password'] = ($errors['password'] ?? '') . '<li>Manca un numero.</li>';
-        if(!preg_match('/[!?@#$%^&*]/', $password))
-            $errors['password'] = ($errors['password'] ?? '') . '<li>Manca un carattere speciale.</li>';
-    }
+    if(strlen($password) < 8)
+        $errors['password'] = '<li>La <span lang="en">password</span> è troppo corta.</li>';
+    if(!preg_match('/[A-Z]/', $password))
+        $errors['password'] = ($errors['password'] ?? '') . '<li>Manca una lettera maiuscola.</li>';
+    if(!preg_match('/\d/', $password))
+        $errors['password'] = ($errors['password'] ?? '') . '<li>Manca un numero.</li>';
+    if(!preg_match('/[!?@#$%^&*]/', $password))
+        $errors['password'] = ($errors['password'] ?? '') . '<li>Manca un carattere speciale.</li>';
 }
 
 function getValues(&$values) {
@@ -51,15 +45,23 @@ function getValues(&$values) {
     $values['confermaPassword'] = isset($_POST['confermaPassword']) ? $_POST['confermaPassword'] : null;
 }
 
-function callValidators(&$errors, $values, $connection) {
-    validateNome($errors, $values['nome']);
-    validateCognome($errors, $values['cognome']);
-    validateProvincia($errors, $values['provincia'], $connection);
-    validateComune($errors, $values['comune'], $values['provincia'], $connection);
-    validateVia($errors, $values['via']);
-    validateUsername($errors, $values['username'], $connection);
-    validatePassword($errors, $values['password']);
-    validateConfermaPassword($errors, $values['password'], $values['confermaPassword']);
+function callValidators(&$errors, $values, $connection, $datiUtente) {
+    if($values['nome'] !== $datiUtente['nome'])
+        validateNome($errors, $values['nome']);
+    if($values['cognome'] !== $datiUtente['cognome'])
+        validateCognome($errors, $values['cognome']);
+    if(!empty($values['provincia']) && $values['provincia'] !== $datiUtente['sigla_provincia'])
+        validateProvincia($errors, $values['provincia'], $connection);
+    if((!empty($values['provincia']) && $values['provincia'] !== $datiUtente['sigla_provincia']) || (!empty($values['comune']) && $values['comune'] !== $datiUtente['id_comune']))
+        validateComune($errors, empty($values['comune']) ? $datiUtente['id_comune'] : $values['comune'], empty($values['provincia']) ? $datiUtente['sigla_provincia'] : $values['provincia'], $connection);
+    if($values['via'] !== $datiUtente['via'])
+        validateVia($errors, $values['via']);
+    if($values['username'] !== $datiUtente['username'])
+        validateUsername($errors, $values['username'], $connection);
+    if(!empty($values['password']))
+        validatePassword($errors, $values['password']);
+    if(!empty($values['password']) || !empty($values['confermaPassword']))
+        validateConfermaPassword($errors, $values['password'], $values['confermaPassword']);
 }
 
 function setSummary(&$errors) {
@@ -93,7 +95,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
         $connection = new FMAccess();
         $connection->openConnection();
-        callValidators($errors, $values, $connection);
+        $datiUtente = $connection->getProfiloUtenteRegistrato($_SESSION['email']);
+        callValidators($errors, $values, $connection, $datiUtente);
         setSummary($errors);
 
         if(!empty($errors)) {
@@ -104,8 +107,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header('Location: modifica_profilo.php');
             exit;
         } else {
-            //continuo procedimento per modificare i dati dell'utente
+            $set = [];
+            $parametri = [];
+
+            if ($values['nome'] !== $datiUtente['nome']) {
+                $set[] = 'nome = ?';
+                $parametri[] = $values['nome'];
+            }
+            if ($values['cognome'] !== $datiUtente['cognome']) {
+                $set[] = 'cognome = ?';
+                $parametri[] = $values['cognome'];
+            }
+
+            if($values['username'] !== $datiUtente['username']) {
+                $set[] = 'username = ?';
+                $parametri[] = $values['username'];
+            }
+
+            if(!empty($values['password'])) {
+                $set[] = 'password = ?';
+                $parametri[] = password_hash($values['password'], PASSWORD_DEFAULT);
+            }
+
+            if(!empty($set)) {
+                $parametri[] = $_SESSION['email'];
+                $connection->updateProfiloUtenteRegistrato($set, $parametri);
+            }
+            
+            if((!empty($values['provincia']) && $values['provincia'] !== $datiUtente['sigla_provincia']) || (!empty($values['comune']) && $values['comune'] !== $datiUtente['id_comune']) || $values['via'] !== $datiUtente['via']) {
+                $connection->beginTransaction();
+                try {
+                    $idIndirizzo = $connection->insertIndirizzo(empty($values['provincia']) ? $datiUtente['sigla_provincia'] : $values['provincia'], empty($values['comune']) ? $datiUtente['id_comune'] : $values['comune'], $values['via']);
+
+                    $connection->updateUtente($_SESSION['email'], $idIndirizzo);
+
+                    $connection->commit();
+                } catch(mysqli_sql_exception $e) {
+                    $connection->rollback();
+                    throw $e;
+                }
+            }
+
             header('Location: profilo.php');
+            exit;
         }
     } catch(mysqli_sql_exception $e) {
         http_response_code(500);

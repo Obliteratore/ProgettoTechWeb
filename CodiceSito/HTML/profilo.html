@@ -11,6 +11,7 @@
 
     <body>
         <header></header>
+        <script src="../JS/delete_profilo.js" defer></script>
         <main id="main-content">
             <h1 class="position">PROFILO</h1>
             <section class="main-section sezione-standard">
@@ -20,13 +21,21 @@
                         <li>[username]</li>
                         <li>[indirizzo]</li>
                     </ul>
-                    <a href="../PHP/get_user_data.php" class="btn-edit">Modifica profilo</a>
+                    <a href="../PHP/pre_modify_handler.php" class="btn-edit">Modifica profilo</a>
                     <form action="../PHP/logout.php" method="post">
                         <button type="submit">Esci dal profilo</button>
                     </form>
-                    <form action="../PHP/elimina_profilo.php" method="post">
-                        <button type="submit">Elimina profilo</button>
-                    </form>
+                    <a href="../PHP/elimina_profilo.php" id="deleteProfiloLink">Elimina profilo</a>
+                    <dialog id="deleteProfiloDialog">
+                        <form action="../PHP/elimina_profilo.php" method="post">
+                            <h2>Sei sicuro di voler eliminare il tuo profilo?</h2>
+                            <p>Non potrai più vedere i tuoi ordini, e dovrai inserire l'email e l'indirizzo ogni volta che acquisti un pesce.</p>
+                            <div class="actions">
+                                <button type="button" value="cancel">Annulla</button>
+                                <button type="submit" value="confirm" class="danger">Elimina</button>
+                            </div>
+                        </form>
+                    </dialog>
                 </div>
             </section>
             <section class="main-section sezione-standard">
