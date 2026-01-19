@@ -23,12 +23,12 @@ try{
     $connection = new FMAccess();
     $connection->openConnection();
 
-    $datiUtente = $connection->getProfiloUtente($_SESSION['email']);
+    $datiUtente = $connection->getProfiloUtenteRegistrato($_SESSION['email']);
     $nomeCognome = htmlspecialchars($datiUtente['nome']) . ' ' . htmlspecialchars($datiUtente['cognome']);
     $username .= htmlspecialchars($datiUtente['username']);
     $indirizzo .= htmlspecialchars($datiUtente['via']) . ', ' . htmlspecialchars($datiUtente['comune']) . ', <abbr title="' . htmlspecialchars($datiUtente['provincia']) . '">' . htmlspecialchars($datiUtente['sigla_provincia']) . '</abbr>';
 
-    $listaOrdini = $connection->getOrdiniUtente($_SESSION['email']);
+    $listaOrdini = $connection->getOrdiniUtenteRegistrato($_SESSION['email']);
     if(!empty($listaOrdini)) {
         $prezzoTotale = [];
         foreach($listaOrdini as $ordine) {

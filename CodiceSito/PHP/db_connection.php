@@ -2,18 +2,18 @@
 namespace FM;
 
 class FMAccess {
-
+	/*
 	private const HOST_DB = "localhost";
 	private const DATABASE_NAME = "agingill";
 	private const USERNAME = "agingill";
 	private const PASSWORD = "Pech3pheeXie4xen";
-
-	/*
+	*/
+	
 	private const HOST_DB = "localhost";
 	private const DATABASE_NAME = "fbalestr";
 	private const USERNAME = "fbalestr";
 	private const PASSWORD = "Iemao4Chawiechoo";
-	*/
+	
 
 	/*
 	private const HOST_DB = "localhost";
@@ -94,6 +94,23 @@ class FMAccess {
 		$exist = true;
 		if($result->num_rows === 0)
 			$exist = false;
+
+		$result->free();
+		$stmt->close();
+		return $exist;
+	}
+
+	public function existEmailUtenteNonRegistrato($email) {
+		$query = "SELECT email FROM utenti WHERE email = ?";
+		$stmt = ($this->connection)->prepare($query);
+		$stmt->bind_param("s", $email);
+		$stmt->execute();
+
+		$result = $stmt->get_result();
+
+		$exist = false;
+		if($result->num_rows !== 0)
+			$exist = true;
 
 		$result->free();
 		$stmt->close();
@@ -252,8 +269,8 @@ class FMAccess {
 		return $row ? $row['email'] : null;
 	}
 
-	public function getProfiloUtente($email) {
-		$query = "SELECT utenti_registrati.username, utenti_registrati.nome, utenti_registrati.cognome, provincie.sigla_provincia, provincie.nome AS provincia, comuni.nome AS comune, indirizzi.via FROM 
+	public function getProfiloUtenteRegistrato($email) {
+		$query = "SELECT utenti_registrati.username, utenti_registrati.nome, utenti_registrati.cognome, provincie.sigla_provincia, provincie.nome AS provincia, comuni.id_comune, comuni.nome AS comune, indirizzi.via FROM 
 		utenti_registrati JOIN utenti ON utenti_registrati.email=utenti.email
 		JOIN indirizzi ON utenti.id_indirizzo=indirizzi.id_indirizzo 
 		JOIN provincie ON indirizzi.sigla_provincia=provincie.sigla_provincia 
@@ -272,7 +289,7 @@ class FMAccess {
 		return $row;
 	}
 
-	public function getOrdiniUtente($email) {
+	public function getOrdiniUtenteRegistrato($email) {
 		$query = "SELECT ordini.id_ordine, ordini.data_ora, indirizzi.via, provincie.sigla_provincia, provincie.nome AS provincia, comuni.nome AS comune, pesci.nome_comune, dettaglio_ordini.prezzo_unitario, dettaglio_ordini.quantita FROM 
 		ordini JOIN indirizzi ON ordini.id_indirizzo=indirizzi.id_indirizzo 
 		JOIN provincie ON indirizzi.sigla_provincia=provincie.sigla_provincia 
@@ -338,8 +355,7 @@ class FMAccess {
 	public function getPiuVenduti(int $limit = 4): array {
     $limit = (int)$limit;
 
-    $sql = "
-        SELECT p.nome_latino, p.nome_comune, p.famiglia, p.dimensione, p.volume_minimo,
+    $sql = "SELECT p.nome_latino, p.nome_comune, p.famiglia, p.dimensione, p.volume_minimo,
                p.colori, p.prezzo, p.sconto_percentuale, p.disponibilita, p.descrizione,
                p.immagine, p.data_inserimento,
                totals.totale_venduto
@@ -350,8 +366,7 @@ class FMAccess {
             GROUP BY nome_latino
         ) totals ON TRIM(p.nome_latino) = TRIM(totals.nome_latino)
         ORDER BY totals.totale_venduto DESC
-        LIMIT $limit
-    ";
+        LIMIT $limit";
 
     $result = $this->connection->query($sql);
     if (!$result) {
@@ -359,6 +374,31 @@ class FMAccess {
     }
 
     return $result->fetch_all(MYSQLI_ASSOC);
+	}
+
+	public function updateProfiloUtenteRegistrato($set, $parametri) {
+		$query = "UPDATE utenti_registrati SET " . implode(', ', $set) . " WHERE email = ?";
+		$stmt = ($this->connection)->prepare($query);
+		$types = str_repeat('s', count($parametri));
+    	$stmt->bind_param($types, ...$parametri);
+		$stmt->execute();
+		$stmt->close();
+	}
+
+	public function updateUtente($email, $idIndirizzo) {
+		$query = "UPDATE utenti SET id_indirizzo = ? WHERE email = ?";
+		$stmt = ($this->connection)->prepare($query);
+		$stmt->bind_param("is", $idIndirizzo, $email);
+		$stmt->execute();
+		$stmt->close();
+	}
+
+	public function deleteUtenteRegistrato($email) {
+		$query = "DELETE FROM utenti_registrati WHERE email = ?";
+		$stmt = ($this->connection)->prepare($query);
+		$stmt->bind_param("s", $email);
+		$stmt->execute();
+		$stmt->close();
 	}
 }
 ?>
