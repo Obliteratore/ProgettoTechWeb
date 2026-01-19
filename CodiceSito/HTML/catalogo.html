@@ -80,24 +80,27 @@
             <fieldset id="filters" class="filter-container hidden">
                 <legend>Filtri</legend>
                 
+                <!--CERCA NOME LATINO PESCE-->
                 <div class="search-bar">
                     <label for="search">Cerca nome latino:</label>    
-                    <input type="search" id="cerca_latino" name="nome_latino" placeholder="Nome comune del pesce">
+                    <input type="search" id="cerca_latino" name="nome_latino" placeholder="Nome latino del pesce">
                 </div>
 
                 <!--SELEZIONA TIPO ACQUA-->
+                <p class="titolo-form">Seleziona tipo acqua:</p>
                 <label>
-                    <input type="checkbox" name=" tipo_acqua" value="marina">
+                    <input type="checkbox" name="tipo_acqua" value="marina">
                     Acqua salata
                 </label>
 
                 <label>
-                    <input type="checkbox" name=" tipo_acqua" value="dolce">
+                    <input type="checkbox" name="tipo_acqua" value="dolce">
                     Acqua dolce
                 </label>
 
                 <!--SELEZIONA PREZZO-->
                 <div class="price-filter">
+                    <p class="titolo-form">Seleziona intervallo di prezzo:</p>
                     <label for="prezzo_min">Prezzo minimo:</label>
                     <input type="number" id="prezzo_min" name="prezzo_min" min="0" max="1500" value="0">€
                     <label for="prezzo_max">Prezzo massimo:</label>
@@ -106,6 +109,11 @@
 
                 <!--NUOVI ARRIVI E PIù VENDUTI-->
                 <div class="special-filter">
+                    <p class="titolo-form">Ordina per:</p>
+                    <label>
+                        <input type="radio" name="filtro" value="alfabetico">
+                        Alfabetico
+                    </label>
                     <label>
                     <input type="radio" name="filtro" value="nuovi_arrivi">
                         Nuovi arrivi
@@ -125,18 +133,19 @@
                 <!--COLORI-->
                 <div class="color-filter">
                     <p>Colore:</p>
-                    <label><input type="checkbox" name="colore" value="giallo"> Giallo</label>
-                    <label><input type="checkbox" name="colore" value="arancione"> Arancione</label>
-                    <label><input type="checkbox" name="colore" value="rosso"> Rosso</label>
-                    <label><input type="checkbox" name="colore" value="beige"> Beige</label>
-                    <label><input type="checkbox" name="colore" value="rosa"> Rosa</label>
-                    <label><input type="checkbox" name="colore" value="blu"> Blu</label>
-                    <label><input type="checkbox" name="colore" value="azzurro"> Azzurro</label>
-                    <label><input type="checkbox" name="colore" value="verde"> Verde</label>
-                    <label><input type="checkbox" name="colore" value="marrone"> Marrone</label>
-                    <label><input type="checkbox" name="colore" value="nero"> Nero</label>
-                    <label><input type="checkbox" name="colore" value="grigio"> Grigio</label>
-                    <label><input type="checkbox" name="colore" value="trasparente"> Trasparente</label>
+                    <label><input type="radio" name="colore" value="giallo"> Giallo</label>
+                    <label><input type="radio" name="colore" value="arancione"> Arancione</label>
+                    <label><input type="radio" name="colore" value="rosso"> Rosso</label>
+                    <label><input type="radio" name="colore" value="beige"> Beige</label>
+                    <label><input type="radio" name="colore" value="rosa"> Rosa</label>
+                    <label><input type="radio" name="colore" value="blu"> Blu</label>
+                    <label><input type="radio" name="colore" value="azzurro"> Azzurro</label>
+                    <label><input type="radio" name="colore" value="verde"> Verde</label>
+                    <label><input type="radio" name="colore" value="marrone"> Marrone</label>
+                    <label><input type="radio" name="colore" value="nero"> Nero</label>
+                    <label><input type="radio" name="colore" value="grigio"> Grigio</label>
+                    <label><input type="radio" name="colore" value="trasparente"> Trasparente</label>
+                    <label><input type="radio" name="colore" value="tutti"> Tutti</label>
                 </div>
                 
             </fieldset>

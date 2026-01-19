@@ -38,20 +38,11 @@ if (!empty($volumeMinimo)) {
 	$parametri[] = $volumeMinimo;
 }
 
-if (!is_array($colori)) {
-    $colori = [$colori];
+if (!empty($colore) && $colore !== 'tutti') {
+    $condizioni[] = 'FIND_IN_SET(?, colori)';
+    $parametri[] = $colore;
 }
 
-if (!empty($colori)) {
-    if (!empty($colori)) {
-        $condColori = [];
-        foreach ($colori as $colore) {
-            $condColori[] = "FIND_IN_SET(?, colori)";
-            $parametri[] = $colore;
-        }
-        $condizioni[] = '(' . implode(' AND ', $condColori) . ')';
-    }
-}
 
 if (!empty($prezzoMinimo)) {
 	$condizioni[] = "prezzo >= ?";
@@ -67,17 +58,17 @@ if (!empty($prezzoMassimo)) {
 
 $pesci = [];
 
-//try{
+try{
 	$connection = new FMAccess();
 	$connection->openConnection();
 	$pesci = $connection->getPesci($condizioni,$parametri,"");
-/*} catch(mysqli_sql_exception $e) {
+} catch(mysqli_sql_exception $e) {
 	http_response_code(500);
 	header('Location: ../HTML/error_500.html');
 	exit;
-} finally {*/
+} finally {
 	$connection->closeConnection();
-//}
+}
 
 
 
