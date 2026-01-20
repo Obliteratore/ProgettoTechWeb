@@ -1,5 +1,6 @@
 const link = document.getElementById('deleteProfiloLink');
 const dialog = document.getElementById('deleteProfiloDialog');
+const cancelBtn = document.getElementById('cancelBtn');
 
 if (link && dialog && dialog.showModal) {
     link.addEventListener('click', (e) => {
@@ -7,5 +8,5 @@ if (link && dialog && dialog.showModal) {
         dialog.showModal();
     });
 
-    dialog.querySelector('button[value="cancel"]').addEventListener('click', () => dialog.close());
+    cancelBtn.addEventListener('click', () => dialog.close());
 }

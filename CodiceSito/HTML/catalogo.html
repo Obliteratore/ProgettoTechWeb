@@ -3,161 +3,149 @@
     <head>
         <meta charset="utf-8" >
         <title>Catalogo - FishMarket</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- FONT -->
-        <style>@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Inclusive+Sans:ital,wght@0,300..700;1,300..700&family=Lexend:wght@100..900&display=swap');</style>
+        <meta name="description" content="FishMarket è un negozio online di pesci esotici e tropicali da tutto il mondo. Porta l'esotico a casa tua con dei pesci unici.">
+        <meta name="keywords" content="pesci esotici, vendita pesci online, pesci tropicali, negozio pesci esotici, FishMarket">
+        <meta name="author" content="Aaron Gingillino, Francesco Balestro, Bilal Sabic, Valerio Solito">
 
-        <!-- CSS -->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Inclusive+Sans:ital,wght@0,300..700;1,300..700&family=Lexend:wght@100..900&display=swap" rel="stylesheet">
 
-        <!-- Mobile First -->
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../CSS/style.css">
-        <!-- Desktop -->
         <link rel="stylesheet" href="../CSS/desktop.css" media="(min-width: 768px)">
-        <!-- Stampa -->
         <link rel="stylesheet" href="../CSS/stampa.css" media="print">
     </head>
 
-        <body id="top">
-
+    <body id="top">
         <nav aria-label="Aiuti alla navigazione">
             <a id="skip-to-content" href="#main-content">Salta al contenuto</a>
         </nav>
-
         <header>
             <div class="header-content sezione-standard">
                 <img class="icona" src="../IMMAGINI/Icone/fish.png" alt=""/>
                 <nav id="menu" aria-label="Menù di navigazione">
                     <ul>
-                        <li lang="en"><a href="home.php">Home</a></li>
-                        <li>Catalogo</li>
+                        <li lang="en"><a href="../PHP/home.php">Home</a></li>
+                        <li aria-current="page">Catalogo</li>
                         <li><a href="../HTML/chiSiamo.html">Chi Siamo</a></li>
-                        <li><a href="accesso.php">Accedi</a></li>
+                        <li><a href="../PHP/profilo.php">Profilo</a></li>
                     </ul>
                 </nav>
-
                 <div>
-                    <a id="cart-link" href="carrello.html" aria-label="Vai al carrello"><img class="icona" src="../IMMAGINI/Icone/famiglia icone/shopping-cart.svg" alt="" aria-hidden="true"/></a>
-                    <button id="hamburger-menu-btn" aria-controls="hamburger-menu" aria-expanded="false">
+                    <a id="cart-link"  class="icona" href="carrello.html" aria-label="Vai al carrello"><img src="../IMMAGINI/Icone/famiglia icone/shopping-cart.svg" alt="" aria-hidden="true"/></a>
+                    <button  id="hamburger-menu-btn" aria-controls="hamburger-menu" aria-expanded="false">
                         <img class="icona" id="open-hamburger-menu" src="../IMMAGINI/Icone/famiglia icone/menu-burger.svg" alt="" aria-hidden="true"/>
                         <span class="screen-reader">Apri l'<span lang="en">hamburger</span> menù</span>
                         <img class="icona" id="close-hamburger-menu" src="../IMMAGINI/Icone/famiglia icone/cross.svg" alt="" aria-hidden="true"/>
                         <span class="screen-reader">Chiudi l'<span lang="en">hamburger</span> menù</span>
                     </button>
                 </div>
-
                 <nav id="hamburger-menu" aria-label="Menù di navigazione per cellulare">
                     <ul>
-                        <li lang="en"><a href="home.html">Home</a></li>
-                        <li>Catalogo</li>
-                        <li><a href="chiSiamo.html">Chi Siamo</a></li>
-                        <li><a href="accesso.html">Accedi</a></li>
+                        <li lang="en"><a href="../PHP/home.php">Home</a></li>
+                        <li aria-current="page">Catalogo</li>
+                        <li><a href="../HTML/chiSiamo.html">Chi Siamo</a></li>
+                        <li><a href="../PHP/profilo.php">Profilo</a></li>
                     </ul>
                 </nav>
             </div>
         </header>
-
         <script src="../JS/hamburger_menu.js" defer></script>
+        <script src="../JS/toggle_filter.js" defer></script>
 
         <nav id="breadcrumb" class="sezione-standard" aria-label="Percorso di navigazione">
             <ol>
-                <li><span lang="en" aria-current="page">Catalogo</span></li>
+                <li lang="en"><a href="../PHP/home.php">Home</a></li>
+                <li aria-current="page">Catalogo</li>
             </ol>
         </nav>
 
-    <main id="main-content">
-        <form id="form-container-catalogo" class="sezione-standard" action="../PHP/catalogo.php" method="get">
-            
-            <!--RICERCA PESCE COMUNE-->
-            <div class="search-bar">
-                <label for="search">Cerca nome comune:</label>    
-                <input type="search" id="cerca_comune" name="nome_comune" placeholder="Nome comune del pesce">
-            </div>
+        <main id="main-content">
+            <form id="form-container-catalogo" class="sezione-standard" action="../PHP/catalogo.php" method="get">
 
-
-            <button type="button" id="toggle-filter">Mostra filtri</button>
-            <script src="../JS/toggle_filter.js" defer></script>
-            <fieldset id="filters" class="filter-container hidden">
-                <legend>Filtri</legend>
-                
-                <!--CERCA NOME LATINO PESCE-->
                 <div class="search-bar">
-                    <label for="search">Cerca nome latino:</label>    
-                    <input type="search" id="cerca_latino" name="nome_latino" placeholder="Nome latino del pesce">
+                    <label for="cerca_comune">Cerca nome comune:</label>    
+                    <input type="search" id="cerca_comune" name="nome_comune" placeholder="Nome comune del pesce">
                 </div>
 
-                <!--SELEZIONA TIPO ACQUA-->
-                <p class="titolo-form">Seleziona tipo acqua:</p>
-                <label>
-                    <input type="checkbox" name="tipo_acqua" value="marina">
-                    Acqua salata
-                </label>
 
-                <label>
-                    <input type="checkbox" name="tipo_acqua" value="dolce">
-                    Acqua dolce
-                </label>
+                <button type="button" id="toggle-filter">Mostra filtri</button>
+                <fieldset id="filters" class="filter-container hidden">
+                    <legend>Filtri</legend>
+                    
+                    <div class="search-bar">
+                        <label for="cerca_latino">Cerca nome latino:</label>    
+                        <input type="search" id="cerca_latino" name="nome_latino" placeholder="Nome latino del pesce">
+                    </div>
 
-                <!--SELEZIONA PREZZO-->
-                <div class="price-filter">
-                    <p class="titolo-form">Seleziona intervallo di prezzo:</p>
-                    <label for="prezzo_min">Prezzo minimo:</label>
-                    <input type="number" id="prezzo_min" name="prezzo_min" min="0" max="1500" value="0">€
-                    <label for="prezzo_max">Prezzo massimo:</label>
-                    <input type="number" id="prezzo_max" name="prezzo_max" min="0" max="1500" value="1500">€
-                </div>
-
-                <!--NUOVI ARRIVI E PIù VENDUTI-->
-                <div class="special-filter">
-                    <p class="titolo-form">Ordina per:</p>
+                    <p class="titolo-form">Seleziona tipo acqua:</p>
                     <label>
-                        <input type="radio" name="filtro" value="alfabetico">
-                        Alfabetico
+                        <input type="checkbox" name="tipo_acqua" value="marina">
+                        Acqua salata
                     </label>
-                    <label>
-                    <input type="radio" name="filtro" value="nuovi_arrivi">
-                        Nuovi arrivi
-                    </label>
-                    <label>
-                    <input type="radio" name="filtro" value="piu_venduti">
-                        Più venduti
-                    </label>
-                </div>
 
-                <!--VOLUME-->
-                <div class="price-filter">
-                    <label for="prezzo_min">Volume minimo:</label>
-                    <input type="number" id="volume_min" name="volume_min" min="0" max="1500" value="0">L
-                </div>
+                    <label>
+                        <input type="checkbox" name="tipo_acqua" value="dolce">
+                        Acqua dolce
+                    </label>
 
-                <!--COLORI-->
-                <div class="color-filter">
-                    <p>Colore:</p>
-                    <label><input type="radio" name="colore" value="giallo"> Giallo</label>
-                    <label><input type="radio" name="colore" value="arancione"> Arancione</label>
-                    <label><input type="radio" name="colore" value="rosso"> Rosso</label>
-                    <label><input type="radio" name="colore" value="beige"> Beige</label>
-                    <label><input type="radio" name="colore" value="rosa"> Rosa</label>
-                    <label><input type="radio" name="colore" value="blu"> Blu</label>
-                    <label><input type="radio" name="colore" value="azzurro"> Azzurro</label>
-                    <label><input type="radio" name="colore" value="verde"> Verde</label>
-                    <label><input type="radio" name="colore" value="marrone"> Marrone</label>
-                    <label><input type="radio" name="colore" value="nero"> Nero</label>
-                    <label><input type="radio" name="colore" value="grigio"> Grigio</label>
-                    <label><input type="radio" name="colore" value="trasparente"> Trasparente</label>
-                    <label><input type="radio" name="colore" value="tutti"> Tutti</label>
+                    <div class="price-filter">
+                        <p class="titolo-form">Seleziona intervallo di prezzo:</p>
+                        <label for="prezzo_min">Prezzo minimo:</label>
+                        <input type="number" id="prezzo_min" name="prezzo_min" min="0" max="1500" value="0">€
+                        <label for="prezzo_max">Prezzo massimo:</label>
+                        <input type="number" id="prezzo_max" name="prezzo_max" min="0" max="1500" value="1500">€
+                    </div>
+
+                    <div class="special-filter">
+                        <p class="titolo-form">Ordina per:</p>
+                        <label>
+                            <input type="radio" name="filtro" value="alfabetico">
+                            Alfabetico
+                        </label>
+                        <label>
+                        <input type="radio" name="filtro" value="nuovi_arrivi">
+                            Nuovi arrivi
+                        </label>
+                        <label>
+                        <input type="radio" name="filtro" value="piu_venduti">
+                            Più venduti
+                        </label>
+                    </div>
+
+                    <div class="price-filter">
+                        <label for="volume_min">Volume minimo:</label>
+                        <input type="number" id="volume_min" name="volume_min" min="0" max="1500" value="0">L
+                    </div>
+
+                    <div class="color-filter">
+                        <p>Colore:</p>
+                        <label><input type="radio" name="colore" value="giallo"> Giallo</label>
+                        <label><input type="radio" name="colore" value="arancione"> Arancione</label>
+                        <label><input type="radio" name="colore" value="rosso"> Rosso</label>
+                        <label><input type="radio" name="colore" value="beige"> Beige</label>
+                        <label><input type="radio" name="colore" value="rosa"> Rosa</label>
+                        <label><input type="radio" name="colore" value="blu"> Blu</label>
+                        <label><input type="radio" name="colore" value="azzurro"> Azzurro</label>
+                        <label><input type="radio" name="colore" value="verde"> Verde</label>
+                        <label><input type="radio" name="colore" value="marrone"> Marrone</label>
+                        <label><input type="radio" name="colore" value="nero"> Nero</label>
+                        <label><input type="radio" name="colore" value="grigio"> Grigio</label>
+                        <label><input type="radio" name="colore" value="trasparente"> Trasparente</label>
+                        <label><input type="radio" name="colore" value="tutti"> Tutti</label>
+                    </div>
+                </fieldset>
+                <div class="data-form">
+                    <input type="submit" value="Cerca">
                 </div>
-                
-            </fieldset>
-            <div class="data-form">
-                <input type="submit" value="Cerca">
-            </div>
-        </form>
-    </main>
+            </form>
+        </main>
         [listaPesci]
-    <footer>
-        <a href="#top" class="back-to-top" aria-label="Torna all'inizio">↑</a>
-    </footer>
-
+        <footer>
+            
+        </footer>
+        <a href="#top" class="back-to-top" aria-label="Torna all'inizio"><img class="icona" src="../IMMAGINI/Icone/famiglia icone/arrow-up.svg" alt="" aria-hidden="true"/></a>
     </body>
 </html>
