@@ -241,7 +241,7 @@ h2 {
     padding-bottom: 0.25em;
 }
 
-.section-title, footer p {
+.section-title {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -479,7 +479,6 @@ SEZIONE PESCE.HTML
 
 .descrizione {
     font-size: 1.2rem;
-    line-height: 1.5;
 }
 
 @media (min-width: 768px) {
@@ -607,7 +606,7 @@ SEZIONE CATALOGO.HTML
     border-radius: 10px;
     border: none;
     background-color: var(--color-background-bottoni);
-    color: white;
+    color: var(--color-text);
     cursor: pointer;
     font-weight: bold;
 }
@@ -679,8 +678,8 @@ SEZIONE CHISIAMO.HMTL
     left: 0;
     width: 100%;              
     margin-top: 5px;
-    background: rgba(0, 0, 0, 0.5); 
-    color: white;
+    background: var(--color-overlay-card); 
+    color: var(--color-text);
   
     display: flex;
     align-items: center;
