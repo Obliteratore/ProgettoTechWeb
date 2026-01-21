@@ -1,33 +1,34 @@
 <html lang=“it”>
     <head>
         <meta charset="utf-8" >
-        <title>chiSiamo - FishMarket</title>
-        <meta name="description" content="Questa pagina è dedicata ..." >
-        <meta name="keywords" content="pesci, mare …" >
-        <meta name="author" content="Aaron Gingillino, Francesco Balestro, Bilal Sabic, Valerio Solito" >
-        <!-- FONT -->
-        <style>@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Inclusive+Sans:ital,wght@0,300..700;1,300..700&family=Lexend:wght@100..900&display=swap');</style>
+        <title>Chi Siamo - FishMarket</title>
+        <meta name="description" content="FishMarket è un negozio online di pesci esotici e tropicali da tutto il mondo. Porta l'esotico a casa tua con dei pesci unici.">
+        <meta name="keywords" content="pesci esotici, vendita pesci online, pesci tropicali, negozio pesci esotici, FishMarket">
+        <meta name="author" content="Aaron Gingillino, Francesco Balestro, Bilal Sabic, Valerio Solito">
 
-        <!-- CSS -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Inclusive+Sans:ital,wght@0,300..700;1,300..700&family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+
+
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        <!-- Mobile First -->
         <link rel="stylesheet" href="../CSS/style.css">
-        <!-- Desktop -->
         <link rel="stylesheet" href="../CSS/desktop.css" media="(min-width: 768px)">
-        <!-- Stampa -->
         <link rel="stylesheet" href="../CSS/stampa.css" media="print">
     </head>
 
-     <body id="top">
+    <body id="top">
+        <nav aria-label="Aiuti alla navigazione">
+            <a id="skip-to-content" href="#main-content">Salta al contenuto</a>
+        </nav>
         <header>
             <div class="header-content sezione-standard">
                 <img class="icona" src="../IMMAGINI/Icone/fish.png" alt=""/>
                 <nav id="menu" aria-label="Menù di navigazione">
                     <ul>
-                        <li lang="en"><a href="home.php">Home</a></li>
-                        <li><a href="catalogo.html">Catalogo</a></li>
-                        <li>Chi Siamo</li>
+                        <li lang="en"><a href="../PHP/home.php">Home</a></li>
+                        <li><a href="../PHP/catalogo.php">Catalogo</a></li>
+                        <li aria-current="page">Chi Siamo</li>
                         <li><a href="../PHP/profilo.php">Profilo</a></li>
                     </ul>
                 </nav>
@@ -42,9 +43,9 @@
                 </div>
                 <nav id="hamburger-menu" aria-label="Menù di navigazione per cellulare">
                     <ul>
-                        <li lang="en"><a href="home.php">Home</a></li>
-                        <li><a href="catalogo.php">Catalogo</a></li>
-                        <li>Chi Siamo</li>
+                        <li lang="en"><a href="../PHP/home.php">Home</a></li>
+                        <li><a href="../PHP/catalogo.php">Catalogo</a></li>
+                        <li aria-current="page">Chi Siamo</li>
                         <li><a href="../PHP/profilo.php">Profilo</a></li>
                     </ul>
                 </nav>
@@ -54,7 +55,8 @@
 
         <nav id="breadcrumb" class="sezione-standard" aria-label="Percorso di navigazione">
             <ol>
-                <li><span aria-current="page">Chi Siamo</span></li>
+                <li lang="en"><a href="../PHP/home.php">Home</a></li>
+                <li aria-current="page">Chi Siamo</li>
             </ol>
         </nav>
 
@@ -96,6 +98,9 @@
                     Se non mangia Pizza, allora non mi tocca
                     Anche lui lo sa, che mangio solo Pasta ..."</blockquote>
         </main>
-        <footer></footer>
-        <a href="#top" class="back-to-top" aria-label="Torna all'inizio">↑</a>
-     </body>
+        <footer>
+
+        </footer>
+        <a href="#top" class="back-to-top" aria-label="Torna all'inizio"><img class="icona" src="../IMMAGINI/Icone/famiglia icone/arrow-up.svg" alt="" aria-hidden="true"/></a>
+    </body>
+</html>

@@ -1,23 +1,20 @@
 <!DOCTYPE html>
 <html lang="it">
     <head>
-        <meta charset="utf-8" >
+        <meta charset="utf-8">
         <title>FishMarket</title>
-        <meta name="description" content="Questa pagina è dedicata ..." >
-        <meta name="keywords" content="pesci, mare …" >
-        <meta name="author" content="Aaron Gingillino, Francesco Balestro, Bilal Sabic, Valerio Solito" >
+        <meta name="description" content="FishMarket è un negozio online di pesci esotici e tropicali da tutto il mondo. Porta l'esotico a casa tua con dei pesci unici.">
+        <meta name="keywords" content="pesci esotici, vendita pesci online, pesci tropicali, negozio pesci esotici, FishMarket">
+        <meta name="author" content="Aaron Gingillino, Francesco Balestro, Bilal Sabic, Valerio Solito">
 
-        <!-- FONT -->
-        <style>@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Inclusive+Sans:ital,wght@0,300..700;1,300..700&family=Lexend:wght@100..900&display=swap');</style>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Inclusive+Sans:ital,wght@0,300..700;1,300..700&family=Lexend:wght@100..900&display=swap" rel="stylesheet">
 
-        <!-- CSS -->
+
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        <!-- Mobile First -->
         <link rel="stylesheet" href="../CSS/style.css">
-        <!-- Desktop -->
         <link rel="stylesheet" href="../CSS/desktop.css" media="(min-width: 768px)">
-        <!-- Stampa -->
         <link rel="stylesheet" href="../CSS/stampa.css" media="print">
     </head>
 
@@ -30,9 +27,9 @@
                 <img class="icona" src="../IMMAGINI/Icone/fish.png" alt=""/>
                 <nav id="menu" aria-label="Menù di navigazione">
                     <ul>
-                        <li lang="en">Home</li>
-                        <li><a href="catalogo.html">Catalogo</a></li>
-                        <li><a href="chiSiamo.html">Chi Siamo</a></li>
+                        <li lang="en" aria-current="page">Home</li>
+                        <li><a href="../PHP/catalogo.php">Catalogo</a></li>
+                        <li><a href="../HTML/chiSiamo.html">Chi Siamo</a></li>
                         <li><a href="../PHP/profilo.php">Profilo</a></li>
                     </ul>
                 </nav>
@@ -47,9 +44,9 @@
                 </div>
                 <nav id="hamburger-menu" aria-label="Menù di navigazione per cellulare">
                     <ul>
-                        <li lang="en">Home</li>
-                        <li><a href="catalogo.php">Catalogo</a></li>
-                        <li><a href="chiSiamo.html">Chi Siamo</a></li>
+                        <li lang="en" aria-current="page">Home</li>
+                        <li><a href="../PHP/catalogo.php">Catalogo</a></li>
+                        <li><a href="../HTML/chiSiamo.html">Chi Siamo</a></li>
                         <li><a href="../PHP/profilo.php">Profilo</a></li>
                     </ul>
                 </nav>
@@ -59,14 +56,14 @@
 
         <nav id="breadcrumb" class="sezione-standard" aria-label="Percorso di navigazione">
             <ol>
-                <li><span lang="en" aria-current="page">Home</span></li>
+                <li lang="en" aria-current="page">Home</li>
             </ol>
         </nav>
 
         <main id="main-content">
             <h1 class="position" lang="en">FISHMARKET</h1>
             <p class="call-to-action position">Porta l'esotico a casa tua!</p>
-            <p class="paragrafo position">Siamo un piccolo negozio online dedicato alla vendita di pesci provenienti da tutto il mondo</p>
+            <p class="paragrafo position">Siamo un piccolo negozio online dedicato alla vendita di pesci provenienti da tutto il mondo.</p>
             <section class="main-section sezione-standard">
                 <div class="section-title">
                     <h2>NUOVI ARRIVI</h2>
@@ -84,7 +81,7 @@
             </section>
         </main>
         <footer>
-            <p>Questo sito web è stato creato a fini didattici per l'Universita di Padova. 
+            <p>Questo sito web è stato creato a fini didattici per l'Università di Padova. 
                 Le foto sono state gentilmente fornite dal fotografo Benoit, 
                 potete trovare queste, e ulteriori foto in 
                 <a href="https://www.inaturalist.org/observations?place
