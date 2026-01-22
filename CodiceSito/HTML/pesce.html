@@ -34,7 +34,7 @@
                     </ul>
                 </nav>
                 <div>
-                    <a id="cart-link"  class="icona" href="carrello.html" aria-label="Vai al carrello"><img src="../IMMAGINI/Icone/famiglia icone/shopping-cart.svg" alt="" aria-hidden="true"/></a>
+                    <a id="cart-link"  class="icona" href="../HTML/carrello.html" aria-label="Vai al carrello"><img src="../IMMAGINI/Icone/famiglia icone/shopping-cart.svg" alt="" aria-hidden="true"/></a>
                     <button  id="hamburger-menu-btn" aria-controls="hamburger-menu" aria-expanded="false">
                         <img class="icona" id="open-hamburger-menu" src="../IMMAGINI/Icone/famiglia icone/menu-burger.svg" alt="" aria-hidden="true"/>
                         <span class="screen-reader">Apri l'<span lang="en">hamburger</span> menù</span>
@@ -75,7 +75,13 @@
                         <p class="prezzo">[prezzopesce]€</p>
                         <p class="disponibilita">Ancora [disponibilita-pesce] disponibili!</p>
 
-                        <form action="#" method="post" class="form-sezione-acquisto">
+                        <form action="gestisci_carrello.php" method="POST" class="form-sezione-acquisto">
+
+                            <div id="errore-prodotto" class="messaggio-errore">[errore]</div>
+
+                            <input type="hidden" name="azione" value="aggiungi">
+                            <input type="hidden" name="nome_latino" value="[nomelatino]">
+                            
                             <div class="quantita-gestione">
                                 <button type="button" class="btn-quantita" onclick="changeQty(-1)" aria-label="Diminuisci quantità">-</button>
                                 <input type="number" id="quantita" name="quantita" value="1" min="1" max="[disponibilita-pesce]" readonly aria-label="Quantità da acquistare"> <!-- modifica 99 con [disponibilita-pesce] -->
@@ -83,7 +89,6 @@
                             </div>
 
                             <input type="submit" value="Aggiungi al carrello" class="carrello-button" aria-label="Aggiungi al carrello">
-                            <input type="hidden" name="nome_latino" value="[nomelatino]">
                         </form>
                     </div>
                 </div>

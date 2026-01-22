@@ -16,13 +16,17 @@ $percorso = "";
 $volumemin = 0;
 $habitat = "";
 $colori = "";
+$msg_errore = "";
+
+if (isset($_GET['errore']) && $_GET['errore'] == 'non_disponibile'){
+    $msg_errore = "Attenzione: La quantità richiesta supera la disponibilità!";
+}
 
 $paginaHTML = file_get_contents('../HTML/pesce.html');
 
 try{
     $connection = new FMAccess();
     $connection->openConnection();
-    if($connection->openConnection());
     $nome_latinos = $_GET['nome_latino'] ?? '';
     $pesce = null;
     if(!empty($nome_latinos)){
@@ -51,13 +55,15 @@ try{
             $paginaHTML = str_replace("[descrizione-pesce]", $descrizione, $paginaHTML);
             $paginaHTML = str_replace("[percorso]", $percorso, $paginaHTML);
             $paginaHTML = str_replace("[colori]", $colori, $paginaHTML);
+            $paginaHTML = str_replace("[errore]", $msg_errore, $paginaHTML);
+
 
         } else {
-            header('Location:../HTML/errore_404.html');
+            header('Location:../HTML/error_404.html');
             exit;
         }
     } else {
-        header('Location:../HTML/errore_404.html');
+        header('Location:../HTML/error_404.html');
         exit;
     }
 } catch (mysqli_sql_exception $e) {

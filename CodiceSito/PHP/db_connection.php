@@ -8,7 +8,7 @@ class FMAccess {
 	private const USERNAME = "agingill";
 	private const PASSWORD = "Pech3pheeXie4xen";
 	*/
-	
+	/*
 	private const HOST_DB = "localhost";
 	private const DATABASE_NAME = "fbalestr";
 	private const USERNAME = "root";
@@ -23,12 +23,11 @@ class FMAccess {
 	private const PASSWORD = "ieGai9om6eiyahT0";
 	
 
-	/*
+	*/
 	private const HOST_DB = "localhost";
 	private const DATABASE_NAME = "vsolito";
 	private const USERNAME = "vsolito";
 	private const PASSWORD = "aeyoh5naiw7nah4S";
-	*/
 
 	private $connection;
 
@@ -401,5 +400,75 @@ class FMAccess {
 		$stmt->execute();
 		$stmt->close();
 	}
+
+	public function inserisciCarrello($email, $nome_latino, $quantita) {
+		$query = "INSERT INTO carrello (email, nome_latino, quantita) 
+				  VALUES (?, ?, ?) 
+				  ON DUPLICATE KEY UPDATE quantita = quantita + VALUES(quantita)";
+		$stmt = ($this->connection)->prepare($query);
+		$stmt->bind_param("ssi", $email, $nome_latino, $quantita);
+		$stmt->execute();
+		$stmt->close();
+	}
+
+	public function getCarrello($email) {
+		$query = "SELECT c.nome_latino, c.quantita, p.nome_comune, p.prezzo, p.immagine, p.disponibilita
+				  FROM carrello c
+				  JOIN pesci p ON c.nome_latino = p.nome_latino
+				  WHERE c.email = ?";
+		$stmt = ($this->connection)->prepare($query);
+		$stmt->bind_param("s", $email);
+		$stmt->execute();
+
+		$result = $stmt->get_result();
+
+		$prodotti = [];
+		while ($row = $result->fetch_assoc()){
+			$prodotti[] = $row;
+		}
+
+		$result->free();
+		$stmt->close();
+
+		return $prodotti;
+	}
+
+	public function cancellaDaCarrello($email, $nome_latino) {
+		$query = "DELETE FROM carrello WHERE email = ? AND nome_latino = ?";
+		$stmt = ($this->connection)->prepare($query);
+		$stmt->bind_param("ss", $email, $nome_latino);
+		$stmt->execute();
+		$stmt->close();
+	}
+
+	public function getPesciPerCarrelloOspite($nomi_latini) {
+        if (empty($nomi_latini)) {
+            return [];
+        }
+
+        $placeholders = implode(',', array_fill(0, count($nomi_latini), '?'));
+        $tipi = str_repeat('s', count($nomi_latini));
+
+        $query = "SELECT nome_latino, nome_comune, prezzo, immagine, disponibilita 
+                  FROM pesci 
+                  WHERE nome_latino IN ($placeholders)";
+
+        $stmt = ($this->connection)->prepare($query);
+        
+        $stmt->bind_param($tipi, ...$nomi_latini);
+        
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $prodotti = [];
+        while ($row = $result->fetch_assoc()){
+            $prodotti[] = $row;
+        }
+
+        $result->free();
+        $stmt->close();
+
+        return $prodotti;
+    }
 }
 ?>
