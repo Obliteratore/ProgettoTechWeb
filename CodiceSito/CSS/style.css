@@ -355,12 +355,7 @@ SEZIONE PESCE.HTML
 
 .nome-scientifico{
     display: block;
-<<<<<<< HEAD
-    font-style: italic;
-    color: #ffffff;     
-=======
     font-style: italic;  
->>>>>>> 1be307d992010c77a1be2b98cf16d1100226910d
     font-size: 1.25rem; 
     font-weight: 300;
 }
