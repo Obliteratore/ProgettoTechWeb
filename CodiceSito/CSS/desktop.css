@@ -72,6 +72,7 @@ SEZIONE MAIN
     margin: 0;
 }
 
+<<<<<<< HEAD
 /*PESCE*/
 .parte-superiore-pesce { 
         flex-direction: row;
@@ -194,3 +195,11 @@ SEZIONE MAIN
     font-size: 1.2rem;
     margin: 0;
 }
+=======
+/*
+=======================================
+CATALOGO
+=======================================
+*/
+
+>>>>>>> 1be307d992010c77a1be2b98cf16d1100226910d
