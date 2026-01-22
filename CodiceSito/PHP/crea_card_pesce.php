@@ -10,7 +10,7 @@ function crea_card_pesce(array $pesci) : string {
 
             $stringaPesci .= '<a href="../PHP/pesce.php?nome_latino=' . $nome_latino . '">';
             $stringaPesci .= '<li class="card-pesce">';
-            $stringaPesci .= '<img src="' . $immagine . '" alt="' . $nome_comune . '">';
+            $stringaPesci .= '<img height="683" width="1024" src="' . $immagine . '" alt="' . $nome_comune . '">';
             $stringaPesci .= '<div class="dati-pesce">';
             $stringaPesci .= '<p class="nome">' . $nome_comune . '</p>';
             $stringaPesci .= '</div>';
