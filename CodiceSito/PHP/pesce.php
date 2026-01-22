@@ -17,9 +17,11 @@ $volumemin = 0;
 $habitat = "";
 $colori = "";
 $msg_errore = "";
+$classe_errore = "hidden";
 
 if (isset($_GET['errore']) && $_GET['errore'] == 'non_disponibile'){
     $msg_errore = "Attenzione: La quantità richiesta supera la disponibilità!";
+    $classe_errore = "messaggio-errore";
 }
 
 $paginaHTML = file_get_contents('../HTML/pesce.html');
@@ -56,6 +58,8 @@ try{
             $paginaHTML = str_replace("[percorso]", $percorso, $paginaHTML);
             $paginaHTML = str_replace("[colori]", $colori, $paginaHTML);
             $paginaHTML = str_replace("[errore]", $msg_errore, $paginaHTML);
+            $paginaHTML = str_replace("[classe_errore]", $classe_errore, $paginaHTML);
+
 
 
         } else {
