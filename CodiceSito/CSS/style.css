@@ -193,7 +193,6 @@ SEZIONE BREADCRUMB
     display: flex;
     justify-content: center;
     list-style: none;
-    text-align: center;
     padding: 0.5em;
     margin: 0 1em;
 }
@@ -348,8 +347,7 @@ SEZIONE PESCE.HTML
 */
 
 .main-section-pesce {
-    padding: 1.5em;
-    margin: 1em 0.5em;
+    padding: 1.0em;
 }
 
 

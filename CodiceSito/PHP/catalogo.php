@@ -11,7 +11,7 @@ $nomeLatino = filter_input(INPUT_GET, 'nome_latino', FILTER_SANITIZE_SPECIAL_CHA
 $nomeComune = filter_input(INPUT_GET, 'nome_comune', FILTER_SANITIZE_SPECIAL_CHARS);
 $dimensione = filter_input(INPUT_GET, 'dimensione', FILTER_VALIDATE_INT);
 $volumeMinimo = filter_input(INPUT_GET, 'volume_min', FILTER_VALIDATE_INT);
-$colori = $_GET['colore'] ?? [];
+$colore = $_GET['colore'] ?? [];
 $prezzoMinimo = filter_input(INPUT_GET, 'prezzo_min', FILTER_VALIDATE_INT);
 $prezzoMassimo = filter_input(INPUT_GET, 'prezzo_max', FILTER_VALIDATE_INT);
 
