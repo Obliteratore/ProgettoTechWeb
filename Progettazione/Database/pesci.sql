@@ -1,4 +1,4 @@
-USE fbalestr;
+USE vsolito;
 
 DROP TABLE IF EXISTS dettaglio_ordini;
 DROP TABLE IF EXISTS ordini;
@@ -92,6 +92,15 @@ CREATE TABLE dettaglio_ordini (
     PRIMARY KEY (id_ordine, nome_latino),
 	FOREIGN KEY (id_ordine) REFERENCES ordini(id_ordine) ON DELETE CASCADE,
 	FOREIGN KEY (nome_latino) REFERENCES pesci(nome_latino)
+);
+
+CREATE TABLE carrello (
+    email VARCHAR(255) NOT NULL,
+    nome_latino VARCHAR(150) NOT NULL,
+    quantita INT NOT NULL,
+    PRIMARY KEY (email, nome_latino),
+    FOREIGN KEY (email) REFERENCES utenti(email) ON DELETE CASCADE,
+    FOREIGN KEY (nome_latino) REFERENCES pesci(nome_latino) ON DELETE CASCADE
 );
 
 INSERT INTO famiglie (famiglia_latino, tipo_acqua)

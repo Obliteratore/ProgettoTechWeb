@@ -46,7 +46,6 @@ try{
             if((int)$ordine['id_ordine'] !== (int)$idOrdinePrec) {
                 if($idOrdinePrec !== null) {
                     $ordini .= '</tbody></table>';
-                    $ordini .= '<p id="descrizione_' . (int)$ordine['id_ordine'] . '" class="screen-reader">La tabella contiene l\'elenco dei pesci acquistati con l\'ordine #' . (int)$ordine['id_ordine'] . '. Ogni riga riguarda un pesce con prezzo unitario e quantità acquistata.</p>';
                     $ordini .= '</article></li>';
                 }
 
@@ -60,6 +59,8 @@ try{
                 $ordini .= '<dt>INDIRIZZO:</dt><dd>' . htmlspecialchars($datiUtente['via']) . ', ' . htmlspecialchars($datiUtente['comune']) . ', <abbr title="' . htmlspecialchars($datiUtente['provincia']) . '">' . htmlspecialchars($datiUtente['sigla_provincia']) . '</abbr>' . '</dd>';
                 $ordini .= '</dl>';
                 $ordini .= '</div>';
+
+                $ordini .= '<p id="descrizione_' . (int)$ordine['id_ordine'] . '" class="screen-reader">La tabella è organizzata per colonne e contiene l\'elenco dei pesci acquistati con l\'ordine #' . (int)$ordine['id_ordine'] . '. Ogni riga riguarda un pesce con il suo prezzo e la quantità acquistata.</p>';
 
                 $ordini .= '<table aria-describedby="descrizione_' . (int)$ordine['id_ordine'] . '">';
                 $ordini .= '<caption class="screen-reader">Pesci acquistati con l\'ordine #' . (int)$ordine['id_ordine'] . '</caption>';
