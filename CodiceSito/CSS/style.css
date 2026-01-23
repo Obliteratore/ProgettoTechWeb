@@ -209,11 +209,15 @@ SEZIONE MAIN
 */
 
 h1 {
-    font-size: clamp(2rem, 2.5rem + 1.8vw, 100rem);
+    font-size: clamp(2rem, 1.5rem + 1.8vw, 2.5rem);
 }
 
 h2 {
     font-size: clamp(1.5rem, 1rem + 1.8vw, 2rem);
+}
+
+h3 {
+    font-size: clamp(1.2rem, 0.6rem + 1.2vw, 1.5rem);
 }
 
 .call-to-action {
@@ -296,8 +300,8 @@ h2 {
 
 .dati-pesce .nome {
     font-weight: bold;
-    font-size: clamp(0.875em, 0.3em + 2.2vw, 2em); /*0.75em di 16 = 12px*/
-    font-size: clamp(0.875em, 8cqw, 2em); /*Se il browser non supporta container-inline, la funzione clamp diventa invalida e la dichiarazione viene ignorata. Quindi viene applicato il clamp precedente*/
+    font-size: clamp(0.875em, 0.3em + 2.2vw, 2em);
+    font-size: clamp(0.875em, 8cqw, 2em);
     line-height: 1.5;
 
 }
@@ -707,8 +711,8 @@ SEZIONE CHISIAMO.HMTL
 
 .dati-membro .nome-membro{
     font-weight: bold;
-    font-size: clamp(1.2rem, 0.7em + 3.5vw, 1.8em); /*0.75em di 16 = 12px*/
-    font-size: clamp(1.2rem, 13cqw, 1.8em); /*Se il browser non supporta container-inline, la funzione clamp diventa invalida e la dichiarazione viene ignorata. Quindi viene applicato il clamp precedente*/
+    font-size: clamp(1.2rem, 0.7em + 3.5vw, 1.8em);
+    font-size: clamp(1.2rem, 13cqw, 1.8em);
     line-height: 1.5;
 }
 
@@ -862,6 +866,11 @@ fieldset > label:first-of-type {
     grid-template-columns: auto 1fr;
     row-gap: 0.25rem;
     column-gap: 0.5rem;
+    font-size: clamp(1rem, 0.6rem + 1vw, 1.3rem);
+}
+
+.lista-ordini dl dt{
+    font-weight: bold;
 }
 
 .lista-ordini .dati-ordine {
@@ -876,6 +885,7 @@ fieldset > label:first-of-type {
     width: 100%;
     border-collapse: collapse;
     box-sizing: border-box;
+    font-size: clamp(1rem, 0.6rem + 1vw, 1.3rem);
 }
 
 .lista-ordini th, .lista-ordini td {

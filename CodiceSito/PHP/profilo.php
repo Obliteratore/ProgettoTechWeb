@@ -52,9 +52,8 @@ try{
                 $data = (new DateTime($ordine['data_ora']))->format('d/m/Y');
                 $ordini .= '<li><article>';
                 $ordini .= '<div class="dati-ordine">';
+                $ordini .= '<h3>ORDINE #' . (int)$ordine['id_ordine'] . ' - ' . $data . '</h3>';
                 $ordini .= '<dl>';
-                $ordini .= '<dt>ORDINE:</dt><dd>#' . (int)$ordine['id_ordine'] . '</dd>';
-                $ordini .= '<dt>DATA:</dt><dd>' . $data . '</dd>';
                 $ordini .= '<dt>TOTALE:</dt><dd>' . $prezzoTotale[(int)$ordine['id_ordine']] . ' €</dd>';
                 $ordini .= '<dt>INDIRIZZO:</dt><dd>' . htmlspecialchars($datiUtente['via']) . ', ' . htmlspecialchars($datiUtente['comune']) . ', <abbr title="' . htmlspecialchars($datiUtente['provincia']) . '">' . htmlspecialchars($datiUtente['sigla_provincia']) . '</abbr>' . '</dd>';
                 $ordini .= '</dl>';

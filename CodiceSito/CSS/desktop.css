@@ -56,15 +56,33 @@ SEZIONE MAIN
 
 /*PROFILO*/
 
-.lista-ordini dl {
+.lista-ordini .dati-ordine {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0;
+    grid-template-columns: 2fr 2fr 2fr;
+    align-items: start;
+}
+
+.lista-ordini h3 {
+    grid-column: 1;
+}
+
+.lista-ordini dl {
+    display: contents;
+    margin: 0;
+}
+
+.lista-ordini dt:first-of-type, .lista-ordini dd:first-of-type {
+    grid-column: 2;
+    justify-self: center;
+    text-align: center;
+}
+
+.lista-ordini dt:last-of-type, .lista-ordini dd:last-of-type {
+    grid-column: 3;
 }
 
 .lista-ordini dl dt {
     grid-row: 1;
-    font-weight: bold;
 }
 
 .lista-ordini dl dd {
