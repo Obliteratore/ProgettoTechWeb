@@ -7,7 +7,6 @@
     --color-text: #fff;
     --color-background-bottoni: #2470c6;
     --color-background-card: rgba(53, 105, 140, 0.25);
-    --color-background-breadcrumb: ;
     --color-background-header: rgba(38, 125, 183, 0.77);
     --color-overlay-card: rgba(0, 0, 0, 0.6);
     --color-background-back-to-top: rgba(0, 0, 0, 0.411); 
@@ -54,14 +53,19 @@ a {
 }
 
 a:not(:has(img)) {
-    background-color: #060606af; /* valore esplicito */
+    background-color: #060606af;
     text-decoration: underline;
     border-radius: 6px;
 }
 
 a:visited:not(:has(img)) {
     color: var(--link-visited);
-    background-color: #ffffff;      /* valore visitato */
+    background-color: #fff;
+}
+:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 3px;
+    box-shadow: 0 0 0 2px #000;
 }
 
 
@@ -209,7 +213,7 @@ SEZIONE MAIN
 */
 
 h1 {
-    font-size: clamp(2rem, 1.5rem + 1.8vw, 2.5rem);
+    font-size: clamp(2rem, 1.5rem + 1.8vw, 3rem);
 }
 
 h2 {
@@ -559,10 +563,7 @@ SEZIONE CATALOGO.HTML
     font-size: 1rem;
 
 }
-.search-bar input[type="search"]:focus {
-    outline: none;
-    border: 3px solid #4a90e2;
-}
+
 #form-container-catalogo {
     display:flex;
     flex-direction: column;
@@ -616,11 +617,7 @@ SEZIONE CATALOGO.HTML
     padding-left:0.5em;
     height:1.5rem;
 }
-.price-filter input[type="number"]:focus {
-    outline:none;
-    border-width :2px;
-    border-color: #4a90e2;
-}
+
 #toggle-filter {
     margin-top: 1em;
     padding: 0.5em 1em;
@@ -631,9 +628,7 @@ SEZIONE CATALOGO.HTML
     cursor: pointer;
     font-weight: bold;
 }
-#toggle-filter:hover {
-    background-color: #357abd;
-}
+
 .hidden{
     display:none;
 }
@@ -767,11 +762,6 @@ ul.error-message {
     font-size: clamp(1rem, 0.8rem + 0.4vw, 1.2rem);
 }
 
-.data-form input:focus, .data-form select:focus {
-    outline: none;
-    border-width: 3px;
-}
-
 .required {
     margin-left: 0.25em;
     font-size: 0.80em;
@@ -785,26 +775,23 @@ ul.error-message {
 }
 
 abbr {
-    /*text-decoration: none;*/
     text-underline-offset: 0.1em;
     cursor: help;
 }
 
-.data-form input[type="submit"] {
+.data-form input[type="submit"], #modifyProfiloLink, #exitProfilo, #deleteProfiloLink {
+    height: 3rem;
     border: none;
-    font-size: 0.875em;
+    padding: 0.5rem;
+    font-size: 1em;
     font-weight: bold;
     background-color: var(--color-background-bottoni);
     color: var(--color-text);
     cursor: pointer;
 }
 
-.data-form input[type="submit"]:focus {
-    border: 3px solid black;
-}
-
-.data-form input[type="submit"]:hover {
-    background-color: #357abd;
+.data-form input[type="submit"]:hover, #toggle-filter:hover, .carrello-button:hover, .data-form input[type="submit"]:focus-visible, #toggle-filter:focus-visible, .carrello-button:focus-visible {
+    background-color: #1d5aa8;
 }
 
 #login-form input[type="submit"] {
@@ -835,7 +822,7 @@ fieldset > label:first-of-type {
 
 .help {
     margin-top: 0.25em;
-    font-size: 0.875em; /*14px se font padre = 16px*/
+    font-size: 0.875em;
 }
 
 .help ul {
@@ -844,13 +831,50 @@ fieldset > label:first-of-type {
 
 /*PROFILO*/
 
-.dati-utente {
+.user-container {
     margin: 0 auto;
     text-align: center;
+    font-size: clamp(1.1rem, 0.6rem + 1.3vw, 1.5rem);
 }
 
-.dati-utente ul {
+.user-container ul {
     list-style: none;
+}
+
+#modifyProfiloLink, #exitProfilo, #deleteProfiloLink {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 30%;
+    min-width: 10rem;
+    max-width: 12.5rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    text-decoration: none;
+}
+
+#modifyProfiloLink {
+    margin-top: 1rem;
+    background-color: #E39D4F;
+}
+
+#exitProfilo {
+    background-color: #3DB46F;
+}
+
+#deleteProfiloLink {
+    background-color: #C35C5A;
+}
+
+#modifyProfiloLink:hover, #modifyProfiloLink:focus-visible {
+    background-color: #D78A3D;
+}
+#exitProfilo:hover, #exitProfilo:focus-visible {
+    background-color: #34a05c;
+}
+#deleteProfiloLink:hover, #deleteProfiloLink:focus-visible {
+    background-color: #a94b4a;
 }
 
 .lista-ordini li {

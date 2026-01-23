@@ -56,6 +56,26 @@ SEZIONE MAIN
 
 /*PROFILO*/
 
+.user-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0 5em;
+}
+
+.dati-utente {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.azioni-profilo {
+    width: 35%;
+}
+
+#modifyProfiloLink, #exitProfilo, #deleteProfiloLink {
+    width: 100%;
+}
+
 .lista-ordini .dati-ordine {
     display: grid;
     grid-template-columns: 2fr 2fr 2fr;
