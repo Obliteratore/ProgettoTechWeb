@@ -18,16 +18,68 @@ unset($_SESSION['errors'], $_SESSION['values']);
     <head>
         <meta charset="utf-8" >
         <title>Modifica Profilo - FishMarket</title>
+        <meta name="description" content="FishMarket è un negozio online di pesci esotici e tropicali da tutto il mondo. Porta l'esotico a casa tua con dei pesci unici.">
+        <meta name="keywords" content="pesci esotici, vendita pesci online, pesci tropicali, negozio pesci esotici, FishMarket">
+        <meta name="author" content="Aaron Gingillino, Francesco Balestro, Bilal Sabic, Valerio Solito">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Inclusive+Sans:ital,wght@0,300..700;1,300..700&family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+
+
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../CSS/style.css">
         <link rel="stylesheet" href="../CSS/desktop.css" media="(min-width: 768px)">
+        <link rel="stylesheet" href="../CSS/stampa.css" media="print">
     </head>
 
     <body id="top">
-        <header></header>
+        <nav aria-label="Aiuti alla navigazione">
+            <a id="skip-to-content" href="#main-content">Salta al contenuto</a>
+        </nav>
+        <header>
+            <div class="header-content sezione-standard">
+                <img class="icona" src="../IMMAGINI/Icone/fish.png" alt=""/>
+                <nav id="menu" aria-label="Menù di navigazione">
+                    <ul>
+                        <li lang="en"><a href="../PHP/home.php">Home</a></li>
+                        <li><a href="../PHP/catalogo.php">Catalogo</a></li>
+                        <li><a href="../HTML/chiSiamo.html">Chi Siamo</a></li>
+                        <li><a href="../PHP/profilo.php">Profilo</a></li>
+                    </ul>
+                </nav>
+                <div>
+                    <a id="cart-link"  class="icona" href="carrello.html" aria-label="Vai al carrello"><img src="../IMMAGINI/Icone/famiglia icone/shopping-cart.svg" alt="" aria-hidden="true"/></a>
+                    <button  id="hamburger-menu-btn" aria-controls="hamburger-menu" aria-expanded="false">
+                        <img class="icona" id="open-hamburger-menu" src="../IMMAGINI/Icone/famiglia icone/menu-burger.svg" alt="" aria-hidden="true"/>
+                        <span class="screen-reader">Apri l'<span lang="en">hamburger</span> menù</span>
+                        <img class="icona" id="close-hamburger-menu" src="../IMMAGINI/Icone/famiglia icone/cross.svg" alt="" aria-hidden="true"/>
+                        <span class="screen-reader">Chiudi l'<span lang="en">hamburger</span> menù</span>
+                    </button>
+                </div>
+                <nav id="hamburger-menu" aria-label="Menù di navigazione per cellulare">
+                    <ul>
+                        <li lang="en"><a href="../PHP/home.php">Home</a></li>
+                        <li><a href="../PHP/catalogo.php">Catalogo</a></li>
+                        <li><a href="../HTML/chiSiamo.html">Chi Siamo</a></li>
+                        <li><a href="../PHP/profilo.php">Profilo</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <script src="../JS/hamburger_menu.js" defer></script>
         <script src="../JS/modify_validation.js" defer></script>
+
+        <nav id="breadcrumb" class="sezione-standard" aria-label="Percorso di navigazione">
+            <ol>
+                <li lang="en"><a href="../PHP/home.php">Home</a></li>
+                <li><a href="../PHP/profilo.php">Profilo</a></li>
+                <li aria-current="page">Modifica profilo</li>
+            </ol>
+        </nav>
+        
         <main id="main-content">
-            <div class="form-container">
+            <div class="form-container sezione-standard">
                 <h1 class="position">Modifica i tuoi dati</h1>
                 <ul id="modify-error" class="error-message" role="alert"><?= $errors['summary'] ?? '' ?></ul>
                 <form id="modify-form" class="data-form" action="modify_handler.php" method="post" autocomplete="on">
@@ -204,9 +256,13 @@ unset($_SESSION['errors'], $_SESSION['values']);
                     </fieldset>
                     <input type="submit" value="Conferma"/>
                 </form>
+                <a id="cancelModifyBtn" class="cancelBtn" href="profilo.php">Annulla</a>
             </div>
         </main>
         <script src="../JS/insert_comuni.js" defer></script>
-        <footer></footer>
+        <footer>
+
+        </footer>
+        <a href="#top" class="back-to-top" aria-label="Torna all'inizio"><img class="icona" src="../IMMAGINI/Icone/famiglia icone/arrow-up.svg" alt="" aria-hidden="true"/></a>
     </body>
 </html>

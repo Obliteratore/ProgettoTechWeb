@@ -7,19 +7,16 @@
     --color-text: #fff;
     --color-background-bottoni: #2470c6;
     --color-background-card: rgba(53, 105, 140, 0.25);
-    --color-background-breadcrumb: ;
     --color-background-header: rgba(38, 125, 183, 0.77);
     --color-overlay-card: rgba(0, 0, 0, 0.6);
     --color-background-back-to-top: rgba(0, 0, 0, 0.411); 
     --color-link: #fff;
-    --link-visited: #fff;
+    --link-visited: #000000;
     --color-error: ;
 }
 
 /*OGNI SEZIONE DEVE AVERE ALMENO QUESTI ATTRIBUTI*/
-.main-section, .header-content, #breadcrumb, 
-.form-container, #form-container-catalogo,
-.main-section-pesce {
+.sezione-standard {
     background: var(--color-background-card);
     border-radius: 20px;
     border: 1px solid #ffffff66;
@@ -51,14 +48,26 @@ body {
 
 a {
     color: var(--color-link);
-    text-underline-offset: 0.1em;
-    text-decoration: underline;
+    padding-left: 0.2em;
+    padding-right: 0.2em;
 }
 
-a:visited { /*Stile per i link visitati DA FARE*/
-    color: var(--link-visited);
-    text-decoration: none;
+a:not(:has(img)) {
+    background-color: #060606af;
+    text-decoration: underline;
+    border-radius: 6px;
 }
+
+a:visited:not(:has(img)) {
+    color: var(--link-visited);
+    background-color: #fff;
+}
+:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 3px;
+    box-shadow: 0 0 0 2px #000;
+}
+
 
 #skip-to-content, .screen-reader {
     position: absolute;
@@ -188,7 +197,6 @@ SEZIONE BREADCRUMB
     display: flex;
     justify-content: center;
     list-style: none;
-    text-align: center;
     padding: 0.5em;
     margin: 0 1em;
 }
@@ -205,11 +213,15 @@ SEZIONE MAIN
 */
 
 h1 {
-    font-size: clamp(2rem, 2.5rem + 1.8vw, 100rem);
+    font-size: clamp(2rem, 1.5rem + 1.8vw, 3rem);
 }
 
 h2 {
     font-size: clamp(1.5rem, 1rem + 1.8vw, 2rem);
+}
+
+h3 {
+    font-size: clamp(1.2rem, 0.6rem + 1.2vw, 1.5rem);
 }
 
 .call-to-action {
@@ -236,7 +248,7 @@ h2 {
     padding-bottom: 0.25em;
 }
 
-.section-title, footer p {
+.section-title {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -264,7 +276,6 @@ h2 {
     border-radius: 10px;
     overflow: hidden;
     position: relative;
-    /*Soluzione per browser nuovi, circa dal 2023, per avere grandezza testo in base a qella del contenitore usando i cqw(container query width)*/
     container-type: inline-size;
     min-height: 100px;
 }
@@ -272,6 +283,7 @@ h2 {
 .card-pesce img {
     display: block;
     max-width: 100%;
+    height: auto;
 }
 
 .dati-pesce {
@@ -291,8 +303,8 @@ h2 {
 
 .dati-pesce .nome {
     font-weight: bold;
-    font-size: clamp(0.875em, 0.3em + 2.2vw, 2em); /*0.75em di 16 = 12px*/
-    font-size: clamp(0.875em, 8cqw, 2em); /*Se il browser non supporta container-inline, la funzione clamp diventa invalida e la dichiarazione viene ignorata. Quindi viene applicato il clamp precedente*/
+    font-size: clamp(0.875em, 0.3em + 2.2vw, 2em);
+    font-size: clamp(0.875em, 8cqw, 2em);
     line-height: 1;
 
 }
@@ -303,7 +315,7 @@ h2 {
     right: 0px;
     
     
-    width: 35%;               /* da sinistra a destra */
+    width: 45%;               /* da sinistra a destra */
     height: 15%;               /* 1/4 della card */
     background: var(--color-overlay-card); 
     border-bottom-left-radius: 10px;
@@ -342,15 +354,13 @@ SEZIONE PESCE.HTML
 */
 
 .main-section-pesce {
-    padding: 1.5em;
-    margin: 1em 0.5em;
+    padding: 1.0em;
 }
 
 
 .nome-scientifico{
     display: block;
-    font-style: italic;
-    color: #dddddd;     
+    font-style: italic;  
     font-size: 1.25rem; 
     font-weight: 300;
 }
@@ -386,7 +396,7 @@ SEZIONE PESCE.HTML
 
 .sezione-acquisto h1 {
     font-size: clamp(1.8rem, 4.7vw, 2.8rem); 
-    line-height: 1.1;
+    line-height: 1.5;
 }
 
 .sezione-acquisto .prezzo {
@@ -404,6 +414,7 @@ SEZIONE PESCE.HTML
     align-items: center;
     gap: 13px;
     margin-top: 1em;
+    margin-bottom: 1em;
     justify-content: center;
 }
 
@@ -417,6 +428,7 @@ SEZIONE PESCE.HTML
     border: 1px solid #000;
     background-color: #ffffff;
     color: #000000;
+    -moz-appearance: none;
 }
 
 /*serve per togliere le freccette*/
@@ -437,6 +449,25 @@ SEZIONE PESCE.HTML
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.messaggio-errore {
+    color: darkred;
+    font-weight: bold;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    text-align: center;
+    font-size: clamp(1rem, 0.4rem + 1.2vw, 1.2rem);
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 0.5em;
+    border-radius: 10px;
+    border: 1px solid darkred;
+    width: 75%;
+    box-sizing: border-box;
+}
+
+.messaggio-errore:empty{
+    display: none;
 }
 
 .carrello-button {
@@ -468,13 +499,10 @@ SEZIONE PESCE.HTML
 .dati-tecnici li {
     padding: 0.5em 0;
     border-bottom: 1px solid rgba(255,255,255,0.3);
-    display: flex;
-    justify-content: flex-start;
 }
 
 .descrizione {
     font-size: 1.2rem;
-    line-height: 1.5;
 }
 
 @media (min-width: 768px) {
@@ -534,10 +562,7 @@ SEZIONE CATALOGO.HTML
     font-size: 1rem;
 
 }
-.search-bar input[type="search"]:focus {
-    outline: none;
-    border: 3px solid #4a90e2;
-}
+
 #form-container-catalogo {
     display:flex;
     flex-direction: column;
@@ -591,24 +616,18 @@ SEZIONE CATALOGO.HTML
     padding-left:0.5em;
     height:1.5rem;
 }
-.price-filter input[type="number"]:focus {
-    outline:none;
-    border-width :2px;
-    border-color: #4a90e2;
-}
+
 #toggle-filter {
     margin-top: 1em;
     padding: 0.5em 1em;
     border-radius: 10px;
     border: none;
     background-color: var(--color-background-bottoni);
-    color: white;
+    color: var(--color-text);
     cursor: pointer;
     font-weight: bold;
 }
-#toggle-filter:hover {
-    background-color: #357abd;
-}
+
 .hidden{
     display:none;
 }
@@ -674,8 +693,8 @@ SEZIONE CHISIAMO.HMTL
     left: 0;
     width: 100%;              
     margin-top: 5px;
-    background: rgba(0, 0, 0, 0.5); 
-    color: white;
+    background: var(--color-overlay-card); 
+    color: var(--color-text);
   
     display: flex;
     align-items: center;
@@ -686,9 +705,9 @@ SEZIONE CHISIAMO.HMTL
 
 .dati-membro .nome-membro{
     font-weight: bold;
-    font-size: clamp(1.2rem, 0.7em + 3.5vw, 1.8em); /*0.75em di 16 = 12px*/
-    font-size: clamp(1.2rem, 13cqw, 1.8em); /*Se il browser non supporta container-inline, la funzione clamp diventa invalida e la dichiarazione viene ignorata. Quindi viene applicato il clamp precedente*/
-    line-height: 1.2;
+    font-size: clamp(1.2rem, 0.7em + 3.5vw, 1.8em);
+    font-size: clamp(1.2rem, 13cqw, 1.8em);
+    line-height: 1.5;
 }
 
 /*LOGIN*/
@@ -735,16 +754,11 @@ ul.error-message {
     height: 2.5rem;
     width: 100%;
     border-radius: 10px;
-    border: 1px solid black;
+    border: 1.5px solid black;
     box-sizing: border-box;
     margin-top: 0.25em;
     padding-left: 0.5em;
     font-size: clamp(1rem, 0.8rem + 0.4vw, 1.2rem);
-}
-
-.data-form input:focus, .data-form select:focus {
-    outline: none;
-    border-width: 3px;
 }
 
 .required {
@@ -760,25 +774,23 @@ ul.error-message {
 }
 
 abbr {
-    /*text-decoration: none;*/
     text-underline-offset: 0.1em;
     cursor: help;
 }
 
-.data-form input[type="submit"] {
-    border: none;
-    font-size: 0.875em;
+.data-form input[type="submit"], #modifyProfiloLink, #exitProfilo, #deleteProfiloLink, #cancelModifyBtn, #cancelDeleteBtn {
+    height: 3rem;
+    border: 2px solid #fff;
+    padding: 0.5rem;
+    font-size: 1em;
     font-weight: bold;
-    background-color: #4a90e2;
+    background-color: var(--color-background-bottoni);
+    color: var(--color-text);
     cursor: pointer;
 }
 
-.data-form input[type="submit"]:focus {
-    border: 3px solid black;
-}
-
-.data-form input[type="submit"]:hover {
-    background-color: #357abd;
+.data-form input[type="submit"]:hover, #toggle-filter:hover, #modifyProfiloLink:hover, #modifyProfiloLink:focus-visible, .carrello-button:hover, .data-form input[type="submit"]:focus-visible, #toggle-filter:focus-visible, .carrello-button:focus-visible {
+    background-color: #1d5aa8;
 }
 
 #login-form input[type="submit"] {
@@ -809,7 +821,7 @@ fieldset > label:first-of-type {
 
 .help {
     margin-top: 0.25em;
-    font-size: 0.875em; /*14px se font padre = 16px*/
+    font-size: 0.875em;
 }
 
 .help ul {
@@ -818,13 +830,61 @@ fieldset > label:first-of-type {
 
 /*PROFILO*/
 
-.dati-utente {
+.user-container {
     margin: 0 auto;
     text-align: center;
+    font-size: clamp(1.1rem, 0.6rem + 1.3vw, 1.5rem);
 }
 
-.dati-utente ul {
+.user-container ul {
     list-style: none;
+}
+
+#modifyProfiloLink, #exitProfilo, #deleteProfiloLink {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 30%;
+    min-width: 10rem;
+    max-width: 12.5rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    text-decoration: none;
+}
+
+#modifyProfiloLink {
+    margin-top: 1rem;
+}
+
+#exitProfilo {
+    background-color: #1D8649;
+}
+
+#deleteProfiloLink {
+    background-color: #C83E3C;
+}
+
+#exitProfilo:hover, #exitProfilo:focus-visible {
+    background-color: #176f3d;
+}
+
+#deleteProfiloLink:hover, #deleteProfiloLink:focus-visible {
+    background-color: #b13735;
+}
+
+#cancelModifyBtn, #cancelDeleteBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+#cancelModifyBtn {
+    margin-top: 1em;
+    font-size: clamp(1.2rem, 1rem + 0.6vw, 1.7rem);
 }
 
 .lista-ordini li {
@@ -840,6 +900,11 @@ fieldset > label:first-of-type {
     grid-template-columns: auto 1fr;
     row-gap: 0.25rem;
     column-gap: 0.5rem;
+    font-size: clamp(1rem, 0.6rem + 1vw, 1.3rem);
+}
+
+.lista-ordini dl dt{
+    font-weight: bold;
 }
 
 .lista-ordini .dati-ordine {
@@ -854,6 +919,7 @@ fieldset > label:first-of-type {
     width: 100%;
     border-collapse: collapse;
     box-sizing: border-box;
+    font-size: clamp(1rem, 0.6rem + 1vw, 1.3rem);
 }
 
 .lista-ordini th, .lista-ordini td {
@@ -909,6 +975,192 @@ fieldset > label:first-of-type {
 
 
 
+
+/*
+=======================================
+SEZIONE Carrello
+=======================================
+*/
+
+.contenitore-carrello{
+    padding: 0.5em;
+    min-height: 200px;
+}
+
+.messaggio-vuoto {
+    text-align: center;
+    font-size: 1.2em;
+    margin-top: 2em;
+}
+
+.lista-carrello{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.item-carrello {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5em;
+    background: var(--color-background-card);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    width: 95%;
+    margin: 0 auto 1em auto;
+    padding: 2em;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.item-img-container {
+    grid-column: 1 / -1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.img-carrello {
+    width: 12.5rem;
+    height: 12.5rem;
+    object-fit: cover;
+    max-width: 80%;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.item-info {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.item-nome-comune {
+    font-weight: bold;
+    font-size: 1.8rem;
+    color: var(--color-link);
+    line-height: 1.5;
+}
+
+.item-nome-latino {
+    font-style: italic;
+    font-size: 1.35rem;
+    color: #fff;
+    margin-top: 0.3em;
+}
+
+.item-prezzo-singolo {
+    grid-column: 1 / -1;
+    text-align: center;
+    display: block;
+    color: #ffffff;
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+.item-azioni {
+    grid-column: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5em;
+}
+
+.quantita-badge {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.3em 0.8em;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.form-rimuovi {
+    margin: 0;
+    display: flex;
+}
+
+.btn-rimuovi {
+    background:rgba(255, 100, 100, 0.2);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 2.2em;
+    height: 2.2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icona-x {
+    width: 1.4em;
+    height: 1.4em;
+    filter: brightness(0) invert(1);
+}
+
+.item-totale-riga {
+    grid-column: 2;
+    text-align: right;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.riepilogo-ordine {
+    padding: 2em;
+    background: var(--color-background-card);
+    border-radius: 15px;
+    border: 1px solid rgba(255,255,255,0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 0.8em;
+    align-items: center;
+    width: 95%;
+    margin: 2em auto 2em auto;
+    box-sizing: border-box;
+}
+
+.hidden{
+    display: none;
+}
+
+.totale-text{
+    font-size: 1.6rem;
+    font-weight: bold;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    gap: 0.5em;
+    margin-bottom: 0;
+}
+
+.totale-text span {
+    font-size: 1.8rem;
+    color: var(--color-text);
+    white-space: nowrap;
+}
+
+.carrello-button {
+    background-color: var(--color-background-bottoni);
+    color: #ffffff;
+    border: none;
+    padding: 1em 2em;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 8px;
+    margin: 0;
+}
+
+/*ERRORE 404*/
+
+.p404, .p500 {
+    margin-top: 1rem;
+}
 
 /*
 =======================================

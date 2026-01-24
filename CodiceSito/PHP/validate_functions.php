@@ -78,7 +78,7 @@ function validateUsername(&$errors, $username, $connection) {
 }
 
 function validateConfermaPassword(&$errors, $password, $confermaPassword) {
-    if($confermaPassword != $password)
+    if($confermaPassword !== $password)
         $errors['confermaPassword'] = 'Le <span lang="en">password</span> non coincidono.';
 }
 ?>

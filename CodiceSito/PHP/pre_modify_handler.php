@@ -16,7 +16,7 @@ try {
     $connection = new FMAccess();
     $connection->openConnection();
 
-    $values = $connection->getProfiloUtente($_SESSION['email']);
+    $values = $connection->getProfiloUtenteRegistrato($_SESSION['email']);
     $_SESSION['values'] = $values;
     $_SESSION['provinciaRegistrata'] = $values['provincia'];
     $_SESSION['comuneRegistrato'] = $values['comune'];

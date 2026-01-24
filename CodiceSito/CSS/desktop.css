@@ -56,18 +56,180 @@ SEZIONE MAIN
 
 /*PROFILO*/
 
-.lista-ordini dl {
+.user-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0 5em;
+}
+
+.dati-utente {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.azioni-profilo {
+    width: 35%;
+}
+
+#modifyProfiloLink, #exitProfilo, #deleteProfiloLink {
+    width: 100%;
+    max-width: 13rem;
+}
+
+.lista-ordini .dati-ordine {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0;
+    grid-template-columns: 2fr 2fr 2fr;
+    align-items: start;
+}
+
+.lista-ordini h3 {
+    grid-column: 1;
+}
+
+.lista-ordini dl {
+    display: contents;
+    margin: 0;
+}
+
+.lista-ordini dt:first-of-type, .lista-ordini dd:first-of-type {
+    grid-column: 2;
+    justify-self: center;
+    text-align: center;
+}
+
+.lista-ordini dt:last-of-type, .lista-ordini dd:last-of-type {
+    grid-column: 3;
 }
 
 .lista-ordini dl dt {
     grid-row: 1;
-    font-weight: bold;
 }
 
 .lista-ordini dl dd {
     grid-row: 2;
+    margin: 0;
+}
+
+/*PESCE*/
+.parte-superiore-pesce { 
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 3em;
+    }
+
+    .parte-superiore-pesce .card-pesce{
+        flex: 1;
+        max-width: 50%;
+        aspect-ratio: 3/2;
+    }
+
+    .sezione-acquisto{
+        align-items: flex-start;
+        flex: 1;
+        text-align: left;
+    }
+
+    .quantita-gestione{
+        justify-content: flex-start;
+    }
+
+    .dati-tecnici{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1em;
+    }
+
+/*Carrello*/
+
+.contenitore-carrello {
+    padding: 1em 0;
+}
+
+
+.item-carrello, .riepilogo-ordine{
+    width: 95%;          
+    max-width: 1100px;   
+    margin-left: auto;   
+    margin-right: auto;
+    box-sizing: border-box;
+}
+
+.item-carrello {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5em 2em;
+    gap: 2em;
+    margin-bottom: 1.5em;
+}
+
+.item-img-container {
+    width: 10rem; 
+    height: 10rem;
+    flex-shrink: 0;
+    display: block;
+}
+
+.img-carrello {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+}
+
+.item-info {
+    flex: 2; 
+    align-items: flex-start;
+    text-align: left;
+}
+
+.item-nome-comune {
+    font-size: 1.6rem;
+}
+
+.item-prezzo-singolo {
+    flex: 1;
+    text-align: center;
+    color: #ddd;
+    font-size: 1.3rem;
+}
+
+.item-azioni {
+    flex: 1;
+    justify-content: center;
+}
+
+.item-totale-riga {
+    flex: 1;
+    text-align: right;
+    font-size: 1.3rem;
+}
+
+.riepilogo-ordine {
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 3em;
+    text-align: right;
+    margin: 2em auto 2em auto;
+    padding: 1.5em 2em;
+}
+
+.totale-text {
+    width: auto;
+    margin-bottom: 0;
+    gap: 1.5em;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    font-size: 1.6rem;
+    margin-bottom: 0;
+}
+
+.carrello-button {
+    width: auto;
+    padding: 0.8em 3em;
+    font-size: 1.2rem;
     margin: 0;
 }

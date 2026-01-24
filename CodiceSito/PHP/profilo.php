@@ -23,12 +23,12 @@ try{
     $connection = new FMAccess();
     $connection->openConnection();
 
-    $datiUtente = $connection->getProfiloUtente($_SESSION['email']);
+    $datiUtente = $connection->getProfiloUtenteRegistrato($_SESSION['email']);
     $nomeCognome = htmlspecialchars($datiUtente['nome']) . ' ' . htmlspecialchars($datiUtente['cognome']);
     $username .= htmlspecialchars($datiUtente['username']);
     $indirizzo .= htmlspecialchars($datiUtente['via']) . ', ' . htmlspecialchars($datiUtente['comune']) . ', <abbr title="' . htmlspecialchars($datiUtente['provincia']) . '">' . htmlspecialchars($datiUtente['sigla_provincia']) . '</abbr>';
 
-    $listaOrdini = $connection->getOrdiniUtente($_SESSION['email']);
+    $listaOrdini = $connection->getOrdiniUtenteRegistrato($_SESSION['email']);
     if(!empty($listaOrdini)) {
         $prezzoTotale = [];
         foreach($listaOrdini as $ordine) {
@@ -46,20 +46,20 @@ try{
             if((int)$ordine['id_ordine'] !== (int)$idOrdinePrec) {
                 if($idOrdinePrec !== null) {
                     $ordini .= '</tbody></table>';
-                    $ordini .= '<p id="descrizione_' . (int)$ordine['id_ordine'] . '" class="screen-reader">La tabella contiene l\'elenco dei pesci acquistati con l\'ordine #' . (int)$ordine['id_ordine'] . '. Ogni riga riguarda un pesce con prezzo unitario e quantità acquistata.</p>';
                     $ordini .= '</article></li>';
                 }
 
                 $data = (new DateTime($ordine['data_ora']))->format('d/m/Y');
                 $ordini .= '<li><article>';
                 $ordini .= '<div class="dati-ordine">';
+                $ordini .= '<h3>ORDINE #' . (int)$ordine['id_ordine'] . ' - ' . $data . '</h3>';
                 $ordini .= '<dl>';
-                $ordini .= '<dt>ORDINE:</dt><dd>#' . (int)$ordine['id_ordine'] . '</dd>';
-                $ordini .= '<dt>DATA:</dt><dd>' . $data . '</dd>';
                 $ordini .= '<dt>TOTALE:</dt><dd>' . $prezzoTotale[(int)$ordine['id_ordine']] . ' €</dd>';
                 $ordini .= '<dt>INDIRIZZO:</dt><dd>' . htmlspecialchars($datiUtente['via']) . ', ' . htmlspecialchars($datiUtente['comune']) . ', <abbr title="' . htmlspecialchars($datiUtente['provincia']) . '">' . htmlspecialchars($datiUtente['sigla_provincia']) . '</abbr>' . '</dd>';
                 $ordini .= '</dl>';
                 $ordini .= '</div>';
+
+                $ordini .= '<p id="descrizione_' . (int)$ordine['id_ordine'] . '" class="screen-reader">La tabella è organizzata per colonne e contiene l\'elenco dei pesci acquistati con l\'ordine #' . (int)$ordine['id_ordine'] . '. Ogni riga riguarda un pesce con il suo prezzo e la quantità acquistata.</p>';
 
                 $ordini .= '<table aria-describedby="descrizione_' . (int)$ordine['id_ordine'] . '">';
                 $ordini .= '<caption class="screen-reader">Pesci acquistati con l\'ordine #' . (int)$ordine['id_ordine'] . '</caption>';

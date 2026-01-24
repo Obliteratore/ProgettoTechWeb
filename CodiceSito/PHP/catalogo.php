@@ -11,7 +11,7 @@ $nomeLatino = filter_input(INPUT_GET, 'nome_latino', FILTER_SANITIZE_SPECIAL_CHA
 $nomeComune = filter_input(INPUT_GET, 'nome_comune', FILTER_SANITIZE_SPECIAL_CHARS);
 $dimensione = filter_input(INPUT_GET, 'dimensione', FILTER_VALIDATE_INT);
 $volumeMinimo = filter_input(INPUT_GET, 'volume_min', FILTER_VALIDATE_INT);
-$colori = $_GET['colore'] ?? [];
+$colore = $_GET['colore'] ?? [];
 $prezzoMinimo = filter_input(INPUT_GET, 'prezzo_min', FILTER_VALIDATE_INT);
 $prezzoMassimo = filter_input(INPUT_GET, 'prezzo_max', FILTER_VALIDATE_INT);
 
@@ -38,20 +38,11 @@ if (!empty($volumeMinimo)) {
 	$parametri[] = $volumeMinimo;
 }
 
-if (!is_array($colori)) {
-    $colori = [$colori];
+if (!empty($colore) && $colore !== 'tutti') {
+    $condizioni[] = 'FIND_IN_SET(?, colori)';
+    $parametri[] = $colore;
 }
 
-if (!empty($colori)) {
-    if (!empty($colori)) {
-        $condColori = [];
-        foreach ($colori as $colore) {
-            $condColori[] = "FIND_IN_SET(?, colori)";
-            $parametri[] = $colore;
-        }
-        $condizioni[] = '(' . implode(' AND ', $condColori) . ')';
-    }
-}
 
 if (!empty($prezzoMinimo)) {
 	$condizioni[] = "prezzo >= ?";
@@ -67,17 +58,17 @@ if (!empty($prezzoMassimo)) {
 
 $pesci = [];
 
-//try{
+try{
 	$connection = new FMAccess();
 	$connection->openConnection();
-	$pesci = $connection->getPesci($condizioni,$parametri,"");
-/*} catch(mysqli_sql_exception $e) {
+	$pesci = $connection->getPesci($condizioni,$parametri,"ORDER BY nome_comune");
+} catch(mysqli_sql_exception $e) {
 	http_response_code(500);
 	header('Location: ../HTML/error_500.html');
 	exit;
-} finally {*/
+} finally {
 	$connection->closeConnection();
-//}
+}
 
 
 

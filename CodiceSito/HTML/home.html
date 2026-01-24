@@ -1,30 +1,21 @@
 <!DOCTYPE html>
 <html lang="it">
     <head>
-        <meta charset="utf-8" >
+        <meta charset="utf-8">
         <title>FishMarket</title>
-        <meta name="description" content="Questa pagina è dedicata ..." >
-        <meta name="keywords" content="pesci, mare …" >
-        <meta name="author" content="Aaron Gingillino, Francesco Balestro, Bilal Sabic, Valerio Solito" >
+        <meta name="description" content="FishMarket è un negozio online di pesci esotici e tropicali da tutto il mondo. Porta l'esotico a casa tua con dei pesci unici.">
+        <meta name="keywords" content="pesci esotici, vendita pesci online, pesci tropicali, negozio pesci esotici, FishMarket">
+        <meta name="author" content="Aaron Gingillino, Francesco Balestro, Bilal Sabic, Valerio Solito">
 
-        <!-- FONT -->
-        <style>@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Inclusive+Sans:ital,wght@0,300..700;1,300..700&family=Lexend:wght@100..900&display=swap');</style>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inclusive+Sans:ital,wght@0,300..700;1,300..700" rel="stylesheet">
 
-        <!-- CSS -->
+
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
         <link rel="stylesheet" href="../CSS/style.css">
-
-        <!-- Mobile -->
-        <!-- <link rel="stylesheet" href="../CSS/mobile.css" media="(max-width: 767px)"> -->
-      
-        <!-- Tablet -->
-        <!-- <link rel="stylesheet" href="tablet.css" media="(min-width: 768px) and (max-width: 1023px)">
-        -->
-        <!-- Desktop -->
         <link rel="stylesheet" href="../CSS/desktop.css" media="(min-width: 768px)">
-        <!-- Stampa -->
-        <link rel="stylesheet" href="../CSS/stampa.css" media="(min-width: 1024px)">
+        <link rel="stylesheet" href="../CSS/stampa.css" media="print">
     </head>
 
     <body id="top">
@@ -32,18 +23,18 @@
             <a id="skip-to-content" href="#main-content">Salta al contenuto</a>
         </nav>
         <header>
-            <div class="header-content">
+            <div class="header-content sezione-standard">
                 <img class="icona" src="../IMMAGINI/Icone/fish.png" alt=""/>
                 <nav id="menu" aria-label="Menù di navigazione">
                     <ul>
-                        <li lang="en">Home</li>
-                        <li><a href="catalogo.html">Catalogo</a></li>
-                        <li><a href="chiSiamo.html">Chi Siamo</a></li>
+                        <li lang="en" aria-current="page">Home</li>
+                        <li><a href="../PHP/catalogo.php">Catalogo</a></li>
+                        <li><a href="../HTML/chiSiamo.html">Chi Siamo</a></li>
                         <li><a href="../PHP/profilo.php">Profilo</a></li>
                     </ul>
                 </nav>
                 <div>
-                    <a class="icona" id="cart-link" href="carrello.html" aria-label="Vai al carrello"><img src="../IMMAGINI/Icone/famiglia icone/shopping-cart.svg" alt="" aria-hidden="true"/></a>
+                    <a id="cart-link"  class="icona" href="carrello.php" aria-label="Vai al carrello"><img src="../IMMAGINI/Icone/famiglia icone/shopping-cart.svg" alt="" aria-hidden="true"/></a>
                     <button  id="hamburger-menu-btn" aria-controls="hamburger-menu" aria-expanded="false">
                         <img class="icona" id="open-hamburger-menu" src="../IMMAGINI/Icone/famiglia icone/menu-burger.svg" alt="" aria-hidden="true"/>
                         <span class="screen-reader">Apri l'<span lang="en">hamburger</span> menù</span>
@@ -53,9 +44,9 @@
                 </div>
                 <nav id="hamburger-menu" aria-label="Menù di navigazione per cellulare">
                     <ul>
-                        <li lang="en">Home</li>
-                        <li><a href="catalogo.php">Catalogo</a></li>
-                        <li><a href="chiSiamo.html">Chi Siamo</a></li>
+                        <li lang="en" aria-current="page">Home</li>
+                        <li><a href="../PHP/catalogo.php">Catalogo</a></li>
+                        <li><a href="../HTML/chiSiamo.html">Chi Siamo</a></li>
                         <li><a href="../PHP/profilo.php">Profilo</a></li>
                     </ul>
                 </nav>
@@ -63,17 +54,17 @@
         </header>
         <script src="../JS/hamburger_menu.js" defer></script>
 
-        <nav id="breadcrumb" aria-label="Percorso di navigazione">
+        <nav id="breadcrumb" class="sezione-standard" aria-label="Percorso di navigazione">
             <ol>
-                <li><span lang="en" aria-current="page">Home</span></li>
+                <li lang="en" aria-current="page">Home</li>
             </ol>
         </nav>
 
         <main id="main-content">
             <h1 class="position" lang="en">FISHMARKET</h1>
             <p class="call-to-action position">Porta l'esotico a casa tua!</p>
-            <p class="paragrafo position">Siamo un piccolo negozio online dedicato alla vendita di pesci provenienti da tutto il mondo</p>
-            <section class="main-section">
+            <p class="paragrafo position">Siamo un piccolo negozio online dedicato alla vendita di pesci provenienti da tutto il mondo.</p>
+            <section class="main-section sezione-standard">
                 <div class="section-title">
                     <h2>NUOVI ARRIVI</h2>
                     <a href="catalogo.html?filtro=nuovi_arrivi"><img class="icona" src="../IMMAGINI/Icone/famiglia icone/arrow-right.png" alt="Mostra Tutti" width="40em"/></a>
@@ -81,7 +72,7 @@
                     [nuovo_pesce]
             </section>
             <p class="call-to-action position"><a href="../PHP/registrazione.php">Registrati</a> per restare sempre aggiornato sui nuovi arrivi!</p>
-            <section class="main-section">
+            <section class="main-section sezione-standard">
                 <div class="section-title">
                     <h2>PIÙ VENDUTI</h2>
                     <a href="catalogo.html?filtro=piu_venduti"><img class="icona" src="../IMMAGINI/Icone/famiglia icone/arrow-right.png" alt="Mostra Tutti" width="40em"/></a>
@@ -90,10 +81,12 @@
             </section>
         </main>
         <footer>
-            <p>… Per la mia figa, preparo un po' di pasta
-                Se non mangia tonno, allora non mi parla
-                Se non mangia pizza, allora non mi tocca
-                Anche lei lo sa, che mangio solo pasta ...</p>
+            <p>Questo sito web è stato creato a fini didattici per l'Università di Padova. 
+                Le foto sono state gentilmente fornite dal fotografo Benoit, 
+                potete trovare queste, e ulteriori foto in 
+                <a href="https://www.inaturalist.org/observations?place
+                _id=any&user_id=benoit_fishipedia&verifiable=any">questo link</a>
+            </p>
         </footer>
         <a href="#top" class="back-to-top" aria-label="Torna all'inizio"><img class="icona" src="../IMMAGINI/Icone/famiglia icone/arrow-up.svg" alt="" aria-hidden="true"/></a>
     </body>

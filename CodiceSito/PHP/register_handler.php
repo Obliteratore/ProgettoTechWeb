@@ -110,8 +110,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $connection->beginTransaction();
             try {
                 $idIndirizzo = $connection->insertIndirizzo($values['provincia'], $values['comune'], $values['via']);
-
-                $connection->insertUtente($values['email'], $idIndirizzo);
+                
+                if(!$connection->existEmailUtenteNonRegistrato($values['email']))
+                    $connection->insertUtente($values['email'], $idIndirizzo);
+                else
+                    $connection->updateUtente($values['email'], $idIndirizzo);
+                
                 $connection->insertUtenteRegistrato($values['email'], $values['username'], $values['password'], $values['nome'], $values['cognome']);
 
                 $connection->commit();
