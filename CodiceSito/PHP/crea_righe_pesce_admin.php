@@ -9,7 +9,7 @@ function crea_righe_pesce_admin(array $pesci) :string {
 
         $html .= '<th scope="row">' . $nomeLatino . '</th>';
 
-        $html .= '<td>';
+        $html .= '<td data-label="Azione">';
         $html .= '<a 
             href="modifica_pesce.php?nome_latino=' . $nomeLatino . '"
             aria-label="Modifica il pesce con nome latino ' . $nomeLatino . '">
