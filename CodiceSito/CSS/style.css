@@ -963,17 +963,94 @@ fieldset > label:first-of-type {
 
 /*SEZIONE ADMIN */
 .admin-table {
+    table-layout: auto;
     border-collapse: collapse;
     margin-left: auto;
     margin-right:auto;
     font-size: 0.9em;
     font-family: sans-serif;
-    min-width: 400px;
+    width: 90%;
     box-shadow: 0 0 20px rgba(0,0,0,0.15);
-    border: 1px solid;  
+    border: 1px solid; 
 }
 
+.admin-table th, .admin-table td {
+    padding: 5px 8px;
+    border-bottom: 1px solid #ccc;
+}
 
+.admin-table caption {
+    caption-side: top;
+    padding: 1rem;
+    font-weight: bold;
+    text-align: center;
+    white-space: normal;
+}
+
+@media (max-width: 600px) {
+
+    .admin-table,
+    .admin-table thead,
+    .admin-table tbody,
+    .admin-table th,
+    .admin-table td,
+    .admin-table tr {
+        display: block;
+    }
+
+    .admin-table thead {
+        display: none;
+    }
+
+    .admin-table tr {
+        margin-bottom: 1rem;
+        background: var(--color-background-card);
+        border-radius: 20px;
+        border: 1px solid #ffffff66;
+        backdrop-filter: blur(5px) saturate(120%);
+        box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.15),
+        inset 0 1px 1px rgba(255, 255, 255, 0.6);
+
+        padding:0.75rem;
+    }
+
+    .admin-table td {
+        background: none;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        backdrop-filter: none;
+        padding: 0.75rem;
+    }
+    .admin-table td::before {
+        content: attr(data-label);
+        font-weight: bold;
+       
+    }
+
+    .admin-table caption {
+        width: 90%;
+        font-size: 1.1rem;
+        line-height: 1.4;
+        word-break: normal;
+    }
+
+    .admin-table th[scope="row"] {
+        padding: 0.75rem;
+        font-weight: 700;
+        border-bottom: 1px solid #eee;
+        
+    }
+    .admin-table td[data-label="Azione"]::before {
+        content: "";
+    }
+    .admin-table td[data-label="Azione"] {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
 
 
 /*

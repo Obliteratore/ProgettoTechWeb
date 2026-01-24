@@ -63,22 +63,19 @@
         </header>
         <script src="../JS/hamburger_menu.js" defer></script>
 
-        <nav id="breadcrumb" aria-label="Percorso di navigazione">
+        <nav id="breadcrumb" class="sezione-standard" aria-label="Percorso di navigazione">
             <ol>
-                <li><span lang="en" aria-current="page">Home</span></li>
+                <li lang="en"><a href="../PHP/home.php">Home</a></li>
+                <li aria-current="page">Profilo</li>
             </ol>
         </nav>
 
-    <body>
-        <header></header>
-        <main id=main-content>
-        <h1 class="position">Gestione pesci </h1>
+        <main id="main-content">
+        <h1 class="position">Area amministratore</h1>
         <section class="main-section">
-
-        <table class="admin-table">
-            <caption id="tabella-pesci"></caption>
-                Elenco dei pesci presenti nel database
-            </caption>
+        <span id="summaryTabella" class="screen-reader">Questa tabella descrive tutti i pesci disponibili nel negozio: i pesci sono descritti dal nome latino ed è possibile modificarli.</span>
+        <table class="admin-table" aria-describedby="summaryTabella">
+            <caption>Elenco dei pesci presenti nel negozio</caption>
 
             <thead>
                 <tr>
@@ -90,25 +87,13 @@
             <tbody>
                 [righe_pesci]
             </tbody>
+            
         </table>
+        </section>
         </main>
-    </body>
-</section>
-        <script src="../JS/delete_profilo.js" defer></script>
 
-        <nav id="breadcrumb" class="sezione-standard" aria-label="Percorso di navigazione">
-            <ol>
-                <li lang="en"><a href="../PHP/home.php">Home</a></li>
-                <li aria-current="page">Profilo</li>
-            </ol>
-        </nav>
-
-        <main id="main-content">
-            <h1 class="position">Area amministratore</h1>
-        </main>
         <footer>
-
+            <a href="#top" class="back-to-top" aria-label="Torna all'inizio"><img class="icona" src="../IMMAGINI/Icone/famiglia icone/arrow-up.svg" alt="" aria-hidden="true"/></a>
         </footer>
-        <a href="#top" class="back-to-top" aria-label="Torna all'inizio"><img class="icona" src="../IMMAGINI/Icone/famiglia icone/arrow-up.svg" alt="" aria-hidden="true"/></a>
     </body>
 </html>
