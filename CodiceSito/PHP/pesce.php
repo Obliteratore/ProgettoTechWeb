@@ -39,7 +39,6 @@ try{
             $prezzo = number_format($pesce['prezzo'], 2, ',', '.');
             $disponibilita = (int)$pesce['disponibilita'];
             $famiglia = htmlspecialchars($pesce['famiglia']);
-            $descrizione = htmlspecialchars($pesce['descrizione']);
             $dimensione = htmlspecialchars($pesce['dimensione']);
             $percorso = $pesce['immagine'];
             $volumemin = $pesce['volume_minimo'];
@@ -54,7 +53,6 @@ try{
             $paginaHTML = str_replace("[habitat]", $habitat, $paginaHTML);
             $paginaHTML = str_replace("[volume-min]", $volumemin, $paginaHTML);
             $paginaHTML = str_replace("[dimensione]", $dimensione, $paginaHTML);
-            $paginaHTML = str_replace("[descrizione-pesce]", $descrizione, $paginaHTML);
             $paginaHTML = str_replace("[percorso]", $percorso, $paginaHTML);
             $paginaHTML = str_replace("[colori]", $colori, $paginaHTML);
             $paginaHTML = str_replace("[errore]", $msg_errore, $paginaHTML);
@@ -63,16 +61,16 @@ try{
 
 
         } else {
-            header('Location:../HTML/error_404.html');
+            header('Location: ../HTML/error_404.html');
             exit;
         }
     } else {
-        header('Location:../HTML/error_404.html');
+        header('Location: ../HTML/error_404.html');
         exit;
     }
 } catch (mysqli_sql_exception $e) {
     http_response_code(500);
-    header('Location:../HTML/error_500.html');
+    header('Location: ../HTML/error_500.html');
     exit;
 } finally {
     $connection->closeConnection();

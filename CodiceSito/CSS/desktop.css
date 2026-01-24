@@ -74,6 +74,7 @@ SEZIONE MAIN
 
 #modifyProfiloLink, #exitProfilo, #deleteProfiloLink {
     width: 100%;
+    max-width: 13rem;
 }
 
 .lista-ordini .dati-ordine {

@@ -5,9 +5,6 @@ use FM\FMAccess;
 
 $paginaHTML = file_get_contents('../HTML/home.html');
 
-if ($paginaHTML === false) {
-    die("Errore: non posso leggere home.html");
-}
 try {
     $connection = new FMAccess();
     $connection->openConnection();
@@ -26,7 +23,7 @@ try {
 
 } catch (mysqli_sql_exception $e) {
     http_response_code(500);
-    header('Location:../HTML/error_500.html');
+    header('Location: ../HTML/error_500.html');
     exit;
 } finally {
     if (isset($connection)) $connection->closeConnection();

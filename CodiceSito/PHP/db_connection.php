@@ -2,32 +2,31 @@
 namespace FM;
 
 class FMAccess {
-	
+	/*
 	private const HOST_DB = "localhost";
 	private const DATABASE_NAME = "agingill";
 	private const USERNAME = "agingill";
 	private const PASSWORD = "Pech3pheeXie4xen";
-	/*
+	*/
 	
 	private const HOST_DB = "localhost";
 	private const DATABASE_NAME = "fbalestr";
 	private const USERNAME = "fbalestr";
 	private const PASSWORD = "Iemao4Chawiechoo";
 	
-
 	/*
 	private const HOST_DB = "localhost";
 	private const DATABASE_NAME = "bsabic";
 	private const USERNAME = "bsabic";
 	private const PASSWORD = "ieGai9om6eiyahT0";
-	
-
 	*/
+
+	/*
 	private const HOST_DB = "localhost";
 	private const DATABASE_NAME = "vsolito";
 	private const USERNAME = "vsolito";
 	private const PASSWORD = "aeyoh5naiw7nah4S";
-
+	*/
 	private $connection;
 
 	public function openConnection() {
@@ -355,7 +354,7 @@ class FMAccess {
     $limit = (int)$limit;
 
     $sql = "SELECT p.nome_latino, p.nome_comune, p.famiglia, p.dimensione, p.volume_minimo,
-               p.colori, p.prezzo, p.sconto_percentuale, p.disponibilita, p.descrizione,
+               p.colori, p.prezzo, p.sconto_percentuale, p.disponibilita,
                p.immagine, p.data_inserimento,
                totals.totale_venduto
         FROM pesci p
