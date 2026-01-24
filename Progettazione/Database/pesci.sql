@@ -1,5 +1,6 @@
 USE fbalestr;
 
+DROP TABLE IF EXISTS carrello;
 DROP TABLE IF EXISTS dettaglio_ordini;
 DROP TABLE IF EXISTS ordini;
 DROP TABLE IF EXISTS pesci;
