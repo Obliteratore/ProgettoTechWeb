@@ -16,6 +16,8 @@
         <link rel="stylesheet" href="../CSS/style.css">
         <link rel="stylesheet" href="../CSS/desktop.css" media="(min-width: 768px)">
         <link rel="stylesheet" href="../CSS/stampa.css" media="print">
+
+        <link rel="icon" href="../IMMAGINI/Icone/fish.png" type="image/png">
     </head>
 
     <body id="top">
@@ -34,11 +36,11 @@
                     </ul>
                 </nav>
                 <div>
-                    <a id="cart-link"  class="icona" href="carrello.php" aria-label="Vai al carrello"><img src="../IMMAGINI/Icone/famiglia icone/shopping-cart.svg" alt="" aria-hidden="true"/></a>
+                    <a id="cart-link" href="carrello.php" aria-label="Vai al carrello"><img src="../IMMAGINI/Icone/shopping-cart.svg" alt="" aria-hidden="true"/></a>
                     <button  id="hamburger-menu-btn" aria-controls="hamburger-menu" aria-expanded="false">
-                        <img class="icona" id="open-hamburger-menu" src="../IMMAGINI/Icone/famiglia icone/menu-burger.svg" alt="" aria-hidden="true"/>
+                        <img id="open-hamburger-menu" src="../IMMAGINI/Icone/menu-burger.svg" alt="" aria-hidden="true"/>
                         <span class="screen-reader">Apri l'<span lang="en">hamburger</span> menù</span>
-                        <img class="icona" id="close-hamburger-menu" src="../IMMAGINI/Icone/famiglia icone/cross.svg" alt="" aria-hidden="true"/>
+                        <img id="close-hamburger-menu" src="../IMMAGINI/Icone/cross.svg" alt="" aria-hidden="true"/>
                         <span class="screen-reader">Chiudi l'<span lang="en">hamburger</span> menù</span>
                     </button>
                 </div>
@@ -87,10 +89,10 @@
             <dialog id="deleteProfiloDialog" aria-labelledby="deleteProfiloTitle" aria-describedby="deleteProfiloDesc">
                 <form action="../PHP/elimina_profilo.php" method="post">
                     <h2 id="deleteProfiloTitle">Sei sicuro di voler eliminare il tuo profilo?</h2>
-                    <p id="deleteProfiloDesc">Non potrai più vedere i tuoi ordini, e dovrai inserire l'email e l'indirizzo ogni volta che acquisti un pesce.</p>
+                    <p id="deleteProfiloDesc" class="paragrafo">Non potrai più vedere i tuoi ordini, e perderai tutti i dati del tuo profilo.</p>
                     <div class="actions">
-                        <button id="cancelDeleteBtn" class="cancelBtn" type="button" value="cancel">Annulla</button>
-                        <button type="submit" value="confirm">Elimina</button>
+                        <button id="cancelDeleteBtn" type="button" value="cancel">Annulla</button>
+                        <button id="deleteProfiloBtn" type="submit" value="confirm">Elimina</button>
                     </div>
                 </form>
             </dialog>
@@ -98,6 +100,6 @@
         <footer>
 
         </footer>
-        <a href="#top" class="back-to-top" aria-label="Torna all'inizio"><img class="icona" src="../IMMAGINI/Icone/famiglia icone/arrow-up.svg" alt="" aria-hidden="true"/></a>
+        <a href="#top" class="back-to-top" aria-label="Torna all'inizio"><img src="../IMMAGINI/Icone/arrow-up.svg" alt="" aria-hidden="true"/></a>
     </body>
 </html>
