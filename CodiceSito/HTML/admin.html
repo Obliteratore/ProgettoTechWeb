@@ -2,8 +2,96 @@
 <html lang="it">
     <head>
         <meta charset="utf-8" >
-        <title>Area Admin - FishMarket</title>
+        <title>Area Admin</title>
+        <meta name="description" content="Questa pagina è dedicata ..." >
+        <meta name="keywords" content="pesci, mare …" >
+        <meta name="author" content="Aaron Gingillino, Francesco Balestro, Bilal Sabic, Valerio Solito" >
+
+        <!-- FONT -->
+        <style>@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Inclusive+Sans:ital,wght@0,300..700;1,300..700&family=Lexend:wght@100..900&display=swap');</style>
+
+        <!-- CSS -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
         <link rel="stylesheet" href="../CSS/style.css">
+
+        <!-- Mobile -->
+        <!-- <link rel="stylesheet" href="../CSS/mobile.css" media="(max-width: 767px)"> -->
+      
+        <!-- Tablet -->
+        <!-- <link rel="stylesheet" href="tablet.css" media="(min-width: 768px) and (max-width: 1023px)">
+        -->
+        <!-- Desktop -->
         <link rel="stylesheet" href="../CSS/desktop.css" media="(min-width: 768px)">
+        <!-- Stampa -->
+        <link rel="stylesheet" href="../CSS/stampa.css" media="(min-width: 1024px)">
     </head>
+
+    <body id="top">
+        <nav aria-label="Aiuti alla navigazione">
+            <a id="skip-to-content" href="#main-content">Salta al contenuto</a>
+        </nav>
+        <header>
+            <div class="header-content">
+                <img class="icona" src="../IMMAGINI/Icone/fish.png" alt=""/>
+                <nav id="menu" aria-label="Menù di navigazione">
+                    <ul>
+                        <li lang="en"><a href="home.html">Home</a></li>
+                        <li><a href="catalogo.html">Catalogo</a></li>
+                        <li><a href="chiSiamo.html">Chi Siamo</a></li>
+                        <li><a href="../PHP/profilo.php">Profilo</a></li>
+                    </ul>
+                </nav>
+                <div>
+                    <a class="icona" id="cart-link" href="carrello.html" aria-label="Vai al carrello"><img src="../IMMAGINI/Icone/famiglia icone/shopping-cart.svg" alt="" aria-hidden="true"/></a>
+                    <button  id="hamburger-menu-btn" aria-controls="hamburger-menu" aria-expanded="false">
+                        <img class="icona" id="open-hamburger-menu" src="../IMMAGINI/Icone/famiglia icone/menu-burger.svg" alt="" aria-hidden="true"/>
+                        <span class="screen-reader">Apri l'<span lang="en">hamburger</span> menù</span>
+                        <img class="icona" id="close-hamburger-menu" src="../IMMAGINI/Icone/famiglia icone/cross.svg" alt="" aria-hidden="true"/>
+                        <span class="screen-reader">Chiudi l'<span lang="en">hamburger</span> menù</span>
+                    </button>
+                </div>
+                <nav id="hamburger-menu" aria-label="Menù di navigazione per cellulare">
+                    <ul>
+                        <li lang="en"><a href=home.html>Home</a></li>
+                        <li><a href="catalogo.php">Catalogo</a></li>
+                        <li><a href="chiSiamo.html">Chi Siamo</a></li>
+                        <li><a href="../PHP/profilo.php">Profilo</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <script src="../JS/hamburger_menu.js" defer></script>
+
+        <nav id="breadcrumb" aria-label="Percorso di navigazione">
+            <ol>
+                <li><span lang="en" aria-current="page">Home</span></li>
+            </ol>
+        </nav>
+
+    <body>
+        <header></header>
+        <main id=main-content>
+        <h1 class="position">Gestione pesci </h1>
+        <section class="main-section">
+
+        <table class="admin-table">
+            <caption id="tabella-pesci"></caption>
+                Elenco dei pesci presenti nel database
+            </caption>
+
+            <thead>
+                <tr>
+                    <th scope="col">Nome latino</th>
+                    <th scope="col">Azione</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                [righe_pesci]
+            </tbody>
+        </table>
+        </main>
+    </body>
+</section>
+</html>
