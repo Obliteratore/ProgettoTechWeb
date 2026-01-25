@@ -93,5 +93,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header('Location: accesso.php');
         exit;
     }
+} else {
+    header('Location: accesso.php');
+    exit;
 }
 ?>

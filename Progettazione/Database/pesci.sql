@@ -1,5 +1,6 @@
 USE fbalestr;
 
+DROP TABLE IF EXISTS carrello;
 DROP TABLE IF EXISTS dettaglio_ordini;
 DROP TABLE IF EXISTS ordini;
 DROP TABLE IF EXISTS pesci;
@@ -67,7 +68,6 @@ CREATE TABLE pesci (
     volume_minimo INT NOT NULL,
     colori VARCHAR(100) NOT NULL,
     prezzo DECIMAL(8,2) NOT NULL,
-    sconto_percentuale TINYINT UNSIGNED DEFAULT 0,
     disponibilita INT NOT NULL,
     immagine VARCHAR(255) NOT NULL,
 	data_inserimento DATE NOT NULL DEFAULT CURRENT_DATE,
@@ -136,7 +136,7 @@ VALUES
 
 ('Cheirocerus eques', 'Gatto di fiume sudamericano', 'Pimelodidae', '18', '24', 'trasparente', 40, 9, '../IMMAGINI/Pesci/cheirocerusEques.jpg' ),
 ('Pterophyllum scalare', 'Angelo', 'Cichlidae', '15', '19', 'nero,trasparente', 29, 21, '../IMMAGINI/Pesci/angelo.jpg' ),
-('Roeboides affinis', 'Pesce rasa-corallo amazzonico', 'Characidae', '6', '7', 'grigio,trasparente', 15, 10, '../IMMAGINI/Pesci/roeboidesAffinis.jpeg' ),
+('Roeboides affinis', 'Pesce corallo amazzonico', 'Characidae', '6', '7', 'grigio,trasparente', 15, 10, '../IMMAGINI/Pesci/roeboidesAffinis.jpeg' ),
 ('Boulengerella maculata', 'Agujeta', 'Ctenoluciidae', '32', '45', 'grigio,nero,trasparente', 120, 4, '../IMMAGINI/Pesci/agujeta.jpg' ),
 ('Lebiasina elongata', 'Lebiasina amazzonica', 'Lebiasinidae', '9', '11', 'nero,beige,grigio', 20, 15, '../IMMAGINI/Pesci/lebiasinaElongata.jpeg' ),
 ('Amblydoras nauticus', 'Doradide amazzonico', 'Doradidae', '8', '9', 'nero,beige', 30, 24, '../IMMAGINI/Pesci/amblydorasNauticus.jpeg' ),

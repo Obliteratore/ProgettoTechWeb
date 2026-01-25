@@ -2,20 +2,22 @@
 if(session_status() !== PHP_SESSION_ACTIVE)
     session_start();
 
-if(isset($_SESSION['email'])) {
-    header('Location: profilo.php');
+if(!isset($_SESSION['email'])) {
+    header('Location: accesso.php');
     exit;
 }
 
 $errors = $_SESSION['errors'] ?? [];
 $values = $_SESSION['values'] ?? [];
-unset($_SESSION['errors'], $_SESSION['values']);
+$provinciaRegistrata = $_SESSION['provinciaRegistrata'] ?? '';
+$comuneRegistrato = $_SESSION['comuneRegistrato'] ?? '';
+unset($_SESSION['errors']);
 ?>
 <!DOCTYPE html>
 <html lang="it">
     <head>
         <meta charset="utf-8" >
-        <title>Registrati - FishMarket</title>
+        <title>Acquista - FishMarket</title>
         <meta name="description" content="FishMarket è un negozio online di pesci esotici e tropicali da tutto il mondo. Porta l'esotico a casa tua con dei pesci unici.">
         <meta name="keywords" content="pesci esotici, vendita pesci online, pesci tropicali, negozio pesci esotici, FishMarket">
         <meta name="author" content="Aaron Gingillino, Francesco Balestro, Bilal Sabic, Valerio Solito">
@@ -45,7 +47,7 @@ unset($_SESSION['errors'], $_SESSION['values']);
                         <li lang="en"><a href="../PHP/home.php">Home</a></li>
                         <li><a href="../PHP/catalogo.php">Catalogo</a></li>
                         <li><a href="../HTML/chiSiamo.html">Chi Siamo</a></li>
-                        <li>Profilo</li>
+                        <li><a href="../PHP/profilo.php">Profilo</a></li>
                     </ul>
                 </nav>
                 <div>
@@ -62,51 +64,39 @@ unset($_SESSION['errors'], $_SESSION['values']);
                         <li lang="en"><a href="../PHP/home.php">Home</a></li>
                         <li><a href="../PHP/catalogo.php">Catalogo</a></li>
                         <li><a href="../HTML/chiSiamo.html">Chi Siamo</a></li>
-                        <li>Profilo</li>
+                        <li><a href="../PHP/profilo.php">Profilo</a></li>
                     </ul>
                 </nav>
             </div>
         </header>
         <script src="../JS/hamburger_menu.js" defer></script>
-        <script src="../JS/register_validation.js" defer></script>
+        <script src="../JS/buy_validation.js" defer></script>
 
         <nav id="breadcrumb" class="sezione-standard" aria-label="Percorso di navigazione">
             <ol>
                 <li lang="en"><a href="../PHP/home.php">Home</a></li>
-                <li aria-current="page">Registrati</li>
+                <li><a href="../PHP/carrello.php">Carrello</a></li>
+                <li aria-current="page">Acquista</li>
             </ol>
         </nav>
         
         <main id="main-content">
             <div class="form-container sezione-standard">
-                <h1 class="position">Registrati</h1>
-                <p class="call-to-action position">Se hai già un <span lang="en">account</span>, <a href="accesso.php">accedi</a>!</p>
-                <ul id="signin-error" class="error-message" role="alert" tabindex="-1"><?= $errors['summary'] ?? '' ?></ul>
-                <form id="signin-form" class="data-form" action="register_handler.php" method="post" autocomplete="on">
+                <h1 class="position">Conferma acquisto</h1>
+                <form id="buy-form" class="data-form" action="buy_handler.php" method="post" autocomplete="on">
                     <fieldset>
-                        <legend>Informazioni personali</legend>
-                        <label for="nome">Nome
-                            <small class="required">(Obbligatorio)</small>
-                        </label>
-                        <input id="nome" type="text" name="nome" value="<?= htmlspecialchars($values['nome'] ?? '') ?>" autocomplete="given-name" aria-describedby="given-name-help given-name-error" aria-invalid="<?= isset($errors['nome']) ? 'true' : 'false' ?>" required/>
-                        <p id="given-name-help" class="help">Deve avere almeno 2 caratteri e non sono ammessi numeri o caratteri speciali.</p>
-                        <ul id="given-name-error" class="error-message" aria-live="polite"><?= $errors['nome'] ?? '' ?></ul>
-
-                        <label for="cognome">Cognome
-                            <small class="required">(Obbligatorio)</small>
-                        </label>
-                        <input id="cognome" type="text" name="cognome" value="<?= htmlspecialchars($values['cognome'] ?? '') ?>" autocomplete="family-name" aria-describedby="family-name-help family-name-error" aria-invalid="<?= isset($errors['cognome']) ? 'true' : 'false' ?>" required/>
-                        <p id="family-name-help" class="help">Deve avere almeno 2 caratteri e non sono ammessi numeri o caratteri speciali.</p>
-                        <ul id="family-name-error" class="error-message" aria-live="polite"><?= $errors['cognome'] ?? '' ?></ul>
+                        <legend>Credenziali d'accesso</legend>
+                        <label for="email"><span lang="en">Email</span></label>
+                        <input id="email" type="email" name="email" value="<?= htmlspecialchars($values['email'] ?? '') ?>" autocomplete="email" aria-describedby="email-help email-error" aria-invalid="<?= isset($errors['email']) ? 'true' : 'false' ?>" required/>
+                        <p id="email-help" class="help">Un indirizzo <span lang="en">email</span> valido. Verrà usato per la verifica dell'<span lang="en">account</span> e per le comunicazioni.</p>
+                        <p id="email-error" class="error-message" aria-live="polite"><?= $errors['email'] ?? '' ?></p>
                     </fieldset>
-
                     <fieldset>
                         <legend>Indirizzo</legend>
-                        <label for="provincia">Provincia
-                            <small class="required">(Obbligatorio)</small>
-                        </label>
-                        <select id="provincia" name="provincia" aria-describedby="provincia-help provincia-error" aria-invalid="<?= isset($errors['provincia']) ? 'true' : 'false' ?>" required>
-                            <option value="" selected>Seleziona una provincia</option>
+                        <label for="provincia">Provincia</label>
+                        <p id="provincia-registrata-help" class="help"><?= empty($provinciaRegistrata) ? '' : 'Provincia attuale registrata: ' . htmlspecialchars($provinciaRegistrata) ?></p>
+                        <select id="provincia" name="provincia" aria-describedby="<?= empty($provinciaRegistrata) ? '' : 'provincia-registrata-help ' ?>provincia-help provincia-error" aria-invalid="<?= isset($errors['provincia']) ? 'true' : 'false' ?>">
+                            <option value="" selected><?= empty($provinciaRegistrata) ? 'Seleziona una provincia' : 'Lascia vuoto per non modificare' ?></option>
                             <option value="AG">Agrigento</option>
                             <option value="AL">Alessandria</option>
                             <option value="AN">Ancona</option>
@@ -217,66 +207,25 @@ unset($_SESSION['errors'], $_SESSION['values']);
                             <option value="VI">Vicenza</option>
                             <option value="VT">Viterbo</option>
                         </select>
-                        <p id="provincia-help" class="help">La tua provincia di residenza.</p>
+                        <p id="provincia-help" class="help">Lascia questo campo vuoto se non vuoi cambiare la tua provincia di residenza.</p>
                         <p id="provincia-error" class="error-message" aria-live="polite"><?= $errors['provincia'] ?? '' ?></p>
 
-                        <label for="comune">Comune
-                            <small class="required">(Obbligatorio)</small>
-                        </label>
-                        <select id="comune" name="comune" aria-describedby="comune-help comune-error" aria-invalid="<?= isset($errors['comune']) ? 'true' : 'false' ?>" required>
-                            <option value="" selected>Seleziona un comune</option>
+                        <label for="comune">Comune</label>
+                        <p id="comune-registrato-help" class="help">Comune attuale registrato: <?= htmlspecialchars($comuneRegistrato ?? '') ?></p>
+                        <select id="comune" name="comune" aria-describedby="comune-registrato-help comune-help comune-error" aria-invalid="<?= isset($errors['comune']) ? 'true' : 'false' ?>">
+                            <option value="" selected>Lascia vuoto per non modificare</option>
                         </select>
-                        <p id="comune-help" class="help">Il tuo comune di residenza.</p>
+                        <p id="comune-help" class="help">Lascia questo campo vuoto se non vuoi cambiare il tuo comune di residenza.</p>
                         <p id="comune-error" class="error-message" aria-live="polite"><?= $errors['comune'] ?? '' ?></p>
 
-                        <label for="via">Via
-                            <small class="required">(Obbligatorio)</small>
-                        </label>
+                        <label for="via">Via</label>
                         <input id="via" type="text" name="via" value="<?= htmlspecialchars($values['via'] ?? '') ?>" autocomplete="street-address" aria-describedby="via-help via-error" aria-invalid="<?= isset($errors['via']) ? 'true' : 'false' ?>" required/>
                         <p id="via-help" class="help">L'indirizzo completo con via, piazza o contrada e numero civico.</p>
                         <p id="via-error" class="error-message" aria-live="polite"><?= $errors['via'] ?? '' ?></p>
                     </fieldset>
-
-                    <fieldset>
-                        <legend>Credenziali d'accesso</legend>
-                        <label for="email"><span lang="en">Email</span>
-                            <small class="required">(Obbligatorio)</small>
-                        </label>
-                        <input id="email" type="email" name="email" value="<?= htmlspecialchars($values['email'] ?? '') ?>" autocomplete="email" aria-describedby="email-help email-error" aria-invalid="<?= isset($errors['email']) ? 'true' : 'false' ?>" required/>
-                        <p id="email-help" class="help">Un indirizzo <span lang="en">email</span> valido. Verrà usato per la verifica dell'<span lang="en">account</span> e per le comunicazioni.</p>
-                        <p id="email-error" class="error-message" aria-live="polite"><?= $errors['email'] ?? '' ?></p>
-
-                        <label for="username"><span lang="en">Username</span>
-                            <small class="required">(Obbligatorio)</small>
-                        </label>
-                        <input id="username" type="text" name="username" value="<?= htmlspecialchars($values['username'] ?? '') ?>" autocomplete="username" aria-describedby="username-help username-error" aria-invalid="<?= isset($errors['username']) ? 'true' : 'false' ?>" required/>
-                        <p id="username-help" class="help">Scegli un nome utente di lunghezza tra 3 e 30 caratteri. Non sono ammessi spazi o caratteri speciali.</p>
-                        <ul id="username-error" class="error-message" aria-live="polite"><?= $errors['username'] ?? '' ?></ul>
-
-                        <label for="password"><span lang="en">Password</span>
-                        <small class="required">(Obbligatorio)</small>
-                        </label>
-                        <input id="password" type="password" name="password" autocomplete="new-password" aria-describedby="password-help password-error" aria-invalid="<?= isset($errors['password']) ? 'true' : 'false' ?>" required/>
-                        <div id="password-help" class="help">
-                            <p>Scegli una <span lang="en">password</span>. Deve contenere:</p>
-                            <ul>
-                                <li>Almeno 8 caratteri</li>
-                                <li>Almeno una lettera maiuscola</li>
-                                <li>Almeno un numero</li>
-                                <li>Almeno un carattere speciale</li>
-                            </ul>
-                        </div>
-                        <ul id="password-error" class="error-message" aria-live="polite"><?= $errors['password'] ?? '' ?></ul>
-
-                        <label for="confermaPassword">Conferma <span lang="en">Password</span>
-                            <small class="required">(Obbligatorio)</small>
-                        </label>
-                        <input id="confermaPassword" type="password" name="confermaPassword" autocomplete="new-password" aria-describedby="confermaPassword-help confermaPassword-error" aria-invalid="<?= isset($errors['confermaPassword']) ? 'true' : 'false' ?>" required/>
-                        <p id="confermaPassword-help" class="help">Inserisci nuovamente la <span lang="en">password</span> che hai scelto.</p>
-                        <p id="confermaPassword-error" class="error-message" aria-live="polite"><?= $errors['confermaPassword'] ?? '' ?></p>
-                    </fieldset>
-                    <input type="submit" value="Registrati"/>
+                    <input type="submit" value="Conferma"/>
                 </form>
+                <a id="cancelBuyBtn" href="carrello.php">Annulla</a>
             </div>
         </main>
         <script src="../JS/insert_comuni.js" defer></script>

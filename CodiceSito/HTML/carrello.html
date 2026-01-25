@@ -15,6 +15,8 @@
         <link rel="stylesheet" href="../CSS/style.css">
         <link rel="stylesheet" href="../CSS/desktop.css" media="(min-width: 768px)">
         <link rel="stylesheet" href="../CSS/stampa.css" media="print">
+
+        <link rel="icon" href="../IMMAGINI/Icone/fish.png" type="image/png">
     </head>
 
     <body id="top">
@@ -23,7 +25,7 @@
         </nav>
         <header>
             <div class="header-content sezione-standard">
-                <img class="icona" src="../IMMAGINI/Icone/fish.png" alt=""/>
+                <img src="../IMMAGINI/Icone/fish.png" alt=""/>
                 <nav id="menu" aria-label="Menù di navigazione">
                     <ul>
                         <li lang="en"><a href="../PHP/home.php">Home</a></li>
@@ -34,9 +36,9 @@
                 </nav>
                 <div>
                     <button  id="hamburger-menu-btn" aria-controls="hamburger-menu" aria-expanded="false">
-                        <img class="icona" id="open-hamburger-menu" src="../IMMAGINI/Icone/famiglia icone/menu-burger.svg" alt="" aria-hidden="true"/>
+                        <img id="open-hamburger-menu" src="../IMMAGINI/Icone/menu-burger.svg" alt="" aria-hidden="true"/>
                         <span class="screen-reader">Apri l'<span lang="en">hamburger</span> menù</span>
-                        <img class="icona" id="close-hamburger-menu" src="../IMMAGINI/Icone/famiglia icone/cross.svg" alt="" aria-hidden="true"/>
+                        <img id="close-hamburger-menu" src="../IMMAGINI/Icone/cross.svg" alt="" aria-hidden="true"/>
                         <span class="screen-reader">Chiudi l'<span lang="en">hamburger</span> menù</span>
                     </button>
                 </div>
@@ -68,14 +70,14 @@
             <div class="riepilogo-ordine [visibilita]">
                 <p class="totale-text">Totale Ordine:<span>[totale]€</span></p>
 
-                <form action="#" method="POST">
-                <button type="submit" class="carrello-button">Procedi all'acquisto</button>
-            </form>
+                <form action="../PHP/pre_buy_handler.php" method="POST">
+                    <button type="submit" class="carrello-button">Procedi all'acquisto</button>
+                </form>
             </div>
         </main>
         <footer>
 
         </footer>
-        <a href="#top" class="back-to-top" aria-label="Torna all'inizio"><img class="icona" src="../IMMAGINI/Icone/famiglia icone/arrow-up.svg" alt="" aria-hidden="true"/></a>
+        <a href="#top" class="back-to-top" aria-label="Torna all'inizio"><img class="icona" src="../IMMAGINI/Icone/arrow-up.svg" alt="" aria-hidden="true"/></a>
     </body>
 </html>
