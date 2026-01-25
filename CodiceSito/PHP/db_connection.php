@@ -469,5 +469,103 @@ class FMAccess {
 
         return $prodotti;
     }
+	public function getPesciJOIN($condizioni, $parametri, $operazione, $join = '') {
+    $sql = "SELECT pesci.*, famiglie.tipo_acqua 
+            FROM pesci 
+            $join";
+
+    if (!empty($condizioni)) {
+        $sql .= " WHERE " . implode(" AND ", $condizioni);
+    }
+
+    if ($operazione !== '') {
+        $sql .= " " . $operazione;
+    }
+
+    $stmt = $this->connection->prepare($sql);
+
+    if (!empty($parametri)) {
+        $types = str_repeat('s', count($parametri));
+        $stmt->bind_param($types, ...$parametri);
+    }
+
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $pesci = [];
+    while ($row = $result->fetch_assoc()) {
+        $pesci[] = $row;
+    }
+
+    $result->free();
+    $stmt->close();
+
+    return $pesci;
+}
+
+	public function updatePesce($nome_latino,$nome_comune,$dimensione,$volume_minimo,$colori,$prezzo,$disponibilita){
+		$sql = "UPDATE pesci SET nome_comune=?,
+				dimensione=?,
+				volume_minimo=?,
+				colori=?,
+				prezzo=?,
+				disponibilita=?
+				WHERE nome_latino=?";
+		
+		$stmt = $this->connection->prepare($sql);
+
+		if(!$stmt) {
+			die("Errore nella preparazione della query: ". $this->connection->error);
+		}
+
+		$stmt->bind_param(
+    	"sddsdis", 
+    	$nome_comune,
+    	$dimensione,
+   		$volume_minimo,
+    	$colori,
+    	$prezzo,
+    	$disponibilita,
+    	$nome_latino);
+
+		if(!$stmt->execute()) {
+			die("Errore esecuzione query: " .$stmt->error);
+		}
+		$stmt->close();
+	}
+
+	public function updatePesceIMG($nome_latino,$nome_comune,$dimensione,$volume_minimo,$colori,$prezzo,$disponibilita,$percorso){
+		$sql = "UPDATE pesci SET nome_comune=?,
+				dimensione=?,
+				volume_minimo=?,
+				colori=?,
+				prezzo=?,
+				disponibilita=?,
+				immagine=?
+				WHERE nome_latino=?";
+		
+		$stmt = $this->connection->prepare($sql);
+
+		if(!$stmt) {
+			die("Errore nella preparazione della query: ". $this->connection->error);
+		}
+
+		$stmt->bind_param(
+    	"sddsdiss", 
+    	$nome_comune,
+    	$dimensione,
+   		$volume_minimo,
+    	$colori,
+    	$prezzo,
+    	$disponibilita,
+		$percorso,
+    	$nome_latino);
+	
+	if(!$stmt->execute()){
+		die("Errore esecuzione query: " .$stmt->error);
+	}
+
+	$stmt->close();
+	}
 }
 ?>

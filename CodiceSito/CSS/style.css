@@ -961,7 +961,11 @@ fieldset > label:first-of-type {
     }
 }
 
-/*SEZIONE ADMIN */
+/*
+=======================================
+SEZIONE Admin
+=======================================
+*/
 .admin-table {
     table-layout: auto;
     border-collapse: collapse;
@@ -1011,7 +1015,6 @@ fieldset > label:first-of-type {
         box-shadow:
         0 8px 32px rgba(0, 0, 0, 0.15),
         inset 0 1px 1px rgba(255, 255, 255, 0.6);
-
         padding:0.75rem;
     }
 
@@ -1023,10 +1026,10 @@ fieldset > label:first-of-type {
         backdrop-filter: none;
         padding: 0.75rem;
     }
+
     .admin-table td::before {
         content: attr(data-label);
         font-weight: bold;
-       
     }
 
     .admin-table caption {
@@ -1040,11 +1043,12 @@ fieldset > label:first-of-type {
         padding: 0.75rem;
         font-weight: 700;
         border-bottom: 1px solid #eee;
-        
     }
+
     .admin-table td[data-label="Azione"]::before {
         content: "";
     }
+
     .admin-table td[data-label="Azione"] {
         display: flex;
         justify-content: center;
