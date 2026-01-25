@@ -22,7 +22,7 @@ try{
     if($logged_in){
         $prodotti = $connection->getCarrello($_SESSION['email']);
     } else {
-        if (isset($_SESSION['carrello_ospite']) && count($_SESSION['carrello_ospite']) > 0){
+        if(isset($_SESSION['carrello_ospite']) && count($_SESSION['carrello_ospite']) > 0){
 
             $nomi_latini = array_keys($_SESSION['carrello_ospite']);
             $dettagli_pesci = $connection->getPesciPerCarrelloOspite($nomi_latini);
@@ -33,7 +33,7 @@ try{
             }
         }
     }
-    if (count($prodotti) > 0) {
+    if(count($prodotti) > 0) {
         $contenuto_carrello .= '<ul class="lista-carrello">';
 
         foreach($prodotti as $item) {
@@ -67,7 +67,7 @@ try{
                         <input type="hidden" name="azione" value="rimuovi">
                         <input type="hidden" name="nome_latino" value="' . htmlspecialchars($nome_latino) . '">
                         <button type="submit" class="btn-rimuovi" aria-label="Rimuovi ' . htmlspecialchars($nome_comune) . ' dal carrello">
-                           <img src="../IMMAGINI/Icone/famiglia icone/cross.svg" alt="Icona X per rimuovere dal carrello" class="icona-x">
+                           <img src="../IMMAGINI/Icone/cross.svg" alt="Icona X per rimuovere dal carrello" class="icona-x">
                         </button>
                     </form>
                 </div>

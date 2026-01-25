@@ -12,14 +12,14 @@ try{
     $connection = new FMAccess();
     $connection->openConnection();
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $azione = $_POST['azione'] ?? '';
         if($azione === 'aggiungi'){
             $pesce = $_POST['nome_latino'] ?? '';
             $quantita = (int)($_POST['quantita'] ?? 0);
 
-            if (!empty($pesce) && $quantita > 0){
+            if(!empty($pesce) && $quantita > 0){
                 $pesce_db = $connection->getPesce($pesce);
                 if($pesce_db){
                     $disponibilita_max = (int)$pesce_db['disponibilita'];
@@ -32,7 +32,7 @@ try{
                                 $_SESSION['carrello_ospite'] = [];
                             }
                             
-                            if (isset($_SESSION['carrello_ospite'][$pesce])) $_SESSION['carrello_ospite'][$pesce] += $quantita;
+                            if(isset($_SESSION['carrello_ospite'][$pesce])) $_SESSION['carrello_ospite'][$pesce] += $quantita;
                             else $_SESSION['carrello_ospite'][$pesce] = $quantita;
                         }
 
@@ -46,7 +46,7 @@ try{
                     header("Location: ../HTML/errore_404.html");
                 }
             }
-        } elseif ($azione === 'rimuovi') {
+        } elseif($azione === 'rimuovi') {
             $pesce_rimuovere = $_POST['nome_latino'] ?? '';
 
             if(!empty($pesce_rimuovere)) {
@@ -56,6 +56,9 @@ try{
             header("Location: carrello.php");
             exit();
         }
+    } else {
+        header("Location: carrello.php");
+        exit;
     }
 } catch (mysqli_sql_exception $e) {
 	http_response_code(500);

@@ -83,10 +83,7 @@ function setSummary(&$errors) {
         $errors['summary'] = ($errors['summary'] ?? '') . '<li><a href="#confermaPassword">La conferma <span lang="en">password</span> non è valida.</a></li>';
 }
     
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if(session_status() !== PHP_SESSION_ACTIVE)
-        session_start();
-
+if($_SERVER['REQUEST_METHOD'] === 'POST') {
     $values = [];
     $errors = [];
 
@@ -158,5 +155,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } finally {
         $connection->closeConnection();
     }
+} else {
+    header('Location: profilo.php');
+    exit;
 }
 ?>

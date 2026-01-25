@@ -355,7 +355,7 @@ class FMAccess {
     $limit = (int)$limit;
 
     $sql = "SELECT p.nome_latino, p.nome_comune, p.famiglia, p.dimensione, p.volume_minimo,
-               p.colori, p.prezzo, p.sconto_percentuale, p.disponibilita,
+               p.colori, p.prezzo, p.disponibilita,
                p.immagine, p.data_inserimento,
                totals.totale_venduto
         FROM pesci p

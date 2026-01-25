@@ -64,7 +64,7 @@ function validateUsername(username) {
     let isValid = true;
     
     if(username.length != 0) {
-        if (!regexEmail.test(username)) {
+        if(!regexEmail.test(username)) {
             if(username.length < 3 || username.length > 30 || !regexUsername.test(username))
                 isValid = false;
         }

@@ -68,7 +68,6 @@ CREATE TABLE pesci (
     volume_minimo INT NOT NULL,
     colori VARCHAR(100) NOT NULL,
     prezzo DECIMAL(8,2) NOT NULL,
-    sconto_percentuale TINYINT UNSIGNED DEFAULT 0,
     disponibilita INT NOT NULL,
     immagine VARCHAR(255) NOT NULL,
 	data_inserimento DATE NOT NULL DEFAULT CURRENT_DATE,

@@ -135,5 +135,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } finally {
         $connection->closeConnection();
     }
+} else {
+    header('Location: registrazione.php');
+    exit;
 }
 ?>
