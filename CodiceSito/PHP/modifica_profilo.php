@@ -31,6 +31,8 @@ unset($_SESSION['errors'], $_SESSION['values']);
         <link rel="stylesheet" href="../CSS/style.css">
         <link rel="stylesheet" href="../CSS/desktop.css" media="(min-width: 768px)">
         <link rel="stylesheet" href="../CSS/stampa.css" media="print">
+
+        <link rel="icon" href="../IMMAGINI/Icone/fish.png" type="image/png">
     </head>
 
     <body id="top">
@@ -39,7 +41,7 @@ unset($_SESSION['errors'], $_SESSION['values']);
         </nav>
         <header>
             <div class="header-content sezione-standard">
-                <img class="icona" src="../IMMAGINI/Icone/fish.png" alt=""/>
+                <img src="../IMMAGINI/Icone/fish.png" alt=""/>
                 <nav id="menu" aria-label="Menù di navigazione">
                     <ul>
                         <li lang="en"><a href="../PHP/home.php">Home</a></li>
@@ -49,11 +51,11 @@ unset($_SESSION['errors'], $_SESSION['values']);
                     </ul>
                 </nav>
                 <div>
-                    <a id="cart-link"  class="icona" href="carrello.html" aria-label="Vai al carrello"><img src="../IMMAGINI/Icone/famiglia icone/shopping-cart.svg" alt="" aria-hidden="true"/></a>
+                    <a id="cart-link" href="carrello.html" aria-label="Vai al carrello"><img src="../IMMAGINI/Icone/shopping-cart.svg" alt="" aria-hidden="true"/></a>
                     <button  id="hamburger-menu-btn" aria-controls="hamburger-menu" aria-expanded="false">
-                        <img class="icona" id="open-hamburger-menu" src="../IMMAGINI/Icone/famiglia icone/menu-burger.svg" alt="" aria-hidden="true"/>
+                        <img id="open-hamburger-menu" src="../IMMAGINI/Icone/menu-burger.svg" alt="" aria-hidden="true"/>
                         <span class="screen-reader">Apri l'<span lang="en">hamburger</span> menù</span>
-                        <img class="icona" id="close-hamburger-menu" src="../IMMAGINI/Icone/famiglia icone/cross.svg" alt="" aria-hidden="true"/>
+                        <img id="close-hamburger-menu" src="../IMMAGINI/Icone/cross.svg" alt="" aria-hidden="true"/>
                         <span class="screen-reader">Chiudi l'<span lang="en">hamburger</span> menù</span>
                     </button>
                 </div>
@@ -256,13 +258,13 @@ unset($_SESSION['errors'], $_SESSION['values']);
                     </fieldset>
                     <input type="submit" value="Conferma"/>
                 </form>
-                <a href="profilo.php">Annulla</a>
+                <a id="cancelModifyBtn" href="profilo.php">Annulla</a>
             </div>
         </main>
         <script src="../JS/insert_comuni.js" defer></script>
         <footer>
 
         </footer>
-        <a href="#top" class="back-to-top" aria-label="Torna all'inizio"><img class="icona" src="../IMMAGINI/Icone/famiglia icone/arrow-up.svg" alt="" aria-hidden="true"/></a>
+        <a href="#top" class="back-to-top" aria-label="Torna all'inizio"><img src="../IMMAGINI/Icone/arrow-up.svg" alt="" aria-hidden="true"/></a>
     </body>
 </html>

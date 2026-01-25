@@ -113,7 +113,7 @@ header{
     align-items: center;
     flex-wrap: wrap;
     padding: 1em;
-    font-size: clamp(1rem, 1rem + 0.2vw, 1.2rem);
+    font-size: clamp(1rem, 1rem + 0.4vw, 1.3rem);
     backdrop-filter: blur(20px);
     background: var(--color-background-header);
 }
@@ -123,7 +123,7 @@ header{
 }
 
 #cart-link {
-    margin-right: 0.5em;
+    margin-right: 0.5rem;
 }
 
 #cart-link > img {
@@ -151,7 +151,7 @@ SEZIONE MENU
 }
 
 #hamburger-menu li {
-    margin-bottom: 0.5em;
+    margin-bottom: 0.5rem;
 }
 
 /* Menu visibile quando ha classe active */
@@ -167,12 +167,10 @@ SEZIONE MENU
     cursor: pointer;
 }
 
-/* Solo l'icona del menu visibile inizialmente */
 #close-hamburger-menu {
     display: none;
 }
 
-/* Quando il bottone è attivo, invertiamo */
 #hamburger-menu-btn.active #open-hamburger-menu {
     display: none;
 }
@@ -189,16 +187,18 @@ SEZIONE BREADCRUMB
 
 #breadcrumb {
     width: fit-content;
+    max-width: 95%;
     margin: 0 auto;
-    font-size: clamp(1rem, 1rem + 0.2vw, 1.1rem);
+    font-size: clamp(1rem, 1rem + 0.4vw, 1.3rem);
 }
 
 #breadcrumb > ol {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     list-style: none;
-    padding: 0.5em;
-    margin: 0 1em;
+    padding: 0.5rem;
+    margin: 0 0.5rem;
 }
 
 #breadcrumb > ol > li + li::before {
@@ -276,7 +276,6 @@ h3 {
     border-radius: 10px;
     overflow: hidden;
     position: relative;
-    /*Soluzione per browser nuovi, circa dal 2023, per avere grandezza testo in base a qella del contenitore usando i cqw(container query width)*/
     container-type: inline-size;
     min-height: 100px;
 }
@@ -306,7 +305,7 @@ h3 {
     font-weight: bold;
     font-size: clamp(0.875em, 0.3em + 2.2vw, 2em);
     font-size: clamp(0.875em, 8cqw, 2em);
-    line-height: 1.5;
+    line-height: 1;
 
 }
 
@@ -652,11 +651,6 @@ SEZIONE CATALOGO.HTML
     width: 3rem;
 }
 
-/*PER AVERE ICONE BIANCHE*/
-.icona {
-    filter: invert(100%);
-}
-
 
 /*
 =======================================
@@ -724,8 +718,12 @@ SEZIONE CHISIAMO.HMTL
 }
 
 .error-message {
-    color: darkred;
+    /*color: darkred;*/
+    color: #b13735;
     font-weight: bold;
+    /*background-color: rgba(255, 255, 255, 0.9);*/
+    background-color: #fff;
+    border-radius: 10px;
 }
 #login-error {
     margin-top: 0.5em;
@@ -755,7 +753,7 @@ ul.error-message {
     height: 2.5rem;
     width: 100%;
     border-radius: 10px;
-    border: 1px solid black;
+    border: 1.5px solid black;
     box-sizing: border-box;
     margin-top: 0.25em;
     padding-left: 0.5em;
@@ -779,9 +777,9 @@ abbr {
     cursor: help;
 }
 
-.data-form input[type="submit"], #modifyProfiloLink, #exitProfilo, #deleteProfiloLink {
+.data-form input[type="submit"], #modifyProfiloLink, #exitProfilo, #deleteProfiloLink, #cancelModifyBtn, #cancelDeleteBtn, #deleteProfiloBtn {
     height: 3rem;
-    border: none;
+    border: 2px solid #fff;
     padding: 0.5rem;
     font-size: 1em;
     font-weight: bold;
@@ -790,7 +788,7 @@ abbr {
     cursor: pointer;
 }
 
-.data-form input[type="submit"]:hover, #toggle-filter:hover, .carrello-button:hover, .data-form input[type="submit"]:focus-visible, #toggle-filter:focus-visible, .carrello-button:focus-visible {
+.data-form input[type="submit"]:hover, .data-form input[type="submit"]:focus-visible, #toggle-filter:hover, #toggle-filter:focus-visible, #modifyProfiloLink:hover, #modifyProfiloLink:focus-visible, #cancelModifyBtn:hover, #cancelModifyBtn:focus-visible, #cancelDeleteBtn:hover, #cancelDeleteBtn:focus-visible, .carrello-button:hover, .carrello-button:focus-visible {
     background-color: #1d5aa8;
 }
 
@@ -856,25 +854,58 @@ fieldset > label:first-of-type {
 
 #modifyProfiloLink {
     margin-top: 1rem;
-    background-color: #E39D4F;
 }
 
 #exitProfilo {
-    background-color: #3DB46F;
+    background-color: #1D8649;
 }
 
-#deleteProfiloLink {
-    background-color: #C35C5A;
+#deleteProfiloLink, #deleteProfiloBtn {
+    background-color: #C83E3C;
 }
 
-#modifyProfiloLink:hover, #modifyProfiloLink:focus-visible {
-    background-color: #D78A3D;
-}
 #exitProfilo:hover, #exitProfilo:focus-visible {
-    background-color: #34a05c;
+    background-color: #176f3d;
 }
-#deleteProfiloLink:hover, #deleteProfiloLink:focus-visible {
-    background-color: #a94b4a;
+
+#deleteProfiloLink:hover, #deleteProfiloLink:focus-visible, #deleteProfiloBtn:hover, #deleteProfiloBtn:focus-visible {
+    background-color: #b13735;
+}
+
+#cancelModifyBtn, #cancelDeleteBtn, #deleteProfiloBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    border-radius: 10px;
+    text-decoration: none;
+    margin-top: 1em;
+}
+
+#cancelModifyBtn {
+    font-size: clamp(1.2rem, 1rem + 0.6vw, 1.7rem);
+}
+
+dialog {
+    margin: auto;
+    border-radius: 10px;
+    text-align: center;
+    background-color: rgb(0, 50, 126);
+    color: var(--color-text);
+    font-size: clamp(1rem, 0.6rem + 1.8vw, 1.3rem);
+    padding: 1em;
+}
+
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+#deleteProfiloTitle {
+    margin-bottom: 0.5em;
+}
+
+#cancelDeleteBtn {
+    margin-right: 1em;
 }
 
 .lista-ordini li {
@@ -950,6 +981,98 @@ fieldset > label:first-of-type {
         font-weight: bold;
     }
 }
+
+/*SEZIONE ADMIN */
+.admin-table {
+    table-layout: auto;
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right:auto;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    width: 90%;
+    box-shadow: 0 0 20px rgba(0,0,0,0.15);
+    border: 1px solid; 
+}
+
+.admin-table th, .admin-table td {
+    padding: 5px 8px;
+    border-bottom: 1px solid #ccc;
+}
+
+.admin-table caption {
+    caption-side: top;
+    padding: 1rem;
+    font-weight: bold;
+    text-align: center;
+    white-space: normal;
+}
+
+@media (max-width: 600px) {
+
+    .admin-table,
+    .admin-table thead,
+    .admin-table tbody,
+    .admin-table th,
+    .admin-table td,
+    .admin-table tr {
+        display: block;
+    }
+
+    .admin-table thead {
+        display: none;
+    }
+
+    .admin-table tr {
+        margin-bottom: 1rem;
+        background: var(--color-background-card);
+        border-radius: 20px;
+        border: 1px solid #ffffff66;
+        backdrop-filter: blur(5px) saturate(120%);
+        box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.15),
+        inset 0 1px 1px rgba(255, 255, 255, 0.6);
+
+        padding:0.75rem;
+    }
+
+    .admin-table td {
+        background: none;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        backdrop-filter: none;
+        padding: 0.75rem;
+    }
+    .admin-table td::before {
+        content: attr(data-label);
+        font-weight: bold;
+       
+    }
+
+    .admin-table caption {
+        width: 90%;
+        font-size: 1.1rem;
+        line-height: 1.4;
+        word-break: normal;
+    }
+
+    .admin-table th[scope="row"] {
+        padding: 0.75rem;
+        font-weight: 700;
+        border-bottom: 1px solid #eee;
+        
+    }
+    .admin-table td[data-label="Azione"]::before {
+        content: "";
+    }
+    .admin-table td[data-label="Azione"] {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
 
 /*
 =======================================
@@ -1067,21 +1190,21 @@ SEZIONE Carrello
     justify-content: center;
 }
 
- .icona-x {
+.icona-x {
     width: 1.4em;
     height: 1.4em;
     filter: brightness(0) invert(1);
- }
+}
 
- .item-totale-riga {
+.item-totale-riga {
     grid-column: 2;
     text-align: right;
     font-size: 1.3rem;
     font-weight: bold;
     color: #ffffff;
- }
+}
 
- .riepilogo-ordine {
+.riepilogo-ordine {
     padding: 2em;
     background: var(--color-background-card);
     border-radius: 15px;
@@ -1093,32 +1216,32 @@ SEZIONE Carrello
     width: 95%;
     margin: 2em auto 2em auto;
     box-sizing: border-box;
-    }
+}
 
-    .hidden{
-        display: none;
-    }
+.hidden{
+    display: none;
+}
 
-    .totale-text{
-        font-size: 1.6rem;
-        font-weight: bold;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        width: 100%;
-        gap: 0.5em;
-        margin-bottom: 0;
-    }
+.totale-text{
+    font-size: 1.6rem;
+    font-weight: bold;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    gap: 0.5em;
+    margin-bottom: 0;
+}
 
-    .totale-text span {
-        font-size: 1.8rem;
-        color: var(--color-text);
-        white-space: nowrap;
-    }
+.totale-text span {
+    font-size: 1.8rem;
+    color: var(--color-text);
+    white-space: nowrap;
+}
 
-    .carrello-button {
+.carrello-button {
     background-color: var(--color-background-bottoni);
     color: #ffffff;
     border: none;
@@ -1129,7 +1252,13 @@ SEZIONE Carrello
     width: 100%;
     border-radius: 8px;
     margin: 0;
-    }
+}
+
+/*ERRORE 404*/
+
+.p404, .p500 {
+    margin-top: 1rem;
+}
 
 /*
 =======================================

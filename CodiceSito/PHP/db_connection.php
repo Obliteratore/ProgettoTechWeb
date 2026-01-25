@@ -21,7 +21,6 @@ class FMAccess {
 	private const USERNAME = "bsabic";
 	private const PASSWORD = "ieGai9om6eiyahT0";
 	*/
-
 	/*
 	private const HOST_DB = "localhost";
 	private const DATABASE_NAME = "vsolito";
