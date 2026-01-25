@@ -2,32 +2,32 @@
 namespace FM;
 
 class FMAccess {
-	/*
+	
 	private const HOST_DB = "localhost";
 	private const DATABASE_NAME = "agingill";
 	private const USERNAME = "agingill";
 	private const PASSWORD = "Pech3pheeXie4xen";
-	*/
-
+	
+	/*
 	private const HOST_DB = "localhost";
 	private const DATABASE_NAME = "fbalestr";
 	private const USERNAME = "fbalestr";
 	private const PASSWORD = "Iemao4Chawiechoo";
+	*/
 
 	/*
 	private const HOST_DB = "localhost";
 	private const DATABASE_NAME = "bsabic";
 	private const USERNAME = "bsabic";
 	private const PASSWORD = "ieGai9om6eiyahT0";
-	
-
+	*/
 	/*
-	
 	private const HOST_DB = "localhost";
 	private const DATABASE_NAME = "vsolito";
 	private const USERNAME = "vsolito";
 	private const PASSWORD = "aeyoh5naiw7nah4S";
 	*/
+
 	private $connection;
 
 	public function openConnection() {
@@ -208,10 +208,10 @@ class FMAccess {
 		$stmt = ($this->connection)->prepare($query);
 		$stmt->bind_param("s", $nome_latino);
 		$stmt->execute();
-
+	
 		$result = $stmt->get_result();
 		$pesce = $result->fetch_assoc();
-		
+	
 		$result->free();
 		$stmt->close();
 		return $pesce;
@@ -316,18 +316,21 @@ class FMAccess {
 		return $ordini;
 	}
 
-	public function getPesci($condizioni, $parametri, $operazione) {
+	public function getPesci($condizioni, $parametri, $operazione = '') {
 
-		$sql = "SELECT * FROM pesci";
+		$sql = "SELECT p.* , f.tipo_acqua FROM pesci p JOIN famiglie f ON p.famiglia = f.famiglia_latino";
 
 		if (!empty($condizioni)) {
 			$sql .= " WHERE " . implode(" AND ", $condizioni);
 		}
 
 		//con questo possiamo usare LIMIT e DESC
-		if ($operazione !== '') {
+		if ($operazione == '') {
+			$sql .= " ORDER BY nome_comune ASC";
+		} else {
 			$sql .= " " . $operazione;
 		}
+
 		$stmt = $this->connection->prepare($sql);
 
 		// se ci sono parametri, li bindiamo tutti come stringhe semplicemente
@@ -352,7 +355,7 @@ class FMAccess {
 	}
 
 	public function getPiuVenduti(int $limit = 4): array {
-    $limit = (int)$limit;
+		$limit = (int)$limit;
 
     $sql = "SELECT p.nome_latino, p.nome_comune, p.famiglia, p.dimensione, p.volume_minimo,
                p.colori, p.prezzo, p.disponibilita,
@@ -367,12 +370,12 @@ class FMAccess {
         ORDER BY totals.totale_venduto DESC
         LIMIT $limit";
 
-    $result = $this->connection->query($sql);
-    if (!$result) {
-        throw new Exception("SQL Error: " . $this->connection->error);
-    }
+		$result = $this->connection->query($sql);
+		if (!$result) {
+			throw new Exception("SQL Error: " . $this->connection->error);
+		}
 
-    return $result->fetch_all(MYSQLI_ASSOC);
+		return $result->fetch_all(MYSQLI_ASSOC);
 	}
 
 	public function updateProfiloUtenteRegistrato($set, $parametri) {
