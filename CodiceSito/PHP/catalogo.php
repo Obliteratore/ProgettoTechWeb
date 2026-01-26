@@ -11,9 +11,20 @@ $nomeLatino = filter_input(INPUT_GET, 'nome_latino', FILTER_SANITIZE_SPECIAL_CHA
 $nomeComune = filter_input(INPUT_GET, 'nome_comune', FILTER_SANITIZE_SPECIAL_CHARS);
 $dimensione = filter_input(INPUT_GET, 'dimensione', FILTER_VALIDATE_INT);
 $volumeMinimo = filter_input(INPUT_GET, 'volume_min', FILTER_VALIDATE_INT);
-$colore = $_GET['colore'] ?? [];
+$colore = filter_input(INPUT_GET, 'colore', FILTER_SANITIZE_SPECIAL_CHARS);
 $prezzoMinimo = filter_input(INPUT_GET, 'prezzo_min', FILTER_VALIDATE_INT);
 $prezzoMassimo = filter_input(INPUT_GET, 'prezzo_max', FILTER_VALIDATE_INT);
+$tipoAcqua = filter_input(
+    INPUT_GET,
+    'tipo_acqua',
+    FILTER_SANITIZE_SPECIAL_CHARS,
+    FILTER_FORCE_ARRAY
+) ?? [];
+$filtro = filter_input(INPUT_GET, 'filtro', FILTER_SANITIZE_SPECIAL_CHARS);
+
+
+$allowed = ['marina', 'dolce'];
+$tipoAcqua = array_intersect($tipoAcqua, $allowed);
 
 $condizioni = [];
 $parametri = [];
@@ -54,14 +65,32 @@ if (!empty($prezzoMassimo)) {
 	$parametri[] = $prezzoMassimo;
 }
 
-
+if (!empty($tipoAcqua)) {
+    $placeholders = implode(',', array_fill(0, count($tipoAcqua), '?'));
+    $condizioni[] = "f.tipo_acqua IN ($placeholders)";
+    $parametri = array_merge($parametri, $tipoAcqua);
+}
 
 $pesci = [];
 
 try{
 	$connection = new FMAccess();
 	$connection->openConnection();
-	$pesci = $connection->getPesci($condizioni,$parametri,"ORDER BY nome_comune");
+	if ($filtro == "nuovi_arrivi") {
+		$pesci = $connection->getPesci($condizioni,$parametri, "ORDER BY data_inserimento DESC");
+	} else if ($filtro == "piu_venduti") {
+		$piuVenduti = $connection->getPiuVenduti(); // ordinato
+		$filtrati   = $connection->getPesci($condizioni, $parametri); // filtrato
+
+		// 1. crea un array degli ID dei pesci filtrati
+		$idsFiltrati = array_column($filtrati, 'nome_latino');
+
+		// 2. filtra i pesci più venduti mantenendo l’ordine
+		$pesci = array_filter($piuVenduti, function($pesce) use ($idsFiltrati) {
+    	return in_array($pesce['nome_latino'], $idsFiltrati);});
+	} else {
+		$pesci = $connection->getPesci($condizioni,$parametri);
+	}
 } catch(mysqli_sql_exception $e) {
 	http_response_code(500);
 	header('Location: ../HTML/error_500.html');
@@ -79,6 +108,40 @@ $paginaHTML = file_get_contents('../HTML/catalogo.html');
 $stringaPesci = crea_card_pesce($pesci);
 
 $paginaHTML = str_replace("[listaPesci]", $stringaPesci, $paginaHTML);
+
+// valori dei form
+$paginaHTML = str_replace("[nomeComune]", htmlspecialchars($nomeComune ?? ''), $paginaHTML);
+$paginaHTML = str_replace("[nomeLatino]", htmlspecialchars($nomeLatino ?? ''), $paginaHTML);
+$paginaHTML = str_replace("[volumeMin]", htmlspecialchars($volumeMinimo ?? ''), $paginaHTML);
+$paginaHTML = str_replace("[prezzoMin]", htmlspecialchars($prezzoMinimo ?? ''), $paginaHTML);
+$paginaHTML = str_replace("[prezzoMax]", htmlspecialchars($prezzoMassimo ?? ''), $paginaHTML);
+
+// checkbox tipo_acqua
+$paginaHTML = str_replace("[tipoAcquaMarina]", in_array('marina', $tipoAcqua ?? [], true) ? 'checked' : '', $paginaHTML);
+$paginaHTML = str_replace("[tipoAcquaDolce]", in_array('dolce', $tipoAcqua ?? [], true) ? 'checked' : '', $paginaHTML);
+
+// radio filtro
+$paginaHTML = str_replace("[filtroAlfabetico]", ($filtro === 'alfabetico' ? 'checked' : ''), $paginaHTML);
+$paginaHTML = str_replace("[filtroNuoviArrivi]", ($filtro === 'nuovi_arrivi' ? 'checked' : ''), $paginaHTML);
+$paginaHTML = str_replace("[filtroPiuVenduti]", ($filtro === 'piu_venduti' ? 'checked' : ''), $paginaHTML);
+
+// radio colori
+$paginaHTML = str_replace("[coloreGiallo]", ($colore === 'giallo' ? 'checked' : ''), $paginaHTML);
+$paginaHTML = str_replace("[coloreArancione]", ($colore === 'arancione' ? 'checked' : ''), $paginaHTML);
+$paginaHTML = str_replace("[coloreRosso]", ($colore === 'rosso' ? 'checked' : ''), $paginaHTML);
+$paginaHTML = str_replace("[coloreBeige]", ($colore === 'beige' ? 'checked' : ''), $paginaHTML);
+$paginaHTML = str_replace("[coloreRosa]", ($colore === 'rosa' ? 'checked' : ''), $paginaHTML);
+$paginaHTML = str_replace("[coloreBlu]", ($colore === 'blu' ? 'checked' : ''), $paginaHTML);
+$paginaHTML = str_replace("[coloreAzzurro]", ($colore === 'azzurro' ? 'checked' : ''), $paginaHTML);
+$paginaHTML = str_replace("[coloreVerde]", ($colore === 'verde' ? 'checked' : ''), $paginaHTML);
+$paginaHTML = str_replace("[coloreMarrone]", ($colore === 'marrone' ? 'checked' : ''), $paginaHTML);
+$paginaHTML = str_replace("[coloreNero]", ($colore === 'nero' ? 'checked' : ''), $paginaHTML);
+$paginaHTML = str_replace("[coloreGrigio]", ($colore === 'grigio' ? 'checked' : ''), $paginaHTML);
+$paginaHTML = str_replace("[coloreTrasparente]", ($colore === 'trasparente' ? 'checked' : ''), $paginaHTML);
+$paginaHTML = str_replace("[coloreTutti]", ($colore === 'tutti' ? 'checked' : ''), $paginaHTML);
+
+
+
 echo $paginaHTML;
 
 ?>

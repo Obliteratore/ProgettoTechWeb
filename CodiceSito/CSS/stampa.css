@@ -1,9 +1,17 @@
+html {
+    color: black;
+}
+
 .sezione-standard {
     background: none;
     border-radius: 20px;
     border: 2px solid #000;
     backdrop-filter: none;
     box-shadow: none;
+}
+
+body {
+    background-image: none;
 }
 
 .header, .header-content, .back-to-top {
@@ -16,4 +24,8 @@
 
 img {
     filter: grayscale(100%);
+}
+
+.carrello-button {
+    background-color: none;
 }
