@@ -42,11 +42,17 @@ if($_SERVER["REQUEST_METHOD"] === "GET"){
 
         "[errore-nome-comune]" => '',
         "[errore-dimensione]" => '',
-        "[errore-volume_minimo]" => '',
+        "[errore-volume-minimo]" => '',
         "[errore-colori]" => '',
         "[errore-prezzo]" => '',
         "[errore-disponibilita]" => '',
         "[errore-immagine]" => '',
+        "[invalid-nome-comune]" => 'false',
+        "[invalid-dimensione]" => 'false',
+        "[invalid-volume-minimo]" => 'false',
+        "[invalid-colori]" => 'false',
+        "[invalid-prezzo]" => 'false',
+        "[invalid-disponibilita]" => 'false',
     ];
 
     echo str_replace(array_keys($segnaposto), array_values($segnaposto),$paginaHTML);
@@ -71,53 +77,79 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $colori = htmlspecialchars(trim($_POST["colori"]));
     $prezzo = htmlspecialchars(trim($_POST["prezzo"]));
     $disponibilita = htmlspecialchars(trim($_POST["disponibilita"]));
+    $percorso = null;
 
-    $errors= [];
+    $errore= [
+    'nome_comune' => [],
+    'dimensione' => [],
+    'volume_minimo' => [],
+    'colori' => [],
+    'prezzo' => [],
+    'disponibilita' => [],
+    'immagine' => []
+    ];
 
     if (strlen($nome_comune) < 2) {
-    $errors['nome_comune'] = "Deve avere almeno 2 caratteri.";
-    } elseif (preg_match('/[^A-Za-zÀ-ÿ\s]/', $nome_comune)) {
-    $errors['nome_comune'] = "Sono ammesse solo lettere.";
+    $errore['nome_comune'][] = "Deve avere almeno 2 caratteri.";
+    } 
+    
+    if (preg_match('/[^A-Za-zÀ-ÿ\s]/', $nome_comune)) {
+    $errore['nome_comune'][] = "Sono ammesse solo lettere.";
     }
 
     if (!is_numeric($dimensione) || $dimensione <= 0) {
-    $errors['dimensione'] = "Inserisci un numero valido maggiore di 0.";
+    $errore['dimensione'][] = "Inserisci un numero valido maggiore di 0.";
     }
 
     if (!is_numeric($volume_minimo) || $volume_minimo <= 0) {
-    $errors['volume_minimo'] = "Inserisci un numero valido maggiore di 0.";
+    $errore['volume_minimo'][] = "Inserisci un numero valido maggiore di 0.";
     }
 
-    if (strlen($colori) < 2) {
-    $errors['colori'] = "Deve avere almeno 2 caratteri.";
+    $listaColori = ['giallo','arancione','rosso','beige','rosa','blu','azzurro','verde','marrone','nero','grigio','trasparente'];
+    if(!preg_match('/^[A-Za-zÀ-ÿ]+(,[A-Za-zÀ-ÿ]+)*$/', $colori)) {
+        $errore['colori'][] = "Formato non valido. Usa lettere separate da virgole senza spazi, ad esempio: rosso,blu,verde";
+    } else {
+        foreach(explode(',', $colori) as $c) {
+            if(!in_array(strtolower($c), $listaColori)) {
+                $errore['colori'][] = "Il colore '$c' non è nella lista consentita.";
+            }
+        }
     }
 
-    if (!is_numeric($prezzo) || $prezzo < 0) {
-    $errors['prezzo'] = "Prezzo non valido.";
+    if (!is_numeric($prezzo) || $prezzo <= 0) {
+    $errore['prezzo'][] = "Prezzo non valido.";
     }
 
     if (!is_numeric($disponibilita) || $disponibilita < 0) {
-    $errors['disponibilita'] = "Inserisci un numero valido.";
+    $errore['disponibilita'][] = "Inserisci un numero valido.";
     }
     
-    $percorso = null;
-
     if (!empty($_FILES["immagine"]["name"])) {
         $tipoPermesso = ['image/jpeg', 'image/jpg'];
         $tipoFile = mime_content_type($_FILES["immagine"]["tmp_name"]);
 
     if (!in_array($tipoFile, $tipoPermesso)) {
-        $errors['immagine'] = "Formato immagine non consentito. Usa JPG o JPEG";
+        $errore['immagine'][] = "Formato immagine non consentito. Usa JPG o JPEG";
     } else {
         $nomeFile = uniqid() . "_" . basename($_FILES["immagine"]["name"]);
         $percorso = "../IMMAGINI/Pesci/" . $nomeFile;
 
         if (!move_uploaded_file($_FILES["immagine"]["tmp_name"], $percorso)) {
-            $errors['immagine'] = "Errore durante il caricamento dell'immagine";
+            $errore['immagine'][] = "Errore durante il caricamento dell'immagine";
         }
     }
 }
-       if (!empty($errors)) {
+     foreach ($errore as $key => $arr) {
+        $errore[$key] = empty($arr) ? '' : implode('', array_map(fn($e) => "<li>$e</li>", $arr));
+    }
+
+    // Controllo se esiste almeno un errore
+    $anyError = false;
+    foreach ($errore as $e) {
+        if (!empty($e)) { $anyError = true; break; }
+    }
+    
+       if ($anyError) {
         
         $paginaHTML = file_get_contents('../HTML/modifica_pesce.html');
         $segnaposto = [
@@ -131,14 +163,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             "[prezzo]" => htmlspecialchars($prezzo),
             "[disponibilita]" => htmlspecialchars($disponibilita),
 
-            
-            "[errore-nome-comune]" => $errors['nome_comune'] ?? "",
-            "[errore-dimensione]" => $errors['dimensione'] ?? "",
-            "[errore-volume-minimo]" => $errors['volume_minimo'] ?? "",
-            "[errore-colori]" => $errors['colori'] ?? "",
-            "[errore-prezzo]" => $errors['prezzo'] ?? "",
-            "[errore-disponibilita]" => $errors['disponibilita'] ?? "",
-            "[errore-immagine]" => $errors['immagine'] ?? "",
+            "[errore-nome-comune]" => $errore['nome_comune'] ?? "",
+            "[errore-dimensione]" => $errore['dimensione'] ?? "",
+            "[errore-volume-minimo]" => $errore['volume_minimo'] ?? "",
+            "[errore-colori]" => $errore['colori'] ?? "",
+            "[errore-prezzo]" => $errore['prezzo'] ?? "",
+            "[errore-disponibilita]" => $errore['disponibilita'] ?? "",
+            "[errore-immagine]" => $errore['immagine'] ?? "",
+
+            "[invalid-nome-comune]" => !empty($errore['nome_comune']) ? "true" : "false",
+            "[invalid-dimensione]" => !empty($errore['dimensione']) ? "true" : "false",
+            "[invalid-volume-minimo]" => !empty($errore['volume_minimo']) ? "true" : "false",
+            "[invalid-colori]" => !empty($errore['colori']) ? "true" : "false",
+            "[invalid-prezzo]" => !empty($errore['prezzo']) ? "true" : "false",
+            "[invalid-disponibilita]" => !empty($errore['disponibilita']) ? "true" : "false",
         ];
 
         echo str_replace(array_keys($segnaposto), array_values($segnaposto), $paginaHTML);
