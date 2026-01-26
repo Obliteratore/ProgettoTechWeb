@@ -354,10 +354,10 @@ class FMAccess {
 		return $pesci;
 	}
 
-	public function getPiuVenduti(int $limit = 4): array {
+	public function getPiuVenduti(int $limit = 0): array {
 		$limit = (int)$limit;
 
-    $sql = "SELECT p.nome_latino, p.nome_comune, p.famiglia, p.dimensione, p.volume_minimo,
+    	$sql = "SELECT p.nome_latino, p.nome_comune, p.famiglia, p.dimensione, p.volume_minimo,
                p.colori, p.prezzo, p.disponibilita,
                p.immagine, p.data_inserimento,
                totals.totale_venduto
@@ -367,8 +367,11 @@ class FMAccess {
             FROM dettaglio_ordini
             GROUP BY nome_latino
         ) totals ON TRIM(p.nome_latino) = TRIM(totals.nome_latino)
-        ORDER BY totals.totale_venduto DESC
-        LIMIT $limit";
+        ORDER BY totals.totale_venduto DESC";
+
+		if($limit != 0) {
+			$sql .=  " LIMIT $limit";
+		}
 
 		$result = $this->connection->query($sql);
 		if (!$result) {
