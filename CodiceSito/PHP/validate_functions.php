@@ -33,6 +33,26 @@ function validateCognome(&$errors, $cognome) {
     }
 }
 
+function validateProvincia(&$errors, $provincia, $connection) {
+    if(empty($provincia))
+        $errors['provincia'] = 'La provincia è un campo obbligatorio.';
+    else {
+        $exist = $connection->existProvincia($provincia);
+        if(!$exist)
+            $errors['provincia'] = 'La provincia selezionata non esiste.';
+    }
+}
+
+function validateComune(&$errors, $comune, $provincia, $connection) {
+    if(empty($comune))
+        $errors['comune'] = 'Il comune è un campo obbligatorio.';
+    else {
+        $exist = $connection->existComune($comune, $provincia);
+        if(!$exist)
+            $errors['comune'] = 'Il comune selezionato non esiste.';
+    }
+}
+
 function validateVia(&$errors, $via) {
     $regex = '/^[A-Za-zÀ-ÖØ-öø-ÿ0-9\s\.\-\/\']+$/';
 

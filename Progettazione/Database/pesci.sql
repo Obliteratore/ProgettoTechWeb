@@ -64,7 +64,7 @@ CREATE TABLE pesci (
     nome_latino VARCHAR(150) PRIMARY KEY,
     nome_comune VARCHAR(150) NOT NULL UNIQUE,
     famiglia VARCHAR(100) NOT NULL,
-    dimensione VARCHAR(15),
+    dimensione INT NOT NULL,
     volume_minimo INT NOT NULL,
     colori VARCHAR(100) NOT NULL,
     prezzo DECIMAL(8,2) NOT NULL,
