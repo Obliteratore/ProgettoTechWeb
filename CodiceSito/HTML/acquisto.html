@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="utf-8" >
+        <title>Acquista - FishMarket</title>
+        <meta name="description" content="FishMarket è un negozio online di pesci esotici e tropicali da tutto il mondo. Porta l'esotico a casa tua con dei pesci unici.">
+        <meta name="keywords" content="pesci esotici, vendita pesci online, pesci tropicali, negozio pesci esotici, FishMarket">
+        <meta name="author" content="Aaron Gingillino, Francesco Balestro, Bilal Sabic, Valerio Solito">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Inclusive+Sans:ital,wght@0,300..700;1,300..700&family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../CSS/style.css">
+        <link rel="stylesheet" href="../CSS/desktop.css" media="(min-width: 768px)">
+        <link rel="stylesheet" href="../CSS/stampa.css" media="print">
+
+        <link rel="icon" href="../IMMAGINI/Icone/fish.png" type="image/png">
+    </head>
+
+    <body id="top">
+        <nav aria-label="Aiuti alla navigazione">
+            <a id="skip-to-content" href="#main-content">Salta al contenuto</a>
+        </nav>
+        <header>
+            <div class="header-content sezione-standard">
+                <img src="../IMMAGINI/Icone/fish.png" alt=""/>
+                <nav id="menu" aria-label="Menù di navigazione">
+                    <ul>
+                        <li lang="en"><a href="../PHP/home.php">Home</a></li>
+                        <li><a href="../PHP/catalogo.php">Catalogo</a></li>
+                        <li><a href="../HTML/chiSiamo.html">Chi Siamo</a></li>
+                        <li><a href="../PHP/profilo.php">Profilo</a></li>
+                    </ul>
+                </nav>
+                <div>
+                    <a id="cart-link" href="carrello.html" aria-label="Vai al carrello"><img src="../IMMAGINI/Icone/shopping-cart.svg" alt="" aria-hidden="true"/></a>
+                    <button  id="hamburger-menu-btn" aria-controls="hamburger-menu" aria-expanded="false">
+                        <img id="open-hamburger-menu" src="../IMMAGINI/Icone/menu-burger.svg" alt="" aria-hidden="true"/>
+                        <span class="screen-reader">Apri l'<span lang="en">hamburger</span> menù</span>
+                        <img id="close-hamburger-menu" src="../IMMAGINI/Icone/cross.svg" alt="" aria-hidden="true"/>
+                        <span class="screen-reader">Chiudi l'<span lang="en">hamburger</span> menù</span>
+                    </button>
+                </div>
+                <nav id="hamburger-menu" aria-label="Menù di navigazione per cellulare">
+                    <ul>
+                        <li lang="en"><a href="../PHP/home.php">Home</a></li>
+                        <li><a href="../PHP/catalogo.php">Catalogo</a></li>
+                        <li><a href="../HTML/chiSiamo.html">Chi Siamo</a></li>
+                        <li><a href="../PHP/profilo.php">Profilo</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <script src="../JS/hamburger_menu.js" defer></script>
+        <script src="../JS/buy_validation.js" defer></script>
+
+        <nav id="breadcrumb" class="sezione-standard" aria-label="Percorso di navigazione">
+            <ol>
+                <li lang="en"><a href="../PHP/home.php">Home</a></li>
+                <li><a href="../PHP/carrello.php">Carrello</a></li>
+                <li aria-current="page">Acquista</li>
+            </ol>
+        </nav>
+        
+        <main id="main-content">
+            <div class="form-container sezione-standard">
+                <h1 class="position">Conferma acquisto</h1>
+                <form id="buy-form" class="data-form" action="../PHP/acquisto.php" method="post" autocomplete="on">
+                    <fieldset>
+                        <legend>Credenziali d'accesso</legend>
+                        <label for="email"><span lang="en">Email</span></label>
+                        <input id="email" type="email" name="email" value="[valore-email]" autocomplete="email" aria-describedby="email-help email-error" aria-invalid="[invalid-email]" required/>
+                        <p id="email-help" class="help">Un indirizzo <span lang="en">email</span> valido. Verrà usato per la verifica dell'<span lang="en">account</span> e per le comunicazioni.</p>
+                        <p id="email-error" class="error-message" aria-live="polite">[errore-email]</p>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Indirizzo</legend>
+                        <label for="provincia">Provincia</label>
+                        <select id="provincia" name="provincia" aria-describedby="provincia-help provincia-error" aria-invalid="[invalid-provincia]" required>
+                            <option value="">Seleziona una provincia</option>
+                            [valore-provincia]
+                        </select>
+                        <p id="provincia-help" class="help">La tua provincia di residenza.</p>
+                        <p id="provincia-error" class="error-message" aria-live="polite">[errore-provincia]</p>
+
+                        <label for="comune">Comune</label>
+                        <select id="comune" name="comune" aria-describedby="comune-help comune-error" aria-invalid="[invalid-comune]" required>
+                            <option value="">Seleziona un comune</option>
+                            [valore-comune]
+                        </select>
+                        <p id="comune-help" class="help">Il tuo comune di residenza.</p>
+                        <p id="comune-error" class="error-message" aria-live="polite">[errore-comune]</p>
+
+                        <label for="via">Via</label>
+                        <input id="via" type="text" name="via" value="[valore-via]" autocomplete="street-address" aria-describedby="via-help via-error" aria-invalid="[invalid-via]" required/>
+                        <p id="via-help" class="help">L'indirizzo completo con via, piazza o contrada e numero civico.</p>
+                        <p id="via-error" class="error-message" aria-live="polite">[errore-via]</p>
+                    </fieldset>
+                    <input type="submit" value="Conferma"/>
+                </form>
+                <a id="cancelBuyBtn" href="../PHP/carrello.php">Annulla</a>
+            </div>
+        </main>
+        <script src="../JS/insert_comuni.js" defer></script>
+        <footer>
+
+        </footer>
+        <a href="#top" class="back-to-top" aria-label="Torna all'inizio"><img src="../IMMAGINI/Icone/arrow-up.svg" alt="" aria-hidden="true"/></a>
+    </body>
+</html>

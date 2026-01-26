@@ -7,6 +7,11 @@ if(!isset($_SESSION['email'])) {
     exit;
 }
 
+if($_SESSION['email'] === 'admin') {
+    header('Location: admin.php');
+    exit;
+}
+
 require_once "db_connection.php";
 use FM\FMAccess;
 

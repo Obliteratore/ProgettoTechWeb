@@ -65,6 +65,34 @@ function validateEmail(email) {
     return isValid;
 }
 
+function validateProvincia(provincia) {
+    const value = provincia.value.trim();
+    let error = "";
+    let isValid = true;
+
+    if(value == "") {
+        error += "La provincia non è valida.";
+        isValid = false;
+    }
+    setHtml(provincia, isValid, "provincia-error", error);
+
+    return isValid;
+}
+
+function validateComune(comune) {
+    const value = comune.value.trim();
+    let error = "";
+    let isValid = true;
+
+    if(value == "") {
+        error += "Il comune non è valido.";
+        isValid = false;
+    }
+    setHtml(comune, isValid, "comune-error", error);
+
+    return isValid;
+}
+
 function validateVia(via) {
     const value = via.value.trim();
     const regex = /^[A-Za-zÀ-ÖØ-öø-ÿ0-9\s\.\-\/']+$/;

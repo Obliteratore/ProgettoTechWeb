@@ -1,106 +1,111 @@
 <?php
 if(session_status() !== PHP_SESSION_ACTIVE)
-    session_start();
+        session_start();
 
 if(isset($_SESSION['email'])) {
     header('Location: profilo.php');
     exit;
 }
 
-$error = $_SESSION['error'] ?? '';
-unset($_SESSION['error']);
+require_once "db_connection.php";
+use FM\FMAccess;
+
+function pulisciInput($value) {
+    $value = trim($value);
+    $value = strip_tags($value);
+    return $value;
+}
+
+function validateEmail($email, $connection) {
+    return $connection->existEmail($email);
+}
+
+function validateUsername($username, $connection) {
+    $regex = '/^[a-zA-Z0-9_.-]+$/';
+    if(strlen($username) < 3 || strlen($username) > 30 || !preg_match($regex, $username))
+        return false;
+    else
+        return $connection->existUsername($username);
+}
+
+function validateLogin($login, $isEmail, $connection) {
+    if ($isEmail)
+        return validateEmail($login, $connection);
+    else
+        return validateUsername($login, $connection);
+}
+
+function validatePassword($password) {
+    if(strlen($password) < 8 || !preg_match('/[A-Z]/', $password) || !preg_match('/\d/', $password) || !preg_match('/[!?@#$%^&*]/', $password))
+        return false;
+    else
+        return true;
+}
+
+function writeHtml($error) {
+    $paginaHTML = file_get_contents('../HTML/accesso.html');
+
+    $paginaHTML = str_replace('[invalid-username]', !empty($error) ? 'true' : 'false', $paginaHTML);
+    $paginaHTML = str_replace('[invalid-password]', !empty($error) ? 'true' : 'false', $paginaHTML);
+    $paginaHTML = str_replace('[errore-login]', $error, $paginaHTML);
+    echo $paginaHTML;
+}
+
+$error = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    $login = isset($_POST['username']) ? pulisciInput($_POST['username']) : '';
+    $password = $_POST['password'] ?? '';
+
+    if(!empty($login) && !empty($password)) {
+        try{
+            $connection = new FMAccess();
+            $connection->openConnection();
+
+            $isEmail = true;
+            if(!filter_var($login, FILTER_VALIDATE_EMAIL))
+                $isEmail = false;
+
+            if($login != 'user' && $login != 'admin' && (!validateLogin($login, $isEmail, $connection) || !validatePassword($password))) {
+                $error = 'Le credenziali inserite non sono valide.';
+                writeHtml($error);
+                exit;
+            } else {
+                $passwordHash= null;
+                if($isEmail)
+                    $passwordHash = $connection->getPasswordWithEmail($login);
+                else
+                    $passwordHash = $connection->getPasswordWithUsername($login);
+
+                if(!$passwordHash || !password_verify($password, $passwordHash)) {
+                    $error = 'Le credenziali inserite non sono valide.';
+                    writeHtml($error);
+                    exit;
+                } else {
+                    session_regenerate_id(true);
+                    if($isEmail)
+                        $_SESSION['email'] = $login;
+                    else
+                        $_SESSION['email'] = $connection->getEmailWithUsername($login);
+
+                    header('Location: profilo.php');
+                    exit;
+                }
+            }
+        } catch(mysqli_sql_exception $e) {
+            http_response_code(500);
+            header('Location: ../HTML/error_500.html');
+            exit;
+        } finally {
+            $connection->closeConnection();
+        }
+    } else {
+        $error = 'Le credenziali inserite non sono valide.';
+        writeHtml($error);
+        exit;
+    }
+} else {
+    writeHtml($error);
+}
 ?>
-<!DOCTYPE html>
-<html lang=“it”>
-    <head>
-        <meta charset="utf-8" >
-        <title>Accedi - FishMarket</title>
-        <meta name="description" content="FishMarket è un negozio online di pesci esotici e tropicali da tutto il mondo. Porta l'esotico a casa tua con dei pesci unici.">
-        <meta name="keywords" content="pesci esotici, vendita pesci online, pesci tropicali, negozio pesci esotici, FishMarket">
-        <meta name="author" content="Aaron Gingillino, Francesco Balestro, Bilal Sabic, Valerio Solito">
-
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Inclusive+Sans:ital,wght@0,300..700;1,300..700&family=Lexend:wght@100..900&display=swap" rel="stylesheet">
-
-
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../CSS/style.css">
-        <link rel="stylesheet" href="../CSS/desktop.css" media="(min-width: 768px)">
-        <link rel="stylesheet" href="../CSS/stampa.css" media="print">
-
-        <link rel="icon" href="../IMMAGINI/Icone/fish.png" type="image/png">
-    </head>
-
-    <body id="top">
-        <nav aria-label="Aiuti alla navigazione">
-            <a id="skip-to-content" href="#main-content">Salta al contenuto</a>
-        </nav>
-        <header>
-            <div class="header-content sezione-standard">
-                <img src="../IMMAGINI/Icone/fish.png" alt=""/>
-                <nav id="menu" aria-label="Menù di navigazione">
-                    <ul>
-                        <li lang="en"><a href="../PHP/home.php">Home</a></li>
-                        <li><a href="../PHP/catalogo.php">Catalogo</a></li>
-                        <li><a href="../HTML/chiSiamo.html">Chi Siamo</a></li>
-                        <li>Profilo</li>
-                    </ul>
-                </nav>
-                <div>
-                    <a id="cart-link" href="carrello.php" aria-label="Vai al carrello"><img src="../IMMAGINI/Icone/shopping-cart.svg" alt="" aria-hidden="true"/></a>
-                    <button  id="hamburger-menu-btn" aria-controls="hamburger-menu" aria-expanded="false">
-                        <img id="open-hamburger-menu" src="../IMMAGINI/Icone/menu-burger.svg" alt="" aria-hidden="true"/>
-                        <span class="screen-reader">Apri l'<span lang="en">hamburger</span> menù</span>
-                        <img id="close-hamburger-menu" src="../IMMAGINI/Icone/cross.svg" alt="" aria-hidden="true"/>
-                        <span class="screen-reader">Chiudi l'<span lang="en">hamburger</span> menù</span>
-                    </button>
-                </div>
-                <nav id="hamburger-menu" aria-label="Menù di navigazione per cellulare">
-                    <ul>
-                        <li lang="en"><a href="../PHP/home.php">Home</a></li>
-                        <li><a href="../PHP/catalogo.php">Catalogo</a></li>
-                        <li><a href="../HTML/chiSiamo.html">Chi Siamo</a></li>
-                        <li>Profilo</li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
-        <script src="../JS/hamburger_menu.js" defer></script>
-        <script src="../JS/access_validation.js" defer></script>
-
-        <nav id="breadcrumb" class="sezione-standard" aria-label="Percorso di navigazione">
-            <ol>
-                <li lang="en"><a href="../PHP/home.php">Home</a></li>
-                <li aria-current="page">Accedi</li>
-            </ol>
-        </nav>
-        
-        <main id="main-content">
-            <div class="form-container sezione-standard">
-                <h1 class="position">Accedi</h1>
-                <p class="call-to-action position">Se non hai un <span lang="en">account</span>, <a href="registrazione.php">registrati</a>!</p>
-                <p id="login-error" class="error-message" role="alert"><?= $error ?></p>
-                <form id="login-form" class="data-form" action="access_handler.php" method="post" autocomplete="on">
-                    <label for="username"><span lang="en">Username</span> o <span lang="en">Email</span>
-                    <small class="required">(Obbligatorio)</small>
-                    </label>
-                    <input id="username" type="text" name="username" autocomplete="username" aria-describedby="username-hint login-error" aria-invalid="<?= !empty($error) ? 'true' : 'false' ?>" required/>
-                    <small id="username-hint" class="hint"><abbr title="Esempio">Es</abbr>: maria.bianchi o mariabianchi@gmail.com</small>
-
-                    <label for="password"><span lang="en">Password</span>
-                    <small class="required">(Obbligatorio)</small>
-                    </label>
-                    <input id="password" type="password" name="password" autocomplete="current-password" aria-describedby="password-hint login-error" aria-invalid="<?= !empty($error) ? 'true' : 'false' ?>" required/>
-                    <small id="password-hint" class="hint"><abbr title="Esempio">Es</abbr>: <span lang="en">Password</span>Sicura2!</small>
-
-                    <input type="submit" value="Accedi"/>
-                </form>
-            </div>
-        </main>
-        <footer>
-
-        </footer>
-        <a href="#top" class="back-to-top" aria-label="Torna all'inizio"><img src="../IMMAGINI/Icone/arrow-up.svg" alt="" aria-hidden="true"/></a>
-    </body>
-</html>

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang=“it”>
     <head>
         <meta charset="utf-8" >
-        <title>Profilo - FishMarket</title>
+        <title>Accedi - FishMarket</title>
         <meta name="description" content="FishMarket è un negozio online di pesci esotici e tropicali da tutto il mondo. Porta l'esotico a casa tua con dei pesci unici.">
         <meta name="keywords" content="pesci esotici, vendita pesci online, pesci tropicali, negozio pesci esotici, FishMarket">
         <meta name="author" content="Aaron Gingillino, Francesco Balestro, Bilal Sabic, Valerio Solito">
@@ -26,13 +26,13 @@
         </nav>
         <header>
             <div class="header-content sezione-standard">
-                <img class="icona" src="../IMMAGINI/Icone/fish.png" alt=""/>
+                <img src="../IMMAGINI/Icone/fish.png" alt=""/>
                 <nav id="menu" aria-label="Menù di navigazione">
                     <ul>
                         <li lang="en"><a href="../PHP/home.php">Home</a></li>
                         <li><a href="../PHP/catalogo.php">Catalogo</a></li>
                         <li><a href="../HTML/chiSiamo.html">Chi Siamo</a></li>
-                        <li aria-current="page">Profilo</li>
+                        <li>Profilo</li>
                     </ul>
                 </nav>
                 <div>
@@ -49,53 +49,42 @@
                         <li lang="en"><a href="../PHP/home.php">Home</a></li>
                         <li><a href="../PHP/catalogo.php">Catalogo</a></li>
                         <li><a href="../HTML/chiSiamo.html">Chi Siamo</a></li>
-                        <li aria-current="page">Profilo</li>
+                        <li>Profilo</li>
                     </ul>
                 </nav>
             </div>
         </header>
         <script src="../JS/hamburger_menu.js" defer></script>
-        <script src="../JS/delete_profilo.js" defer></script>
+        <script src="../JS/access_validation.js" defer></script>
 
         <nav id="breadcrumb" class="sezione-standard" aria-label="Percorso di navigazione">
             <ol>
                 <li lang="en"><a href="../PHP/home.php">Home</a></li>
-                <li aria-current="page">Profilo</li>
+                <li aria-current="page">Accedi</li>
             </ol>
         </nav>
         
         <main id="main-content">
-            <h1 class="position">PROFILO</h1>
-            <section class="main-section sezione-standard user-container">
-                <div class="dati-utente">
-                    <h2>[nomeCognome]</h2>
-                    <ul>
-                        <li>[username]</li>
-                        <li>[indirizzo]</li>
-                    </ul>
-                </div>
-                <div class="azioni-profilo">
-                    <a id="modifyProfiloLink" href="../PHP/modifica_profilo.php">Modifica profilo</a>
-                    <form action="../PHP/logout.php" method="post">
-                        <button id="exitProfilo" type="submit" class="btn">Esci dal profilo</button>
-                    </form>
-                    <a id="deleteProfiloLink" href="../PHP/elimina_profilo.php">Elimina profilo</a>
-                </div>
-            </section>
-            <section class="main-section sezione-standard">
-                <h2 class="section-title">I miei ordini</h2>
-                [ordini]
-            </section>
-            <dialog id="deleteProfiloDialog" aria-labelledby="deleteProfiloTitle" aria-describedby="deleteProfiloDesc">
-                <form action="../PHP/elimina_profilo.php" method="post">
-                    <h2 id="deleteProfiloTitle">Sei sicuro di voler eliminare il tuo profilo?</h2>
-                    <p id="deleteProfiloDesc" class="paragrafo">Non potrai più vedere i tuoi ordini, e perderai tutti i dati del tuo profilo.</p>
-                    <div class="actions">
-                        <button id="cancelDeleteBtn" type="button" value="cancel">Annulla</button>
-                        <button id="deleteProfiloBtn" type="submit" value="confirm">Elimina</button>
-                    </div>
+            <div class="form-container sezione-standard">
+                <h1 class="position">Accedi</h1>
+                <p class="call-to-action position">Se non hai un <span lang="en">account</span>, <a href="registrazione.php">registrati</a>!</p>
+                <p id="login-error" class="error-message" role="alert">[errore-login]</p>
+                <form id="login-form" class="data-form" action="../PHP/accesso.php" method="post" autocomplete="on">
+                    <label for="username"><span lang="en">Username</span> o <span lang="en">Email</span>
+                    <small class="required">(Obbligatorio)</small>
+                    </label>
+                    <input id="username" type="text" name="username" autocomplete="username" aria-describedby="username-hint login-error" aria-invalid="[invalid-username]" required/>
+                    <small id="username-hint" class="hint"><abbr title="Esempio">Es</abbr>: maria.bianchi o mariabianchi@gmail.com</small>
+
+                    <label for="password"><span lang="en">Password</span>
+                    <small class="required">(Obbligatorio)</small>
+                    </label>
+                    <input id="password" type="password" name="password" autocomplete="current-password" aria-describedby="password-hint login-error" aria-invalid="[invalid-password]" required/>
+                    <small id="password-hint" class="hint"><abbr title="Esempio">Es</abbr>: <span lang="en">Password</span>Sicura2!</small>
+
+                    <input type="submit" value="Accedi"/>
                 </form>
-            </dialog>
+            </div>
         </main>
         <footer>
 
