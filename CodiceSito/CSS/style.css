@@ -4,14 +4,14 @@
 }
 
 :root {
-    --color-text: #fff;
+    --color-text: white;
     --color-background-bottoni: #2470c6;
     --color-background-card: rgba(53, 105, 140, 0.25);
     --color-background-header: rgba(38, 125, 183, 0.77);
     --color-overlay-card: rgba(0, 0, 0, 0.6);
     --color-background-back-to-top: rgba(0, 0, 0, 0.411); 
-    --color-link: #fff;
-    --link-visited: #000000;
+    --color-link: white;
+    --link-visited: black;
     --color-error: ;
 }
 
@@ -1247,7 +1247,7 @@ SEZIONE Carrello
 
 .carrello-button {
     background-color: var(--color-background-bottoni);
-    color: #ffffff;
+    color: var(--color-text);
     border: none;
     padding: 1em 2em;
     font-size: 1.2rem;
