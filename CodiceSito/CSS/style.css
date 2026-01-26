@@ -5,17 +5,29 @@
 
 :root {
     --color-text: white;
+
     --color-background-bottoni: #2470c6;
+    --color-background-bottoni-hover: #1d5aa8;
+
+    --color-testo-bottoni: white;
+
     --color-background-card: rgba(53, 105, 140, 0.25);
     --color-background-header: rgba(38, 125, 183, 0.77);
-    --color-overlay-card: rgba(0, 0, 0, 0.6);
     --color-background-back-to-top: rgba(0, 0, 0, 0.411); 
+
+    --color-overlay-card: rgba(0, 0, 0, 0.6);
+
     --color-link: white;
-    --link-visited: black;
+    --color-link-visited: black;
+
     --color-error: ;
 }
 
-/*OGNI SEZIONE DEVE AVERE ALMENO QUESTI ATTRIBUTI*/
+/*
+=======================================
+CLASSI STANDARD (garantiscono coerenza all'interno del sito)
+=======================================
+*/
 .sezione-standard {
     background: var(--color-background-card);
     border-radius: 20px;
@@ -24,26 +36,7 @@
     box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.15),
     inset 0 1px 1px rgba(255, 255, 255, 0.6);
-}
-
-html {
-    line-height: 1.5;
-    font-size: 100%;
-    font-family: "Inclusive Sans", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 500;
-    font-style: normal;
-    color: var(--color-text); /*Colore va spostato in altre sezioni*/
-    scroll-behavior: smooth;
-}
-
-body {
-    background: linear-gradient(135deg, rgb(0, 35, 89) 0%, rgb(0, 104, 158) 100%);  
-    background-image: url("../IMMAGINI/Sfondi_Sito/sfondoScurito.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    background-attachment: fixed;
+    
 }
 
 a {
@@ -58,16 +51,60 @@ a:not(:has(img)) {
     border-radius: 6px;
 }
 
-a:visited:not(:has(img)) {
-    color: var(--link-visited);
+a:visited(:not(:has(img))) {
+    color: var(--color-link-visited);
     background-color: #fff;
 }
+
+a.bottone-standard, .bottone-standard {
+    border: 2px solid white;
+    padding: 0.5rem;
+    font-weight: bold;
+    background-color: var(--color-background-bottoni);
+    color: var(--color-text);
+    cursor: pointer;
+    height: 2.5rem;
+    width: 100%;
+    border-radius: 10px;
+    box-sizing: border-box;
+    margin-top: 0.25em;
+    font-size: clamp(1rem, 0.8rem + 0.4vw, 1.2rem);
+}
+
+.bottone-standard:hover {
+    background-color: var(--color-background-bottoni-hover);
+}
+
+/*
+=======================================
+HTML
+=======================================
+*/
+html {
+    line-height: 1.5;
+    font-size: 100%;
+    font-family: "Inclusive Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    color: var(--color-text);
+    scroll-behavior: smooth;
+}
+
+body {
+    background: linear-gradient(135deg, rgb(0, 35, 89) 0%, rgb(0, 104, 158) 100%);  
+    background-image: url("../IMMAGINI/Sfondi_Sito/sfondoScurito.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
 :focus-visible {
     outline: 3px solid #fff;
     outline-offset: 3px;
     box-shadow: 0 0 0 2px #000;
 }
-
 
 #skip-to-content, .screen-reader {
     position: absolute;
@@ -617,17 +654,6 @@ SEZIONE CATALOGO.HTML
     height:1.5rem;
 }
 
-#toggle-filter {
-    margin-top: 1em;
-    padding: 0.5em 1em;
-    border-radius: 10px;
-    border: none;
-    background-color: var(--color-background-bottoni);
-    color: var(--color-text);
-    cursor: pointer;
-    font-weight: bold;
-}
-
 .hidden{
     display:none;
 }
@@ -775,21 +801,6 @@ ul.error-message {
 abbr {
     text-underline-offset: 0.1em;
     cursor: help;
-}
-
-.data-form input[type="submit"], #modifyProfiloLink, #exitProfilo, #deleteProfiloLink, #cancelModifyBtn, #cancelDeleteBtn, #deleteProfiloBtn {
-    height: 3rem;
-    border: 2px solid #fff;
-    padding: 0.5rem;
-    font-size: 1em;
-    font-weight: bold;
-    background-color: var(--color-background-bottoni);
-    color: var(--color-text);
-    cursor: pointer;
-}
-
-.data-form input[type="submit"]:hover, .data-form input[type="submit"]:focus-visible, #toggle-filter:hover, #toggle-filter:focus-visible, #modifyProfiloLink:hover, #modifyProfiloLink:focus-visible, #cancelModifyBtn:hover, #cancelModifyBtn:focus-visible, #cancelDeleteBtn:hover, #cancelDeleteBtn:focus-visible, .carrello-button:hover, .carrello-button:focus-visible {
-    background-color: #1d5aa8;
 }
 
 #login-form input[type="submit"] {

@@ -94,7 +94,7 @@ unset($_SESSION['error']);
                     <input id="password" type="password" name="password" autocomplete="current-password" aria-describedby="password-hint login-error" aria-invalid="<?= !empty($error) ? 'true' : 'false' ?>" required/>
                     <small id="password-hint" class="hint"><abbr title="Esempio">Es</abbr>: <span lang="en">Password</span>Sicura2!</small>
 
-                    <input type="submit" value="Accedi"/>
+                    <button type="submit" class="bottone-standard">Accedi</button>
                 </form>
             </div>
         </main>
