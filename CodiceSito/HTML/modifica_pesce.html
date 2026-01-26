@@ -74,7 +74,13 @@
 
                     <div class="data-form">
                         <label for="nome_comune">Nome comune</label>
-                        <input type="text" id="nome_comune" name="nome_comune" value="[nome_comune]">
+                        <input type="text" id="nome_comune" name="nome_comune" value="[nome_comune]" aria-describedby="nome-comune-help nome-comune-error" aria-invalid="[invalid-nome-comune]" required>
+                    <p id="nome-comune-help" class="help">
+                        Solo lettere, minimo 2 caratteri.
+                    </p>
+                    <ul id="nome-comune-error" class="error-message" aria-live="polite">
+                        [errore-nome-comune]
+                    </ul>
                     </div>
 
                     <div class="data-form">
@@ -104,7 +110,7 @@
 
                     <div class="data-form">
                         <label for="prezzo">Prezzo (€)</label>
-                        <input type="number" id="prezzo" name="prezzo" step="0.10" min="0" value="[prezzo]" required>
+                        <input type="number" id="prezzo" name="prezzo" step="1" min="0" value="[prezzo]" required>
                     </div>
 
                     <div class="data-form">
