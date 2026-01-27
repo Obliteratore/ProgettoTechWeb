@@ -151,7 +151,7 @@ header{
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    padding: 1em;
+    padding: 0.5em 1em;
     font-size: clamp(1rem, 1rem + 0.4vw, 1.3rem);
     backdrop-filter: blur(20px);
     background: var(--color-background-header);
@@ -742,18 +742,17 @@ SEZIONE CHISIAMO.HMTL
 }
 
 .error-message {
-    /*color: darkred;*/
-    color: #b13735;
     font-weight: bold;
-    /*background-color: rgba(255, 255, 255, 0.9);*/
-    background-color: #fff;
+    background-color: #b13735;
     border-radius: 10px;
+    padding-left: 0.5rem;
+    font-size: clamp(1.2rem, 1rem + 0.6vw, 1.6rem);
 }
+
 #login-error {
+    padding-left: 0;
     margin-top: 0.5em;
-    margin-bottom: -0.5em;
     text-align: center;
-    font-size: clamp(1.1rem, 0.6rem + 1.4vw, 1.4rem);
 }
 
 ul.error-message {
@@ -801,6 +800,13 @@ abbr {
     cursor: help;
 }
 
+.data-form input[type="submit"] {
+    min-height: 2.5rem;
+    height: 2em;
+    border: 2px solid white;
+    font-size: clamp(1.2rem, 1rem + 0.6vw, 1.7rem);
+}
+
 #login-form input[type="submit"] {
     margin-top: 1em;
 }
@@ -816,6 +822,15 @@ fieldset {
 legend {
     font-size: clamp(1.3rem, 1.1rem + 0.7vw, 1.8rem);
     font-weight: bold;
+}
+
+#signin-error, #modify-error {
+    margin-top: 0.5em;
+}
+
+#signin-error a, #modify-error a {
+    color: var(--color-text);
+    background: none;
 }
 
 .data-form label {
@@ -892,11 +907,14 @@ fieldset > label:first-of-type {
 }
 
 #cancelModifyBtn {
+    min-height: 2.5rem;
+    height: 2em;
     font-size: clamp(1.2rem, 1rem + 0.6vw, 1.7rem);
 }
 
 dialog {
     margin: auto;
+    inset: 0.5rem;
     border-radius: 10px;
     text-align: center;
     background-color: rgb(0, 50, 126);
@@ -912,9 +930,12 @@ dialog::backdrop {
 #deleteProfiloTitle {
     margin-bottom: 0.5em;
 }
+#deleteProfiloBtn {
+    margin-left: 1rem;
+}
 
-#cancelDeleteBtn {
-    margin-right: 1em;
+#cancelDeleteBtn, #deleteProfiloBtn {
+    max-width: 30%;
 }
 
 .lista-ordini li {

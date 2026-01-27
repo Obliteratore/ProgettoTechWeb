@@ -20,7 +20,7 @@ SEZIONE MENU
 =======================================
 */
 
-#hamburger-menu-btn {
+#hamburger-menu-btn, #hamburger-menu {
     display: none;
 }
 

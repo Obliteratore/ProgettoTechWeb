@@ -74,7 +74,7 @@ function validateEmail(&$errors, $email, $connection) {
     if (!isset($errors['email'])) {
         $exist = $connection->existEmail($email);
         if($exist)
-            $errors['email'] = 'Questa <span lang="en">email</span> è già registrata. Usane un\'altra o <a href="accesso.php">accedi</a>.';
+            $errors['email'] = 'Questa <span lang="en">email</span> è già registrata.';
     }
 }
 
@@ -93,7 +93,7 @@ function validateUsername(&$errors, $username, $connection) {
     if (!isset($errors['username'])) {
         $exist = $connection->existUsername($username);
         if($exist)
-            $errors['username'] = '<li>Questo nome utente è già in uso. Scegline un altro o <a href="accesso.php">accedi</a>.</li>';
+            $errors['username'] = '<li>Questo nome utente è già in uso.';
     }
 }
 
