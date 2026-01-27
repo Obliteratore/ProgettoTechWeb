@@ -108,7 +108,7 @@
 
 
 
-###### -Interlinea (line-height) meglio se >=1,5.
+###### -Interlinea compreso tra 1 e (raccomandabile) 1.5.
 
 ###### 
 
