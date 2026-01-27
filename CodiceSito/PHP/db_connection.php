@@ -2,18 +2,18 @@
 namespace FM;
 
 class FMAccess {
-	
+	/*
 	private const HOST_DB = "localhost";
 	private const DATABASE_NAME = "agingill";
 	private const USERNAME = "agingill";
 	private const PASSWORD = "Pech3pheeXie4xen";
+	*/
 	
-	/*
 	private const HOST_DB = "localhost";
 	private const DATABASE_NAME = "fbalestr";
 	private const USERNAME = "fbalestr";
 	private const PASSWORD = "Iemao4Chawiechoo";
-	*/
+	
 
 	/*
 	private const HOST_DB = "localhost";
@@ -154,6 +154,21 @@ class FMAccess {
 		return $exist;
 	}
 
+	public function existIndirizzo($provincia, $comune, $via) {
+		$query = "SELECT id_indirizzo FROM indirizzi WHERE sigla_provincia = ? AND id_comune = ? AND via = ? ORDER BY id_indirizzo DESC LIMIT 1";
+		$stmt = ($this->connection)->prepare($query);
+		$stmt->bind_param("sis", $provincia, $comune, $via);
+		$stmt->execute();
+
+		$result = $stmt->get_result();
+		$row = $result->fetch_assoc();
+    
+		$result->free();
+		$stmt->close();
+
+		return $row ? $row['id_indirizzo'] : null;
+	}
+
 	public function insertIndirizzo($provincia, $comune, $via) {
 		$query = "INSERT INTO indirizzi (sigla_provincia, id_comune, via) VALUES (?, ?, ?)";
 		$stmt = ($this->connection)->prepare($query);
@@ -184,7 +199,45 @@ class FMAccess {
 		$stmt->close();
 	}
 
-		public function getComuni($provincia) {
+	public function insertOrdine($email, $idIndirizzo) {
+		$query = "INSERT INTO ordini (email, id_indirizzo) VALUES (?, ?)";
+		$stmt = ($this->connection)->prepare($query);
+		$stmt->bind_param("si", $email, $idIndirizzo);
+		$stmt->execute();
+
+		$idOrdine = $this->connection->insert_id;
+
+		$stmt->close();
+		return $idOrdine;
+	}
+
+	public function insertDettaglioOrdine($id_ordine, $nome_latino, $quantita, $prezzo_unitario) {
+		$query = "INSERT INTO dettaglio_ordini (id_ordine, nome_latino, quantita, prezzo_unitario) VALUES (?, ?, ?, ?)";
+		$stmt = ($this->connection)->prepare($query);
+		$stmt->bind_param("isis", $id_ordine, $nome_latino, $quantita, $prezzo_unitario);
+		$stmt->execute();
+		$stmt->close();
+	}
+
+	public function getProvincie() {
+		$query = "SELECT sigla_provincia, nome FROM provincie ORDER BY nome";
+		$stmt = ($this->connection)->prepare($query);
+		$stmt->execute();
+
+		$result = $stmt->get_result();
+
+		$provincie = [];
+		if($result->num_rows !== 0) {
+			while($row = $result->fetch_assoc()) {
+				$provincie[] = $row;
+			}
+		}
+		$result->free();
+		$stmt->close();
+		return $provincie;
+	}
+
+	public function getComuni($provincia) {
 		$query = "SELECT id_comune, nome FROM comuni WHERE sigla_provincia = ? ORDER BY nome";
 		$stmt = ($this->connection)->prepare($query);
 		$stmt->bind_param("s", $provincia);
@@ -398,6 +451,14 @@ class FMAccess {
 		$stmt->close();
 	}
 
+	public function updateDisponibilitaPesce($nome_latino, $disponibilita) {
+		$query = "UPDATE pesci SET disponibilita = ? WHERE nome_latino = ?";
+		$stmt = ($this->connection)->prepare($query);
+		$stmt->bind_param("is", $disponibilita, $nome_latino);
+		$stmt->execute();
+		$stmt->close();
+	}
+
 	public function deleteUtenteRegistrato($email) {
 		$query = "DELETE FROM utenti_registrati WHERE email = ?";
 		$stmt = ($this->connection)->prepare($query);
@@ -475,39 +536,40 @@ class FMAccess {
 
         return $prodotti;
     }
+
 	public function getPesciJOIN($condizioni, $parametri, $operazione, $join = '') {
-    $sql = "SELECT pesci.*, famiglie.tipo_acqua 
-            FROM pesci 
-            $join";
+		$sql = "SELECT pesci.*, famiglie.tipo_acqua 
+				FROM pesci 
+				$join";
 
-    if (!empty($condizioni)) {
-        $sql .= " WHERE " . implode(" AND ", $condizioni);
-    }
+		if (!empty($condizioni)) {
+			$sql .= " WHERE " . implode(" AND ", $condizioni);
+		}
 
-    if ($operazione !== '') {
-        $sql .= " " . $operazione;
-    }
+		if ($operazione !== '') {
+			$sql .= " " . $operazione;
+		}
 
-    $stmt = $this->connection->prepare($sql);
+		$stmt = $this->connection->prepare($sql);
 
-    if (!empty($parametri)) {
-        $types = str_repeat('s', count($parametri));
-        $stmt->bind_param($types, ...$parametri);
-    }
+		if (!empty($parametri)) {
+			$types = str_repeat('s', count($parametri));
+			$stmt->bind_param($types, ...$parametri);
+		}
 
-    $stmt->execute();
-    $result = $stmt->get_result();
+		$stmt->execute();
+		$result = $stmt->get_result();
 
-    $pesci = [];
-    while ($row = $result->fetch_assoc()) {
-        $pesci[] = $row;
-    }
+		$pesci = [];
+		while ($row = $result->fetch_assoc()) {
+			$pesci[] = $row;
+		}
 
-    $result->free();
-    $stmt->close();
+		$result->free();
+		$stmt->close();
 
-    return $pesci;
-}
+		return $pesci;
+	}
 
 	public function updatePesce($nome_latino,$nome_comune,$dimensione,$volume_minimo,$colori,$prezzo,$disponibilita){
 		$sql = "UPDATE pesci SET nome_comune=?,

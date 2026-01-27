@@ -1,6 +1,8 @@
 const campiForm = [
     { id: "nome", validator: validateNome },
     { id: "cognome", validator: validateCognome },
+    { id: "provincia", validator: validateProvincia },
+    { id: "comune", validator: validateComune },
     { id: "via", validator: validateVia },
     { id: "username", validator: validateUsername },
     { id: "password", validator: validatePassword },
@@ -111,6 +113,34 @@ function validateCognome(cognome) {
         }
     }
     setHtml(cognome, isValid, "family-name-error", error);
+
+    return isValid;
+}
+
+function validateProvincia(provincia) {
+    const value = provincia.value.trim();
+    let error = "";
+    let isValid = true;
+
+    if(value == "") {
+        error += "La provincia è un campo obbligatorio.";
+        isValid = false;
+    }
+    setHtml(provincia, isValid, "provincia-error", error);
+
+    return isValid;
+}
+
+function validateComune(comune) {
+    const value = comune.value.trim();
+    let error = "";
+    let isValid = true;
+
+    if(value == "") {
+        error += "Il comune è un campo obbligatorio.";
+        isValid = false;
+    }
+    setHtml(comune, isValid, "comune-error", error);
 
     return isValid;
 }

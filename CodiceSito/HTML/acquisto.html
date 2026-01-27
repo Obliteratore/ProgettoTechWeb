@@ -2,7 +2,7 @@
 <html lang="it">
     <head>
         <meta charset="utf-8" >
-        <title>Profilo - FishMarket</title>
+        <title>Acquista - FishMarket</title>
         <meta name="description" content="FishMarket è un negozio online di pesci esotici e tropicali da tutto il mondo. Porta l'esotico a casa tua con dei pesci unici.">
         <meta name="keywords" content="pesci esotici, vendita pesci online, pesci tropicali, negozio pesci esotici, FishMarket">
         <meta name="author" content="Aaron Gingillino, Francesco Balestro, Bilal Sabic, Valerio Solito">
@@ -26,17 +26,17 @@
         </nav>
         <header>
             <div class="header-content sezione-standard">
-                <img class="icona" src="../IMMAGINI/Icone/fish.png" alt=""/>
+                <img src="../IMMAGINI/Icone/fish.png" alt=""/>
                 <nav id="menu" aria-label="Menù di navigazione">
                     <ul>
                         <li lang="en"><a href="../PHP/home.php">Home</a></li>
                         <li><a href="../PHP/catalogo.php">Catalogo</a></li>
                         <li><a href="../HTML/chiSiamo.html">Chi Siamo</a></li>
-                        <li aria-current="page">Profilo</li>
+                        <li><a href="../PHP/profilo.php">Profilo</a></li>
                     </ul>
                 </nav>
                 <div>
-                    <a id="cart-link" href="carrello.php" aria-label="Vai al carrello"><img src="../IMMAGINI/Icone/shopping-cart.svg" alt="" aria-hidden="true"/></a>
+                    <a id="cart-link" href="carrello.html" aria-label="Vai al carrello"><img src="../IMMAGINI/Icone/shopping-cart.svg" alt="" aria-hidden="true"/></a>
                     <button  id="hamburger-menu-btn" aria-controls="hamburger-menu" aria-expanded="false">
                         <img id="open-hamburger-menu" src="../IMMAGINI/Icone/menu-burger.svg" alt="" aria-hidden="true"/>
                         <span class="screen-reader">Apri l'<span lang="en">hamburger</span> menù</span>
@@ -49,54 +49,62 @@
                         <li lang="en"><a href="../PHP/home.php">Home</a></li>
                         <li><a href="../PHP/catalogo.php">Catalogo</a></li>
                         <li><a href="../HTML/chiSiamo.html">Chi Siamo</a></li>
-                        <li aria-current="page">Profilo</li>
+                        <li><a href="../PHP/profilo.php">Profilo</a></li>
                     </ul>
                 </nav>
             </div>
         </header>
         <script src="../JS/hamburger_menu.js" defer></script>
-        <script src="../JS/delete_profilo.js" defer></script>
+        <script src="../JS/buy_validation.js" defer></script>
 
         <nav id="breadcrumb" class="sezione-standard" aria-label="Percorso di navigazione">
             <ol>
                 <li lang="en"><a href="../PHP/home.php">Home</a></li>
-                <li aria-current="page">Profilo</li>
+                <li><a href="../PHP/carrello.php">Carrello</a></li>
+                <li aria-current="page">Acquista</li>
             </ol>
         </nav>
         
         <main id="main-content">
-            <h1 class="position">PROFILO</h1>
-            <section class="main-section sezione-standard user-container">
-                <div class="dati-utente">
-                    <h2>[nomeCognome]</h2>
-                    <ul>
-                        <li>[username]</li>
-                        <li>[indirizzo]</li>
-                    </ul>
-                </div>
-                <div class="azioni-profilo">
-                    <a id="modifyProfiloLink" href="../PHP/modifica_profilo.php">Modifica profilo</a>
-                    <form action="../PHP/logout.php" method="post">
-                        <button id="exitProfilo" class="bottone-standard" type="submit" class="btn">Esci dal profilo</button>
-                    </form>
-                    <a id="deleteProfiloLink" class="bottone-standard" href="../PHP/elimina_profilo.php">Elimina profilo</a>
-                </div>
-            </section>
-            <section class="main-section sezione-standard">
-                <h2 class="section-title">I miei ordini</h2>
-                [ordini]
-            </section>
-            <dialog id="deleteProfiloDialog" aria-labelledby="deleteProfiloTitle" aria-describedby="deleteProfiloDesc">
-                <form action="../PHP/elimina_profilo.php" method="post">
-                    <h2 id="deleteProfiloTitle">Sei sicuro di voler eliminare il tuo profilo?</h2>
-                    <p id="deleteProfiloDesc" class="paragrafo">Non potrai più vedere i tuoi ordini, e perderai tutti i dati del tuo profilo.</p>
-                    <div class="actions">
-                        <button id="cancelDeleteBtn"  class="bottone-standard" type="button" value="cancel">Annulla</button>
-                        <button id="deleteProfiloBtn"  class="bottone-standard" type="submit" value="confirm">Elimina</button>
-                    </div>
+            <div class="form-container sezione-standard">
+                <h1 class="position">Conferma acquisto</h1>
+                <form id="buy-form" class="data-form" action="../PHP/acquisto.php" method="post" autocomplete="on">
+                    <fieldset>
+                        <legend>Credenziali</legend>
+                        <label for="email"><span lang="en">Email</span></label>
+                        <input id="email" type="email" name="email" value="[valore-email]" autocomplete="email" aria-describedby="email-help email-error" aria-invalid="[invalid-email]" required/>
+                        <p id="email-help" class="help">Un indirizzo <span lang="en">email</span> valido. Verrà usato per aggiornarti sui tuoi ordini.</p>
+                        <p id="email-error" class="error-message" aria-live="polite">[errore-email]</p>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Indirizzo</legend>
+                        <label for="provincia">Provincia</label>
+                        <select id="provincia" name="provincia" aria-describedby="provincia-help provincia-error" aria-invalid="[invalid-provincia]" required>
+                            <option value="">Seleziona una provincia</option>
+                            [valore-provincia]
+                        </select>
+                        <p id="provincia-help" class="help">La tua provincia di residenza.</p>
+                        <p id="provincia-error" class="error-message" aria-live="polite">[errore-provincia]</p>
+
+                        <label for="comune">Comune</label>
+                        <select id="comune" name="comune" aria-describedby="comune-help comune-error" aria-invalid="[invalid-comune]" required>
+                            <option value="">Seleziona un comune</option>
+                            [valore-comune]
+                        </select>
+                        <p id="comune-help" class="help">Il tuo comune di residenza.</p>
+                        <p id="comune-error" class="error-message" aria-live="polite">[errore-comune]</p>
+
+                        <label for="via">Via</label>
+                        <input id="via" type="text" name="via" value="[valore-via]" autocomplete="street-address" aria-describedby="via-help via-error" aria-invalid="[invalid-via]" required/>
+                        <p id="via-help" class="help">L'indirizzo completo con via, piazza o contrada e numero civico.</p>
+                        <p id="via-error" class="error-message" aria-live="polite">[errore-via]</p>
+                    </fieldset>
+                    <input type="submit" value="Conferma"/>
                 </form>
-            </dialog>
+                <a id="cancelBuyBtn" href="../PHP/carrello.php">Annulla</a>
+            </div>
         </main>
+        <script src="../JS/insert_comuni.js" defer></script>
         <footer>
 
         </footer>

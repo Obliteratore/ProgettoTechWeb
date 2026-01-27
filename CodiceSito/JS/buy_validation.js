@@ -56,11 +56,41 @@ function validateEmail(email) {
     let error = "";
     let isValid = true;
 
-    if(value.length == 0 || !regex.test(value)) {
-        error += "L'<span lang=\"en\">email</span> non è valida.";
-        isValid = false;
+    if(value != "user") {
+        if(value.length == 0 || !regex.test(value)) {
+            error += "L'<span lang=\"en\">email</span> non è valida.";
+            isValid = false;
+        }
     }
     setHtml(email, isValid, "email-error", error);
+
+    return isValid;
+}
+
+function validateProvincia(provincia) {
+    const value = provincia.value.trim();
+    let error = "";
+    let isValid = true;
+
+    if(value == "") {
+        error += "La provincia non è valida.";
+        isValid = false;
+    }
+    setHtml(provincia, isValid, "provincia-error", error);
+
+    return isValid;
+}
+
+function validateComune(comune) {
+    const value = comune.value.trim();
+    let error = "";
+    let isValid = true;
+
+    if(value == "") {
+        error += "Il comune non è valido.";
+        isValid = false;
+    }
+    setHtml(comune, isValid, "comune-error", error);
 
     return isValid;
 }
