@@ -664,6 +664,7 @@ SEZIONE CATALOGO.HTML
     margin-top: 0.6em;
     padding: 0 0.6em;
     width: fit-content;
+    font-size: clamp(0.9rem, 0.8rem + 0.5vw, 1.1rem);
 }
 
 #form-container-catalogo input.input-errore {
