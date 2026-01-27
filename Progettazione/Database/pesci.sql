@@ -1,4 +1,4 @@
-USE fbalestr;
+USE bsabic;
 
 DROP TABLE IF EXISTS carrello;
 DROP TABLE IF EXISTS dettaglio_ordini;
