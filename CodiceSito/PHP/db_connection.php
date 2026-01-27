@@ -430,8 +430,11 @@ class FMAccess {
 		if (!$result) {
 			throw new Exception("SQL Error: " . $this->connection->error);
 		}
+		
+		$pesciPiuvenduti = $result->fetch_all(MYSQLI_ASSOC);
+		$result->free();
 
-		return $result->fetch_all(MYSQLI_ASSOC);
+		return $pesciPiuvenduti;
 	}
 
 	public function updateProfiloUtenteRegistrato($set, $parametri) {
