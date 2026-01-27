@@ -11,6 +11,7 @@ function crea_righe_pesce_admin(array $pesci) :string {
 
         $html .= '<td data-label="Azione">';
         $html .= '<a 
+            class="link-testuale" 
             href="modifica_pesce.php?nome_latino=' .urlencode($nomeLatino) . '"
             aria-label="Modifica il pesce con nome latino ' . $nomeLatino . '">
             Modifica

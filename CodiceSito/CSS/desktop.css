@@ -233,3 +233,26 @@ SEZIONE MAIN
     font-size: 1.2rem;
     margin: 0;
 }
+
+/*
+=======================================
+CATALOGO
+=======================================
+*/
+
+.pesci {
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+#form-container-catalogo {
+    float:left;
+    width:15em;
+}
+
+#filters {
+    display: block; /* forza visibilità */
+}
+
+#toggle-filter {
+    display: none;
+}
