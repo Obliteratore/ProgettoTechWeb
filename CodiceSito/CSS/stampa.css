@@ -5,9 +5,15 @@ html {
 .sezione-standard {
     background: none;
     border-radius: 20px;
-    border: 2px solid #000;
+    border: 2px solid black;
     backdrop-filter: none;
     box-shadow: none;
+}
+
+.bottone-standard {
+    background: none;
+    border: 2px solid black;
+    color: black;
 }
 
 body {
@@ -22,10 +28,49 @@ body {
     border-radius: 0px;
 }
 
+.card-pesce {
+    background: none;
+}
+
+.card-pesce .prezzo, .dati-pesce {
+    color: black;
+    background: white;
+}
+
+a {
+    color:black;
+}
+
+a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.9em;
+    word-break: break-all;
+}
+
+.link-testuale,.link-testuale:visited {
+    background-color: white;
+    text-decoration: underline;
+    border-radius: none;
+    color:black;
+}
+
+.main-section {
+    background-color: none;
+}
+
 img {
     filter: grayscale(100%);
 }
 
 .carrello-button {
     background-color: none;
+}
+
+.redirect-icon {
+    display: none;
+}
+
+.dati-membro {
+    background: none;
+    color: black;
 }

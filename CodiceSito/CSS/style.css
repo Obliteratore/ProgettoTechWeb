@@ -45,16 +45,15 @@ a {
     padding-right: 0.2em;
 }
 
-a:not(:has(img)) {
+.link-testuale {
     background-color: #060606af;
     text-decoration: underline;
     border-radius: 6px;
 }
 
-a:visited:not(:has(img)) {
+.link-testuale:visited {
     color: var(--color-link-visited);
     background-color: #fff;
-    text-decoration-thickness: 3px;
 }
 
 a.bottone-standard, .bottone-standard {
@@ -715,6 +714,7 @@ SEZIONE CHISIAMO.HMTL
     left: 0;
     width: 100%;              
     margin-top: 5px;
+    border-radius: 10px;
     background: var(--color-overlay-card); 
     color: var(--color-text);
   
