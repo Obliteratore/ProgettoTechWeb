@@ -430,8 +430,8 @@ class FMAccess {
 		if (!$result) {
 			throw new Exception("SQL Error: " . $this->connection->error);
 		}
-
-		return $result->fetch_all(MYSQLI_ASSOC);
+		$pesciPuVenduti = $result->fetch_all(MYSQLI_ASSOC);
+		return $pesciPuVenduti;
 	}
 
 	public function updateProfiloUtenteRegistrato($set, $parametri) {
@@ -562,9 +562,7 @@ class FMAccess {
     	$disponibilita,
     	$nome_latino);
 
-		if(!$stmt->execute()) {
-			die("Errore esecuzione query: " .$stmt->error);
-		}
+		$stmt->execute();
 		$stmt->close();
 	}
 
@@ -595,11 +593,55 @@ class FMAccess {
 		$percorso,
     	$nome_latino);
 	
-	if(!$stmt->execute()){
-		die("Errore esecuzione query: " .$stmt->error);
-	}
-
+	$stmt->execute();
 	$stmt->close();
 	}
+
+	public function getFamiglie() {
+    $sql = "SELECT famiglia_latino, tipo_acqua FROM famiglie";
+    $result = $this->connection->query($sql);
+    $famiglie = [];
+    while ($row = $result->fetch_row()) { 
+        $famiglie[] = [
+            'nome' => $row[0],
+            'tipo_acqua' => $row[1]
+        ];
+    }
+    return $famiglie;
+}
+	public function insertPesce(
+    string $nome_latino,
+    string $nome_comune,
+    string $famiglia,
+    float $dimensione,
+    float $volume_minimo,
+    string $colori,
+    float $prezzo,
+    int $disponibilita,
+    ?string $percorso = null
+	): void {
+    $sql = "INSERT INTO pesci 
+        (nome_latino, nome_comune, famiglia, dimensione, volume_minimo, colori, prezzo, disponibilita, immagine, data_inserimento)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())";
+
+    $stmt = $this->connection->prepare($sql);
+    if ($stmt) {
+        $stmt->bind_param(
+            "sssddsdis",
+            $nome_latino,
+            $nome_comune,
+            $famiglia,
+            $dimensione,
+            $volume_minimo,
+            $colori,
+            $prezzo,
+            $disponibilita,
+            $percorso
+        );
+        $stmt->execute();
+        $stmt->close();
+    }
+    
+}
 }
 ?>

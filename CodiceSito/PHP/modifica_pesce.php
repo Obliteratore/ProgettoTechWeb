@@ -53,6 +53,7 @@ if($_SERVER["REQUEST_METHOD"] === "GET"){
         "[invalid-colori]" => 'false',
         "[invalid-prezzo]" => 'false',
         "[invalid-disponibilita]" => 'false',
+        "[invalid-immagine]" =>"false",
     ];
 
     echo str_replace(array_keys($segnaposto), array_values($segnaposto),$paginaHTML);
@@ -125,17 +126,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
     
     if (!empty($_FILES["immagine"]["name"])) {
-        $tipoPermesso = ['image/jpeg', 'image/jpg'];
-        $tipoFile = mime_content_type($_FILES["immagine"]["tmp_name"]);
+    $tipoPermesso = ['image/jpeg', 'image/jpg'];
+    $tipoFile = mime_content_type($_FILES["immagine"]["tmp_name"]);
 
     if (!in_array($tipoFile, $tipoPermesso)) {
         $errore['immagine'][] = "Formato immagine non consentito. Usa JPG o JPEG";
     } else {
-        $nomeFile = uniqid() . "_" . basename($_FILES["immagine"]["name"]);
-        $percorso = "../IMMAGINI/Pesci/" . $nomeFile;
+        
+        list($larg, $alt) = getimagesize($_FILES["immagine"]["tmp_name"]);
+        if ($larg !== 1024 || $alt !== 683) {
+            $errore['immagine'][] = "L'immagine deve essere alta 683 pixel e larga 1024 pixel."; 
+        } else {
+            $nomeFile = uniqid() . "_" . basename($_FILES["immagine"]["name"]);
+            $percorso = "../IMMAGINI/Pesci/" . $nomeFile;
 
-        if (!move_uploaded_file($_FILES["immagine"]["tmp_name"], $percorso)) {
-            $errore['immagine'][] = "Errore durante il caricamento dell'immagine";
+            if (!move_uploaded_file($_FILES["immagine"]["tmp_name"], $percorso)) {
+                $errore['immagine'][] = "Errore durante il caricamento dell'immagine";
+            }
         }
     }
 }
@@ -177,6 +184,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             "[invalid-colori]" => !empty($errore['colori']) ? "true" : "false",
             "[invalid-prezzo]" => !empty($errore['prezzo']) ? "true" : "false",
             "[invalid-disponibilita]" => !empty($errore['disponibilita']) ? "true" : "false",
+            "[invalid-immagine]" => !empty($errore['immagine']) ? "true" : "false",
         ];
 
         echo str_replace(array_keys($segnaposto), array_values($segnaposto), $paginaHTML);

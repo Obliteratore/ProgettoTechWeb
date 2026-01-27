@@ -1001,12 +1001,10 @@ SEZIONE ADMIN
     border-collapse: collapse;
     margin-left: auto;
     margin-right:auto;
-    font-size: 0.9em;
-    font-family: sans-serif;
+    font-size: clamp(1rem, 0.6rem + 1vw, 1.5rem);
     width: 90%;
     box-shadow: 0 0 20px rgba(0,0,0,0.15);
-    border: 1px solid; 
-    border-radius: 10px;
+    border: 2px solid #fff; 
 }
 
 .admin-table tr {
@@ -1016,11 +1014,11 @@ SEZIONE ADMIN
 .admin-table th, .admin-table td {
     padding: 0.5rem;
     border-bottom: 1px solid #ccc;
+    text-align: center;
 }
 
 .admin-table caption {
-    caption-side: top;
-    padding: 1rem;
+    padding: 1.5rem;
     font-weight: bold;
     text-align: center;
     white-space: normal;
@@ -1041,9 +1039,11 @@ SEZIONE ADMIN
         display: none;
     }
 
+    .admin-table {
+        margin-top:2rem;
+    }
     .admin-table tr {
         margin-bottom: 1rem;
-        background: var(--color-background-card);
         border-radius: 10px;
         border: 1px solid #ffffff66;
         backdrop-filter: blur(5px) saturate(120%);
@@ -1058,7 +1058,7 @@ SEZIONE ADMIN
         border: none;
         border-radius: 0;
         box-shadow: none;
-        backdrop-filter: none;
+        backdrop-filter: none;;
         padding: 0.75rem;
     }
 
@@ -1069,8 +1069,8 @@ SEZIONE ADMIN
 
     .admin-table caption {
         width: 90%;
-        font-size: 1.1rem;
         word-break: normal;
+        padding:1rem;
     }
 
     .admin-table th[scope="row"] {
