@@ -51,9 +51,10 @@ a:not(:has(img)) {
     border-radius: 6px;
 }
 
-a:visited(:not(:has(img))) {
+a:visited:not(:has(img)) {
     color: var(--color-link-visited);
     background-color: #fff;
+    text-decoration-thickness: 3px;
 }
 
 a.bottone-standard, .bottone-standard {
