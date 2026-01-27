@@ -8,12 +8,12 @@ class FMAccess {
 	private const USERNAME = "agingill";
 	private const PASSWORD = "Pech3pheeXie4xen";
 	*/
-	
+	/*
 	private const HOST_DB = "localhost";
 	private const DATABASE_NAME = "fbalestr";
 	private const USERNAME = "fbalestr";
 	private const PASSWORD = "Iemao4Chawiechoo";
-	
+	*/
 
 	/*
 	private const HOST_DB = "localhost";
@@ -21,12 +21,12 @@ class FMAccess {
 	private const USERNAME = "bsabic";
 	private const PASSWORD = "ieGai9om6eiyahT0";
 	*/
-	/*
+	
 	private const HOST_DB = "localhost";
 	private const DATABASE_NAME = "vsolito";
 	private const USERNAME = "vsolito";
 	private const PASSWORD = "aeyoh5naiw7nah4S";
-	*/
+	
 
 	private $connection;
 
@@ -371,7 +371,7 @@ class FMAccess {
 
 	public function getPesci($condizioni, $parametri, $operazione = '') {
 
-		$sql = "SELECT p.* , f.tipo_acqua FROM pesci p JOIN famiglie f ON p.famiglia = f.famiglia_latino";
+		$sql = "SELECT p.* , f.tipo_acqua, f.famiglia_latino AS famiglia FROM pesci p JOIN famiglie f ON p.famiglia = f.famiglia_latino";
 
 		if (!empty($condizioni)) {
 			$sql .= " WHERE " . implode(" AND ", $condizioni);
@@ -540,38 +540,12 @@ class FMAccess {
         return $prodotti;
     }
 
-	public function getPesciJOIN($condizioni, $parametri, $operazione, $join = '') {
-		$sql = "SELECT pesci.*, famiglie.tipo_acqua 
-				FROM pesci 
-				$join";
-
-		if (!empty($condizioni)) {
-			$sql .= " WHERE " . implode(" AND ", $condizioni);
-		}
-
-		if ($operazione !== '') {
-			$sql .= " " . $operazione;
-		}
-
-		$stmt = $this->connection->prepare($sql);
-
-		if (!empty($parametri)) {
-			$types = str_repeat('s', count($parametri));
-			$stmt->bind_param($types, ...$parametri);
-		}
-
+	public function aggiornaQuantitaCarrello($email, $nome_latino, $quantita) {
+		$query = "UPDATE carrello SET quantita = ? WHERE email = ? AND nome_latino = ?";
+        $stmt = ($this->connection)->prepare($query);
+		$stmt->bind_param("iss", $quantita, $email, $nome_latino);
 		$stmt->execute();
-		$result = $stmt->get_result();
-
-		$pesci = [];
-		while ($row = $result->fetch_assoc()) {
-			$pesci[] = $row;
-		}
-
-		$result->free();
 		$stmt->close();
-
-		return $pesci;
 	}
 
 	public function updatePesce($nome_latino,$nome_comune,$dimensione,$volume_minimo,$colori,$prezzo,$disponibilita){
@@ -638,5 +612,7 @@ class FMAccess {
 
 	$stmt->close();
 	}
+
+	
 }
 ?>

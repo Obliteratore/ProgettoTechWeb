@@ -6,7 +6,11 @@ if (link && dialog && dialog.showModal) {
     link.addEventListener('click', (e) => {
         e.preventDefault();
         dialog.showModal();
+        cancelBtn.focus();
     });
 
-    cancelBtn.addEventListener('click', () => dialog.close());
+    cancelBtn.addEventListener('click', () => {
+        dialog.close();
+        link.focus();
+    });
 }

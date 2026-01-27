@@ -22,7 +22,7 @@ if($_SERVER["REQUEST_METHOD"] === "GET"){
 
     $nomeLatino = $_GET['nome_latino'];
 
-    $pesce = $connection->getPesciJOIN(["pesci.nome_latino = ?"],[$nomeLatino], "", "LEFT JOIN famiglie ON pesci.famiglia = famiglie.famiglia_latino");
+    $pesce = $connection->getPesci(["p.nome_latino = ?"],[$nomeLatino]);
 
     if (count($pesce)!= 1){
         die("Pesce non trovato");
@@ -60,7 +60,7 @@ if($_SERVER["REQUEST_METHOD"] === "GET"){
 }
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $pesce= $connection->getPesciJOIN(["pesci.nome_latino = ?"], [$_POST['nome_latino']], "", "LEFT JOIN famiglie ON pesci.famiglia = famiglie.famiglia_latino");
+    $pesce = $connection->getPesci(["p.nome_latino = ?"],[$_POST['nome_latino']]);
 
     if(count($pesce) != 1){
         die("Pesce non trovato");
