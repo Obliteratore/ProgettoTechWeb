@@ -1,3 +1,7 @@
+function isMobileView() {
+    return window.innerWidth < 768;
+}
+
 function hamburger_menu() {
     const hamburgerMenuBtn = document.getElementById("hamburger-menu-btn");
     const hamburgerMenu = document.getElementById("hamburger-menu");
@@ -13,7 +17,7 @@ function hamburger_menu() {
 
     // Chiudi il menu se la finestra è più larga di 768px
     window.addEventListener("resize", () => {
-        if (window.innerWidth >= 768) {
+        if (!isMobileView()) {
             hamburgerMenu.classList.remove("active");
             hamburgerMenuBtn.classList.remove("active");
         }
@@ -25,11 +29,13 @@ function hamburger_menu() {
 
     // Rileva inizio tocco
     header.addEventListener("touchstart", (event) => {
+        if (!isMobileView()) return;
         startY = event.touches[0].clientY;
     });
 
     // Rileva fine tocco
     header.addEventListener("touchend", (event) => {
+        if (!isMobileView()) return;
         endY = event.changedTouches[0].clientY;
         handleSwipe();
     });

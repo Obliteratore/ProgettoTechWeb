@@ -131,6 +131,7 @@ body {
     padding: 0.5em 1em;
     border-radius: 20px;
     background-color: black;
+    color: var(--color-text);
 }
 
 /*
