@@ -121,8 +121,14 @@ SEZIONE MAIN
 
     .parte-superiore-pesce .card-pesce{
         flex: 1;
-        max-width: 50%;
+        max-width: 70%;
         aspect-ratio: 3/2;
+    }
+
+    #bottone-carrello {
+        width: auto;
+        min-width: 12rem;
+        align-self: flex-start;
     }
 
     .sezione-acquisto{
@@ -135,11 +141,6 @@ SEZIONE MAIN
         justify-content: flex-start;
     }
 
-    .dati-tecnici{
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1em;
-    }
 
 /*Carrello*/
 
@@ -186,14 +187,14 @@ SEZIONE MAIN
 }
 
 .item-nome-comune {
-    font-size: 1.6rem;
+    font-size: clamp(1.4rem, 1.2rem + 0.8vw, 1.8rem);
 }
 
 .item-prezzo-singolo {
     flex: 1;
     text-align: center;
     color: #ddd;
-    font-size: 1.3rem;
+    font-size: clamp(1.1rem, 1rem + 0.5vw, 1.4rem);
 }
 
 .item-azioni {
@@ -204,7 +205,7 @@ SEZIONE MAIN
 .item-totale-riga {
     flex: 1;
     text-align: right;
-    font-size: 1.3rem;
+    font-size: clamp(1.2rem, 1rem + 0.6vw, 1.5rem);
 }
 
 .riepilogo-ordine {
@@ -219,11 +220,10 @@ SEZIONE MAIN
 
 .totale-text {
     width: auto;
-    margin-bottom: 0;
     gap: 1.5em;
     flex-wrap: nowrap;
     justify-content: flex-end;
-    font-size: 1.6rem;
+    font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
     margin-bottom: 0;
 }
 

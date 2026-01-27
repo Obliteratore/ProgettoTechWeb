@@ -36,7 +36,7 @@ try{
                             else $_SESSION['carrello_ospite'][$pesce] = $quantita;
                         }
 
-                        header("Location: carrello.php");
+                        header("Location: pesce.php?nome_latino=" . urlencode($pesce) . "&successo=aggiunto");
                         exit();
                     } else {
                         header("Location: pesce.php?nome_latino=" . $pesce . "&errore=non_disponibile");
@@ -53,6 +53,34 @@ try{
                 if ($logged_in) $connection->cancellaDaCarrello($email_utente,$pesce_rimuovere);
                 elseif (isset($_SESSION['carrello_ospite'][$pesce_rimuovere])) unset($_SESSION['carrello_ospite'][$pesce_rimuovere]);
             }
+            header("Location: carrello.php");
+            exit();
+        } elseif ($azione === 'aggiorna') {
+            $pesce = $_POST['nome_latino'] ?? '';
+            $nuova_quantita = (int)($_POST['quantita'] ?? 0);
+            $ancora_url = 'item-' . str_replace(' ', '_', $pesce);
+
+            if ($nuova_quantita < 1) $nuova_quantita = 1;
+            if(!empty($pesce)){
+                $pesce_db = $connection->getPesce($pesce);
+                if($pesce_db){
+                    $disponibilita_max = (int)$pesce_db['disponibilita'];
+                    if($nuova_quantita <= $disponibilita_max) {
+                        if($logged_in) {
+                            $connection->aggiornaQuantitaCarrello($email_utente, $pesce, $nuova_quantita);
+                        } else {
+                            if(isset($_SESSION['carrello_ospite']) && isset($_SESSION['carrello_ospite'][$pesce])) {
+                                $_SESSION['carrello_ospite'][$pesce] = $nuova_quantita;
+                            }
+                        }
+                        header("Location: carrello.php#". $ancora_url);
+                        exit();
+                    } else {
+                        header("Location: carrello.php?errore=max_raggiunto#" . $ancora_url);
+                        exit();
+                    }
+                }
+            } 
             header("Location: carrello.php");
             exit();
         }
