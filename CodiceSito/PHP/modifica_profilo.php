@@ -40,7 +40,7 @@ function callValidators(&$errors, $values, $connection, $datiUtente) {
         validateCognome($errors, $values['cognome']);
     if($values['provincia'] !== $datiUtente['sigla_provincia'])
         validateProvincia($errors, $values['provincia'], $connection);
-    if($values['provincia'] !== $datiUtente['sigla_provincia'] || $values['comune'] !== $datiUtente['id_comune'])
+    if($values['provincia'] !== $datiUtente['sigla_provincia'] || (int)$values['comune'] !== $datiUtente['id_comune'])
         validateComune($errors, $values['comune'], $values['provincia'], $connection);
     if($values['via'] !== $datiUtente['via'])
         validateVia($errors, $values['via']);
@@ -215,10 +215,10 @@ try {
                 $connection->updateProfiloUtenteRegistrato($set, $parametri);
             }
             
-            if($values['provincia'] !== $datiUtente['sigla_provincia'] || $values['comune'] !== $datiUtente['id_comune'] || $values['via'] !== $datiUtente['via']) {
+            if($values['provincia'] !== $datiUtente['sigla_provincia'] || (int)$values['comune'] !== $datiUtente['id_comune'] || $values['via'] !== $datiUtente['via']) {
                 $connection->beginTransaction();
                 try {
-                    $idIndirizzo = $connection->insertIndirizzo($values['provincia'], $values['comune'], $values['via']);
+                    $idIndirizzo = $connection->insertIndirizzo($values['provincia'], (int)$values['comune'], $values['via']);
 
                     $connection->updateUtente($_SESSION['email'], $idIndirizzo);
 

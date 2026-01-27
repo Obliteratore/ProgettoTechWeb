@@ -12,6 +12,10 @@ $contenuto_carrello = "";
 $totale = 0;
 $visibilita = "";
 
+if (isset($_GET['errore']) && $_GET['errore'] == 'max_raggiunto') {
+    $contenuto_carrello .= '<div id="errore-carrello" class="messaggio-errore" role="alert">Attenzione: Quantità massima disponibile raggiunta!</div>';
+}
+
 try{
     $connection = new FMAccess();
     $connection->openConnection();
@@ -42,11 +46,12 @@ try{
             $prezzo = (float)$item['prezzo'];
             $quantita = (int)$item['quantita'];
             $immagine = $item['immagine'];
+            $id_ancora = 'item-' . str_replace(' ', '_', $nome_latino);
             $subtotale = $prezzo * $quantita;
             $totale += $subtotale;
 
             $contenuto_carrello .= '
-            <li class="item-carrello">
+            <li class="item-carrello" id="' . $id_ancora . '">
                 <div class="item-img-container">
                     <img src="' . htmlspecialchars($immagine) . '" alt="Foto di ' . htmlspecialchars($nome_comune) . '" class="img-carrello">
                 </div>
@@ -61,7 +66,15 @@ try{
                 </div>
 
                 <div class="item-azioni">
-                    <span class="quantita-badge">x ' . $quantita . '</span>
+                    
+                    <form action="gestisci_carrello.php" method="POST" class="form-quantita">
+                        <input type="hidden" name="azione" value="aggiorna">
+                        <input type="hidden" name="nome_latino" value="' . htmlspecialchars($nome_latino) . '">
+                        <input type="number" name="quantita" value="' . $quantita . '" min="1" 
+                               max="' . $item['disponibilita'] . '"
+                               class="quantita-carrello"
+                               aria-label="Modifica quantità per ' . htmlspecialchars($nome_comune) . '">
+                    </form>
 
                     <form action="gestisci_carrello.php" method="POST" class="form-rimuovi">
                         <input type="hidden" name="azione" value="rimuovi">
@@ -80,8 +93,8 @@ try{
         $contenuto_carrello .= '</ul>';
     } else {
         $contenuto_carrello = "<div class=\"messaggio-vuoto\">
-                                    <p>Il tuo carrello è vuoto. Cosa aspetti a riempirlo? </p>
-                                    <p><a href='catalogo.php'>Torna al catalogo</a></p>
+                                    <p class=\"call-to-action\">Il tuo carrello è vuoto. Cosa aspetti a riempirlo? </p>
+                                    <p class=\"call-to-action\"><a href='../PHP/catalogo.php'>Torna al catalogo</a></p>
                                 </div>";
         $visibilita = "hidden";
     }

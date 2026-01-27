@@ -55,8 +55,8 @@
             </div>
         </header>
         <script src="../JS/hamburger_menu.js" defer></script>
-        <script src="../JS/quantita.js" defer></script>
-
+        <script src="../JS/popup_successo.js" defer></script>
+    
         <nav id="breadcrumb" class="sezione-standard" aria-label="Percorso di navigazione">
             <ol>
                 <li lang="en"><a href="../PHP/home.php">Home</a></li>
@@ -76,33 +76,40 @@
                         <p class="nome-scientifico">[nomelatino]</p>
                         <p class="prezzo">[prezzopesce]€</p>
                         <p class="disponibilita">Ancora [disponibilita-pesce] disponibili!</p>
-
                         <form action="gestisci_carrello.php" method="POST" class="form-sezione-acquisto">
 
-                            <div id="errore-prodotto" class="messaggio-errore">[errore]</div>
+                            <div id="errore-prodotto" class="[classe_errore]">[errore]</div>
 
                             <input type="hidden" name="azione" value="aggiungi">
                             <input type="hidden" name="nome_latino" value="[nomelatino]">
-                            
+
                             <div class="quantita-gestione">
-                                <button type="button" class="btn-quantita" onclick="changeQty(-1)" aria-label="Diminuisci quantità">-</button>
-                                <input type="number" id="quantita" name="quantita" value="1" min="1" max="[disponibilita-pesce]" readonly aria-label="Quantità da acquistare">
-                                <button type="button" class="btn-quantita" onclick="changeQty(1)" aria-label="Aumenta quantità">+</button>
+                                <input type="number" id="quantita" name="quantita" value="1" min="1" max="[disponibilita-pesce]" aria-label="Quantità da acquistare">
                             </div>
-                            <input type="submit" value="Aggiungi al carrello" class="carrello-button" aria-label="Aggiungi al carrello">
+
+                            <input type="submit" id="bottone-carrello" value="Aggiungi al carrello" class="bottone-standard" aria-label="Aggiungi al carrello">
                         </form>
                     </div>
                 </div>
                 <div class="parte-inferiore-pesce">
                     <h2 class="section-subtitle">Informazioni:</h2>
 
-                    <ul class="dati-tecnici" aria-label="Dati Tecnici">
-                        <li>Nome scientifico: [nomelatino]</li>
-                        <li>Famiglia: [famiglia]</li>
-                        <li>Habitat: [habitat]</li>
-                        <li>Dimensione: [dimensione] centimetri </li>
-                        <li>Volume Minimo: [volume-min] litri</li>
-                    </ul>
+                    <dl class="dati-tecnici" aria-label="Dati Tecnici">
+                        <dt>Nome scientifico</dt>
+                        <dd>[nomelatino]</dd>
+
+                        <dt>Famiglia</dt>
+                        <dd>[famiglia]</dd>
+
+                        <dt>Habitat</dt>
+                        <dd>[habitat]</dd>
+
+                        <dt>Dimensione</dt>
+                        <dd>[dimensione] centimetri</dd>
+
+                        <dt>Volume Minimo</dt>
+                        <dd>[volume-min] litri</dd>
+                    </dl>
                 </div>
             </section>
         </main>
@@ -110,5 +117,14 @@
 
         </footer>
         <a href="#top" class="back-to-top" aria-label="Torna all'inizio"><img src="../IMMAGINI/Icone/arrow-up.svg" alt="" aria-hidden="true"/></a>
+        <dialog id="msg-successo"  aria-describedby="descrizione-popup">
+            <div class="contenuto-msg-successo sezione-standard">
+                <h3 tabindex="-1">Ottimo!</h3>
+                <p id="descrizione-popup">[successo]</p>
+
+                <div><a href="carrello.php">Vai al carrello</a></div>
+                <div><a href="catalogo.php">Continua lo shopping</a></div>
+            </div>
+        </dialog>
     </body>
 </html>

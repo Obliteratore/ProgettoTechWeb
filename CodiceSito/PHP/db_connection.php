@@ -15,18 +15,18 @@ class FMAccess {
 	private const PASSWORD = "Iemao4Chawiechoo";
 	*/
 
-	
+	/*
 	private const HOST_DB = "localhost";
 	private const DATABASE_NAME = "bsabic";
 	private const USERNAME = "bsabic";
 	private const PASSWORD = "ieGai9om6eiyahT0";
+	*/
 	
-	/*
 	private const HOST_DB = "localhost";
 	private const DATABASE_NAME = "vsolito";
 	private const USERNAME = "vsolito";
 	private const PASSWORD = "aeyoh5naiw7nah4S";
-	*/
+	
 
 	private $connection;
 
@@ -430,8 +430,11 @@ class FMAccess {
 		if (!$result) {
 			throw new Exception("SQL Error: " . $this->connection->error);
 		}
-		$pesciPuVenduti = $result->fetch_all(MYSQLI_ASSOC);
-		return $pesciPuVenduti;
+		
+		$pesciPiuvenduti = $result->fetch_all(MYSQLI_ASSOC);
+		$result->free();
+
+		return $pesciPiuvenduti;
 	}
 
 	public function updateProfiloUtenteRegistrato($set, $parametri) {
@@ -537,6 +540,14 @@ class FMAccess {
         return $prodotti;
     }
 
+	public function aggiornaQuantitaCarrello($email, $nome_latino, $quantita) {
+		$query = "UPDATE carrello SET quantita = ? WHERE email = ? AND nome_latino = ?";
+        $stmt = ($this->connection)->prepare($query);
+		$stmt->bind_param("iss", $quantita, $email, $nome_latino);
+		$stmt->execute();
+		$stmt->close();
+	}
+
 	public function updatePesce($nome_latino,$nome_comune,$dimensione,$volume_minimo,$colori,$prezzo,$disponibilita){
 		$sql = "UPDATE pesci SET nome_comune=?,
 				dimensione=?,
@@ -609,17 +620,7 @@ class FMAccess {
     }
     return $famiglie;
 }
-	public function insertPesce(
-    string $nome_latino,
-    string $nome_comune,
-    string $famiglia,
-    float $dimensione,
-    float $volume_minimo,
-    string $colori,
-    float $prezzo,
-    int $disponibilita,
-    ?string $percorso = null
-	): void {
+	public function insertPesce(string $nome_latino,string $nome_comune,string $famiglia,float $dimensione,float $volume_minimo,string $colori,float $prezzo,int $disponibilita,?string $percorso = null): void {
     $sql = "INSERT INTO pesci 
         (nome_latino, nome_comune, famiglia, dimensione, volume_minimo, colori, prezzo, disponibilita, immagine, data_inserimento)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())";
@@ -643,5 +644,6 @@ class FMAccess {
     }
     
 }
+	
 }
 ?>
