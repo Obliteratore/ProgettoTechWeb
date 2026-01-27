@@ -60,7 +60,7 @@ try{
                 $ordini .= '<h3>ORDINE #' . (int)$ordine['id_ordine'] . ' - ' . $data . '</h3>';
                 $ordini .= '<dl>';
                 $ordini .= '<dt>TOTALE:</dt><dd>' . $prezzoTotale[(int)$ordine['id_ordine']] . ' €</dd>';
-                $ordini .= '<dt>INDIRIZZO:</dt><dd>' . htmlspecialchars($datiUtente['via']) . ', ' . htmlspecialchars($datiUtente['comune']) . ', <abbr title="' . htmlspecialchars($datiUtente['provincia']) . '">' . htmlspecialchars($datiUtente['sigla_provincia']) . '</abbr>' . '</dd>';
+                $ordini .= '<dt>INDIRIZZO:</dt><dd>' . htmlspecialchars($ordine['via']) . ', ' . htmlspecialchars($ordine['comune']) . ', <abbr title="' . htmlspecialchars($ordine['provincia']) . '">' . htmlspecialchars($ordine['sigla_provincia']) . '</abbr>' . '</dd>';
                 $ordini .= '</dl>';
                 $ordini .= '</div>';
 

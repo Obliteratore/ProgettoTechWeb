@@ -70,10 +70,10 @@
                 <h1 class="position">Conferma acquisto</h1>
                 <form id="buy-form" class="data-form" action="../PHP/acquisto.php" method="post" autocomplete="on">
                     <fieldset>
-                        <legend>Credenziali d'accesso</legend>
+                        <legend>Credenziali</legend>
                         <label for="email"><span lang="en">Email</span></label>
                         <input id="email" type="email" name="email" value="[valore-email]" autocomplete="email" aria-describedby="email-help email-error" aria-invalid="[invalid-email]" required/>
-                        <p id="email-help" class="help">Un indirizzo <span lang="en">email</span> valido. Verrà usato per la verifica dell'<span lang="en">account</span> e per le comunicazioni.</p>
+                        <p id="email-help" class="help">Un indirizzo <span lang="en">email</span> valido. Verrà usato per aggiornarti sui tuoi ordini.</p>
                         <p id="email-error" class="error-message" aria-live="polite">[errore-email]</p>
                     </fieldset>
                     <fieldset>
@@ -99,9 +99,9 @@
                         <p id="via-help" class="help">L'indirizzo completo con via, piazza o contrada e numero civico.</p>
                         <p id="via-error" class="error-message" aria-live="polite">[errore-via]</p>
                     </fieldset>
-                    <input type="submit" value="Conferma"/>
+                    <input class="bottone-standard" type="submit" value="Conferma"/>
                 </form>
-                <a id="cancelBuyBtn" href="../PHP/carrello.php">Annulla</a>
+                <a id="cancelBuyBtn" class="bottone-standard" href="../PHP/carrello.php">Annulla</a>
             </div>
         </main>
         <script src="../JS/insert_comuni.js" defer></script>

@@ -154,6 +154,21 @@ class FMAccess {
 		return $exist;
 	}
 
+	public function existIndirizzo($provincia, $comune, $via) {
+		$query = "SELECT id_indirizzo FROM indirizzi WHERE sigla_provincia = ? AND id_comune = ? AND via = ? ORDER BY id_indirizzo DESC LIMIT 1";
+		$stmt = ($this->connection)->prepare($query);
+		$stmt->bind_param("sis", $provincia, $comune, $via);
+		$stmt->execute();
+
+		$result = $stmt->get_result();
+		$row = $result->fetch_assoc();
+    
+		$result->free();
+		$stmt->close();
+
+		return $row ? $row['id_indirizzo'] : null;
+	}
+
 	public function insertIndirizzo($provincia, $comune, $via) {
 		$query = "INSERT INTO indirizzi (sigla_provincia, id_comune, via) VALUES (?, ?, ?)";
 		$stmt = ($this->connection)->prepare($query);
@@ -180,6 +195,26 @@ class FMAccess {
 		$query = "INSERT INTO utenti_registrati (email, username, password, nome, cognome) VALUES (?, ?, ?, ?, ?)";
 		$stmt = ($this->connection)->prepare($query);
 		$stmt->bind_param("sssss", $email, $username, $hash, $nome, $cognome);
+		$stmt->execute();
+		$stmt->close();
+	}
+
+	public function insertOrdine($email, $idIndirizzo) {
+		$query = "INSERT INTO ordini (email, id_indirizzo) VALUES (?, ?)";
+		$stmt = ($this->connection)->prepare($query);
+		$stmt->bind_param("si", $email, $idIndirizzo);
+		$stmt->execute();
+
+		$idOrdine = $this->connection->insert_id;
+
+		$stmt->close();
+		return $idOrdine;
+	}
+
+	public function insertDettaglioOrdine($id_ordine, $nome_latino, $quantita, $prezzo_unitario) {
+		$query = "INSERT INTO dettaglio_ordini (id_ordine, nome_latino, quantita, prezzo_unitario) VALUES (?, ?, ?, ?)";
+		$stmt = ($this->connection)->prepare($query);
+		$stmt->bind_param("isis", $id_ordine, $nome_latino, $quantita, $prezzo_unitario);
 		$stmt->execute();
 		$stmt->close();
 	}
@@ -336,7 +371,7 @@ class FMAccess {
 
 	public function getPesci($condizioni, $parametri, $operazione = '') {
 
-		$sql = "SELECT p.* , f.tipo_acqua FROM pesci p JOIN famiglie f ON p.famiglia = f.famiglia_latino";
+		$sql = "SELECT p.* , f.tipo_acqua, f.famiglia_latino AS famiglia FROM pesci p JOIN famiglie f ON p.famiglia = f.famiglia_latino";
 
 		if (!empty($condizioni)) {
 			$sql .= " WHERE " . implode(" AND ", $condizioni);
@@ -412,6 +447,14 @@ class FMAccess {
 		$query = "UPDATE utenti SET id_indirizzo = ? WHERE email = ?";
 		$stmt = ($this->connection)->prepare($query);
 		$stmt->bind_param("is", $idIndirizzo, $email);
+		$stmt->execute();
+		$stmt->close();
+	}
+
+	public function updateDisponibilitaPesce($nome_latino, $disponibilita) {
+		$query = "UPDATE pesci SET disponibilita = ? WHERE nome_latino = ?";
+		$stmt = ($this->connection)->prepare($query);
+		$stmt->bind_param("is", $disponibilita, $nome_latino);
 		$stmt->execute();
 		$stmt->close();
 	}
@@ -500,40 +543,6 @@ class FMAccess {
 		$stmt->bind_param("iss", $quantita, $email, $nome_latino);
 		$stmt->execute();
 		$stmt->close();
-	}
-
-	public function getPesciJOIN($condizioni, $parametri, $operazione, $join = '') {
-		$sql = "SELECT pesci.*, famiglie.tipo_acqua 
-				FROM pesci 
-				$join";
-
-		if (!empty($condizioni)) {
-			$sql .= " WHERE " . implode(" AND ", $condizioni);
-		}
-
-		if ($operazione !== '') {
-			$sql .= " " . $operazione;
-		}
-
-		$stmt = $this->connection->prepare($sql);
-
-		if (!empty($parametri)) {
-			$types = str_repeat('s', count($parametri));
-			$stmt->bind_param($types, ...$parametri);
-		}
-
-		$stmt->execute();
-		$result = $stmt->get_result();
-
-		$pesci = [];
-		while ($row = $result->fetch_assoc()) {
-			$pesci[] = $row;
-		}
-
-		$result->free();
-		$stmt->close();
-
-		return $pesci;
 	}
 
 	public function updatePesce($nome_latino,$nome_comune,$dimensione,$volume_minimo,$colori,$prezzo,$disponibilita){

@@ -10,7 +10,7 @@ function toggleFilters() {
         }else {
                 toggleButton.textContent = "Nascondi filtri";
         }
-    })
+    });
 }
 
 toggleFilters();

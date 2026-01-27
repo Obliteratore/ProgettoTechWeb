@@ -93,8 +93,8 @@ try{
         $contenuto_carrello .= '</ul>';
     } else {
         $contenuto_carrello = "<div class=\"messaggio-vuoto\">
-                                    <p>Il tuo carrello è vuoto. Cosa aspetti a riempirlo? </p>
-                                    <p><a href='catalogo.php'>Torna al catalogo</a></p>
+                                    <p class=\"call-to-action\">Il tuo carrello è vuoto. Cosa aspetti a riempirlo? </p>
+                                    <p class=\"call-to-action\"><a href='../PHP/catalogo.php'>Torna al catalogo</a></p>
                                 </div>";
         $visibilita = "hidden";
     }

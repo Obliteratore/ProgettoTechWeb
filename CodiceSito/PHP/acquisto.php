@@ -12,8 +12,10 @@ function pulisciInput($value) {
 }
 
 function validateEmail(&$errors, $email, $connection) {
-    if(empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL))
-        $errors['email'] = 'L\'<span lang="en">email</span> non è valida.';
+    if($email !== 'user') {
+        if(empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL))
+            $errors['email'] = 'L\'<span lang="en">email</span> non è valida.';
+    }
 }
 
 function validateProvincia(&$errors, $provincia, $connection) {
@@ -166,9 +168,68 @@ try {
         } else {
             $prodotti = $connection->getCarrello($email);
             if(!empty($email) && !empty($prodotti)) {
+                $idIndirizzo = $connection->existIndirizzo($values['provincia'], (int)$values['comune'], $values['via']);
+                if(!isset($idIndirizzo)) {
+                    $idIndirizzo = $connection->insertIndirizzo($values['provincia'], (int)$values['comune'], $values['via']);
+                }
 
+                $connection->beginTransaction();
+                try {
+                    $idOrdine = $connection->insertOrdine($email, $idIndirizzo);
+
+                    foreach($prodotti as $prodotto) {
+                        $connection->insertDettaglioOrdine($idOrdine, $prodotto['nome_latino'], $prodotto['quantita'], $prodotto['prezzo']);
+
+                        $pesce_db = $connection->getPesce($prodotto['nome_latino']);
+                        $disponibilita = (int)$pesce_db['disponibilita']-(int)$prodotto['quantita'];
+                        $connection->updateDisponibilitaPesce($prodotto['nome_latino'], $disponibilita);
+
+                        $connection->cancellaDaCarrello($email, $prodotto['nome_latino']);
+                    }
+
+                    $connection->commit();
+                } catch(mysqli_sql_exception $e) {
+                    $connection->rollback();
+                    throw $e;
+                }
+
+                header('Location: carrello.php');
+                exit;
             } elseif(isset($_SESSION['carrello_ospite']) && count($_SESSION['carrello_ospite']) > 0) {
-            
+                $email = $values['email'];
+                $prodotti = [];
+                $nomi_latini = array_keys($_SESSION['carrello_ospite']);
+                $prodotti = $connection->getPesciPerCarrelloOspite($nomi_latini);
+
+                $existEmail = $connection->existEmailUtenteNonRegistrato($email);
+                if(!$existEmail)
+                    $connection->insertUtente($email, null);
+
+                $idIndirizzo = $connection->existIndirizzo($values['provincia'], (int)$values['comune'], $values['via']);
+                if(!isset($idIndirizzo)) {
+                    $idIndirizzo = $connection->insertIndirizzo($values['provincia'], (int)$values['comune'], $values['via']);
+                }
+
+                $connection->beginTransaction();
+                try {
+                    $idOrdine = $connection->insertOrdine($email, $idIndirizzo);
+
+                    foreach($prodotti as $prodotto) {
+                        $connection->insertDettaglioOrdine($idOrdine, $prodotto['nome_latino'], $_SESSION['carrello_ospite'][$prodotto['nome_latino']], $prodotto['prezzo']);
+
+                        $disponibilita = (int)$prodotto['disponibilita']-$_SESSION['carrello_ospite'][$prodotto['nome_latino']];
+                        $connection->updateDisponibilitaPesce($prodotto['nome_latino'], $disponibilita);
+                    }
+
+                    $connection->commit();
+                } catch(mysqli_sql_exception $e) {
+                    $connection->rollback();
+                    throw $e;
+                }
+
+                unset($_SESSION['carrello_ospite']);
+                header('Location: carrello.php');
+                exit;
             } else {
                 header('Location: carrello.php');
                 exit;

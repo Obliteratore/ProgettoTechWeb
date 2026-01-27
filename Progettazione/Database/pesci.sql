@@ -1,4 +1,4 @@
-USE vsolito;
+USE fbalestro;
 
 DROP TABLE IF EXISTS carrello;
 DROP TABLE IF EXISTS dettaglio_ordini;

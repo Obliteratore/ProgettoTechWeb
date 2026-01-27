@@ -56,9 +56,11 @@ function validateEmail(email) {
     let error = "";
     let isValid = true;
 
-    if(value.length == 0 || !regex.test(value)) {
-        error += "L'<span lang=\"en\">email</span> non è valida.";
-        isValid = false;
+    if(value != "user") {
+        if(value.length == 0 || !regex.test(value)) {
+            error += "L'<span lang=\"en\">email</span> non è valida.";
+            isValid = false;
+        }
     }
     setHtml(email, isValid, "email-error", error);
 
