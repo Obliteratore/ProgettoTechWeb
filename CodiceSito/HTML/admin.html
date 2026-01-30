@@ -2,9 +2,9 @@
 <html lang="it">
     <head>
         <meta charset="utf-8" >
-        <title>Area amministratore - FishMarket</title>
-        <meta name="description" content="FishMarket è un negozio online di pesci esotici e tropicali da tutto il mondo. Porta l'esotico a casa tua con dei pesci unici.">
-        <meta name="keywords" content="pesci esotici, vendita pesci online, pesci tropicali, negozio pesci esotici, FishMarket">
+        <title>Area Amministratore - FishMarket</title>
+        <meta name="description" content="FishMarket è un negozio online di pesci esotici da tutto il mondo. Porta l'esotico a casa tua con dei pesci unici.">
+        <meta name="keywords" content="pesci esotici, vendita pesci online, negozio pesci esotici, FishMarket">
         <meta name="author" content="Aaron Gingillino, Francesco Balestro, Bilal Sabic, Valerio Solito">
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,9 +29,9 @@
                 <img src="../IMMAGINI/Icone/fish.png" alt=""/>
                 <nav id="menu" aria-label="Menù di navigazione">
                     <ul>
-                        <li lang="en"><a href="../PHP/home.php">Home</a></li>
-                        <li><a href="../PHP/catalogo.php">Catalogo</a></li>
-                        <li><a href="../HTML/chiSiamo.html">Chi Siamo</a></li>
+                        <li lang="en"><a class="link-testuale" href="../PHP/home.php">Home</a></li>
+                        <li><a class="link-testuale" href="../PHP/catalogo.php">Catalogo</a></li>
+                        <li><a class="link-testuale" href="../HTML/chiSiamo.html">Chi Siamo</a></li>
                         <li aria-current="page">Profilo</li>
                     </ul>
                 </nav>
@@ -46,9 +46,9 @@
                 </div>
                 <nav id="hamburger-menu" aria-label="Menù di navigazione per cellulare">
                     <ul>
-                        <li lang="en"><a href="../PHP/home.php">Home</a></li>
-                        <li><a href="../PHP/catalogo.php">Catalogo</a></li>
-                        <li><a href="../HTML/chiSiamo.html">Chi Siamo</a></li>
+                        <li lang="en"><a class="link-testuale" href="../PHP/home.php">Home</a></li>
+                        <li><a class="link-testuale" href="../PHP/catalogo.php">Catalogo</a></li>
+                        <li><a class="link-testuale" href="../HTML/chiSiamo.html">Chi Siamo</a></li>
                         <li aria-current="page">Profilo</li>
                     </ul>
                 </nav>
@@ -58,7 +58,7 @@
 
         <nav id="breadcrumb" class="sezione-standard" aria-label="Percorso di navigazione">
             <ol>
-                <li lang="en"><a href="../PHP/home.php">Home</a></li>
+                <li lang="en"><a class="link-testuale" href="../PHP/home.php">Home</a></li>
                 <li aria-current="page">Profilo</li>
             </ol>
         </nav>
@@ -66,10 +66,10 @@
         <main id="main-content">
             <h1 class="position">Area amministratore</h1>
             <section class="main-section">
-                <div class="position"><a href="aggiungi_pesce.php" class="bottone-standard">Aggiungi nuovo pesce </a></div>
-                <span id="summaryTabella" class="screen-reader">Questa tabella descrive tutti i pesci disponibili nel negozio: i pesci sono descritti dal nome latino ed è possibile modificarli.</span>
+                <div class="position"><a href="../PHP/aggiungi_pesce.php" class="bottone-standard">Aggiungi nuovo pesce </a></div>
+                <span id="summaryTabella" class="screen-reader">La tabella è organizzata per colonne e contiene l'elenco di tutti i pesci disponibili nel negozio. Ogni riga riguarda un pesce con il suo nome latino e il bottone per modificarlo.</span>
                 <table class="admin-table" aria-describedby="summaryTabella">
-                    <caption>Elenco dei pesci presenti nel negozio</caption>
+                    <caption>Pesci presenti nel negozio</caption>
 
                     <thead>
                         <tr>
@@ -84,10 +84,9 @@
                 </table>
             </section>
         </main>
-
         <footer>
-            <a href="#top" class="back-to-top" aria-label="Torna all'inizio"><img src="../IMMAGINI/Icone/arrow-up.svg" alt="" aria-hidden="true"/></a>
+            <p>Questo sito <span lang="en">web</span> è stato creato a fini didattici per l'Università di Padova. Le foto sono state gentilmente fornite dal fotografo <span lang="fr">Benoit</span>, a cui appartengono tutti i diritti. Potete trovare queste, e ulteriori foto nel sito <a class="link-testuale" href="https://www.inaturalist.org/observations?place_id=any&user_id=benoit_fishipedia&verifiable=any">iNaturalist</a>.</p>
         </footer>
-        
+        <a href="#top" class="back-to-top" aria-label="Torna all'inizio"><img src="../IMMAGINI/Icone/arrow-up.svg" alt="" aria-hidden="true"/></a>  
     </body>
 </html>

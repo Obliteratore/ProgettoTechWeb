@@ -150,7 +150,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $errore[$key] = empty($arr) ? '' : implode('', array_map(fn($e) => "<li>$e</li>", $arr));
     }
 
-    // Controllo se esiste almeno un errore
     $anyError = false;
     foreach ($errore as $e) {
         if (!empty($e)) { $anyError = true; break; }
@@ -199,7 +198,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     
-    header("Location: admin.php");
+    header("Location: ../PHP/admin.php");
     exit;
 }
 $connection->closeConnection();

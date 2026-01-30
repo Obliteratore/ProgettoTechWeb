@@ -3,8 +3,8 @@
     <head>
         <meta charset="utf-8" >
         <title>Accedi - FishMarket</title>
-        <meta name="description" content="Accedi al tuo profilo di FishMarket. Porta l'esotico a casa tua.">
-        <meta name="keywords" content="pesci esotici, vendita pesci online, pesci tropicali, negozio pesci esotici, FishMarket">
+        <meta name="description" content="FishMarket è un negozio online di pesci esotici da tutto il mondo. Accedi al tuo profilo e porta l'esotico a casa tua.">
+        <meta name="keywords" content="pesci esotici, vendita pesci online, negozio pesci esotici, FishMarket">
         <meta name="author" content="Aaron Gingillino, Francesco Balestro, Bilal Sabic, Valerio Solito">
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,14 +29,14 @@
                 <img src="../IMMAGINI/Icone/fish.png" alt=""/>
                 <nav id="menu" aria-label="Menù di navigazione">
                     <ul>
-                        <li lang="en"><a href="../PHP/home.php">Home</a></li>
-                        <li><a href="../PHP/catalogo.php">Catalogo</a></li>
-                        <li><a href="../HTML/chiSiamo.html">Chi Siamo</a></li>
+                        <li lang="en"><a class="link-testuale" href="../PHP/home.php">Home</a></li>
+                        <li><a class="link-testuale" href="../PHP/catalogo.php">Catalogo</a></li>
+                        <li><a class="link-testuale" href="../HTML/chiSiamo.html">Chi Siamo</a></li>
                         <li>Profilo</li>
                     </ul>
                 </nav>
                 <div>
-                    <a id="cart-link" href="carrello.php" aria-label="Vai al carrello"><img src="../IMMAGINI/Icone/shopping-cart.svg" alt="" aria-hidden="true"/></a>
+                    <a id="cart-link" href="../PHP/carrello.php" aria-label="Vai al carrello"><img src="../IMMAGINI/Icone/shopping-cart.svg" alt="" aria-hidden="true"/></a>
                     <button  id="hamburger-menu-btn" aria-controls="hamburger-menu" aria-expanded="false">
                         <img id="open-hamburger-menu" src="../IMMAGINI/Icone/menu-burger.svg" alt="" aria-hidden="true"/>
                         <span class="screen-reader">Apri l'<span lang="en">hamburger</span> menù</span>
@@ -46,9 +46,9 @@
                 </div>
                 <nav id="hamburger-menu" aria-label="Menù di navigazione per cellulare">
                     <ul>
-                        <li lang="en"><a href="../PHP/home.php">Home</a></li>
-                        <li><a href="../PHP/catalogo.php">Catalogo</a></li>
-                        <li><a href="../HTML/chiSiamo.html">Chi Siamo</a></li>
+                        <li lang="en"><a class="link-testuale" href="../PHP/home.php">Home</a></li>
+                        <li><a class="link-testuale" href="../PHP/catalogo.php">Catalogo</a></li>
+                        <li><a class="link-testuale" href="../HTML/chiSiamo.html">Chi Siamo</a></li>
                         <li>Profilo</li>
                     </ul>
                 </nav>
@@ -59,7 +59,7 @@
 
         <nav id="breadcrumb" class="sezione-standard" aria-label="Percorso di navigazione">
             <ol>
-                <li lang="en"><a href="../PHP/home.php">Home</a></li>
+                <li lang="en"><a class="link-testuale" href="../PHP/home.php">Home</a></li>
                 <li aria-current="page">Accedi</li>
             </ol>
         </nav>
@@ -67,7 +67,7 @@
         <main id="main-content">
             <div class="form-container sezione-standard">
                 <h1 class="position">Accedi</h1>
-                <p class="call-to-action position">Se non hai un <span lang="en">account</span>, <a class="link-testuale" href="registrazione.php">registrati</a>!</p>
+                <p class="call-to-action position">Se non hai un <span lang="en">account</span>, <a class="link-testuale" href="../PHP/registrazione.php">registrati</a>!</p>
                 <p id="login-error" class="error-message" role="alert">[errore-login]</p>
                 <form id="login-form" class="data-form" action="../PHP/accesso.php" method="post" autocomplete="on">
                     <label for="username"><span lang="en">Username</span> o <span lang="en">Email</span>
@@ -87,7 +87,7 @@
             </div>
         </main>
         <footer>
-
+            <p>Questo sito <span lang="en">web</span> è stato creato a fini didattici per l'Università di Padova. Le foto sono state gentilmente fornite dal fotografo <span lang="fr">Benoit</span>, a cui appartengono tutti i diritti. Potete trovare queste, e ulteriori foto nel sito <a class="link-testuale" href="https://www.inaturalist.org/observations?place_id=any&user_id=benoit_fishipedia&verifiable=any">iNaturalist</a>.</p>
         </footer>
         <a href="#top" class="back-to-top" aria-label="Torna all'inizio"><img src="../IMMAGINI/Icone/arrow-up.svg" alt="" aria-hidden="true"/></a>
     </body>

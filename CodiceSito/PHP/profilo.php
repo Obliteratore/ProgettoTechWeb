@@ -3,12 +3,12 @@ if(session_status() !== PHP_SESSION_ACTIVE)
     session_start();
 
 if(!isset($_SESSION['email'])) {
-    header('Location: accesso.php');
+    header('Location: ../PHP/accesso.php');
     exit;
 }
 
 if($_SESSION['email'] === 'admin') {
-    header('Location: admin.php');
+    header('Location: ../PHP/admin.php');
     exit;
 }
 
@@ -54,10 +54,15 @@ try{
                     $ordini .= '</article></li>';
                 }
 
-                $data = (new DateTime($ordine['data_ora']))->format('d/m/Y');
+                $data_visibile = (new DateTime($ordine['data_ora']))->format('d/m/Y');
+                $data_datetime = (new DateTime($ordine['data_ora']))->format('Y-m-d');
+                $data_aria = (new DateTime($ordine['data_ora']))->format('d F Y');
+
                 $ordini .= '<li><article>';
                 $ordini .= '<div class="dati-ordine">';
-                $ordini .= '<h3>ORDINE #' . (int)$ordine['id_ordine'] . ' - ' . $data . '</h3>';
+                $ordini .= '<h3>ORDINE #' . (int)$ordine['id_ordine'] . ' - ';
+                $ordini .= '<time datetime="' . $data_datetime . '" aria-label="' . $data_aria . '">';
+                $ordini .= $data_visibile . '</time></h3>';
                 $ordini .= '<dl>';
                 $ordini .= '<dt>TOTALE:</dt><dd>' . $prezzoTotale[(int)$ordine['id_ordine']] . ' €</dd>';
                 $ordini .= '<dt>INDIRIZZO:</dt><dd>' . htmlspecialchars($ordine['via']) . ', ' . htmlspecialchars($ordine['comune']) . ', <abbr title="' . htmlspecialchars($ordine['provincia']) . '">' . htmlspecialchars($ordine['sigla_provincia']) . '</abbr>' . '</dd>';
@@ -76,7 +81,7 @@ try{
                 $ordini .= '<tbody>';
             }
             $ordini .= '<tr>';
-            $ordini .= '<th scope="row">' . htmlspecialchars($ordine['nome_comune']) . '</th>';
+            $ordini .= '<th scope="row"><a href="../PHP/pesce.php?nome_latino=' . htmlspecialchars($ordine['nome_latino']) . '">' . htmlspecialchars($ordine['nome_comune']) . '</a></th>';
             $ordini .= '<td data-title="Prezzo">' . number_format($ordine['prezzo_unitario'], 2, ',', '.') . ' €</td>';
             $ordini .= '<td data-title="Quantità">' . (int)$ordine['quantita'] . '</td>';
             $ordini .= '</tr>';
@@ -85,7 +90,7 @@ try{
         }
         $ordini .= '</tbody></table></article></li></ul>';
     } else {
-        $ordini = '<p class="call-to-action position">Non hai ancora effettuato nessun ordine. Vai al <a href="catalogo.php">catalogo</a> per trovare il pesce perfetto per te!<p>';
+        $ordini = '<p class="call-to-action position">Non hai ancora effettuato nessun ordine. Vai al <a class="link-testuale" href="catalogo.php">catalogo</a> per trovare il pesce perfetto per te!<p>';
     }
 } catch(mysqli_sql_exception $e) {
     http_response_code(500);

@@ -3,7 +3,7 @@ if(session_status() !== PHP_SESSION_ACTIVE)
     session_start();
 
 if(isset($_SESSION['email'])) {
-    header('Location: profilo.php');
+    header('Location: ../PHP/profilo.php');
     exit;
 }
 
@@ -150,7 +150,7 @@ try {
             }
             session_regenerate_id(true); 
             $_SESSION['email'] = $values['email'];
-            header('Location: profilo.php');
+            header('Location: ../PHP/profilo.php');
             exit;
         }
     } else

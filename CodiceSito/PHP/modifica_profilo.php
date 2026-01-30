@@ -3,7 +3,7 @@ if(session_status() !== PHP_SESSION_ACTIVE)
     session_start();
 
 if(!isset($_SESSION['email'])) {
-    header('Location: accesso.php');
+    header('Location: ../PHP/accesso.php');
     exit;
 }
 
@@ -229,7 +229,7 @@ try {
                 }
             }
 
-            header('Location: profilo.php');
+            header('Location: ../PHP/profilo.php');
             exit;
         }
     } else

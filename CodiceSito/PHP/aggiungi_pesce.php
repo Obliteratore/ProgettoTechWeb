@@ -50,13 +50,13 @@ foreach ($famiglie as $f) {
 
 if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $nomeLatino   = trim($_POST['nome_latino'] ?? '');
-    $nomeComune   = trim($_POST['nome_comune'] ?? '');
-    $famiglia      = trim($_POST['famiglia'] ?? '');
-    $dimensione    = floatval($_POST['dimensione'] ?? 0);
+    $nomeLatino = trim($_POST['nome_latino'] ?? '');
+    $nomeComune = trim($_POST['nome_comune'] ?? '');
+    $famiglia = trim($_POST['famiglia'] ?? '');
+    $dimensione = floatval($_POST['dimensione'] ?? 0);
     $volumeMinimo = floatval($_POST['volume_minimo'] ?? 0);
-    $colori        = trim($_POST['colori'] ?? '');
-    $prezzo        = floatval($_POST['prezzo'] ?? 0);
+    $colori = trim($_POST['colori'] ?? '');
+    $prezzo = floatval($_POST['prezzo'] ?? 0);
     $disponibilita = intval($_POST['disponibilita'] ?? 0);
     $percorso = NULL;
 
@@ -181,7 +181,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $connection->insertPesce($nomeLatino, $nomeComune, $famiglia, $dimensione, $volumeMinimo, $colori, $prezzo, $disponibilita, $percorso);
 
-    header("Location: admin.php");
+    header("Location: ../PHP/admin.php");
     exit;
 
 }

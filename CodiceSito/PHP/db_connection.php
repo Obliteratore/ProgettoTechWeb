@@ -8,12 +8,11 @@ class FMAccess {
 	private const USERNAME = "agingill";
 	private const PASSWORD = "Pech3pheeXie4xen";
 	*/
-	/*
+	
 	private const HOST_DB = "localhost";
 	private const DATABASE_NAME = "fbalestr";
 	private const USERNAME = "fbalestr";
 	private const PASSWORD = "Iemao4Chawiechoo";
-	*/
 
 	/*
 	private const HOST_DB = "localhost";
@@ -21,12 +20,12 @@ class FMAccess {
 	private const USERNAME = "bsabic";
 	private const PASSWORD = "ieGai9om6eiyahT0";
 	*/
-	
+	/*
 	private const HOST_DB = "localhost";
 	private const DATABASE_NAME = "vsolito";
 	private const USERNAME = "vsolito";
 	private const PASSWORD = "aeyoh5naiw7nah4S";
-	
+	*/
 
 	private $connection;
 
@@ -342,7 +341,7 @@ class FMAccess {
 	}
 
 	public function getOrdiniUtenteRegistrato($email) {
-		$query = "SELECT ordini.id_ordine, ordini.data_ora, indirizzi.via, provincie.sigla_provincia, provincie.nome AS provincia, comuni.nome AS comune, pesci.nome_comune, dettaglio_ordini.prezzo_unitario, dettaglio_ordini.quantita FROM 
+		$query = "SELECT ordini.id_ordine, ordini.data_ora, indirizzi.via, provincie.sigla_provincia, provincie.nome AS provincia, comuni.nome AS comune, pesci.nome_latino, pesci.nome_comune, dettaglio_ordini.prezzo_unitario, dettaglio_ordini.quantita FROM 
 		ordini JOIN indirizzi ON ordini.id_indirizzo=indirizzi.id_indirizzo 
 		JOIN provincie ON indirizzi.sigla_provincia=provincie.sigla_provincia 
 		JOIN comuni ON indirizzi.id_comune=comuni.id_comune 

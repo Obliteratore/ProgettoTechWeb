@@ -3,8 +3,32 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 require_once "db_connection.php";
-require_once "crea_righe_pesce_admin.php";
 use FM\FMAccess;
+
+function crea_righe_pesce_admin(array $pesci) :string {
+    $html='';
+
+    foreach($pesci as $pesce) {
+        $nomeLatino = htmlspecialchars($pesce['nome_latino']);
+
+        $html .= '<tr>';
+
+        $html .= '<th scope="row">' . $nomeLatino . '</th>';
+
+        $html .= '<td data-label="Azione">';
+        $html .= '<a 
+            class="link-testuale bottone-standard" 
+            href="../PHP/modifica_pesce.php?nome_latino=' .urlencode($nomeLatino) . '"
+            aria-label="Modifica il pesce con nome latino ' . $nomeLatino . '">
+            Modifica
+        </a>';
+
+        $html .= '</td>';
+        $html .= '</tr>';
+    }
+
+    return $html;
+}
 
 $paginaHTML = file_get_contents('../HTML/admin.html');
 

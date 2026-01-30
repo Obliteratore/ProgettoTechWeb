@@ -94,7 +94,7 @@ try{
     } else {
         $contenuto_carrello = "<div class=\"messaggio-vuoto\">
                                     <p class=\"call-to-action\">Il tuo carrello è vuoto. Cosa aspetti a riempirlo? </p>
-                                    <p class=\"call-to-action\"><a href='../PHP/catalogo.php'>Torna al catalogo</a></p>
+                                    <p class=\"call-to-action\"><a class=\"link-testuale\" href='../PHP/catalogo.php'>Torna al catalogo</a></p>
                                 </div>";
         $visibilita = "hidden";
     }

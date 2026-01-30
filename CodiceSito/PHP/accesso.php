@@ -3,7 +3,7 @@ if(session_status() !== PHP_SESSION_ACTIVE)
         session_start();
 
 if(isset($_SESSION['email'])) {
-    header('Location: profilo.php');
+    header('Location: ../PHP/profilo.php');
     exit;
 }
 
@@ -89,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     else
                         $_SESSION['email'] = $connection->getEmailWithUsername($login);
 
-                    header('Location: profilo.php');
+                    header('Location: ../PHP/profilo.php');
                     exit;
                 }
             }

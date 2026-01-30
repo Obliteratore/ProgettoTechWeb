@@ -90,6 +90,7 @@ html {
     font-style: normal;
     color: var(--color-text);
     scroll-behavior: smooth;
+    height: 100%;
 }
 
 body {
@@ -99,6 +100,18 @@ body {
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
+    height: 100%;
+}
+
+main {
+  flex: 1;
+}
+
+footer {
+    margin-top: 1rem;
+    margin-right: 3rem;
+    margin-left: 0.5rem;
+    padding-bottom: 1rem;
 }
 
 :focus-visible {
@@ -760,6 +773,9 @@ SEZIONE CHISIAMO.HMTL
 ul.error-message {
     list-style: none;
 }
+#lista-colori-help {
+    padding-left: 1rem;
+}
 
 .data-form {
     margin-top: 1em;
@@ -1284,19 +1300,10 @@ a#buyLink {
 }
 /*ERRORE 404*/
 
-.p404, .p500 {
-    margin-top: 1rem;
+.sezione-errore, .sezione-conferma {
+    padding: 1rem;
 }
 
-/*
-=======================================
-SEZIONE FOOTER
-=======================================
-*/
-
-footer {
-    margin-top: 1em;
-    margin-right: 3em;
-    margin-left: 0.5em;
-    margin-bottom: 1em;
+.p404, .p500 {
+    margin-top: 1rem;
 }

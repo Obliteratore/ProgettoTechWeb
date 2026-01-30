@@ -193,7 +193,7 @@ try {
                     throw $e;
                 }
 
-                header('Location: carrello.php');
+                header('Location: ../PHP/carrello.php');
                 exit;
             } elseif(isset($_SESSION['carrello_ospite']) && count($_SESSION['carrello_ospite']) > 0) {
                 $email = $values['email'];
@@ -228,10 +228,10 @@ try {
                 }
 
                 unset($_SESSION['carrello_ospite']);
-                header('Location: carrello.php');
+                header('Location: ../PHP/carrello.php');
                 exit;
             } else {
-                header('Location: carrello.php');
+                header('Location: ../PHP/carrello.php');
                 exit;
             }
         }
@@ -244,7 +244,7 @@ try {
         } elseif(isset($_SESSION['carrello_ospite']) && count($_SESSION['carrello_ospite']) > 0) {
             writeHtml($values, $errors, $connection);
         } else {
-            header('Location: carrello.php');
+            header('Location: ../PHP/carrello.php');
             exit;
         }
     }

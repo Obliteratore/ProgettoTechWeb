@@ -36,10 +36,10 @@ try{
                             else $_SESSION['carrello_ospite'][$pesce] = $quantita;
                         }
 
-                        header("Location: pesce.php?nome_latino=" . urlencode($pesce) . "&successo=aggiunto");
+                        header("Location: ../PHP/pesce.php?nome_latino=" . urlencode($pesce) . "&successo=aggiunto");
                         exit();
                     } else {
-                        header("Location: pesce.php?nome_latino=" . $pesce . "&errore=non_disponibile");
+                        header("Location: ../PHP/pesce.php?nome_latino=" . $pesce . "&errore=non_disponibile");
                         exit();
                     }
                 } else {
@@ -53,7 +53,7 @@ try{
                 if ($logged_in) $connection->cancellaDaCarrello($email_utente,$pesce_rimuovere);
                 elseif (isset($_SESSION['carrello_ospite'][$pesce_rimuovere])) unset($_SESSION['carrello_ospite'][$pesce_rimuovere]);
             }
-            header("Location: carrello.php");
+            header("Location: ../PHP/carrello.php");
             exit();
         } elseif ($azione === 'aggiorna') {
             $pesce = $_POST['nome_latino'] ?? '';
@@ -73,15 +73,15 @@ try{
                                 $_SESSION['carrello_ospite'][$pesce] = $nuova_quantita;
                             }
                         }
-                        header("Location: carrello.php#". $ancora_url);
+                        header("Location: ../PHP/carrello.php#". $ancora_url);
                         exit();
                     } else {
-                        header("Location: carrello.php?errore=max_raggiunto#" . $ancora_url);
+                        header("Location: ../PHP/carrello.php?errore=max_raggiunto#" . $ancora_url);
                         exit();
                     }
                 }
             } 
-            header("Location: carrello.php");
+            header("Location: ../PHP/carrello.php");
             exit();
         }
     } else {

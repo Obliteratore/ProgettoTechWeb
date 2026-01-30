@@ -29,10 +29,10 @@
                 <img class="icona" src="../IMMAGINI/Icone/fish.png" alt=""/>
                 <nav id="menu" aria-label="Menù di navigazione">
                     <ul>
-                        <li lang="en"><a href="../PHP/home.php">Home</a></li>
-                        <li><a href="../PHP/catalogo.php">Catalogo</a></li>
-                        <li><a href="../HTML/chiSiamo.html">Chi Siamo</a></li>
-                        <li><a href="../PHP/profilo.php">Profilo</a></li>
+                        <li lang="en"><a class="link-testuale" href="../PHP/home.php">Home</a></li>
+                        <li><a class="link-testuale" href="../PHP/catalogo.php">Catalogo</a></li>
+                        <li><a class="link-testuale" href="../HTML/chiSiamo.html">Chi Siamo</a></li>
+                        <li><a class="link-testuale" href="../PHP/profilo.php">Profilo</a></li>
                     </ul>
                 </nav>
                 <div>
@@ -46,10 +46,10 @@
                 </div>
                 <nav id="hamburger-menu" aria-label="Menù di navigazione per cellulare">
                     <ul>
-                        <li lang="en"><a href="../PHP/home.php">Home</a></li>
-                        <li><a href="../PHP/catalogo.php">Catalogo</a></li>
-                        <li><a href="../HTML/chiSiamo.html">Chi Siamo</a></li>
-                        <li><a href="../PHP/profilo.php">Profilo</a></li>
+                        <li lang="en"><a class="link-testuale" href="../PHP/home.php">Home</a></li>
+                        <li><a class="link-testuale" href="../PHP/catalogo.php">Catalogo</a></li>
+                        <li><a class="link-testuale" href="../HTML/chiSiamo.html">Chi Siamo</a></li>
+                        <li><a class="link-testuale" href="../PHP/profilo.php">Profilo</a></li>
                     </ul>
                 </nav>
             </div>
@@ -57,13 +57,15 @@
         <script src="../JS/hamburger_menu.js" defer></script>
 
         <main id="main-content">
-            <h1 class="position h404">Pagina non trovata</h1>
-            <p class="call-to-action position p404">Forse stai cercando il pesce Nemo nel posto sbagliato. Qui purtroppo non c'è, ma niente panico!</p>
-            <p class="call-to-action position p404">Puoi scoprire i nostri pesci più venduti tornando alla <a href="../PHP/home.php" lang="en">Home</a>.</p>
-            <p class="call-to-action position p404">Vuoi restare aggiornato sui nuovi arrivi? <a href="../PHP/registrazione.php">Registrati</a> e non perderti nessuna novità.</p>
+            <div class="sezione-standard sezione-errore">
+                <h1 class="position h404">Pagina non trovata</h1>
+                <p class="call-to-action position p404">Forse stai cercando il pesce Nemo nel posto sbagliato. Qui purtroppo non c'è, ma niente panico!</p>
+                <p class="call-to-action position p404">Puoi scoprire i nostri pesci più venduti tornando alla <a class="link-testuale" href="../PHP/home.php" lang="en">Home</a>.</p>
+                <p class="call-to-action position p404">Vuoi restare aggiornato sui nuovi arrivi? <a class="link-testuale" href="../PHP/registrazione.php">Registrati</a> e non perderti nessuna novità.</p>
+            </div>
         </main>
         <footer>
-
+            <p>Questo sito <span lang="en">web</span> è stato creato a fini didattici per l'Università di Padova. Le foto sono state gentilmente fornite dal fotografo <span lang="fr">Benoit</span>, a cui appartengono tutti i diritti. Potete trovare queste, e ulteriori foto nel sito <a class="link-testuale" href="https://www.inaturalist.org/observations?place_id=any&user_id=benoit_fishipedia&verifiable=any">iNaturalist</a>.</p>
         </footer>
         <a href="#top" class="back-to-top" aria-label="Torna all'inizio"><img src="../IMMAGINI/Icone/arrow-up.svg" alt="" aria-hidden="true"/></a>
     </body>
