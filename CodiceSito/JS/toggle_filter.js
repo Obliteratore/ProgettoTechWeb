@@ -1,31 +1,30 @@
+function isMobile() {
+    return window.innerWidth <= 767;
+}
+
 function toggleFilters() {
     const toggleButton = document.getElementById('toggle-filter');
     const filters = document.getElementById('filters');
 
-    if (!filters) return;
+    if(!toggleButton || !filters) return;
 
-    // Controlla se siamo su mobile
-    const isMobile = window.matchMedia("(max-width: 767px)").matches;
-
-    if (isMobile) {
-        // Mobile: apri inizialmente, poi chiudi subito
-        filters.classList.add('hidden');
-        if (toggleButton) toggleButton.textContent = "Mostra filtri";
-    } else {
-        // Desktop: filtri sempre aperti
-        filters.classList.remove('hidden');
-        if (toggleButton) toggleButton.textContent = "Nascondi filtri";
+    function setState(state) {
+        filters.classList.toggle('hidden', !state);
+        toggleButton.textContent = state ? "Nascondi filtri" : "Mostra filtri";
+        toggleButton.setAttribute('aria-expanded', state.toString());
     }
 
-    // Gestione toggle bottone
-    if (toggleButton) {
-        toggleButton.addEventListener('click', () => {
-            filters.classList.toggle('hidden');
-            toggleButton.textContent = filters.classList.contains('hidden')
-                ? "Mostra filtri"
-                : "Nascondi filtri";
-        });
-    }
+    setState(false);
+
+    toggleButton.addEventListener('click', () => {
+        const isOpen = toggleButton.getAttribute('aria-expanded') === 'true';
+        setState(!isOpen);
+    });
+
+    window.addEventListener('resize', () => {
+        if(!isMobile())
+            setState(false);
+    });
 }
 
 toggleFilters();

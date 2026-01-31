@@ -37,7 +37,7 @@
                 </nav>
                 <div>
                     <a id="cart-link" href="../PHP/carrello.php" aria-label="Vai al carrello"><img src="../IMMAGINI/Icone/shopping-cart.svg" alt="" aria-hidden="true"/></a>
-                    <button  id="hamburger-menu-btn" aria-controls="hamburger-menu" aria-expanded="false">
+                    <button  id="hamburger-menu-btn" aria-controls="hamburger-menu" aria-expanded="true">
                         <img id="open-hamburger-menu" src="../IMMAGINI/Icone/menu-burger.svg" alt="" aria-hidden="true"/>
                         <span class="screen-reader">Apri l'<span lang="en">hamburger</span> menù</span>
                         <img id="close-hamburger-menu" src="../IMMAGINI/Icone/cross.svg" alt="" aria-hidden="true"/>
@@ -76,8 +76,8 @@
                 </div>
 
 
-                <button type="button" class="bottone-standard" id="toggle-filter">Mostra filtri</button>
-                <fieldset id="filters" class="filter-container hidden">
+                <button id="toggle-filter" type="button" class="bottone-standard" aria-controls="filters" aria-expanded="true">Mostra filtri</button>
+                <fieldset id="filters" class="filter-container">
                     <legend>Filtri</legend>
                     
                     <div class="search-bar">
@@ -150,8 +150,8 @@
                 </fieldset>
                 <button type="submit" class="bottone-standard">Cerca</button>
             </form>
+            [listaPesci]
         </main>
-        [listaPesci]
         <footer>
             <p>Questo sito <span lang="en">web</span> è stato creato a fini didattici per l'Università di Padova. Le foto sono state gentilmente fornite dal fotografo <span lang="fr">Benoit</span>, a cui appartengono tutti i diritti. Potete trovare queste, e ulteriori foto nel sito <a class="link-testuale" href="https://www.inaturalist.org/observations?place_id=any&user_id=benoit_fishipedia&verifiable=any">iNaturalist</a>.</p>
         </footer>

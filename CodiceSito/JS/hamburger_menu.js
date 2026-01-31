@@ -1,5 +1,5 @@
-function isMobileView() {
-    return window.innerWidth < 768;
+function isMobile() {
+    return window.innerWidth <= 767;
 }
 
 function hamburger_menu() {
@@ -7,57 +7,56 @@ function hamburger_menu() {
     const hamburgerMenu = document.getElementById("hamburger-menu");
     const header = document.querySelector("header");
 
-    hamburgerMenuBtn.addEventListener("click", () => {
-    const isActive = hamburgerMenu.classList.toggle("active");      // mostra/nasconde il menu
-    hamburgerMenuBtn.classList.toggle("active");   // mostra l'icona corretta
+    if(!hamburgerMenuBtn || !hamburgerMenu) return;
 
-    // indica se il menu è aperto o chiuso
-    hamburgerMenuBtn.setAttribute("aria-expanded", isActive);
+    function setState(state) {
+        hamburgerMenu.classList.toggle('hidden-menu', !state);
+        hamburgerMenuBtn.classList.toggle('active', state);
+        hamburgerMenuBtn.setAttribute('aria-expanded', state.toString());
+    }
+
+    setState(false);
+
+    hamburgerMenuBtn.addEventListener('click', () => {
+        const isOpen = hamburgerMenuBtn.getAttribute('aria-expanded') === 'true';
+        setState(!isOpen);
     });
 
-    // Chiudi il menu se la finestra è più larga di 768px
-    window.addEventListener("resize", () => {
-        if (!isMobileView()) {
-            hamburgerMenu.classList.remove("active");
-            hamburgerMenuBtn.classList.remove("active");
-        }
+    window.addEventListener('resize', () => {
+        if(!isMobile())
+            setState(false);
     });
 
     let startY = 0;
     let endY = 0;
-    const swipeThreshold = 50; // soglia minima in px
+    const swipeThreshold = 50;
 
-    // Rileva inizio tocco
-    header.addEventListener("touchstart", (event) => {
-        if (!isMobileView()) return;
-        startY = event.touches[0].clientY;
-    });
+    if(header) {
+        header.addEventListener("touchstart", (event) => {
+            if(!isMobile()) return;
+            startY = event.touches[0].clientY;
+        });
 
-    // Rileva fine tocco
-    header.addEventListener("touchend", (event) => {
-        if (!isMobileView()) return;
-        endY = event.changedTouches[0].clientY;
-        handleSwipe();
-    });
+        header.addEventListener("touchend", (event) => {
+            if(!isMobile()) return;
+            endY = event.changedTouches[0].clientY;
+            handleSwipe();
+        });
+    } else
+        return;
 
     function handleSwipe() {
         const deltaY = startY - endY;
+        const isOpen = hamburgerMenuBtn.getAttribute('aria-expanded') === 'true';
 
-        // Swipe verso il basso → APRI menu
-        if (deltaY < -swipeThreshold && !hamburgerMenu.classList.contains("active")) {
-            hamburgerMenu.classList.add("active");
-            hamburgerMenuBtn.classList.add("active");
-            hamburgerMenuBtn.setAttribute("aria-expanded", "true");
+        if (deltaY < -swipeThreshold && !isOpen) {
+            setState(true);
         }
 
-        // Swipe verso l’alto → CHIUDI menu
-        if (deltaY > swipeThreshold && hamburgerMenu.classList.contains("active")) {
-            hamburgerMenu.classList.remove("active");
-            hamburgerMenuBtn.classList.remove("active");
-            hamburgerMenuBtn.setAttribute("aria-expanded", "false");
+        if (deltaY > swipeThreshold && isOpen) {
+            setState(false);
         }
     }
-
 }
 
 hamburger_menu();

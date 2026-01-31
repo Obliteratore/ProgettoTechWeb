@@ -37,7 +37,7 @@
                 </nav>
                 <div>
                     <a id="cart-link" href="../PHP/carrello.php" aria-label="Vai al carrello"><img src="../IMMAGINI/Icone/shopping-cart.svg" alt="" aria-hidden="true"/></a>
-                    <button  id="hamburger-menu-btn" aria-controls="hamburger-menu" aria-expanded="false">
+                    <button  id="hamburger-menu-btn" aria-controls="hamburger-menu" aria-expanded="true">
                         <img id="open-hamburger-menu" src="../IMMAGINI/Icone/menu-burger.svg" alt="" aria-hidden="true"/>
                         <span class="screen-reader">Apri l'<span lang="en">hamburger</span> menù</span>
                         <img id="close-hamburger-menu" src="../IMMAGINI/Icone/cross.svg" alt="" aria-hidden="true"/>
@@ -67,114 +67,95 @@
         <main id="main-content">
             <div class="form-container sezione-standard">
                 <h1 class="position">Aggiungi un nuovo pesce</h1>
-                <form action="../PHP/aggiungi_pesce.php" method="post" class="form-container" enctype="multipart/form-data">
+                <form class="data-form" action="../PHP/aggiungi_pesce.php" method="post" enctype="multipart/form-data">
 
-                    <div class="data-form">
-                     <label for="nome_latino">Nome latino</label>
-                     <input type="text" id="nome_latino" name="nome_latino" value="" aria-describedby="nome-latino-help nome-latino-error" aria-invalid="[invalid-nome-latino]" required>
+                    <label for="nome_latino">Nome latino</label>
+                    <input type="text" id="nome_latino" name="nome_latino" value="" aria-describedby="nome-latino-help nome-latino-error" aria-invalid="[invalid-nome-latino]" required>
                     <p id="nome-latino-help" class="help">
                         Solo lettere, minimo 2 caratteri.
                     </p>
                     <ul id="nome-latino-error" class="error-message" aria-live="polite">
                         [errore-nome-latino]
                     </ul>
-                    </div>
 
-                    <div class="data-form">
-                        <label for="nome_comune">Nome comune</label>
-                        <input type="text" id="nome_comune" name="nome_comune" value="" aria-describedby="nome-comune-help nome-comune-error" aria-invalid="[invalid-nome-comune]" required >
+                    <label for="nome_comune">Nome comune</label>
+                    <input type="text" id="nome_comune" name="nome_comune" value="" aria-describedby="nome-comune-help nome-comune-error" aria-invalid="[invalid-nome-comune]" required >
                     <p id="nome-comune-help" class="help">
                         Solo lettere, minimo 2 caratteri.
                     </p>
                     <ul id="nome-comune-error" class="error-message" aria-live="polite">
                         [errore-nome-comune]
                     </ul>
-                    </div>
 
-                    <div class="data-form">
-                        <label for="famiglia">Famiglia</label>
-                        <select id="famiglia" name="famiglia" aria-describedby="famiglia-help famiglia-error" aria-invalid="[invalid-famiglia]" required>
-                    [famiglia-options]
+                    <label for="famiglia">Famiglia</label>
+                    <select id="famiglia" name="famiglia" aria-describedby="famiglia-help famiglia-error" aria-invalid="[invalid-famiglia]" required>
+                        [famiglia-options]
                     </select>
                     <p id="famiglia-help" class="help">Seleziona la famiglia del pesce.</p>
                     <ul id="famiglia-error" class="error-message" aria-live="polite">
                         [errore-famiglia]
                     </ul>
-                    </div>
-                    
-                    <div class="data-form">
-                        <label for="dimensione">Dimensione (centimetri)</label>
-                        <input type="number" id="dimensione" name="dimensione" min="0" value="" aria-describedby="dimensione-help dimensione-error" aria-invalid="[invalid-dimensione]" required>
-                        <p id="dimensione-help" class="help">Solo numeri maggiori di 0.</p>
-                        <ul id="dimensione-error" class="error-message" aria-live="polite">
-                            [errore-dimensione]
-                        </ul>
-                    </div>
 
-                    <div class="data-form">
-                        <label for="volume_minimo">Volume minimo (litri)</label>
-                        <input type="number" id="volume_minimo" name="volume_minimo" min="0" value="" aria-describedby="volume-minimo-help volume-minimo-error" aria-invalid="[invalid-volume-minimo]" required >
-                        <p id="volume-minimo-help" class="help">Solo numeri maggiori di 0.</p>
-                        <ul id="volume-minimo-error" class="error-message" aria-live="polite">
-                            [errore-volume-minimo]
-                        </ul>
-                    </div>
+                    <label for="dimensione">Dimensione (centimetri)</label>
+                    <input type="number" id="dimensione" name="dimensione" min="0" value="" aria-describedby="dimensione-help dimensione-error" aria-invalid="[invalid-dimensione]" required>
+                    <p id="dimensione-help" class="help">Solo numeri maggiori di 0.</p>
+                    <ul id="dimensione-error" class="error-message" aria-live="polite">
+                        [errore-dimensione]
+                    </ul>
 
-                     <div class="data-form">
-                        <label for="colori">Colori </label>
-                        <input type="text" id="colori" name="colori" value="" aria-describedby="colori-help lista-colori-help colori-error" aria-invalid="[invalid-colori]" required >
-                        <p id="colori-help" class="help">Inserire solo colori presenti nella lista e separarli con virgole senza spazi, ad esempio: blu,verde.</p>
-                        <ul id="colori-error" class="error-message" aria-live="polite">
-                            [errore-colori]
-                        </ul>
-                        <p class="help">Lista dei colori:</p>
-                        <ul id="lista-colori-help" class="help">
-                            <li>Nero</li>
-                            <li>Verde</li>
-                            <li>Rosso</li>
-                            <li>Rosa</li>
-                            <li>Blu</li>
-                            <li>Azzurro</li>
-                            <li>Trasparente</li>
-                            <li>Marrone</li>
-                            <li>Grigio</li>
-                            <li>Beige</li>
-                            <li>Arancione</li>
-                            <li>Giallo</li>
-                        </ul>
-                    </div>
+                    <label for="volume_minimo">Volume minimo (litri)</label>
+                    <input type="number" id="volume_minimo" name="volume_minimo" min="0" value="" aria-describedby="volume-minimo-help volume-minimo-error" aria-invalid="[invalid-volume-minimo]" required >
+                    <p id="volume-minimo-help" class="help">Solo numeri maggiori di 0.</p>
+                    <ul id="volume-minimo-error" class="error-message" aria-live="polite">
+                        [errore-volume-minimo]
+                    </ul>
 
-                    <div class="data-form">
-                        <label for="prezzo">Prezzo (€)</label>
-                        <input type="number" id="prezzo" name="prezzo" step="1" min="0" value="" aria-describedby="prezzo-help prezzo-error" aria-invalid="[invalid-prezzo]" required >
-                        <p id="prezzo-help" class="help">Inserire un numero maggiore di 0.</p>
-                        <ul id="prezzo-error" class="error-message" aria-live="polite">
-                            [errore-prezzo]
-                        </ul>
-                    </div>
+                    <label for="colori">Colori </label>
+                    <input type="text" id="colori" name="colori" value="" aria-describedby="colori-help lista-colori-help colori-error" aria-invalid="[invalid-colori]" required >
+                    <p id="colori-help" class="help">Inserire solo colori presenti nella lista e separarli con virgole senza spazi, ad esempio: blu,verde.</p>
+                    <ul id="colori-error" class="error-message" aria-live="polite">
+                        [errore-colori]
+                    </ul>
+                    <p class="help">Lista dei colori:</p>
+                    <ul id="lista-colori-help" class="help">
+                        <li>Nero</li>
+                        <li>Verde</li>
+                        <li>Rosso</li>
+                        <li>Rosa</li>
+                        <li>Blu</li>
+                        <li>Azzurro</li>
+                        <li>Trasparente</li>
+                        <li>Marrone</li>
+                        <li>Grigio</li>
+                        <li>Beige</li>
+                        <li>Arancione</li>
+                        <li>Giallo</li>
+                    </ul>
 
-                    <div class="data-form">
-                        <label for="disponibilita">Disponibilità</label>
-                        <input type="number" id="disponibilita" name="disponibilita"  min="0" value="" aria-describedby="disponibilita-help disponibilita-error" aria-invalid="[invalid-disponibilita]" required>
-                        <p id="disponibilita-help" class="help">Inserire un numero maggiore o uguale a 0.</p>
-                        <ul id="disponibilita-error" class="error-message" aria-live="polite">
-                            [errore-disponibilita]
-                        </ul>
-                    </div>
+                    <label for="prezzo">Prezzo (€)</label>
+                    <input type="number" id="prezzo" name="prezzo" step="1" min="0" value="" aria-describedby="prezzo-help prezzo-error" aria-invalid="[invalid-prezzo]" required >
+                    <p id="prezzo-help" class="help">Inserire un numero maggiore di 0.</p>
+                    <ul id="prezzo-error" class="error-message" aria-live="polite">
+                        [errore-prezzo]
+                    </ul>
 
-                    <div class="data-form">
-                        <label for="immagine">Immagine del pesce</label>
-                        <input type="file" id="immagine" name="immagine" aria-describedby="immagine-help immagine-error" aria-invalid="[invalid-immagine]" accept="image/jpeg, image/jpg">
-                        <p id="immagine-help" class="help">L'immagine deve essere larga 1024 <span lang="en">pixel</span> e alta 683 <span lang="en">pixel</span>. Formato JPG o JPEG.</p>
-                        <ul id="immagine-error" class="error-message" aria-live="polite">
-                            [errore-immagine]
-                        </ul>
-                    </div>
+                    <label for="disponibilita">Disponibilità</label>
+                    <input type="number" id="disponibilita" name="disponibilita"  min="0" value="" aria-describedby="disponibilita-help disponibilita-error" aria-invalid="[invalid-disponibilita]" required>
+                    <p id="disponibilita-help" class="help">Inserire un numero maggiore o uguale a 0.</p>
+                    <ul id="disponibilita-error" class="error-message" aria-live="polite">
+                        [errore-disponibilita]
+                    </ul>
 
-                    <div class="data-form">
-                        <input type="submit" value="Aggiungi pesce">
-                    </div>
+                    <label for="immagine">Immagine del pesce</label>
+                    <input type="file" id="immagine" name="immagine" aria-describedby="immagine-help immagine-error" aria-invalid="[invalid-immagine]" accept="image/jpeg, image/jpg">
+                    <p id="immagine-help" class="help">L'immagine deve essere larga 1024 <span lang="en">pixel</span> e alta 683 <span lang="en">pixel</span>. Formato JPG o JPEG.</p>
+                    <ul id="immagine-error" class="error-message" aria-live="polite">
+                        [errore-immagine]
+                    </ul>
+
+                    <input class="bottone-standard" type="submit" value="Aggiungi pesce">
                 </form>
+                <a id="cancelAddPesceBtn" class="bottone-standard" href="../PHP/profilo.php">Annulla</a>
             </div>
         </main>
         <script src="../JS/aggiungi_pesce_validation.js" defer></script>

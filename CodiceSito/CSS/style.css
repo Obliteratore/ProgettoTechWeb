@@ -193,7 +193,7 @@ SEZIONE MENU
 }
 
 #hamburger-menu {
-    display: none;
+    display: block;
     width: 100%;     
     text-align: center;
 }
@@ -206,17 +206,16 @@ SEZIONE MENU
     margin-bottom: 0.5rem;
 }
 
-/* Menu visibile quando ha classe active */
-#hamburger-menu.active {
-    display: block;
-}
-
 #hamburger-menu-btn {
     background: transparent;
     border: none;
     width: 3em;
     height: 3em;
     cursor: pointer;
+}
+
+#hamburger-menu.hidden-menu {
+    display: none;
 }
 
 #close-hamburger-menu {
@@ -914,7 +913,7 @@ fieldset > label:first-of-type {
     background-color: #b13735;
 }
 
-#cancelModifyBtn, #cancelDeleteBtn, #deleteProfiloBtn {
+#cancelModifyBtn, #cancelDeleteBtn, #deleteProfiloBtn, #cancelBuyBtn, #cancelAddPesceBtn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -924,7 +923,7 @@ fieldset > label:first-of-type {
     margin-top: 1em;
 }
 
-#cancelModifyBtn {
+#cancelModifyBtn, #cancelBuyBtn, #cancelAddPesceBtn {
     min-height: 2.5rem;
     height: 2em;
     font-size: clamp(1.2rem, 1rem + 0.6vw, 1.7rem);
@@ -1035,6 +1034,15 @@ dialog::backdrop {
 SEZIONE ADMIN
 =======================================
 */
+
+#exitForm {
+    margin-top: 1rem;
+}
+
+input[type="submit"][value="Aggiungi pesce"], input[type="submit"][value="Salva modifiche"] {
+    margin-top: 0.8em;
+}
+
 .admin-table {
     table-layout: auto;
     border-collapse: collapse;
@@ -1079,7 +1087,7 @@ SEZIONE ADMIN
     }
 
     .admin-table {
-        margin-top:2rem;
+        margin-top: 1rem;
     }
     .admin-table tr {
         margin-bottom: 1rem;
@@ -1271,7 +1279,7 @@ SEZIONE Carrello
     box-sizing: border-box;
 }
 
-.hidden{
+.hidden {
     display: none;
 }
 
