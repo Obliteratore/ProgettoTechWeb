@@ -1,5 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector("form");
+    if(form){
+        form.setAttribute('novalidate', '');
+    }
     const ListaColori = ['giallo','arancione','rosso','beige','rosa','blu','azzurro','verde','marrone','nero','grigio','trasparente'];
 
     function showErrors(input, errorElement, errors) {
