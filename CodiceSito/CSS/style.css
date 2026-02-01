@@ -985,6 +985,7 @@ dialog::backdrop {
 
 .lista-ordini table {
     width: 100%;
+    table-layout: fixed;
     border-collapse: collapse;
     box-sizing: border-box;
     font-size: clamp(1rem, 0.6rem + 1vw, 1.3rem);

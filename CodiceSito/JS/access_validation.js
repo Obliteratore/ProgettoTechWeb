@@ -5,6 +5,8 @@ const campiForm = [
 
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("login-form");
+
+    if(!form) return;
     
     form.addEventListener("submit", (event) => {
         event.preventDefault();
@@ -25,10 +27,12 @@ function validateLogInForm() {
     let campoInvalido = null;
     let primoErrore = false;
     const username = document.getElementById(campiForm[0].id).value;
+    if(!username) return null;
 
     if(username != "user" && username != "admin") {
         for(const campo of campiForm) {
             const elemento = document.getElementById(campo.id);
+            if(!elemento) return null;
             const value = elemento.value.trim();
 
             if(!campo.validator(value) && !primoErrore) {
@@ -48,6 +52,7 @@ function validateLogInForm() {
 
 function setHtml(input, erorre) {
     const erroreInput = document.getElementById("login-error");
+    if(!erroreInput) return;
 
     if(erorre) {
         input.setAttribute("aria-invalid", "true");

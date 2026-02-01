@@ -18,10 +18,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const form = document.getElementById("signin-form");
+    if(!form) return;
     form.setAttribute("novalidate", "");
 
     campiForm.forEach(campo => {
         const elemento = document.getElementById(campo.id);
+        if(!elemento) return;
         
         elemento.addEventListener("blur", () => {
             campo.validator(elemento);
@@ -48,6 +50,7 @@ function validateSignInForm() {
     let primoErrore = false;
     for(const campo of campiForm) {
         const elemento = document.getElementById(campo.id);
+        if(!elemento) return null;
 
         if(!campo.validator(elemento) && !primoErrore) {
             campoInvalido = elemento;
@@ -59,6 +62,7 @@ function validateSignInForm() {
 
 function setHtml(input, isValid, errorId, errorText) {
     const erroreInput = document.getElementById(errorId);
+    if(!erroreInput) return;
 
     if(!isValid)
         input.setAttribute("aria-invalid", "true");

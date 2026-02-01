@@ -16,6 +16,7 @@ require_once "db_connection.php";
 use FM\FMAccess;
 
 $nomeCognome = '';
+$email = htmlspecialchars($_SESSION['email']);
 $username = '';
 $indirizzo = '';
 $ordini = '';
@@ -100,6 +101,6 @@ try{
     $connection->closeConnection();
 }
 
-$paginaHTML = str_replace(['[nomeCognome]', '[username]', '[indirizzo]', '[ordini]'], [$nomeCognome, $username, $indirizzo, $ordini], $paginaHTML);
+$paginaHTML = str_replace(['[nomeCognome]', '[email]', '[username]', '[indirizzo]', '[ordini]'], [$nomeCognome, $email, $username, $indirizzo, $ordini], $paginaHTML);
 echo $paginaHTML;
 ?>

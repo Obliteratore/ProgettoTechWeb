@@ -8,6 +8,7 @@ const campiForm = [
 document.addEventListener("DOMContentLoaded", () => {
 
     const form = document.getElementById("buy-form");
+    if(!form) return;
     form.setAttribute("novalidate", "");
     
     form.addEventListener("submit", (event) => {
@@ -30,6 +31,7 @@ function validateBuyForm() {
     let primoErrore = false;
     for(const campo of campiForm) {
         const elemento = document.getElementById(campo.id);
+        if(!elemento) return null;
 
         if(!campo.validator(elemento) && !primoErrore) {
             campoInvalido = elemento;
@@ -41,6 +43,7 @@ function validateBuyForm() {
 
 function setHtml(input, isValid, errorId, errorText) {
     const erroreInput = document.getElementById(errorId);
+    if(!erroreInput) return;
 
     if(!isValid)
         input.setAttribute("aria-invalid", "true");

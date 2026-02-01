@@ -11,16 +11,18 @@ const campiForm = [
 
 document.addEventListener("DOMContentLoaded", () => {
     const summary = document.getElementById('modify-error');
-    if (summary && summary.children.length > 0) {
+    if(summary && summary.children.length > 0) {
         summary.focus();
         summary.scrollIntoView({behavior: "smooth", block: "center"});
     }
 
     const form = document.getElementById("modify-form");
+    if(!form) return;
     form.setAttribute("novalidate", "");
 
     campiForm.forEach(campo => {
         const elemento = document.getElementById(campo.id);
+        if(!elemento) return;
         
         elemento.addEventListener("blur", () => {
             campo.validator(elemento);
@@ -47,6 +49,7 @@ function validateModifyForm() {
     let primoErrore = false;
     for(const campo of campiForm) {
         const elemento = document.getElementById(campo.id);
+        if(!elemento) return null;
 
         if(!campo.validator(elemento) && !primoErrore) {
             campoInvalido = elemento;
@@ -58,6 +61,7 @@ function validateModifyForm() {
 
 function setHtml(input, isValid, errorId, errorText) {
     const erroreInput = document.getElementById(errorId);
+    if(!erroreInput ) return;
 
     if(!isValid)
         input.setAttribute("aria-invalid", "true");
