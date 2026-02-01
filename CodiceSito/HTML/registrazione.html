@@ -26,7 +26,7 @@
         </nav>
         <header>
             <div class="header-content sezione-standard">
-                <img src="../IMMAGINI/Icone/fish.png" alt=""/>
+                <img src="../IMMAGINI/Icone/fish.png" alt="">
                 <nav id="menu" aria-label="Menù di navigazione">
                     <ul>
                         <li lang="en"><a class="link-testuale" href="../PHP/home.php">Home</a></li>
@@ -36,11 +36,11 @@
                     </ul>
                 </nav>
                 <div>
-                    <a id="cart-link" href="carrello.html" aria-label="Vai al carrello"><img src="../IMMAGINI/Icone/shopping-cart.svg" alt="" aria-hidden="true"/></a>
+                    <a id="cart-link" href="carrello.html" aria-label="Vai al carrello"><img src="../IMMAGINI/Icone/shopping-cart.svg" alt="" aria-hidden="true"></a>
                     <button  id="hamburger-menu-btn" aria-controls="hamburger-menu" aria-expanded="true">
-                        <img id="open-hamburger-menu" src="../IMMAGINI/Icone/menu-burger.svg" alt="" aria-hidden="true"/>
+                        <img id="open-hamburger-menu" src="../IMMAGINI/Icone/menu-burger.svg" alt="" aria-hidden="true">
                         <span class="screen-reader">Apri l'<span lang="en">hamburger</span> menù</span>
-                        <img id="close-hamburger-menu" src="../IMMAGINI/Icone/cross.svg" alt="" aria-hidden="true"/>
+                        <img id="close-hamburger-menu" src="../IMMAGINI/Icone/cross.svg" alt="" aria-hidden="true">
                         <span class="screen-reader">Chiudi l'<span lang="en">hamburger</span> menù</span>
                     </button>
                 </div>
@@ -68,21 +68,25 @@
             <div class="form-container sezione-standard">
                 <h1 class="position">Registrati</h1>
                 <p class="call-to-action position">Se hai già un <span lang="en">account</span>, <a class="link-testuale" href="accesso.php">accedi</a>!</p>
-                <ul id="signin-error" class="error-message" role="alert" tabindex="-1">[errore-summary]</ul>
+                <div id="signin-error" role="alert" tabindex="-1">
+                    <ul id="list-errors" class="error-message">
+                        [errore-summary]
+                    </ul>
+                </div>
                 <form id="signin-form" class="data-form" action="../PHP/registrazione.php" method="post" autocomplete="on">
                     <fieldset>
                         <legend>Informazioni personali</legend>
                         <label for="nome">Nome
                             <small class="required">(Obbligatorio)</small>
                         </label>
-                        <input id="nome" type="text" name="nome" value="[valore-nome]" autocomplete="given-name" aria-describedby="given-name-help given-name-error" aria-invalid="[invalid-nome]" required/>
+                        <input id="nome" type="text" name="nome" value="[valore-nome]" autocomplete="given-name" aria-describedby="given-name-help given-name-error" aria-invalid="[invalid-nome]" required>
                         <p id="given-name-help" class="help">Deve avere almeno 2 caratteri e non sono ammessi numeri o caratteri speciali.</p>
                         <ul id="given-name-error" class="error-message" aria-live="polite">[errore-nome]</ul>
 
                         <label for="cognome">Cognome
                             <small class="required">(Obbligatorio)</small>
                         </label>
-                        <input id="cognome" type="text" name="cognome" value="[valore-cognome]" autocomplete="family-name" aria-describedby="family-name-help family-name-error" aria-invalid="[invalid-cognome]" required/>
+                        <input id="cognome" type="text" name="cognome" value="[valore-cognome]" autocomplete="family-name" aria-describedby="family-name-help family-name-error" aria-invalid="[invalid-cognome]" required>
                         <p id="family-name-help" class="help">Deve avere almeno 2 caratteri e non sono ammessi numeri o caratteri speciali.</p>
                         <ul id="family-name-error" class="error-message" aria-live="polite">[errore-cognome]</ul>
                     </fieldset>
@@ -112,7 +116,7 @@
                         <label for="via">Via
                             <small class="required">(Obbligatorio)</small>
                         </label>
-                        <input id="via" type="text" name="via" value="[valore-via]" autocomplete="street-address" aria-describedby="via-help via-error" aria-invalid="[invalid-via]" required/>
+                        <input id="via" type="text" name="via" value="[valore-via]" autocomplete="address-line1" aria-describedby="via-help via-error" aria-invalid="[invalid-via]" required>
                         <p id="via-help" class="help">L'indirizzo completo con via, piazza o contrada e numero civico.</p>
                         <p id="via-error" class="error-message" aria-live="polite">[errore-via]</p>
                     </fieldset>
@@ -122,21 +126,21 @@
                         <label for="email"><span lang="en">Email</span>
                             <small class="required">(Obbligatorio)</small>
                         </label>
-                        <input id="email" type="email" name="email" value="[valore-email]" autocomplete="email" aria-describedby="email-help email-error" aria-invalid="[invalid-email]" required/>
+                        <input id="email" type="email" name="email" value="[valore-email]" autocomplete="email" aria-describedby="email-help email-error" aria-invalid="[invalid-email]" required>
                         <p id="email-help" class="help">Un indirizzo <span lang="en">email</span> valido. Verrà usato per la verifica dell'<span lang="en">account</span> e per le comunicazioni.</p>
                         <p id="email-error" class="error-message" aria-live="polite">[errore-email]</p>
 
                         <label for="username"><span lang="en">Username</span>
                             <small class="required">(Obbligatorio)</small>
                         </label>
-                        <input id="username" type="text" name="username" value="[valore-username]" autocomplete="username" aria-describedby="username-help username-error" aria-invalid="[invalid-username]" required/>
+                        <input id="username" type="text" name="username" value="[valore-username]" autocomplete="username" aria-describedby="username-help username-error" aria-invalid="[invalid-username]" required>
                         <p id="username-help" class="help">Scegli un nome utente di lunghezza tra 3 e 30 caratteri. Non sono ammessi spazi o caratteri speciali.</p>
                         <ul id="username-error" class="error-message" aria-live="polite">[errore-username]</ul>
 
                         <label for="password"><span lang="en">Password</span>
                         <small class="required">(Obbligatorio)</small>
                         </label>
-                        <input id="password" type="password" name="password" autocomplete="new-password" aria-describedby="password-help password-error" aria-invalid="[invalid-password]" required/>
+                        <input id="password" type="password" name="password" autocomplete="new-password" aria-describedby="password-help password-error" aria-invalid="[invalid-password]" required>
                         <div id="password-help" class="help">
                             <p>Scegli una <span lang="en">password</span>. Deve contenere:</p>
                             <ul>
@@ -151,11 +155,11 @@
                         <label for="confermaPassword">Conferma <span lang="en">Password</span>
                             <small class="required">(Obbligatorio)</small>
                         </label>
-                        <input id="confermaPassword" type="password" name="confermaPassword" autocomplete="new-password" aria-describedby="confermaPassword-help confermaPassword-error" aria-invalid="[invalid-confermaPassword]" required/>
+                        <input id="confermaPassword" type="password" name="confermaPassword" autocomplete="new-password" aria-describedby="confermaPassword-help confermaPassword-error" aria-invalid="[invalid-confermaPassword]" required>
                         <p id="confermaPassword-help" class="help">Inserisci nuovamente la <span lang="en">password</span> che hai scelto.</p>
                         <p id="confermaPassword-error" class="error-message" aria-live="polite">[errore-confermaPassword]</p>
                     </fieldset>
-                    <input class="bottone-standard" type="submit" value="Registrati"/>
+                    <input class="bottone-standard" type="submit" value="Registrati">
                 </form>
             </div>
         </main>
@@ -163,6 +167,6 @@
         <footer>
 
         </footer>
-        <a href="#top" class="back-to-top" aria-label="Torna all'inizio"><img src="../IMMAGINI/Icone/arrow-up.svg" alt="" aria-hidden="true"/></a>
+        <a href="#top" class="back-to-top" aria-label="Torna all'inizio"><img src="../IMMAGINI/Icone/arrow-up.svg" alt="" aria-hidden="true"></a>
     </body>
 </html>

@@ -772,6 +772,7 @@ SEZIONE CHISIAMO.HMTL
 ul.error-message {
     list-style: none;
 }
+
 #lista-colori-help {
     padding-left: 1rem;
 }
@@ -845,7 +846,7 @@ legend {
     margin-top: 0.5em;
 }
 
-#signin-error a, #modify-error a {
+#signin-error ul a, #modify-error ul a {
     color: var(--color-text);
     background: none;
 }
@@ -897,16 +898,8 @@ fieldset > label:first-of-type {
     margin-top: 1rem;
 }
 
-#exitProfilo {
-    background-color: #1D8649;
-}
-
 #deleteProfiloLink, #deleteProfiloBtn {
     background-color: #C83E3C;
-}
-
-#exitProfilo:hover, #exitProfilo:focus-visible {
-    background-color: #176f3d;
 }
 
 #deleteProfiloLink:hover, #deleteProfiloLink:focus-visible, #deleteProfiloBtn:hover, #deleteProfiloBtn:focus-visible {
@@ -1307,12 +1300,12 @@ a#buyLink {
     width: auto;
     height: auto;
 }
-/*ERRORE 404*/
+/* PAGINE ERRORE E CONFERMA*/
 
 .sezione-errore, .sezione-conferma {
     padding: 1rem;
 }
 
-.p404, .p500 {
+.paragrafo-errore, .paragrafo-conferma {
     margin-top: 1rem;
 }

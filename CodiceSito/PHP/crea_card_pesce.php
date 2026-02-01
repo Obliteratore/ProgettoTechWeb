@@ -8,7 +8,7 @@ function crea_card_pesce(array $pesci) : string {
             $nome_comune = htmlspecialchars($pesce['nome_comune'] ?? '');
             $nome_latino = htmlspecialchars($pesce['nome_latino'] ?? '');
 
-            $stringaPesci .= '<a href="../PHP/pesce.php?nome_latino=' . $nome_latino . '">';
+            $stringaPesci .= '<a href="../PHP/pesce.php?nome_latino=' . urlencode($nome_latino) . '">';
             $stringaPesci .= '<li class="card-pesce">';
             $stringaPesci .= '<article>';
             $stringaPesci .= '<img height="683" width="1024" src="' . $immagine . '" alt="' . $nome_comune . '">';

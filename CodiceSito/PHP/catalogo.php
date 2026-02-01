@@ -6,7 +6,6 @@ require_once __DIR__ . "/db_connection.php";
 require_once __DIR__ . "/crea_card_pesce.php";
 use FM\FMAccess;
 
-//purificazione dell'input
 $nomeLatino = filter_input(INPUT_GET, 'nome_latino', FILTER_SANITIZE_SPECIAL_CHARS);
 $nomeComune = filter_input(INPUT_GET, 'nome_comune', FILTER_SANITIZE_SPECIAL_CHARS);
 $dimensione = filter_input(INPUT_GET, 'dimensione', FILTER_VALIDATE_INT);
@@ -79,13 +78,11 @@ try{
 	if ($filtro == "nuovi_arrivi") {
 		$pesci = $connection->getPesci($condizioni,$parametri, "ORDER BY data_inserimento DESC");
 	} else if ($filtro == "piu_venduti") {
-		$piuVenduti = $connection->getPiuVenduti(); // ordinato
-		$filtrati   = $connection->getPesci($condizioni, $parametri); // filtrato
+		$piuVenduti = $connection->getPiuVenduti();
+		$filtrati   = $connection->getPesci($condizioni, $parametri);
 
-		// 1. crea un array degli ID dei pesci filtrati
 		$idsFiltrati = array_column($filtrati, 'nome_latino');
 
-		// 2. filtra i pesci più venduti mantenendo l’ordine
 		$pesci = array_filter($piuVenduti, function($pesce) use ($idsFiltrati) {
     	return in_array($pesce['nome_latino'], $idsFiltrati);});
 	} else {
@@ -109,23 +106,19 @@ $stringaPesci = crea_card_pesce($pesci);
 
 $paginaHTML = str_replace("[listaPesci]", $stringaPesci, $paginaHTML);
 
-// valori dei form
 $paginaHTML = str_replace("[nomeComune]", htmlspecialchars($nomeComune ?? ''), $paginaHTML);
 $paginaHTML = str_replace("[nomeLatino]", htmlspecialchars($nomeLatino ?? ''), $paginaHTML);
 $paginaHTML = str_replace("[volumeMin]", htmlspecialchars($volumeMinimo ?? ''), $paginaHTML);
 $paginaHTML = str_replace("[prezzoMin]", htmlspecialchars($prezzoMinimo ?? ''), $paginaHTML);
 $paginaHTML = str_replace("[prezzoMax]", htmlspecialchars($prezzoMassimo ?? ''), $paginaHTML);
 
-// checkbox tipo_acqua
 $paginaHTML = str_replace("[tipoAcquaMarina]", in_array('marina', $tipoAcqua ?? [], true) ? 'checked' : '', $paginaHTML);
 $paginaHTML = str_replace("[tipoAcquaDolce]", in_array('dolce', $tipoAcqua ?? [], true) ? 'checked' : '', $paginaHTML);
 
-// radio filtro
 $paginaHTML = str_replace("[filtroAlfabetico]", ($filtro === 'alfabetico' ? 'checked' : ''), $paginaHTML);
 $paginaHTML = str_replace("[filtroNuoviArrivi]", ($filtro === 'nuovi_arrivi' ? 'checked' : ''), $paginaHTML);
 $paginaHTML = str_replace("[filtroPiuVenduti]", ($filtro === 'piu_venduti' ? 'checked' : ''), $paginaHTML);
 
-// radio colori
 $paginaHTML = str_replace("[coloreGiallo]", ($colore === 'giallo' ? 'checked' : ''), $paginaHTML);
 $paginaHTML = str_replace("[coloreArancione]", ($colore === 'arancione' ? 'checked' : ''), $paginaHTML);
 $paginaHTML = str_replace("[coloreRosso]", ($colore === 'rosso' ? 'checked' : ''), $paginaHTML);

@@ -192,9 +192,6 @@ try {
                     $connection->rollback();
                     throw $e;
                 }
-
-                header('Location: ../PHP/carrello.php');
-                exit;
             } elseif(isset($_SESSION['carrello_ospite']) && count($_SESSION['carrello_ospite']) > 0) {
                 $email = $values['email'];
                 $prodotti = [];
@@ -228,12 +225,13 @@ try {
                 }
 
                 unset($_SESSION['carrello_ospite']);
-                header('Location: ../PHP/carrello.php');
-                exit;
             } else {
                 header('Location: ../PHP/carrello.php');
                 exit;
             }
+
+            header('Location: ../HTML/acquisto_effettuato.html');
+            exit;
         }
     } else {
         $prodotti = $connection->getCarrello($email);
