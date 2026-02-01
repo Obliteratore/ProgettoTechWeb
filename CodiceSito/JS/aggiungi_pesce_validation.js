@@ -11,13 +11,23 @@ document.addEventListener('DOMContentLoaded', () => {
         input.setAttribute('aria-invalid', errors.length > 0 ? 'true' : 'false');
     }
 
-    function validateNomeLatino() {
+    //AJAX, utilizzato per controllare la presenza del nome latino nel database altrimenti il controllo si faceva solo server side e non anche client side.
+    async function validateNomeLatino() {
         const input = document.getElementById('nome_latino');
         const target = document.getElementById('nome-latino-error');
+        if(!input) return;
         const val = input.value.trim();
         const err = [];
+        if(!val) err.push("Il nome latino è obbligatorio.");
         if (val.length < 2) err.push("Deve avere almeno 2 caratteri.");
         if (/[^A-Za-zÀ-ÿ\s]/.test(val)) err.push("Sono ammesse solo lettere.");
+        if (err.length === 0) {
+            const response = await fetch(`../PHP/aggiungi_pesce.php?check_nome=${encodeURIComponent(val)}`);
+            const data = await response.json();
+                if(data.exists){
+                    err.push("Questo nome latino è già presente nel database. Scegline un altro.")
+                }
+        }
         showErrors(input, target, err);
     }
 
@@ -127,8 +137,10 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('disponibilita')?.addEventListener('blur', validateDisponibilita);
     document.getElementById('immagine')?.addEventListener('change', validateImmagine);
 
-    form.addEventListener("submit", (e) => {
-        validateNomeLatino();
+    form.addEventListener("submit", async (e) => {
+
+        await validateNomeLatino();
+
         validateNomeComune();
         validateFamiglia();
         validateDimensione();
