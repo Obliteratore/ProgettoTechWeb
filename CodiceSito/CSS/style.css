@@ -553,9 +553,11 @@ dialog#msg-successo {
     box-shadow: none;
     padding: 0;
     margin: auto;
-    max-width: 90%;
-    width: auto;
+    width: 90%;
+    max-width: 350px;
+    inset: 0;
     overflow: visible;
+    box-sizing: border-box;
 }
 
 dialog#msg-successo::backdrop {
@@ -564,14 +566,14 @@ dialog#msg-successo::backdrop {
 }
 
 .contenuto-msg-successo {
-padding: 2em;
-width: 90%;
-max-width: 300px;
+padding: 1.5em;
+width: 100%;
+box-sizing: border-box;
 text-align: center;
 display: flex;
 flex-direction: column;
 gap: 1.5em;
-margin: 0 auto;
+margin: 0;
 }
 
 /*
