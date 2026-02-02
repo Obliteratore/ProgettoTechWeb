@@ -49,6 +49,7 @@ a {
     background-color: #060606af;
     text-decoration: underline;
     border-radius: 6px;
+    display: inline-flex;
 }
 
 .link-testuale:visited {
@@ -176,6 +177,7 @@ header{
 
 #cart-link {
     margin-right: 0.5rem;
+    display: inline-flex;
 }
 
 #cart-link > img {

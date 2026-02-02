@@ -81,7 +81,7 @@ try{
                 $ordini .= '<tbody>';
             }
             $ordini .= '<tr>';
-            $ordini .= '<th scope="row"><a href="../PHP/pesce.php?nome_latino=' . urlencode(htmlspecialchars($ordine['nome_latino'])) . '">' . htmlspecialchars($ordine['nome_comune']) . '</a></th>';
+            $ordini .= '<th scope="row"><a class="link-testuale" href="../PHP/pesce.php?nome_latino=' . urlencode(htmlspecialchars($ordine['nome_latino'])) . '">' . htmlspecialchars($ordine['nome_comune']) . '</a></th>';
             $ordini .= '<td data-title="Prezzo">' . number_format($ordine['prezzo_unitario'], 2, ',', '.') . ' €</td>';
             $ordini .= '<td data-title="Quantità">' . (int)$ordine['quantita'] . '</td>';
             $ordini .= '</tr>';
