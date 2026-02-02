@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const val = input.value.trim();
         const err = [];
         if (!val) err.push("Il nome comune è obbligatorio.");
-        else if (val.length < 2) err.push("Deve avere almeno 2 caratteri.");
+        else if (val.length < 2) err.push("Nome latino non valido.");
         if (val && /[^A-Za-zÀ-ÿ\s]/.test(val)) err.push("Sono ammesse solo lettere.");
         showErrors(input, target, err);
     }
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const target = document.getElementById('dimensione-error');
         if(!input || input.readOnly) return;
         const val = parseFloat(input.value);
-        const err = (isNaN(val) || val <= 0) ? ["Inserisci un numero valido maggiore di 0."] : [];
+        const err = (isNaN(val) || val <= 0) ? ["Dimensione non valida."] : [];
         showErrors(input, target, err);
     }
 
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const target = document.getElementById('volume-minimo-error');
         if(!input || input.readOnly) return;
         const val = parseFloat(input.value);
-        const err = (isNaN(val) || val <= 0) ? ["Inserisci un numero valido maggiore di 0."] : [];
+        const err = (isNaN(val) || val <= 0) ? ["Volume minimo non valido."] : [];
         showErrors(input, target, err);
     }
 
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const val = input.value.trim();
         const err = [];
         if (!/^[A-Za-zÀ-ÿ]+(,[A-Za-zÀ-ÿ]+)*$/.test(val)) {
-            err.push("Formato non valido. Usa lettere separate da virgole senza spazi, ad esempio: rosso,blu,verde.");
+            err.push("Formato non valido.");
         } else {
             val.split(',').forEach(c => {
                 if (!ListaColori.includes(c.toLowerCase())) err.push(`Il colore '${c}' non è nella lista consentita.`);
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const target = document.getElementById('disponibilita-error');
         if(!input || input.readOnly) return;
         const val = parseInt(input.value);
-        const err = (isNaN(val) || val < 0) ? ["Inserisci un numero valido."] : [];
+        const err = (isNaN(val) || val < 0) ? ["Disponibilità non valida."] : [];
         showErrors(input, target, err);
     }
 
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const validTypes = ["image/jpeg", "image/jpg"];
         if (!validTypes.includes(file.type)) {
-            err.push("Formato non valido. Usa JPG o JPEG.");
+            err.push("Formato immagine non consentito.");
             showErrors(input, target, err);
             return;
         }
@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
         img.onload = function() {
             
             if (this.width !== 1024 || this.height !== 683) {
-                err.push("L'immagine deve essere alta 683 pixel e larga 1024 pixel.");
+                err.push("Dimensioni invalide.");
             }
             
             showErrors(input, target, err);
