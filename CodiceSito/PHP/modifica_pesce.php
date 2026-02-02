@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $pesce = $connection->getPesci(["p.nome_latino = ?"],[$_POST['nome_latino']]);
 
     if(count($pesce) != 1){
-        die("Pesce non trovato");
+         header('Location: ../HTML/error_404.html');
     }
 
     $p=$pesce[0];
