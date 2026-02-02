@@ -20,16 +20,13 @@ use FM\FMAccess;
 
 $paginaHTML = file_get_contents('../HTML/modifica_pesce.html');
 
-if (!$paginaHTML) {
-    die("Errore caricamento pagina");
-}
-
 $connection = new FMAccess();
 $connection->openConnection();
 
 if($_SERVER["REQUEST_METHOD"] === "GET"){
     if(!isset($_GET['nome_latino'])){
-        die("Pesce non specificato");
+        header('Location: ../HTML/error_404.html');
+        exit;
     }
 
     $nomeLatino = $_GET['nome_latino'];
@@ -37,7 +34,8 @@ if($_SERVER["REQUEST_METHOD"] === "GET"){
     $pesce = $connection->getPesci(["p.nome_latino = ?"],[$nomeLatino]);
 
     if (count($pesce)!= 1){
-        die("Pesce non trovato");
+        header('Location: ../HTML/error_404.html');
+        exit;
     }
 
     $p=$pesce[0];
@@ -102,20 +100,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     'immagine' => []
     ];
 
-    if (strlen($nome_comune) < 2) {
-    $errore['nome_comune'][] = "Deve avere almeno 2 caratteri.";
+    if (strlen($nome_comune) < 2 || preg_match('/[^A-Za-zÀ-ÿ\s]/', $nome_comune)) {
+    $errore['nome_comune'][] = "Nome comune non valido.";
     } 
     
-    if (preg_match('/[^A-Za-zÀ-ÿ\s]/', $nome_comune)) {
-    $errore['nome_comune'][] = "Sono ammesse solo lettere.";
-    }
-
     if (!is_numeric($dimensione) || $dimensione <= 0) {
-    $errore['dimensione'][] = "Inserisci un numero valido maggiore di 0.";
+    $errore['dimensione'][] = "Dimensione non valida.";
     }
 
     if (!is_numeric($volume_minimo) || $volume_minimo <= 0) {
-    $errore['volume_minimo'][] = "Inserisci un numero valido maggiore di 0.";
+    $errore['volume_minimo'][] = "Volume minimo non valido.";
     }
 
     $listaColori = ['giallo','arancione','rosso','beige','rosa','blu','azzurro','verde','marrone','nero','grigio','trasparente'];
@@ -134,7 +128,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     if (!is_numeric($disponibilita) || $disponibilita < 0) {
-    $errore['disponibilita'][] = "Inserisci un numero valido.";
+    $errore['disponibilita'][] = "Disponibilità non valida.";
     }
     
     if (!empty($_FILES["immagine"]["name"])) {
@@ -142,12 +136,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $tipoFile = mime_content_type($_FILES["immagine"]["tmp_name"]);
 
     if (!in_array($tipoFile, $tipoPermesso)) {
-        $errore['immagine'][] = "Formato immagine non consentito. Usa JPG o JPEG";
+        $errore['immagine'][] = "Formato immagine non consentito.";
     } else {
         
         list($larg, $alt) = getimagesize($_FILES["immagine"]["tmp_name"]);
         if ($larg !== 1024 || $alt !== 683) {
-            $errore['immagine'][] = "L'immagine deve essere alta 683 pixel e larga 1024 pixel."; 
+            $errore['immagine'][] = "Dimensioni non valide."; 
         } else {
             $nomeFile = uniqid() . "_" . basename($_FILES["immagine"]["name"]);
             $percorso = "../IMMAGINI/Pesci/" . $nomeFile;

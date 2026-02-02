@@ -12,7 +12,7 @@ function pulisciInput($value) {
 }
 
 function validateEmail(&$errors, $email, $connection) {
-    if($email !== 'user') {
+    if($email !== 'user' && $email !== 'admin') {
         if(empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL))
             $errors['email'] = 'L\'<span lang="en">email</span> non è valida.';
     }
@@ -157,10 +157,11 @@ try {
     $email = $_SESSION['email'] ?? '';
     $values = [];
     $errors = [];
+    $datiUtente = [];
     getValues($values);
 
     if($_SERVER['REQUEST_METHOD'] === 'POST') {
-        callValidators($errors, $values, $connection, $datiUtente);
+        callValidators($errors, $values, $connection);
 
         if(!empty($errors)) {
             writeHtml($values, $errors, $connection);
@@ -236,7 +237,11 @@ try {
     } else {
         $prodotti = $connection->getCarrello($email);
         if(!empty($email) && !empty($prodotti)) {
-            $datiUtente = $connection->getProfiloUtenteRegistrato($email);
+            if($email !== 'admin')
+                $datiUtente = $connection->getProfiloUtenteRegistrato($email);
+            else
+                $datiUtente = $connection->getProfiloAdmin($email);
+
             writeFirstHtml($datiUtente, $connection);
             exit;
         } elseif(isset($_SESSION['carrello_ospite']) && count($_SESSION['carrello_ospite']) > 0) {
