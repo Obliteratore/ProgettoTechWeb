@@ -314,7 +314,7 @@ h3 {
     padding-top: 0.5em;
 }
 
-.pesci {
+.pesci, .pesci.catalogo {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 5px;
@@ -337,6 +337,11 @@ h3 {
     height: auto;
 }
 
+.card-pesce a{
+    display: block;
+    padding: 0;
+}
+
 .dati-pesce {
     position: absolute;
     bottom: 0;
@@ -350,6 +355,11 @@ h3 {
     justify-content: center;
     text-align: center;
     box-sizing: border-box;
+}
+
+a:visited .dati-pesce, a:visited .prezzo {
+    background: white;
+    color: black;
 }
 
 .dati-pesce .nome {
