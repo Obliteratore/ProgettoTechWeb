@@ -314,7 +314,7 @@ h3 {
     padding-top: 0.5em;
 }
 
-.pesci, .pesci.catalogo {
+.pesci, .pesci-catalogo {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 5px;
