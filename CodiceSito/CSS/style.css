@@ -1070,12 +1070,16 @@ input[type="submit"][value="Aggiungi pesce"], input[type="submit"][value="Salva 
     border: 2px solid #fff; 
 }
 
+.admin-table a.bottone-standard{
+    margin-top:0;
+}
+
 .admin-table tr {
     margin: 0 0.5rem;
 }
 
 .admin-table th, .admin-table td {
-    padding: 0.5rem;
+    padding: 0.7rem;
     border-bottom: 1px solid #ccc;
     text-align: center;
 }
@@ -1105,6 +1109,7 @@ input[type="submit"][value="Aggiungi pesce"], input[type="submit"][value="Salva 
     .admin-table {
         margin-top: 1rem;
     }
+    
     .admin-table tr {
         margin-bottom: 1rem;
         border-radius: 10px;
