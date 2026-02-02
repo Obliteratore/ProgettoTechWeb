@@ -1,4 +1,16 @@
 <?php
+if(session_status() !== PHP_SESSION_ACTIVE)
+    session_start();
+
+if(!isset($_SESSION['email'])) {
+    header('Location: ../PHP/accesso.php');
+    exit;
+}
+
+if($_SESSION['email'] !== 'admin') {
+    header('Location: ../PHP/profilo.php');
+    exit;
+}
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -8,16 +20,13 @@ use FM\FMAccess;
 
 $paginaHTML = file_get_contents('../HTML/modifica_pesce.html');
 
-if (!$paginaHTML) {
-    die("Errore caricamento pagina");
-}
-
 $connection = new FMAccess();
 $connection->openConnection();
 
 if($_SERVER["REQUEST_METHOD"] === "GET"){
     if(!isset($_GET['nome_latino'])){
-        die("Pesce non specificato");
+        header('Location: ../HTML/error_404.html');
+        exit;
     }
 
     $nomeLatino = $_GET['nome_latino'];
@@ -25,7 +34,8 @@ if($_SERVER["REQUEST_METHOD"] === "GET"){
     $pesce = $connection->getPesci(["p.nome_latino = ?"],[$nomeLatino]);
 
     if (count($pesce)!= 1){
-        die("Pesce non trovato");
+        header('Location: ../HTML/error_404.html');
+        exit;
     }
 
     $p=$pesce[0];
@@ -64,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $pesce = $connection->getPesci(["p.nome_latino = ?"],[$_POST['nome_latino']]);
 
     if(count($pesce) != 1){
-        die("Pesce non trovato");
+         header('Location: ../HTML/error_404.html');
     }
 
     $p=$pesce[0];

@@ -52,6 +52,8 @@ CREATE TABLE amministratori (
     email VARCHAR(255) PRIMARY KEY,
     username VARCHAR(30) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
+	nome VARCHAR(50) NOT NULL,
+    cognome VARCHAR(50) NOT NULL,
 	FOREIGN KEY (email) REFERENCES utenti(email) ON DELETE CASCADE
 );
 
@@ -8334,7 +8336,7 @@ SET @id_indirizzo = LAST_INSERT_ID();
 
 INSERT INTO utenti (email, id_indirizzo) VALUES 
 ("user", @id_indirizzo),
-("admin", NULL);
+("admin",@id_indirizzo);
 
 INSERT INTO ordini (email, id_indirizzo) VALUES 
 ("user", @id_indirizzo);
@@ -8359,4 +8361,4 @@ INSERT INTO utenti_registrati (email, username, password, nome, cognome) VALUES
 ("user", "user", "$2y$12$IFJz2zWCnfITzHdQsM9xfenmiVxfnM1bwZQfvkWqba2xYsx2JH.qm", "user", "user");
 
 INSERT INTO amministratori (email, username, password) VALUES 
-("admin", "admin", "$2y$12$OOplFRIw3hH4SWua.xyYReLgPeD8EA1LWFb5iECdidfMLhd3SjH9S");
+("admin", "admin", "$2y$12$OOplFRIw3hH4SWua.xyYReLgPeD8EA1LWFb5iECdidfMLhd3SjH9S", "admin", "admin");

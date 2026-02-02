@@ -370,12 +370,9 @@ a:visited .dati-pesce, a:visited .prezzo {
     font-size: clamp(0.875em, 0.3em + 2.2vw, 2em);
     font-size: clamp(0.875em, 8cqw, 2em);
     line-height: 1;
-    
-    display: -webkit-box;
-    line-clamp: 2;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
+    white-space: nowrap;
     overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .card-pesce .prezzo {
