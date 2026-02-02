@@ -1,7 +1,21 @@
 <?php
+if(session_status() !== PHP_SESSION_ACTIVE)
+    session_start();
+
+if(!isset($_SESSION['email'])) {
+    header('Location: ../PHP/accesso.php');
+    exit;
+}
+
+if($_SESSION['email'] !== 'admin') {
+    header('Location: ../PHP/profilo.php');
+    exit;
+}
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+
 require_once "db_connection.php";
 use FM\FMAccess;
 
