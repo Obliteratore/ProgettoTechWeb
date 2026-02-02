@@ -8,6 +8,14 @@ $paginaHTML = file_get_contents('../HTML/aggiungi_pesce.html');
 $connection = new FMAccess();
 $connection->openConnection();
 
+if(isset($_GET['check_nome'])) {
+    header('Content-Type: application/json');
+    $nome = trim($_GET['check_nome']);
+    $esistente = $connection->getPesci(["p.nome_latino = ?"], [$nome]);
+    echo json_encode(['exists' => count($esistente) > 0]);
+    exit;
+}
+
 $famiglie = $connection->getFamiglie();
 
 $listaColori= ['nero','verde','rosso','rosa','blu','azzurro','trasparente','marrone','grigio','beige','arancione','giallo'];
@@ -72,9 +80,20 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
         'immagine' => []
     ];
 
+     if(empty($nomeLatino)){
+        $errore['nome_latino'][] = "Il nome latino è obbligatorio.";
+    }
+
      if (strlen($nomeLatino) < 2 || preg_match('/[^A-Za-zÀ-ÿ\s]/', $nomeLatino)) {
         $errore['nome_latino'][] = "Nome latino non valido (minimo 2 caratteri, solo lettere).";
     }
+
+    if (empty($errore['nome_latino'])) {
+    $pesceEsistente = $connection->getPesci(["p.nome_latino = ?"], [$nomeLatino]);
+    if (count($pesceEsistente) > 0) {
+        $errore['nome_latino'][] = "Questo nome latino è già presente nel database. Scegline un altro.";
+        }
+    }   
 
     if (strlen($nomeComune) < 2 || preg_match('/[^A-Za-zÀ-ÿ\s]/', $nomeComune)) {
         $errore['nome_comune'][] = "Nome comune non valido (minimo 2 caratteri, solo lettere).";
@@ -84,7 +103,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errore['famiglia'][] = "Seleziona una famiglia valida.";
     }
     
-
     if (!is_numeric($dimensione) || $dimensione <= 0) {
         $errore['dimensione'][] = "Inserisci un numero valido maggiore di 0.";
     }

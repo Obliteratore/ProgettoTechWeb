@@ -308,7 +308,7 @@ h3 {
     padding-top: 0.5em;
 }
 
-.pesci {
+.pesci, .pesci.catalogo {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 5px;
@@ -331,6 +331,11 @@ h3 {
     height: auto;
 }
 
+.card-pesce a{
+    display: block;
+    padding: 0;
+}
+
 .dati-pesce {
     position: absolute;
     bottom: 0;
@@ -344,6 +349,11 @@ h3 {
     justify-content: center;
     text-align: center;
     box-sizing: border-box;
+}
+
+a:visited .dati-pesce, a:visited .prezzo {
+    background: white;
+    color: black;
 }
 
 .dati-pesce .nome {
@@ -1053,7 +1063,7 @@ input[type="submit"][value="Aggiungi pesce"], input[type="submit"][value="Salva 
     margin-left: auto;
     margin-right:auto;
     font-size: clamp(1rem, 0.6rem + 1vw, 1.5rem);
-    width: 90%;
+    width: 100%;
     box-shadow: 0 0 20px rgba(0,0,0,0.15);
     border: 2px solid #fff; 
 }
@@ -1119,9 +1129,12 @@ input[type="submit"][value="Aggiungi pesce"], input[type="submit"][value="Salva 
     }
 
     .admin-table caption {
-        width: 90%;
-        word-break: normal;
-        padding:1rem;
+        width: 100%;
+        padding-top:1rem;
+        padding-bottom: 1rem;
+        padding-left: 0;   
+        padding-right: 0;
+        display:block;
     }
 
     .admin-table th[scope="row"] {
