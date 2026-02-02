@@ -49,8 +49,8 @@ SEZIONE MAIN
 }
 
 .dati-pesce .nome {
-        font-size: clamp(0.875em, 0.2em + 1.6vw, 2em);
-        font-size: clamp(0.875em, 8cqw, 2em);
+    font-size: clamp(0.875em, 0.2em + 1.6vw, 2em);
+    font-size: clamp(0.875em, 8cqw, 2em);
 }
 
 /*PROFILO*/

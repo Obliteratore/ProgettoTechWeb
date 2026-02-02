@@ -1,4 +1,4 @@
-USE fbalestro;
+USE fbalestr;
 
 DROP TABLE IF EXISTS carrello;
 DROP TABLE IF EXISTS dettaglio_ordini;
@@ -8360,5 +8360,5 @@ COMMIT;
 INSERT INTO utenti_registrati (email, username, password, nome, cognome) VALUES 
 ("user", "user", "$2y$12$IFJz2zWCnfITzHdQsM9xfenmiVxfnM1bwZQfvkWqba2xYsx2JH.qm", "user", "user");
 
-INSERT INTO amministratori (email, username, password) VALUES 
+INSERT INTO amministratori (email, username, password, nome, cognome) VALUES 
 ("admin", "admin", "$2y$12$OOplFRIw3hH4SWua.xyYReLgPeD8EA1LWFb5iECdidfMLhd3SjH9S", "admin", "admin");

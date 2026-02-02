@@ -340,6 +340,26 @@ class FMAccess {
 		return $row;
 	}
 
+	public function getProfiloAdmin($email) {
+		$query = "SELECT provincie.sigla_provincia, provincie.nome AS provincia, comuni.id_comune, comuni.nome AS comune, indirizzi.via FROM 
+		amministratori JOIN utenti ON amministratori.email=utenti.email
+		JOIN indirizzi ON utenti.id_indirizzo=indirizzi.id_indirizzo 
+		JOIN provincie ON indirizzi.sigla_provincia=provincie.sigla_provincia 
+		JOIN comuni ON indirizzi.id_comune=comuni.id_comune 
+		WHERE amministratori.email = ?";
+		$stmt = ($this->connection)->prepare($query);
+		$stmt->bind_param("s", $email);
+		$stmt->execute();
+
+		$result = $stmt->get_result();
+		$row = $result->fetch_assoc();
+    
+		$result->free();
+		$stmt->close();
+
+		return $row;
+	}
+
 	public function getOrdiniUtenteRegistrato($email) {
 		$query = "SELECT ordini.id_ordine, ordini.data_ora, indirizzi.via, provincie.sigla_provincia, provincie.nome AS provincia, comuni.nome AS comune, pesci.nome_latino, pesci.nome_comune, dettaglio_ordini.prezzo_unitario, dettaglio_ordini.quantita FROM 
 		ordini JOIN indirizzi ON ordini.id_indirizzo=indirizzi.id_indirizzo 

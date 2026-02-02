@@ -59,7 +59,7 @@ function validateEmail(email) {
     let error = "";
     let isValid = true;
 
-    if(value != "user") {
+    if(value != "user" && value != "admin") {
         if(value.length == 0 || !regex.test(value)) {
             error += "L'<span lang=\"en\">email</span> non è valida.";
             isValid = false;
