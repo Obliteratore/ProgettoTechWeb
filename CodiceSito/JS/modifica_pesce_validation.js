@@ -23,8 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const val = input.value.trim();
         const err = [];
         if (!val) err.push("Il nome comune è obbligatorio.");
-        else if (val.length < 2) err.push("Nome latino non valido.");
-        if (val && /[^A-Za-zÀ-ÿ\s]/.test(val)) err.push("Sono ammesse solo lettere.");
+        else if (val.length < 2 || /[^A-Za-zÀ-ÿ\s]/.test(val)) err.push("Nome comune non valido.");
         showErrors(input, target, err);
     }
 
