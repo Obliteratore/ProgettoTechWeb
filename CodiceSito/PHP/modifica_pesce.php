@@ -1,4 +1,16 @@
 <?php
+if(session_status() !== PHP_SESSION_ACTIVE)
+    session_start();
+
+if(!isset($_SESSION['email'])) {
+    header('Location: ../PHP/accesso.php');
+    exit;
+}
+
+if($_SESSION['email'] !== 'admin') {
+    header('Location: ../PHP/profilo.php');
+    exit;
+}
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -64,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $pesce = $connection->getPesci(["p.nome_latino = ?"],[$_POST['nome_latino']]);
 
     if(count($pesce) != 1){
-        die("Pesce non trovato");
+         header('Location: ../HTML/error_404.html');
     }
 
     $p=$pesce[0];
