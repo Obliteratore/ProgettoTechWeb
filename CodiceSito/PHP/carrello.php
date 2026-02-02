@@ -13,7 +13,7 @@ $totale = 0;
 $visibilita = "";
 
 if (isset($_GET['errore']) && $_GET['errore'] == 'max_raggiunto') {
-    $contenuto_carrello .= '<div id="errore-carrello" class="messaggio-errore" role="alert">Attenzione: Quantità massima disponibile raggiunta!</div>';
+    $contenuto_carrello .= '<div id="errore-carrello" class="error-message" role="alert">Attenzione: Quantità massima disponibile raggiunta!</div>';
 }
 
 try{
