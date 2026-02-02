@@ -42,7 +42,7 @@ a {
     color:black;
 }
 
-a[href]::after {
+.link-testuale[href]::after {
     content: " (" attr(href) ")";
     font-size: 0.9em;
     word-break: break-all;
@@ -51,12 +51,12 @@ a[href]::after {
 .link-testuale,.link-testuale:visited {
     background-color: white;
     text-decoration: underline;
-    border-radius: none;
+    border-radius: 0px;
     color:black;
 }
 
 .main-section {
-    background-color: none;
+    background-color: rgba(255, 255, 255, 0);
 }
 
 img {
@@ -64,7 +64,7 @@ img {
 }
 
 .carrello-button {
-    background-color: none;
+    background-color:  rgba(255, 255, 255, 0);
 }
 
 .redirect-icon {
