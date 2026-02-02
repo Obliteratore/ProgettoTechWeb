@@ -22,7 +22,7 @@ $msg_successo = "";
 
 if (isset($_GET['errore']) && $_GET['errore'] == 'non_disponibile'){
     $msg_errore = "Attenzione: La quantità richiesta supera la disponibilità!";
-    $classe_errore = "messaggio-errore";
+    $classe_errore = "error-message";
 }
 
 if (isset($_GET['successo']) && $_GET['successo'] == 'aggiunto'){

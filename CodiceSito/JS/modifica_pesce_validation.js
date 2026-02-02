@@ -142,10 +142,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const primoErrore = document.querySelector('[aria-invalid="true"]');
         if (primoErrore) {
             e.preventDefault();
-            setTimeout(() => {
-                primoErrore.focus();
-                primoErrore.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }, 100);
+            primoErrore.focus({ preventScroll:true});
+            primoErrore.scrollIntoView({ behavior: 'smooth', block: 'center'});
         }
     });
 });
