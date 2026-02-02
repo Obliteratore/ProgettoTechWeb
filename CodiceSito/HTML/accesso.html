@@ -55,6 +55,7 @@
             </div>
         </header>
         <script src="../JS/hamburger_menu.js" defer></script>
+        <script src="../JS/toggle_password.js" defer></script>
         <script src="../JS/access_validation.js" defer></script>
 
         <nav id="breadcrumb" class="sezione-standard" aria-label="Percorso di navigazione">
@@ -74,13 +75,17 @@
                     <small class="required">(Obbligatorio)</small>
                     </label>
                     <input id="username" type="text" name="username" autocomplete="username" aria-describedby="username-hint login-error" aria-invalid="[invalid-username]" required>
-                    <small id="username-hint" class="hint"><abbr title="Esempio">Es</abbr>: maria.bianchi o mariabianchi@gmail.com</small>
+                    <small id="username-hint" class="hint">Esempio: maria.bianchi o mariabianchi@gmail.com</small>
 
                     <label for="password"><span lang="en">Password</span>
                     <small class="required">(Obbligatorio)</small>
                     </label>
                     <input id="password" type="password" name="password" autocomplete="current-password" aria-describedby="password-hint login-error" aria-invalid="[invalid-password]" required>
-                    <small id="password-hint" class="hint"><abbr title="Esempio">Es</abbr>: <span lang="en">Password</span>Sicura2!</small>
+                    <label id="mostraPassword">
+                        <input id="togglePassword" type="checkbox">
+                        Mostra <span lang="en">password</span>
+                    </label>
+                    <small id="password-hint" class="hint">Esempio: <span lang="en">Password</span>Sicura2#</small>
 
                     <input class="bottone-standard" type="submit" value="Accedi">
                 </form>

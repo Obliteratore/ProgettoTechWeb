@@ -90,7 +90,6 @@ html {
     font-style: normal;
     color: var(--color-text);
     scroll-behavior: smooth;
-    height: 100%;
 }
 
 body {
@@ -100,11 +99,6 @@ body {
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
-    height: 100%;
-}
-
-main {
-  flex: 1;
 }
 
 footer {
@@ -127,7 +121,7 @@ footer {
     padding: 0;
     margin: -1px;
     overflow: hidden;
-    clip-path: rect(0 0 0 0);
+    clip: rect(0 0 0 0);
     white-space: nowrap;
     border: 0;
 }
@@ -218,15 +212,15 @@ SEZIONE MENU
     display: none;
 }
 
-#close-hamburger-menu {
+#close-hamburger-menu, #hamburger-menu-btn span:last-of-type {
     display: none;
 }
 
-#hamburger-menu-btn.active #open-hamburger-menu {
+#hamburger-menu-btn.active #open-hamburger-menu, #hamburger-menu-btn.active span:first-of-type {
     display: none;
 }
 
-#hamburger-menu-btn.active #close-hamburger-menu {
+#hamburger-menu-btn.active #close-hamburger-menu, #hamburger-menu-btn.active span:last-of-type {
     display: block;
 }
 
@@ -805,19 +799,33 @@ ul.error-message {
 
 .required {
     margin-left: 0.25em;
-    font-size: 0.80em;
+    font-size: clamp(1rem, 0.8rem + 0.4vw, 1.2rem);
     font-weight: normal;
 }
 
 .hint {
     display: block;
     margin-top: 0.25em;
-    font-size: 0.80em;
+    font-size: clamp(1rem, 0.8rem + 0.4vw, 1.2rem);
 }
 
 abbr {
     text-underline-offset: 0.1em;
     cursor: help;
+}
+
+#mostraPassword {
+    display:flex;
+    align-items: center;
+    gap:0.5rem;
+    margin-top: 0.5em;
+    font-size: clamp(1.1rem, 1rem + 0.6vw, 1.4rem);
+}
+
+#togglePassword {
+    height: 1.5rem;
+    width: 1.5rem;
+    margin-top: 0;
 }
 
 .data-form input[type="submit"] {

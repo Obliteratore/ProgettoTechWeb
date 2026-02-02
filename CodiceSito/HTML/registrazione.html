@@ -55,6 +55,7 @@
             </div>
         </header>
         <script src="../JS/hamburger_menu.js" defer></script>
+        <script src="../JS/toggle_password.js" defer></script>
         <script src="../JS/register_validation.js" defer></script>
 
         <nav id="breadcrumb" class="sezione-standard" aria-label="Percorso di navigazione">
@@ -141,6 +142,10 @@
                         <small class="required">(Obbligatorio)</small>
                         </label>
                         <input id="password" type="password" name="password" autocomplete="new-password" aria-describedby="password-help password-error" aria-invalid="[invalid-password]" required>
+                        <label id="mostraPassword">
+                            <input id="togglePassword" type="checkbox">
+                            Mostra <span lang="en">password</span>
+                        </label>
                         <div id="password-help" class="help">
                             <p>Scegli una <span lang="en">password</span>. Deve contenere:</p>
                             <ul>
