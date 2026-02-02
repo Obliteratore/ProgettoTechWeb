@@ -13,7 +13,7 @@ try {
     $piuVendutiPesci = $connection->getPiuVenduti(4);
 
     $newHTML = crea_card_pesce($nuoviPesci);
-    $vendutiHTML = crea_card_pesce($piuVendutiPesci);
+    $vendutiHTML = crea_card_pesce($piuVendutiPesci, 4);
 
     $segnaposto = [
         '[nuovo_pesce]' => $newHTML,
