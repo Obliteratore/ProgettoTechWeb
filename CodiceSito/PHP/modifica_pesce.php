@@ -20,16 +20,13 @@ use FM\FMAccess;
 
 $paginaHTML = file_get_contents('../HTML/modifica_pesce.html');
 
-if (!$paginaHTML) {
-    die("Errore caricamento pagina");
-}
-
 $connection = new FMAccess();
 $connection->openConnection();
 
 if($_SERVER["REQUEST_METHOD"] === "GET"){
     if(!isset($_GET['nome_latino'])){
-        die("Pesce non specificato");
+        header('Location: ../HTML/error_404.html');
+        exit;
     }
 
     $nomeLatino = $_GET['nome_latino'];
@@ -37,7 +34,8 @@ if($_SERVER["REQUEST_METHOD"] === "GET"){
     $pesce = $connection->getPesci(["p.nome_latino = ?"],[$nomeLatino]);
 
     if (count($pesce)!= 1){
-        die("Pesce non trovato");
+        header('Location: ../HTML/error_404.html');
+        exit;
     }
 
     $p=$pesce[0];
