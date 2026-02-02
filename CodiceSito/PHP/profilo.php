@@ -57,12 +57,11 @@ try{
 
                 $data_visibile = (new DateTime($ordine['data_ora']))->format('d/m/Y');
                 $data_datetime = (new DateTime($ordine['data_ora']))->format('Y-m-d');
-                $data_aria = (new DateTime($ordine['data_ora']))->format('d F Y');
 
                 $ordini .= '<li><article>';
                 $ordini .= '<div class="dati-ordine">';
                 $ordini .= '<h3>ORDINE #' . (int)$ordine['id_ordine'] . ' - ';
-                $ordini .= '<time datetime="' . $data_datetime . '" aria-label="' . $data_aria . '">';
+                $ordini .= '<time datetime="' . $data_datetime . '">';
                 $ordini .= $data_visibile . '</time></h3>';
                 $ordini .= '<dl>';
                 $ordini .= '<dt>TOTALE:</dt><dd>' . $prezzoTotale[(int)$ordine['id_ordine']] . ' €</dd>';
@@ -82,7 +81,7 @@ try{
                 $ordini .= '<tbody>';
             }
             $ordini .= '<tr>';
-            $ordini .= '<th scope="row"><a href="../PHP/pesce.php?nome_latino=' . htmlspecialchars($ordine['nome_latino']) . '">' . htmlspecialchars($ordine['nome_comune']) . '</a></th>';
+            $ordini .= '<th scope="row"><a href="../PHP/pesce.php?nome_latino=' . urlencode(htmlspecialchars($ordine['nome_latino'])) . '">' . htmlspecialchars($ordine['nome_comune']) . '</a></th>';
             $ordini .= '<td data-title="Prezzo">' . number_format($ordine['prezzo_unitario'], 2, ',', '.') . ' €</td>';
             $ordini .= '<td data-title="Quantità">' . (int)$ordine['quantita'] . '</td>';
             $ordini .= '</tr>';

@@ -12,7 +12,8 @@ const campiForm = [
 
 document.addEventListener("DOMContentLoaded", () => {
     const summary = document.getElementById('signin-error');
-    if (summary && summary.children.length > 0) {
+    const listError = document.getElementById('list-errors');
+    if(summary && listError && listError.children.length > 0) {
         summary.focus();
         summary.scrollIntoView({behavior: "smooth", block: "center"});
     }

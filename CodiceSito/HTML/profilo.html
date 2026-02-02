@@ -26,7 +26,7 @@
         </nav>
         <header>
             <div class="header-content sezione-standard">
-                <img class="icona" src="../IMMAGINI/Icone/fish.png" alt=""/>
+                <img class="icona" src="../IMMAGINI/Icone/fish.png" alt="">
                 <nav id="menu" aria-label="Menù di navigazione">
                     <ul>
                         <li lang="en"><a class="link-testuale" href="../PHP/home.php">Home</a></li>
@@ -36,11 +36,11 @@
                     </ul>
                 </nav>
                 <div>
-                    <a id="cart-link" href="../PHP/carrello.php" aria-label="Vai al carrello"><img src="../IMMAGINI/Icone/shopping-cart.svg" alt="" aria-hidden="true"/></a>
+                    <a id="cart-link" href="../PHP/carrello.php" aria-label="Vai al carrello"><img src="../IMMAGINI/Icone/shopping-cart.svg" alt="" aria-hidden="true"></a>
                     <button  id="hamburger-menu-btn" aria-controls="hamburger-menu" aria-expanded="true">
-                        <img id="open-hamburger-menu" src="../IMMAGINI/Icone/menu-burger.svg" alt="" aria-hidden="true"/>
+                        <img id="open-hamburger-menu" src="../IMMAGINI/Icone/menu-burger.svg" alt="" aria-hidden="true">
                         <span class="screen-reader">Apri l'<span lang="en">hamburger</span> menù</span>
-                        <img id="close-hamburger-menu" src="../IMMAGINI/Icone/cross.svg" alt="" aria-hidden="true"/>
+                        <img id="close-hamburger-menu" src="../IMMAGINI/Icone/cross.svg" alt="" aria-hidden="true">
                         <span class="screen-reader">Chiudi l'<span lang="en">hamburger</span> menù</span>
                     </button>
                 </div>
@@ -87,20 +87,20 @@
                 <h2 class="section-title">I miei ordini</h2>
                 [ordini]
             </section>
-            <dialog id="deleteProfiloDialog" aria-labelledby="deleteProfiloTitle" aria-describedby="deleteProfiloDesc">
-                <form action="../PHP/elimina_profilo.php" method="post">
-                    <h2 id="deleteProfiloTitle">Sei sicuro di voler eliminare il tuo profilo?</h2>
-                    <p id="deleteProfiloDesc" class="paragrafo">Non potrai più vedere i tuoi ordini, e perderai tutti i dati del tuo profilo.</p>
-                    <div class="actions">
-                        <button id="cancelDeleteBtn" class="bottone-standard" type="button" value="cancel">Annulla</button>
-                        <button id="deleteProfiloBtn" class="bottone-standard" type="submit" value="confirm">Elimina</button>
-                    </div>
-                </form>
-            </dialog>
         </main>
         <footer>
             <p>Questo sito <span lang="en">web</span> è stato creato a fini didattici per l'Università di Padova. Le foto sono state gentilmente fornite dal fotografo <span lang="fr">Benoit</span>, a cui appartengono tutti i diritti. Potete trovare queste, e ulteriori foto nel sito <a class="link-testuale" href="https://www.inaturalist.org/observations?place_id=any&user_id=benoit_fishipedia&verifiable=any">iNaturalist</a>.</p>
         </footer>
-        <a href="#top" class="back-to-top" aria-label="Torna all'inizio"><img src="../IMMAGINI/Icone/arrow-up.svg" alt="" aria-hidden="true"/></a>
+        <a href="#top" class="back-to-top" aria-label="Torna all'inizio"><img src="../IMMAGINI/Icone/arrow-up.svg" alt="" aria-hidden="true"></a>
+        <dialog id="deleteProfiloDialog" aria-labelledby="deleteProfiloTitle" aria-describedby="deleteProfiloDesc">
+            <form action="../PHP/elimina_profilo.php" method="post">
+                <h2 id="deleteProfiloTitle">Sei sicuro di voler eliminare il tuo profilo?</h2>
+                <p id="deleteProfiloDesc" class="paragrafo">Non potrai più vedere i tuoi ordini, e perderai tutti i dati del tuo profilo.</p>
+                <div class="actions">
+                    <button id="cancelDeleteBtn" class="bottone-standard" type="button" value="cancel">Annulla</button>
+                    <button id="deleteProfiloBtn" class="bottone-standard" type="submit" value="confirm">Elimina</button>
+                </div>
+            </form>
+        </dialog>
     </body>
 </html>

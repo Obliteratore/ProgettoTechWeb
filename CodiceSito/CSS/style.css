@@ -563,9 +563,11 @@ dialog#msg-successo {
     box-shadow: none;
     padding: 0;
     margin: auto;
-    max-width: 90%;
-    width: auto;
+    width: 90%;
+    max-width: 350px;
+    inset: 0;
     overflow: visible;
+    box-sizing: border-box;
 }
 
 dialog#msg-successo::backdrop {
@@ -574,14 +576,14 @@ dialog#msg-successo::backdrop {
 }
 
 .contenuto-msg-successo {
-padding: 2em;
-width: 90%;
-max-width: 300px;
+padding: 1.5em;
+width: 100%;
+box-sizing: border-box;
 text-align: center;
 display: flex;
 flex-direction: column;
 gap: 1.5em;
-margin: 0 auto;
+margin: 0;
 }
 
 /*
@@ -782,6 +784,7 @@ SEZIONE CHISIAMO.HMTL
 ul.error-message {
     list-style: none;
 }
+
 #lista-colori-help {
     padding-left: 1rem;
 }
@@ -855,7 +858,7 @@ legend {
     margin-top: 0.5em;
 }
 
-#signin-error a, #modify-error a {
+#signin-error ul a, #modify-error ul a {
     color: var(--color-text);
     background: none;
 }
@@ -907,16 +910,8 @@ fieldset > label:first-of-type {
     margin-top: 1rem;
 }
 
-#exitProfilo {
-    background-color: #1D8649;
-}
-
 #deleteProfiloLink, #deleteProfiloBtn {
     background-color: #C83E3C;
-}
-
-#exitProfilo:hover, #exitProfilo:focus-visible {
-    background-color: #176f3d;
 }
 
 #deleteProfiloLink:hover, #deleteProfiloLink:focus-visible, #deleteProfiloBtn:hover, #deleteProfiloBtn:focus-visible {
@@ -1060,7 +1055,7 @@ input[type="submit"][value="Aggiungi pesce"], input[type="submit"][value="Salva 
     margin-left: auto;
     margin-right:auto;
     font-size: clamp(1rem, 0.6rem + 1vw, 1.5rem);
-    width: 90%;
+    width: 100%;
     box-shadow: 0 0 20px rgba(0,0,0,0.15);
     border: 2px solid #fff; 
 }
@@ -1126,9 +1121,12 @@ input[type="submit"][value="Aggiungi pesce"], input[type="submit"][value="Salva 
     }
 
     .admin-table caption {
-        width: 90%;
-        word-break: normal;
-        padding:1rem;
+        width: 100%;
+        padding-top:1rem;
+        padding-bottom: 1rem;
+        padding-left: 0;   
+        padding-right: 0;
+        display:block;
     }
 
     .admin-table th[scope="row"] {
@@ -1317,12 +1315,12 @@ a#buyLink {
     width: auto;
     height: auto;
 }
-/*ERRORE 404*/
+/* PAGINE ERRORE E CONFERMA*/
 
 .sezione-errore, .sezione-conferma {
     padding: 1rem;
 }
 
-.p404, .p500 {
+.paragrafo-errore, .paragrafo-conferma {
     margin-top: 1rem;
 }
