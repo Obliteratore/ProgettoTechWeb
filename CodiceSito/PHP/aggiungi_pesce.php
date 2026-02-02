@@ -85,7 +85,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
      if (strlen($nomeLatino) < 2 || preg_match('/[^A-Za-zÀ-ÿ\s]/', $nomeLatino)) {
-        $errore['nome_latino'][] = "Nome latino non valido (minimo 2 caratteri, solo lettere).";
+        $errore['nome_latino'][] = "Nome latino non valido.";
     }
 
     if (empty($errore['nome_latino'])) {
@@ -96,7 +96,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     }   
 
     if (strlen($nomeComune) < 2 || preg_match('/[^A-Za-zÀ-ÿ\s]/', $nomeComune)) {
-        $errore['nome_comune'][] = "Nome comune non valido (minimo 2 caratteri, solo lettere).";
+        $errore['nome_comune'][] = "Nome comune non valido.";
     }
     
     if ($famiglia === '') {
@@ -104,15 +104,15 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     
     if (!is_numeric($dimensione) || $dimensione <= 0) {
-        $errore['dimensione'][] = "Inserisci un numero valido maggiore di 0.";
+        $errore['dimensione'][] = "Dimensione non valida.";
     }
 
     if (!is_numeric($volumeMinimo) || $volumeMinimo <= 0) {
-        $errore['volume_minimo'][] = "Inserisci un numero valido maggiore di 0.";
+        $errore['volume_minimo'][] = "Volume minimo non valido.";
     }
 
     if(!preg_match('/^[A-Za-zÀ-ÿ]+(,[A-Za-zÀ-ÿ]+)*$/', $colori)) {
-        $errore['colori'][] = "Formato non valido. Usa lettere separate da virgole senza spazi, es: rosso,blu,verde";
+        $errore['colori'][] = "Formato non valido.";
     } else {
         foreach(explode(',', $colori) as $c) {
             if(!in_array(strtolower($c), $listaColori)) {
@@ -134,19 +134,19 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     $tipoFile = mime_content_type($_FILES["immagine"]["tmp_name"]);
 
     if (!in_array($tipoFile, $tipoPermesso)) {
-        $errore['immagine'][] = "Formato immagine non consentito. Usa JPG o JPEG";
+        $errore['immagine'][] = "Formato immagine non consentito.";
     } else {
         
         list($larg, $alt) = getimagesize($_FILES["immagine"]["tmp_name"]);
         if ($larg !== 1024 || $alt !== 683) {
-            $errore['immagine'][] = "L'immagine deve essere alta 683 pixel e larga 1024 pixel."; 
+            $errore['immagine'][] = "Dimensioni non valide."; 
         } else {
             
             $nomeFile = uniqid() . "_" . basename($_FILES["immagine"]["name"]);
             $percorso = "../IMMAGINI/Pesci/" . $nomeFile;
 
             if (!move_uploaded_file($_FILES["immagine"]["tmp_name"], $percorso)) {
-                $errore['immagine'][] = "Errore durante il caricamento dell'immagine";
+                $errore['immagine'][] = "Errore durante il caricamento dell'immagine.";
             }
         }
     }

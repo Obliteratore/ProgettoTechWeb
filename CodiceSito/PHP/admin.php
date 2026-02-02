@@ -40,7 +40,7 @@ try{
     $connection = new FMAccess();
     $connection->openConnection();
 
-    $pesci = $connection->getPesci([],[],"");
+    $pesci = $connection->getPesci([],[],"ORDER BY nome_latino");
     $righeHTML = crea_righe_pesce_admin($pesci);
 
     $paginaHTML = str_replace('[righe_pesci]', $righeHTML, $paginaHTML);
