@@ -6,12 +6,13 @@
 :root {
     --color-text: white;
 
-    --color-background-bottoni: #2470c6;
-    --color-background-bottoni-hover: #1d5aa8;
+    --color-background-bottoni: #0072bc ;
+    --color-background-bottoni-hover: #025992;
+    --color-background-bottoni-error: #f15a22;
 
     --color-testo-bottoni: white;
 
-    --color-background-card: rgba(53, 105, 140, 0.25);
+    --color-background-card: rgba(10, 12, 13, 0.25);
     --color-background-header: rgba(38, 125, 183, 0.77);
     --color-background-back-to-top: rgba(0, 0, 0, 0.411); 
 
@@ -676,7 +677,7 @@ SEZIONE CATALOGO.HTML
     margin-top: 0.6em;
     padding: 0 0.6em;
     width: fit-content;
-    font-size: clamp(0.9rem, 0.8rem + 0.5vw, 1.1rem);
+    font-size: clamp(1.2rem, 0.8rem + 0.5vw, 1.1rem);
 }
 
 #form-container-catalogo input.input-errore {
@@ -758,7 +759,7 @@ SEZIONE CHISIAMO.HMTL
 
 .error-message {
     font-weight: bold;
-    background-color: #b13735;
+    background-color: var(--color-background-bottoni-error);
     border-radius: 10px;
     padding-left: 0.5rem;
     font-size: clamp(1.2rem, 1rem + 0.6vw, 1.6rem);
