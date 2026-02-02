@@ -69,7 +69,7 @@ try{
                 $ordini .= '</dl>';
                 $ordini .= '</div>';
 
-                $ordini .= '<p id="descrizione_' . (int)$ordine['id_ordine'] . '" class="screen-reader">La tabella è organizzata per colonne e contiene l\'elenco dei pesci acquistati con l\'ordine #' . (int)$ordine['id_ordine'] . '. Ogni riga riguarda un pesce con il suo prezzo e la quantità acquistata.</p>';
+                $ordini .= '<p id="descrizione_' . (int)$ordine['id_ordine'] . '" class="screen-reader" aria-hidden="true">La tabella è organizzata per colonne e contiene l\'elenco dei pesci acquistati con l\'ordine #' . (int)$ordine['id_ordine'] . '. Ogni riga riguarda un pesce con il suo prezzo e la quantità acquistata.</p>';
 
                 $ordini .= '<table aria-describedby="descrizione_' . (int)$ordine['id_ordine'] . '">';
                 $ordini .= '<caption class="screen-reader">Pesci acquistati con l\'ordine #' . (int)$ordine['id_ordine'] . '</caption>';
