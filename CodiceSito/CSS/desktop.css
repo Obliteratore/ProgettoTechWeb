@@ -193,6 +193,7 @@ SEZIONE MAIN
 .item-prezzo-singolo {
     flex: 1;
     text-align: center;
+    white-space: nowrap;
     font-size: clamp(1.1rem, 1rem + 0.5vw, 1.4rem);
 }
 
@@ -203,7 +204,9 @@ SEZIONE MAIN
 }
 
 .item-totale-riga {
-    flex: 0 1 auto;
+    flex: 0 0 auto;
+    white-space: nowrap;
+    text-align: right;
     font-size: clamp(1rem, 0.8rem + 0.6vw, 1.5rem);
     margin-left: auto;
 }

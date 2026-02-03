@@ -143,7 +143,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
    if (!empty($_FILES["immagine"]["name"])) {
-    $tipoPermesso = ['image/jpeg', 'image/jpg'];
+    $tipoPermesso = ['image/jpeg', 'image/jpg', 'image/webp'];
     $tipoFile = mime_content_type($_FILES["immagine"]["tmp_name"]);
 
     if (!in_array($tipoFile, $tipoPermesso)) {
