@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const file = input.files[0];
-        const validTypes = ["image/jpeg", "image/jpg"];
+        const validTypes = ["image/jpeg", "image/jpg", "image/webp"];
         if (!validTypes.includes(file.type)) {
             err.push("Formato immagine non consentito.");
             showErrors(input, target, err);
