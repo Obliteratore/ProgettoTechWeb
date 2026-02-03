@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" >
         <title>[nomepesce] - FishMarket</title>
-        <meta name="description" content="FishMarket è un negozio online di pesci esotici da tutto il mondo. Po">
+        <meta name="description" content="FishMarket è un negozio online di pesci esotici da tutto il mondo.Acquista [nomepesce] online su FishMarket. Ideale per acquari di [habitat]. Scopri prezzo e disponibilità.">
         <meta name="keywords" content="pesci esotici, vendita pesci online, negozio pesci esotici, FishMarket">
         <meta name="author" content="Aaron Gingillino, Francesco Balestro, Bilal Sabic, Valerio Solito">
 
@@ -70,7 +70,7 @@
             <section class="main-section-pesce sezione-standard">
                 <div class="parte-superiore-pesce">
                     <div class="card-pesce">
-                        <img src="[percorso]" alt="Foto di [nomepesce], [dimensione] centimetri, [colori]">
+                        <img src="[percorso]" alt="Foto di [nomepesce], [dimensione] centimetri, [colori]" fetchpriority="high">
                     </div>
                     <div class="sezione-acquisto">
                         <h1>[nomepesce]</h1>
@@ -79,7 +79,7 @@
                         <p class="disponibilita">Ancora [disponibilita-pesce] disponibili!</p>
                         <form action="gestisci_carrello.php" method="POST" class="form-sezione-acquisto">
 
-                            <div id="errore-prodotto" class="[classe_errore]">[errore]</div>
+                            <div id="errore-prodotto" class="[classe_errore]" role="alert">[errore]</div>
 
                             <input type="hidden" name="azione" value="aggiungi">
                             <input type="hidden" name="nome_latino" value="[nomelatino]">
@@ -118,13 +118,13 @@
             <p>Questo sito <span lang="en">web</span> è stato creato a fini didattici per l'Università di Padova. Le foto sono state gentilmente fornite dal fotografo <span lang="fr">Benoit</span>, a cui appartengono tutti i diritti. Potete trovare queste, e ulteriori foto nel sito <a class="link-testuale" href="https://www.inaturalist.org/observations?place_id=any&user_id=benoit_fishipedia&verifiable=any" lang="en">iNaturalist</a>.</p>
         </footer>
         <a href="#top" class="back-to-top" aria-label="Torna all'inizio"><img src="../IMMAGINI/Icone/arrow-up.svg" alt="" aria-hidden="true"></a>
-        <dialog id="msg-successo"  aria-describedby="descrizione-popup">
+        <dialog id="msg-successo"  aria-describedby="descrizione-popup" tabindex="-1">
             <div class="contenuto-msg-successo sezione-standard">
-                <h3 tabindex="-1">Ottimo!</h3>
+                <h3>Ottimo!</h3>
                 <p id="descrizione-popup">[successo]</p>
 
-                <div><a href="carrello.php">Vai al carrello</a></div>
-                <div><a href="catalogo.php">Continua lo shopping</a></div>
+                <div><a class="link-testuale" href="carrello.php">Vai al carrello</a></div>
+                <div><a class="link-testuale" href="catalogo.php">Continua lo shopping</a></div>
             </div>
         </dialog>
     </body>

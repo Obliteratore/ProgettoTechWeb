@@ -46,6 +46,8 @@ try{
             $prezzo = (float)$item['prezzo'];
             $quantita = (int)$item['quantita'];
             $immagine = $item['immagine'];
+            $dimensione = (int)$item['dimensione'] ?? '';
+            $colori = $item['colori'] ?? '';
             $id_ancora = 'item-' . str_replace(' ', '_', $nome_latino);
             $subtotale = $prezzo * $quantita;
             $totale += $subtotale;
@@ -53,11 +55,11 @@ try{
             $contenuto_carrello .= '
             <li class="item-carrello" id="' . $id_ancora . '">
                 <div class="item-img-container">
-                    <img src="' . htmlspecialchars($immagine) . '" alt="Foto di ' . htmlspecialchars($nome_comune) . '" class="img-carrello">
+                    <img src="' . htmlspecialchars($immagine) . '" alt="Foto di ' . htmlspecialchars($nome_comune) . ', ' . htmlspecialchars($dimensione) . ' centimetri, ' . htmlspecialchars($colori) . '" class="img-carrello">
                 </div>
 
                 <div class="item-info">
-                    <span class="item-nome-comune">' . htmlspecialchars($nome_comune) . '</span>
+                    <h2 class="item-nome-comune">' . htmlspecialchars($nome_comune) . '</h2>
                     <span class="item-nome-latino">' . htmlspecialchars($nome_latino) . '</span>
                 </div>
 
@@ -74,6 +76,10 @@ try{
                                max="' . $item['disponibilita'] . '"
                                class="quantita-carrello"
                                aria-label="Modifica quantità per ' . htmlspecialchars($nome_comune) . '">
+
+                        <noscript>
+                        <button type="submit" class="bottone-standard bottone-noscript" aria-label="Aggiorna quantità">↻</button>
+                        </noscript>
                     </form>
 
                     <form action="gestisci_carrello.php" method="POST" class="form-rimuovi">
@@ -86,6 +92,7 @@ try{
                 </div>
 
                 <div class="item-totale-riga">
+                    <span class="screen-reader">Totale parziale: </span>
                     ' . number_format($subtotale, 2) . ' €
                 </div>
             </li>';
@@ -113,9 +120,9 @@ $pagina_html = str_replace("[totale]", number_format($totale, 2), $pagina_html);
 
 
 if ($visibilita == "hidden") {
-    $pagina_html = str_replace('class="riepilogo-ordine [visibilita]"', 'class="riepilogo-ordine hidden"', $pagina_html);
+    $pagina_html = str_replace('class="riepilogo-ordine [visibilita]"', 'class="riepilogo-ordine sezione-standard hidden"', $pagina_html);
 } else {
-    $pagina_html = str_replace('[visibilita]', '', $pagina_html);
+    $pagina_html = str_replace('[visibilita]', 'sezione-standard', $pagina_html);
 }
 
 echo $pagina_html;

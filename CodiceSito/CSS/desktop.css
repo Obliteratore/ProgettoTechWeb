@@ -161,14 +161,14 @@ SEZIONE MAIN
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 1.5em 2em;
-    gap: 2em;
+    padding: 1em;
+    gap: 1em;
     margin-bottom: 1.5em;
 }
 
 .item-img-container {
-    width: 10rem; 
-    height: 10rem;
+    width: 11rem; 
+    height: 11rem;
     flex-shrink: 0;
     display: block;
 }
@@ -180,9 +180,10 @@ SEZIONE MAIN
 }
 
 .item-info {
-    flex: 2; 
+    flex: 1 1 auto; 
     align-items: flex-start;
     text-align: left;
+    margin-right: 0.5em;
 }
 
 .item-nome-comune {
@@ -192,19 +193,19 @@ SEZIONE MAIN
 .item-prezzo-singolo {
     flex: 1;
     text-align: center;
-    color: #ddd;
     font-size: clamp(1.1rem, 1rem + 0.5vw, 1.4rem);
 }
 
 .item-azioni {
-    flex: 1;
+    flex: 0 0 auto;
     justify-content: center;
+    gap: 0.5em;
 }
 
 .item-totale-riga {
-    flex: 1;
-    text-align: right;
-    font-size: clamp(1.2rem, 1rem + 0.6vw, 1.5rem);
+    flex: 0 1 auto;
+    font-size: clamp(1rem, 0.8rem + 0.6vw, 1.5rem);
+    margin-left: auto;
 }
 
 .riepilogo-ordine {

@@ -129,7 +129,6 @@ footer {
     padding: 0;
     margin: -1px;
     overflow: hidden;
-    clip-path: rect(0 0 0 0);
     white-space: nowrap;
     border: 0;
 }
@@ -375,7 +374,6 @@ a:visited .dati-pesce, a:visited .prezzo {
     font-weight: bold;
     font-size: clamp(0.875em, 0.3em + 2.2vw, 2em);
     font-size: clamp(0.875em, 8cqw, 2em);
-    line-height: 1;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -960,6 +958,25 @@ dialog::backdrop {
     background: rgba(0, 0, 0, 0.5);
 }
 
+dialog#msg-successo:target:not([open]) {
+    display: block;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    z-index: 10000;
+}
+
+dialog#msg-successo:target:not([open])::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    top: -5000px; left: -5000px; right: -5000px; bottom: -5000px;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+}
+
 #deleteProfiloTitle {
     margin-bottom: 0.5em;
 }
@@ -1176,7 +1193,7 @@ SEZIONE Carrello
 
 .messaggio-vuoto {
     text-align: center;
-    font-size: 1.2em;
+    font-size: clamp(1rem, 2vw, 1.2rem);
     margin-top: 2em;
 }
 
@@ -1189,13 +1206,13 @@ SEZIONE Carrello
 .item-carrello {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1.5em;
+    gap: 1em;
     background: var(--color-background-card);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 15px;
     width: 95%;
     margin: 0 auto 1em auto;
-    padding: 2em;
+    padding: 1em;
     align-items: center;
     box-sizing: border-box;
 }
@@ -1208,10 +1225,10 @@ SEZIONE Carrello
 }
 
 .img-carrello {
-    width: 12.5rem;
-    height: 12.5rem;
+    width: 12rem;
+    height: 12rem;
     object-fit: cover;
-    max-width: 80%;
+    max-width: 80%; 
     border-radius: 15px;
     border: 1px solid rgba(255, 255, 255, 0.3);
 }
@@ -1225,13 +1242,13 @@ SEZIONE Carrello
 
 .item-nome-comune {
     font-weight: bold;
-    font-size: 1.8rem;
+    font-size: clamp(1.3rem, 1rem + 2vw, 1.8rem);
     color: var(--color-link);
 }
 
 .item-nome-latino {
     font-style: italic;
-    font-size: 1.35rem;
+    font-size: clamp(1rem, 0.8rem + 1.5vw, 1.35rem);
     color: #fff;
     margin-top: 0.3em;
 }
@@ -1240,8 +1257,7 @@ SEZIONE Carrello
     grid-column: 1 / -1;
     text-align: center;
     display: block;
-    color: #ffffff;
-    font-size: 1.4rem;
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
     font-weight: bold;
 }
 
@@ -1250,13 +1266,13 @@ SEZIONE Carrello
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: 0.5em;
+    gap: 0.3em;
 }
 
 .quantita-carrello {
     width: 3.5rem;
     height: 2.2rem;
-    font-size: 1.1rem;
+    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
 }
 
 .form-rimuovi {
@@ -1269,32 +1285,40 @@ SEZIONE Carrello
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    width: 2.2em;
-    height: 2.2em;
+    width: 2.4rem;
+    height: 2.4rem;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .icona-x {
-    width: 1.4em;
-    height: 1.4em;
+    width: 2.2rem;
+    height: 2.2rem;
     filter: brightness(0) invert(1);
 }
 
 .item-totale-riga {
     grid-column: 2;
     text-align: right;
-    font-size: 1.3rem;
+    font-size: clamp(1.3rem, 2vw, 1.3rem);
     font-weight: bold;
     color: #ffffff;
 }
 
+.bottone-standard.bottone-noscript {
+    width: auto;       
+    height: 2.2rem;   
+    padding: 0 0.8em;
+    margin-top: 0;
+    margin-left: 0.5em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .riepilogo-ordine {
     padding: 2em;
-    background: var(--color-background-card);
-    border-radius: 15px;
-    border: 1px solid rgba(255,255,255,0.3);
     display: flex;
     flex-direction: column;
     gap: 0.8em;
@@ -1309,7 +1333,7 @@ SEZIONE Carrello
 }
 
 .totale-text{
-    font-size: 1.6rem;
+    font-size: clamp(1.3rem, 1rem + 2vw, 1.6rem);
     font-weight: bold;
     display: flex;
     flex-wrap: wrap;
@@ -1322,7 +1346,7 @@ SEZIONE Carrello
 }
 
 .totale-text span {
-    font-size: 1.8rem;
+    font-size: clamp(1.5rem, 1.2rem + 2vw, 1.8rem);
     color: var(--color-text);
     white-space: nowrap;
 }
