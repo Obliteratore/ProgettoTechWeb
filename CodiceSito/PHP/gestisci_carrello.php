@@ -1,7 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 
 if(session_status() !== PHP_SESSION_ACTIVE)
     session_start();
@@ -40,7 +37,7 @@ try{
                             else $_SESSION['carrello_ospite'][$pesce] = $quantita;
                         }
 
-                        header("Location: ../PHP/pesce.php?nome_latino=" . urlencode($pesce) . "&successo=aggiunto");
+                        header("Location: ../PHP/pesce.php?nome_latino=" . urlencode($pesce) . "&successo=aggiunto#msg-successo");
                         exit();
                     } else {
                         header("Location: ../PHP/pesce.php?nome_latino=" . $pesce . "&errore=non_disponibile");

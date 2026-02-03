@@ -8,12 +8,12 @@ class FMAccess {
 	private const USERNAME = "agingill";
 	private const PASSWORD = "Pech3pheeXie4xen";
 	*/
-
+	
 	private const HOST_DB = "localhost";
 	private const DATABASE_NAME = "fbalestr";
 	private const USERNAME = "fbalestr";
 	private const PASSWORD = "Iemao4Chawiechoo";
-
+	
 	/*
 	private const HOST_DB = "localhost";
 	private const DATABASE_NAME = "bsabic";
@@ -500,7 +500,7 @@ class FMAccess {
 	}
 
 	public function getCarrello($email) {
-		$query = "SELECT c.nome_latino, c.quantita, p.nome_comune, p.prezzo, p.immagine, p.disponibilita
+		$query = "SELECT c.nome_latino, c.quantita, p.nome_comune, p.prezzo, p.immagine, p.disponibilita, p.colori, p.dimensione
 				  FROM carrello c
 				  JOIN pesci p ON c.nome_latino = p.nome_latino
 				  WHERE c.email = ?";
@@ -537,7 +537,7 @@ class FMAccess {
         $placeholders = implode(',', array_fill(0, count($nomi_latini), '?'));
         $tipi = str_repeat('s', count($nomi_latini));
 
-        $query = "SELECT nome_latino, nome_comune, prezzo, immagine, disponibilita 
+        $query = "SELECT nome_latino, nome_comune, prezzo, immagine, disponibilita, dimensione, colori
                   FROM pesci 
                   WHERE nome_latino IN ($placeholders)";
 
