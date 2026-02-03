@@ -8,7 +8,8 @@
 
     --color-background-bottoni: #0072bc ;
     --color-background-bottoni-hover: #025992;
-    --color-background-bottoni-error: #f15a22;
+    --color-background-bottoni-error: #C83E3C;
+    --color-background-bottoni-error-hover: #b13735;
 
     --color-testo-bottoni: white;
 
@@ -920,11 +921,11 @@ fieldset > label:first-of-type {
 }
 
 #deleteProfiloLink, #deleteProfiloBtn {
-    background-color: #C83E3C;
+    background-color: var(--color-background-bottoni-error);
 }
 
 #deleteProfiloLink:hover, #deleteProfiloLink:focus-visible, #deleteProfiloBtn:hover, #deleteProfiloBtn:focus-visible {
-    background-color: #b13735;
+    background-color: var(--color-background-bottoni-error-hover);
 }
 
 #cancelModifyBtn, #cancelDeleteBtn, #deleteProfiloBtn, #cancelBuyBtn, #cancelAddPesceBtn {
