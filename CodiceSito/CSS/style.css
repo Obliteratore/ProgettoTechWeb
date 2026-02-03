@@ -1110,7 +1110,7 @@ input[type="submit"][value="Aggiungi pesce"], input[type="submit"][value="Salva 
     white-space: normal;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 480px) {
 
     .admin-table,
     .admin-table thead,
