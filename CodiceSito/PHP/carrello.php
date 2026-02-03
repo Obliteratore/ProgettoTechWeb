@@ -78,7 +78,7 @@ try{
                                aria-label="Modifica quantità per ' . htmlspecialchars($nome_comune) . '">
 
                         <noscript>
-                        <button type="submit" class="bottone-standard bottone-noscript" aria-label="Aggiorna quantità">OK</button>
+                        <button type="submit" class="bottone-standard bottone-noscript" aria-label="Aggiorna quantità">↻</button>
                         </noscript>
                     </form>
 
