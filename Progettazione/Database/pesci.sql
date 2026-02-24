@@ -1,4 +1,4 @@
-USE fbalestr;
+USE agingill;
 
 DROP TABLE IF EXISTS carrello;
 DROP TABLE IF EXISTS dettaglio_ordini;

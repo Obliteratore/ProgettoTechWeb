@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 if(session_status() !== PHP_SESSION_ACTIVE)
     session_start();
 
@@ -37,13 +41,22 @@ try{
     $listaOrdini = $connection->getOrdiniUtenteRegistrato($_SESSION['email']);
     if(!empty($listaOrdini)) {
         $prezzoTotale = [];
-        foreach($listaOrdini as $ordine) {
-            if (!isset($prezzoTotale[(int)$ordine['id_ordine']])) {
-                $prezzoTotale[(int)$ordine['id_ordine']] = '0.00';
-            }
-            $parziale = bcmul($ordine['prezzo_unitario'], (string) $ordine['quantita'], 2);
+        foreach ($listaOrdini as $ordine) {
 
-            $prezzoTotale[$ordine['id_ordine']] = bcadd($prezzoTotale[(int)$ordine['id_ordine']], $parziale, 2);
+            $id = (int)$ordine['id_ordine'];
+        
+            if (!isset($prezzoTotale[$id])) {
+                $prezzoTotale[$id] = 0; // lavoriamo in centesimi (interi)
+            }
+        
+            // Convertiamo il prezzo in centesimi
+            $prezzoCentesimi = (int) round($ordine['prezzo_unitario'] * 100);
+        
+            // Calcoliamo il parziale in centesimi
+            $parzialeCentesimi = $prezzoCentesimi * (int)$ordine['quantita'];
+        
+            // Sommiamo
+            $prezzoTotale[$id] += $parzialeCentesimi;
         }
 
         $idOrdinePrec = null;
@@ -64,7 +77,8 @@ try{
                 $ordini .= '<time datetime="' . $data_datetime . '">';
                 $ordini .= $data_visibile . '</time></h3>';
                 $ordini .= '<dl>';
-                $ordini .= '<dt>TOTALE:</dt><dd>' . $prezzoTotale[(int)$ordine['id_ordine']] . ' €</dd>';
+                $totale = $prezzoTotale[(int)$ordine['id_ordine']];
+                $ordini .= '<dt>TOTALE:</dt><dd>' . number_format($totale / 100, 2, '.', '.') . ' €</dd>';
                 $ordini .= '<dt>INDIRIZZO:</dt><dd>' . htmlspecialchars($ordine['via']) . ', ' . htmlspecialchars($ordine['comune']) . ', <abbr title="' . htmlspecialchars($ordine['provincia']) . '">' . htmlspecialchars($ordine['sigla_provincia']) . '</abbr>' . '</dd>';
                 $ordini .= '</dl>';
                 $ordini .= '</div>';
@@ -82,7 +96,7 @@ try{
             }
             $ordini .= '<tr>';
             $ordini .= '<th scope="row"><a class="link-testuale" href="../PHP/pesce.php?nome_latino=' . urlencode(htmlspecialchars($ordine['nome_latino'])) . '">' . htmlspecialchars($ordine['nome_comune']) . '</a></th>';
-            $ordini .= '<td data-title="Prezzo">' . number_format($ordine['prezzo_unitario'], 2, ',', '.') . ' €</td>';
+            $ordini .= '<td data-title="Prezzo">' . number_format($ordine['prezzo_unitario'], 2, '.', '.') . ' €</td>';
             $ordini .= '<td data-title="Quantità">' . (int)$ordine['quantita'] . '</td>';
             $ordini .= '</tr>';
             

@@ -41,7 +41,7 @@ try{
         if($pesce!= null){
             $nome_comune = htmlspecialchars($pesce['nome_comune']);
             $nome_latino_db = htmlspecialchars($pesce['nome_latino']);
-            $prezzo = number_format($pesce['prezzo'], 2, ',', '.');
+            $prezzo = number_format($pesce['prezzo'], 2, '.', '.');
             $disponibilita = (int)$pesce['disponibilita'];
             $famiglia = htmlspecialchars($pesce['famiglia']);
             $dimensione = htmlspecialchars($pesce['dimensione']);
