@@ -1,0 +1,77 @@
+html {
+    color: black;
+    font-family:  serif;
+}
+
+.sezione-standard {
+    background: none;
+    border-radius: 20px;
+    border: 2px solid black;
+    backdrop-filter: none;
+    box-shadow: none;
+}
+
+.bottone-standard {
+    background: none;
+    border: 2px solid black;
+    color: black;
+}
+
+body {
+    background-image: none;
+}
+
+.header, .header-content, .back-to-top {
+    display: none;
+}
+
+.card-pesce{
+    border-radius: 0px;
+}
+
+.card-pesce {
+    background: none;
+}
+
+.card-pesce .prezzo, .dati-pesce {
+    color: black;
+    background: white;
+}
+
+a {
+    color:black;
+}
+
+.link-testuale[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.9em;
+    word-break: break-all;
+}
+
+.link-testuale,.link-testuale:visited {
+    background-color: white;
+    text-decoration: underline;
+    border-radius: 0px;
+    color:black;
+}
+
+.main-section {
+    background-color: rgba(255, 255, 255, 0);
+}
+
+img {
+    filter: grayscale(100%);
+}
+
+.carrello-button {
+    background-color:  rgba(255, 255, 255, 0);
+}
+
+.redirect-icon {
+    display: none;
+}
+
+.dati-membro {
+    background: none;
+    color: black;
+}

@@ -1,29 +1,94 @@
 <!DOCTYPE html>
-<html lang=“it”>
+<html lang="it">
     <head>
-        <meta charset="utf-8" >
+        <meta charset="utf-8">
         <title>FishMarket</title>
-        <meta name="description" content="Questa pagina è dedicata ..." >
-        <meta name="keywords" content="pesci, mare …" >
-        <meta name="author" content="Aaron Gingillino, Francesco Balestro, Bilal Sabic, Valerio Solito" >
+        <meta name="description" content="FishMarket è un negozio online di pesci esotici da tutto il mondo. Porta l'esotico a casa tua con dei pesci unici.">
+        <meta name="keywords" content="pesci esotici, vendita pesci online, negozio pesci esotici, FishMarket">
+        <meta name="author" content="Aaron Gingillino, Francesco Balestro, Bilal Sabic, Valerio Solito">
 
-        <!-- CSS -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inclusive+Sans:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+
+
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../CSS/style.css">
+        <link rel="stylesheet" href="../CSS/desktop.css" media="(min-width: 768px)">
+        <link rel="stylesheet" href="../CSS/stampa.css" media="print">
 
-        <!-- Mobile -->
-        <link rel="stylesheet" href="mobile.css" media="(max-width: 767px)">
-      
-        <!-- Tablet -->
-        <link rel="stylesheet" href="tablet.css" media="(min-width: 768px) and (max-width: 1023px)">
-      
-        <!-- Desktop -->
-        <link rel="stylesheet" href="desktop.css" media="(min-width: 1024px)">
-
-        <!-- Stampa -->
-        <link rel="stylesheet" href="stampa.css" media="(min-width: 1024px)">
+        <link rel="icon" href="../IMMAGINI/Icone/fish.png" type="image/png">
     </head>
 
-    <main>
+    <body id="top">
+        <nav aria-label="Aiuti alla navigazione">
+            <a id="skip-to-content" href="#main-content">Salta al contenuto</a>
+        </nav>
+        <header>
+            <div class="header-content sezione-standard">
+                <img src="../IMMAGINI/Icone/fish.png" alt="">
+                <nav id="menu" aria-label="Menù di navigazione">
+                    <ul>
+                        <li lang="en" aria-current="page">Home</li>
+                        <li><a class="link-testuale" href="../PHP/catalogo.php">Catalogo</a></li>
+                        <li><a class="link-testuale" href="../HTML/chiSiamo.html">Chi Siamo</a></li>
+                        <li><a class="link-testuale" href="../PHP/profilo.php">Profilo</a></li>
+                    </ul>
+                </nav>
+                <div>
+                    <a id="cart-link" href="../PHP/carrello.php" aria-label="Vai al carrello"><img src="../IMMAGINI/Icone/shopping-cart.svg" alt="" aria-hidden="true"></a>
+                    <button id="hamburger-menu-btn" aria-controls="hamburger-menu" aria-expanded="true">
+                        <img id="open-hamburger-menu" src="../IMMAGINI/Icone/menu-burger.svg" alt="" aria-hidden="true">
+                        <span class="screen-reader">Apri l'<span lang="en">hamburger</span> menù</span>
+                        <img id="close-hamburger-menu" src="../IMMAGINI/Icone/cross.svg" alt="" aria-hidden="true">
+                        <span class="screen-reader">Chiudi l'<span lang="en">hamburger</span> menù</span>
+                    </button>
+                </div>
+                <nav id="hamburger-menu" aria-label="Menù di navigazione per cellulare">
+                    <ul>
+                        <li lang="en" aria-current="page">Home</li>
+                        <li><a class="link-testuale" href="../PHP/catalogo.php">Catalogo</a></li>
+                        <li><a class="link-testuale" href="../HTML/chiSiamo.html">Chi Siamo</a></li>
+                        <li><a class="link-testuale" href="../PHP/profilo.php">Profilo</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <script src="../JS/hamburger_menu.js" defer></script>
 
-    </main>
+        <nav id="breadcrumb" class="sezione-standard" aria-label="Percorso di navigazione">
+            <ol>
+                <li lang="en" aria-current="page">Home</li>
+            </ol>
+        </nav>
+
+        <main id="main-content">
+            <h1 class="position" lang="en">FISHMARKET</h1>
+            <p class="call-to-action position">Porta l'esotico a casa tua!</p>
+            <p class="paragrafo position">Siamo un piccolo negozio <span lang="en">online</span> dedicato alla vendita di pesci provenienti da tutto il mondo.</p>
+            <section class="main-section sezione-standard">
+                <div class="section-title">
+                    <h2>NUOVI ARRIVI</h2>
+                    <a href="../PHP/catalogo.php?filtro=nuovi_arrivi"><img class="redirect-icon" src="../IMMAGINI/Icone/arrow-right.png" alt="Mostra tutti"></a>
+                </div>
+                <ul class="pesci">
+                    [nuovo_pesce]
+                </ul>
+            </section>
+            <p class="call-to-action position"><a class="link-testuale" href="../PHP/registrazione.php">Registrati</a> per restare sempre aggiornato sui nuovi arrivi!</p>
+            <section class="main-section sezione-standard">
+                <div class="section-title">
+                    <h2>PIÙ VENDUTI</h2>
+                    <a href="../PHP/catalogo.php?filtro=piu_venduti"><img class="redirect-icon" src="../IMMAGINI/Icone/arrow-right.png" alt="Mostra tutti"></a>
+                </div>
+                <ul class="pesci">
+                    [piu_venduto]
+                </ul>
+            </section>
+        </main>
+        <footer>
+            <p>Questo sito <span lang="en">web</span> è stato creato a fini didattici per l'Università di Padova. Le foto sono state gentilmente fornite dal fotografo <span lang="fr">Benoit</span>, a cui appartengono tutti i diritti. Potete trovare queste, e ulteriori foto nel sito <a class="link-testuale" href="https://www.inaturalist.org/observations?place_id=any&user_id=benoit_fishipedia&verifiable=any" lang="en">iNaturalist</a>.</p>
+        </footer>
+        <a href="#top" class="back-to-top" aria-label="Torna all'inizio"><img src="../IMMAGINI/Icone/arrow-up.svg" alt="" aria-hidden="true"></a>
+    </body>
 </html>

@@ -1,0 +1,1371 @@
+*{
+    padding: 0em;
+    margin: 0em;
+}
+
+:root {
+    --color-text: white;
+
+    --color-background-bottoni: #0072bc ;
+    --color-background-bottoni-hover: #025992;
+    --color-background-bottoni-error: #C83E3C;
+    --color-background-bottoni-error-hover: #b13735;
+
+    --color-testo-bottoni: white;
+
+    --color-background-card: rgba(10, 12, 13, 0.25);
+    --color-background-header: rgba(38, 125, 183, 0.77);
+    --color-background-back-to-top: rgba(0, 0, 0, 0.411); 
+
+    --color-overlay-card: rgba(0, 0, 0, 0.6);
+
+    --color-link: white;
+    --color-link-visited: black;
+}
+
+/*
+=======================================
+CLASSI STANDARD (garantiscono coerenza all'interno del sito)
+=======================================
+*/
+.sezione-standard {
+    background: var(--color-background-card);
+    border-radius: 20px;
+    border: 1px solid #ffffff66;
+    backdrop-filter: blur(5px) saturate(120%);
+    box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.15),
+    inset 0 1px 1px rgba(255, 255, 255, 0.6);
+    
+}
+
+a.bottone-standard, .bottone-standard {
+    border: 2px solid white;
+    padding: 0.5rem;
+    font-weight: bold;
+    background-color: var(--color-background-bottoni);
+    color: var(--color-text);
+    cursor: pointer;
+    height: 2.5rem;
+    width: 100%;
+    border-radius: 10px;
+    box-sizing: border-box;
+    margin-top: 0.25em;
+    font-size: clamp(1rem, 0.8rem + 0.4vw, 1.2rem);
+    text-decoration: none;
+}
+
+.bottone-standard:hover, .bottone-standard:focus-visible {
+    background-color: var(--color-background-bottoni-hover);
+}
+
+/*
+=======================================
+LINK
+=======================================
+*/
+
+a {
+    color: var(--color-link);
+    padding-left: 0.2em;
+    padding-right: 0.2em;
+}
+
+.link-testuale {
+    background-color: #060606af;
+    text-decoration: underline;
+    border-radius: 6px;
+    display: inline-flex;
+}
+
+.link-testuale:visited {
+    color: var(--color-link-visited);
+    background-color: #fff;
+}
+
+
+
+/*
+=======================================
+HTML
+=======================================
+*/
+html {
+    line-height: 1.5;
+    font-size: 100%;
+    font-family: "Inclusive Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    color: var(--color-text);
+    scroll-behavior: smooth;
+}
+
+body {
+    background: linear-gradient(135deg, rgb(0, 35, 89) 0%, rgb(0, 104, 158) 100%);  
+    background-image: url("../IMMAGINI/Sfondi_Sito/sfondoScurito.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+footer {
+    margin-top: 1rem;
+    margin-right: 3rem;
+    margin-left: 0.5rem;
+    padding-bottom: 1rem;
+}
+
+:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 3px;
+    box-shadow: 0 0 0 2px #000;
+}
+
+#skip-to-content, .screen-reader {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    white-space: nowrap;
+    border: 0;
+}
+
+#skip-to-content:focus {
+    z-index: 10000;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip-path: none;
+    top: 0.5em;
+    left: 0.5em;
+    padding: 0.5em 1em;
+    border-radius: 20px;
+    background-color: black;
+    color: var(--color-text);
+}
+
+/*
+=======================================
+SEZIONE HEADER
+=======================================
+*/
+
+header{
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    padding: 0.5em;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0.5em 1em;
+    font-size: clamp(1rem, 1rem + 0.4vw, 1.3rem);
+    backdrop-filter: blur(20px);
+    background: var(--color-background-header);
+}
+
+.header-content img {
+    width: 2.9em;
+}
+
+#cart-link {
+    margin-right: 0.5rem;
+    display: inline-flex;
+}
+
+#cart-link > img {
+    width: 2.5em;
+}
+
+/*
+=======================================
+SEZIONE MENU
+=======================================
+*/
+
+#menu {
+    display: none;
+}
+
+#hamburger-menu {
+    display: block;
+    width: 100%;     
+    text-align: center;
+}
+
+#hamburger-menu ul {
+    list-style-type: none;
+}
+
+#hamburger-menu li {
+    margin-bottom: 0.5rem;
+}
+
+#hamburger-menu-btn {
+    background: transparent;
+    border: none;
+    width: 3em;
+    height: 3em;
+    cursor: pointer;
+}
+
+#hamburger-menu.hidden-menu {
+    display: none;
+}
+
+#close-hamburger-menu, #hamburger-menu-btn span:last-of-type {
+    display: none;
+}
+
+#hamburger-menu-btn.active #open-hamburger-menu, #hamburger-menu-btn.active span:first-of-type {
+    display: none;
+}
+
+#hamburger-menu-btn.active #close-hamburger-menu, #hamburger-menu-btn.active span:last-of-type {
+    display: block;
+}
+
+/*
+=======================================
+SEZIONE BREADCRUMB
+=======================================
+*/
+
+#breadcrumb {
+    width: fit-content;
+    max-width: 95%;
+    margin: 0 auto;
+    font-size: clamp(1rem, 1rem + 0.4vw, 1.3rem);
+}
+
+#breadcrumb > ol {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    list-style: none;
+    padding: 0.5rem;
+    margin: 0 0.5rem;
+}
+
+#breadcrumb > ol > li + li::before {
+	content: '>' / '';
+    margin: 0 0.3em;
+}
+
+/*
+=======================================
+SEZIONE MAIN
+=======================================
+*/
+
+h1 {
+    font-size: clamp(2rem, 1.5rem + 1.8vw, 3rem);
+}
+
+h2 {
+    font-size: clamp(1.5rem, 1rem + 1.8vw, 2rem);
+}
+
+h3 {
+    font-size: clamp(1.2rem, 0.6rem + 1.2vw, 1.5rem);
+}
+
+.call-to-action {
+    font-size: clamp(1.1rem, 0.6rem + 1.8vw, 1.5rem);
+}
+.paragrafo {
+    font-size: clamp(1rem, 0.6rem + 1.8vw, 1.3rem);
+}
+
+.position {
+    text-align: center;
+}
+
+#main-content {
+    margin-top: 1em;
+    margin-right: 0.5em;
+    margin-left: 0.5em;
+}
+
+.main-section {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding-top: 0.25em;
+    padding-bottom: 0.25em;
+}
+
+.section-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 0.5em;
+    margin-left: 0.5em; 
+}
+
+.section-title img {
+    height: auto;
+    width: 100%;
+    max-width: 3.5em;
+    padding-top: 0.5em;
+}
+
+.pesci, .pesci-catalogo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+    margin: 0.5em;
+    list-style: none;
+}
+
+.card-pesce {
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    container-type: inline-size;
+    min-height: 100px;
+}
+
+.card-pesce img {
+    display: block;
+    max-width: 112%;
+    height: auto;
+}
+
+.card-pesce a{
+    display: block;
+    padding: 0;
+}
+
+.card-pesce:has(a:focus-visible) {
+    outline: 3px solid #fff;
+    outline-offset: 3px;
+    box-shadow: 0 0 0 2px #000;
+}
+
+.dati-pesce {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 25%;
+    background: var(--color-overlay-card);
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+a:visited .dati-pesce, a:visited .prezzo {
+    background: white;
+    color: black;
+}
+
+.dati-pesce .nome {
+    font-weight: bold;
+    font-size: clamp(0.875em, 0.3em + 2.2vw, 2em);
+    font-size: clamp(0.875em, 8cqw, 2em);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-pesce .prezzo {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 45%;
+    height: 15%;
+    background: var(--color-overlay-card); 
+    border-bottom-left-radius: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    font-size: clamp(0.875em, 2vw, 3em);
+    font-size: clamp(0.875em, 8cqw, 3em);
+    font-weight: bold;
+}
+
+.back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 1rem;
+    z-index: 1000;
+
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--color-background-back-to-top);
+    text-decoration: none;
+}
+
+/*
+=======================================
+SEZIONE PESCE.HTML
+=======================================
+*/
+
+.main-section-pesce {
+    padding: 1.0em;
+}
+
+
+.nome-scientifico{
+    display: block;
+    font-style: italic;  
+    font-size: clamp(1rem, 0.9rem + 0.8vw, 1.4rem); 
+    font-weight: 300;
+}
+
+.parte-superiore-pesce {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+}
+
+.parte-superiore-pesce .card-pesce {
+    border-radius: 15px;
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+}
+
+.parte-superiore-pesce .card-pesce img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.sezione-acquisto {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+}
+
+.sezione-acquisto h1 {
+    font-size: clamp(1.8rem, 4.7vw, 2.8rem); 
+}
+
+.sezione-acquisto .prezzo {
+    font-size: clamp(1.5rem, 1.2rem + 2vw, 2.5rem);
+    font-weight: bold;
+}
+
+.sezione-acquisto .disponibilita {
+    font-size: clamp(1rem, 0.9rem + 0.5vw, 1.3rem);
+    opacity: 1;
+}
+
+.quantita-gestione {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    justify-content: center;
+}
+
+#quantita, .quantita-carrello {
+    text-align: center;
+    font-weight: bold;
+    border-radius: 8px;
+    border: 1px solid #000;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 0.2em;
+}
+
+#quantita {
+    width: clamp(3rem, 2.5rem + 1.5vw, 4.5rem);
+    height: clamp(2rem, 2rem + 0.8vw, 2.8rem);
+    font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+}
+
+
+#errore-carrello {
+    width: 95%;
+    margin: 0 auto 1em auto;
+}
+
+.parte-inferiore-pesce {
+    margin-top: 2em;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    padding-top: 1.5em;
+}
+
+#bottone-carrello {
+    height: auto;
+    min-height: 2.8rem;
+    padding: 0.6em 1em;
+    width: 100%;
+    font-size: clamp(1.1rem, 1rem + 0.5vw, 1.25rem);
+    margin-top: 1em;
+}
+
+.dati-tecnici {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    align-items: center;
+    gap: 0 1em;
+    margin-bottom: 1.3em;
+    font-size: clamp(0.9rem, 0.85rem + 0.5vw, 1.25rem);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.dati-tecnici dt {
+    font-weight: bold;
+    color: var(--color-text);
+    opacity: 0.9;
+}
+
+.dati-tecnici dt::after {
+    content: ":";
+}
+
+.dati-tecnici dd, .dati-tecnici dt{
+    padding: 0.4em 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+
+dialog#msg-successo {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    margin: auto;
+    width: 90%;
+    max-width: 350px;
+    inset: 0;
+    overflow: visible;
+    box-sizing: border-box;
+}
+
+dialog#msg-successo::backdrop {
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+}
+
+.contenuto-msg-successo {
+padding: 1.5em;
+width: 100%;
+box-sizing: border-box;
+text-align: center;
+display: flex;
+flex-direction: column;
+gap: 1.5em;
+margin: 0;
+}
+
+/*
+=======================================
+SEZIONE CATALOGO.HTML
+=======================================
+*/
+
+/*BARRA RICERCA*/
+.search-bar {
+    display: flex;
+    flex-direction: column;
+    max-width: 15em;
+}
+
+.search-bar label {
+    font-weight: bold;
+    margin-bottom: 0.3em;
+}
+
+.search-bar input[type="search"] {
+    height: 2.8rem;
+    padding: 0 0.75em;
+    border-radius: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    font-size: 1rem;
+
+}
+
+#form-container-catalogo {
+    display:flex;
+    flex-direction: column;
+    gap: 1em;
+    margin: 1em auto;
+    padding: 1em;
+    max-width: 130em;
+}
+
+/* FILTRI */
+.filter-container {
+    display:flex;
+    flex-direction:column;
+    gap:0.6em;
+    padding :0.75em;
+    border-radius:15px;
+}
+.filter-container legend {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+}
+.filter-container label {
+    display: flex;
+    align-items: center;
+    gap:0.6em;
+}
+.habitat-filter, .special-filter {      
+    display:flex;
+    flex-direction: column;
+    gap: 0.5em;
+    margin-top:0.5em;
+}
+
+.habitat-filter label, .special-filter label {
+    display:flex;
+    align-items: center;
+    gap:0.5em
+}
+
+.price-filter {
+    display:block;
+    gap: 0.5em;
+}
+.price-filter label {
+    font-weight: bold;
+}
+.price-filter input[type="number"] {
+    border-radius: 10px;
+    border: 1px solid #000;
+    padding-left:0.5em;
+    height:1.5rem;
+}
+
+.color-filter {
+    display:flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1em;
+}
+.color-filter p {
+    font-weight: bold;
+    margin-right:0.5em;
+}
+.color-filter label{
+    display:flex;
+    align-items:center;
+    gap:0.25em;
+}
+
+#msg-errore-prezzi {
+    margin-top: 0.6em;
+    padding: 0 0.6em;
+    width: fit-content;
+    font-size: clamp(1.2rem, 0.8rem + 0.5vw, 1.1rem);
+}
+
+#form-container-catalogo input.input-errore {
+    border-color: #b13735;
+    background-color: #fff0f0;
+}
+
+/*ICONE*/
+.back-to-top img {
+    width: 3rem;
+}
+
+
+/*
+=======================================
+SEZIONE CHISIAMO.HMTL
+=======================================
+*/
+
+.membro {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 15px;            
+    margin: 1.5em auto;    
+    max-width: 1000px;    
+    list-style: none;
+    justify-content: center;
+}
+
+.card-membro{
+    background: none;
+    border-radius: 5px;
+    width: 160px;
+    text-align: center;
+    margin: 0 auto;
+    container-type: inline-size; 
+}
+
+.card-membro img{
+    display: block;
+    border-radius: 25%;
+    width: 160px; 
+    height: 160px;
+    object-fit: cover;  
+}
+
+.dati-membro{
+    left: 0;
+    width: 100%;              
+    margin-top: 5px;
+    border-radius: 10px;
+    background: var(--color-overlay-card); 
+    color: var(--color-text);
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.dati-membro .nome-membro{
+    font-weight: bold;
+    font-size: clamp(1.2rem, 0.7em + 3.5vw, 1.8em);
+    font-size: clamp(1.2rem, 13cqw, 1.8em);
+}
+
+/*LOGIN*/
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 17em;
+    max-width: 28em;
+    box-sizing: border-box;
+    padding: 1em;
+    margin: 0 auto;
+}
+
+.error-message {
+    font-weight: bold;
+    background-color: var(--color-background-bottoni-error);
+    border-radius: 10px;
+    padding-left: 0.5rem;
+    font-size: clamp(1.2rem, 1rem + 0.6vw, 1.6rem);
+}
+
+.error-message:empty{
+    display: none;
+}
+
+#login-error {
+    padding-left: 0;
+    margin-top: 0.5em;
+    text-align: center;
+}
+
+ul.error-message {
+    list-style: none;
+}
+
+#lista-colori-help {
+    padding-left: 1rem;
+}
+
+.data-form {
+    margin-top: 1em;
+    font-size: clamp(1.2rem, 1rem + 0.6vw, 1.7rem);
+}
+
+.data-form label {
+    font-weight: bold;
+}
+
+.data-form > label:first-child {
+    margin-top: 0em;
+}
+
+.data-form input, .data-form select {
+    height: 2.5rem;
+    width: 100%;
+    border-radius: 10px;
+    border: 1.5px solid black;
+    box-sizing: border-box;
+    margin-top: 0.25em;
+    padding-left: 0.5em;
+    font-size: clamp(1rem, 0.8rem + 0.4vw, 1.2rem);
+}
+
+.required {
+    margin-left: 0.25em;
+    font-size: clamp(1rem, 0.8rem + 0.4vw, 1.2rem);
+    font-weight: normal;
+}
+
+.hint {
+    display: block;
+    margin-top: 0.25em;
+    font-size: clamp(1rem, 0.8rem + 0.4vw, 1.2rem);
+}
+
+abbr {
+    text-underline-offset: 0.1em;
+    cursor: help;
+}
+
+#mostraPassword {
+    display:flex;
+    align-items: center;
+    gap:0.5rem;
+    margin-top: 0.5em;
+    font-size: clamp(1.1rem, 1rem + 0.6vw, 1.4rem);
+}
+
+#togglePassword {
+    height: 1.5rem;
+    width: 1.5rem;
+    margin-top: 0;
+}
+
+.data-form input[type="submit"] {
+    min-height: 2.5rem;
+    height: 2em;
+    border: 2px solid white;
+    font-size: clamp(1.2rem, 1rem + 0.6vw, 1.7rem);
+}
+
+#login-form input[type="submit"] {
+    margin-top: 1em;
+}
+
+/*SIGNIN*/
+
+fieldset {
+    border-radius: 20px;
+    padding: 0.5em;
+    margin-bottom: 1em;
+}
+
+legend {
+    font-size: clamp(1.3rem, 1.1rem + 0.7vw, 1.8rem);
+    font-weight: bold;
+}
+
+#signin-error, #modify-error {
+    margin-top: 0.5em;
+}
+
+#signin-error ul a, #modify-error ul a {
+    color: var(--color-text);
+    background: none;
+}
+
+.data-form label {
+    display: inline-block;
+    margin-top: 0.8em;
+}
+
+fieldset > label:first-of-type {
+    margin-top: 0em;
+}
+
+.help {
+    margin-top: 0.25em;
+    font-size: 0.875em;
+}
+
+.help ul {
+    padding-left: 1.5em;
+}
+
+/*PROFILO*/
+
+.user-container {
+    margin: 0 auto;
+    text-align: center;
+    font-size: clamp(1.1rem, 0.6rem + 1.3vw, 1.5rem);
+}
+
+.user-container ul {
+    list-style: none;
+}
+
+#modifyProfiloLink, #exitProfilo, #deleteProfiloLink {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 30%;
+    min-width: 10rem;
+    max-width: 12.5rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    text-decoration: none;
+}
+
+#modifyProfiloLink {
+    margin-top: 1rem;
+}
+
+#deleteProfiloLink, #deleteProfiloBtn {
+    background-color: var(--color-background-bottoni-error);
+}
+
+#deleteProfiloLink:hover, #deleteProfiloLink:focus-visible, #deleteProfiloBtn:hover, #deleteProfiloBtn:focus-visible {
+    background-color: var(--color-background-bottoni-error-hover);
+}
+
+#cancelModifyBtn, #cancelDeleteBtn, #deleteProfiloBtn, #cancelBuyBtn, #cancelAddPesceBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    border-radius: 10px;
+    text-decoration: none;
+    margin-top: 1em;
+}
+
+#cancelModifyBtn, #cancelBuyBtn, #cancelAddPesceBtn {
+    min-height: 2.5rem;
+    height: 2em;
+    font-size: clamp(1.2rem, 1rem + 0.6vw, 1.7rem);
+}
+
+dialog {
+    margin: auto;
+    inset: 0.5rem;
+    border-radius: 10px;
+    text-align: center;
+    background-color: rgb(0, 50, 126);
+    color: var(--color-text);
+    font-size: clamp(1rem, 0.6rem + 1.8vw, 1.3rem);
+    padding: 1em;
+}
+
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+dialog#msg-successo:target:not([open]) {
+    display: block;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    z-index: 10000;
+}
+
+dialog#msg-successo:target:not([open])::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    top: -5000px; left: -5000px; right: -5000px; bottom: -5000px;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+}
+
+#deleteProfiloTitle {
+    margin-bottom: 0.5em;
+}
+#deleteProfiloBtn {
+    margin-left: 1rem;
+}
+
+#cancelDeleteBtn, #deleteProfiloBtn {
+    max-width: 30%;
+}
+
+.lista-ordini li {
+    list-style: none;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    padding: 0.5rem;
+    margin: 0.5rem;
+}
+
+.lista-ordini dl {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    row-gap: 0.25rem;
+    column-gap: 0.5rem;
+    font-size: clamp(1rem, 0.6rem + 1vw, 1.3rem);
+}
+
+.lista-ordini dl dt{
+    font-weight: bold;
+}
+
+.lista-ordini .dati-ordine {
+    border-bottom: 2px solid #fff;
+    margin: 0 -0.5rem;
+    padding-bottom: 0.5rem;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+}
+
+.lista-ordini table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    box-sizing: border-box;
+    font-size: clamp(1rem, 0.6rem + 1vw, 1.3rem);
+}
+
+.lista-ordini th, .lista-ordini td {
+    padding: 0.5rem;
+    text-align: center;
+}
+
+.lista-ordini tbody tr:last-of-type th, .lista-ordini tbody tr:last-of-type td {
+    padding-bottom: 0;
+}
+
+.lista-ordini tbody tr {
+    border-top: 1px solid #fff;
+}
+
+@media (max-width: 480px) {
+    .lista-ordini thead {
+        display: none;
+    }
+
+    .lista-ordini tbody tr:first-of-type {
+        border: none;
+    }
+
+    .lista-ordini tr, .lista-ordini th, .lista-ordini td {
+        display: block;
+        padding: 0.25rem 0;
+        white-space: normal;
+    }
+
+    .lista-ordini td[data-title]::before {
+        content: attr(data-title)": ";
+        font-weight: bold;
+    }
+
+    .lista-ordini th {
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+}
+
+/*
+=======================================
+SEZIONE ADMIN
+=======================================
+*/
+
+#exitForm {
+    margin-top: 1rem;
+}
+
+input[type="submit"][value="Aggiungi pesce"], input[type="submit"][value="Salva modifiche"] {
+    margin-top: 0.8em;
+}
+
+.admin-table {
+    table-layout: auto;
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right:auto;
+    font-size: clamp(1rem, 0.6rem + 1vw, 1.5rem);
+    width: 100%;
+    box-shadow: 0 0 20px rgba(0,0,0,0.15);
+    border: 2px solid #fff; 
+}
+
+.admin-table a.bottone-standard{
+    margin-top:0;
+}
+
+.admin-table tr {
+    margin: 0 0.5rem;
+}
+
+.admin-table th, .admin-table td {
+    padding: 0.7rem;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+}
+
+.admin-table caption {
+    padding: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    white-space: normal;
+}
+
+@media (max-width: 480px) {
+
+    .admin-table,
+    .admin-table thead,
+    .admin-table tbody,
+    .admin-table th,
+    .admin-table td,
+    .admin-table tr {
+        display: block;
+    }
+
+    .admin-table thead {
+        display: none;
+    }
+
+    .admin-table {
+        margin-top: 1rem;
+    }
+    
+    .admin-table tr {
+        margin-bottom: 1rem;
+        border-radius: 10px;
+        border: 1px solid #ffffff66;
+        backdrop-filter: blur(5px) saturate(120%);
+        box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.15),
+        inset 0 1px 1px rgba(255, 255, 255, 0.6);
+        padding:0.75rem;
+    }
+
+    .admin-table td {
+        background: none;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        backdrop-filter: none;;
+        padding: 0.75rem;
+    }
+
+    .admin-table td::before {
+        content: attr(data-label);
+        font-weight: bold;
+    }
+
+    .admin-table caption {
+        width: 100%;
+        padding-top:1rem;
+        padding-bottom: 1rem;
+        padding-left: 0;   
+        padding-right: 0;
+        display:block;
+    }
+
+    .admin-table th[scope="row"] {
+        padding: 0.75rem;
+        font-weight: 700;
+        border-bottom: 1px solid #eee;
+    }
+
+    .admin-table td[data-label="Azione"]::before {
+        content: "";
+    }
+
+    .admin-table td[data-label="Azione"] {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+
+/*
+=======================================
+SEZIONE Carrello
+=======================================
+*/
+
+.contenitore-carrello{
+    padding: 0.5em;
+    min-height: 200px;
+}
+
+.messaggio-vuoto {
+    text-align: center;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    margin-top: 2em;
+}
+
+.lista-carrello{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.item-carrello {
+    display: grid;
+    position: relative;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+    background: var(--color-background-card);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    width: 95%;
+    margin: 0 auto 1em auto;
+    padding: 1.25rem;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.item-img-container {
+    grid-column: 1 / -1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.img-carrello {
+    width: 12rem;
+    height: 12rem;
+    object-fit: cover;
+    max-width: 80%; 
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.item-info {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.item-nome-comune {
+    font-weight: bold;
+    font-size: clamp(1.3rem, 1rem + 2vw, 1.8rem);
+    color: var(--color-link);
+}
+
+.item-nome-latino {
+    font-style: italic;
+    font-size: clamp(1rem, 0.8rem + 1.5vw, 1.35rem);
+    color: var(--color-text);
+    margin-top: 0.3em;
+}
+
+.item-prezzo-singolo {
+    grid-column: 1 / -1;
+    text-align: center;
+    display: block;
+    font-size: clamp(1.4rem, 2.5vw, 1.4rem);
+    font-weight: bold;
+}
+
+.item-azioni {
+    grid-column: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.3em;
+}
+
+.quantita-carrello {
+    width: 3.5rem;
+    height: 2.2rem;
+    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+}
+
+.form-rimuovi {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    z-index: 5;
+    margin: 0;
+    display: flex;
+}
+
+.btn-rimuovi {
+    background: transparent;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icona-x {
+    width: 2rem;
+    height: 2rem;
+}
+
+.item-totale-riga {
+    grid-column: 2;
+    text-align: right;
+    font-size: clamp(1.3rem, 2vw, 1.3rem);
+    font-weight: bold;
+    color: var(--color-text);
+}
+
+.bottone-standard.bottone-noscript {
+    width: auto;       
+    height: 2.2rem;   
+    padding: 0 0.8em;
+    margin-top: 0;
+    margin-left: 0.5em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.riepilogo-ordine {
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8em;
+    align-items: center;
+    width: 95%;
+    margin: 2em auto 2em auto;
+    box-sizing: border-box;
+}
+
+.hidden {
+    display: none;
+}
+
+.totale-text{
+    font-size: clamp(1.3rem, 1rem + 2vw, 1.6rem);
+    font-weight: bold;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    gap: 0.5em;
+    margin-bottom: 0;
+}
+
+.totale-text span {
+    font-size: clamp(1.5rem, 1.2rem + 2vw, 1.8rem);
+    color: var(--color-text);
+    white-space: nowrap;
+}
+
+a#buyLink {
+    width: auto;
+    height: auto;
+}
+/* PAGINE ERRORE E CONFERMA*/
+
+.sezione-errore, .sezione-conferma {
+    padding: 1rem;
+}
+
+.paragrafo-errore, .paragrafo-conferma {
+    margin-top: 1rem;
+}
